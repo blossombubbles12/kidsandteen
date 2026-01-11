@@ -24,7 +24,7 @@ export default async function MediaPage() {
 
     return (
         <div className="min-h-screen bg-background text-foreground">
-            <MediaHero />
+            <MediaHero media={media} />
             <GalleryGrid initialMedia={media} />
             <EventAlbums />
             <MediaSubmission />

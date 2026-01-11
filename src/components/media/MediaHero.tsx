@@ -1,40 +1,88 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Play } from "lucide-react";
+import { useState } from "react";
+import { MediaAsset } from "./GalleryGrid";
+import { CinematicPlayer } from "./CinematicPlayer";
 
-export function MediaHero() {
+interface MediaHeroProps {
+    media: MediaAsset[];
+}
+
+export function MediaHero({ media }: MediaHeroProps) {
+    const [isCinematicOpen, setIsCinematicOpen] = useState(false);
+
     return (
-        <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center bg-secondary/5 overflow-hidden">
-            <div className="absolute inset-0 z-0 opacity-30">
+        <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center bg-secondary/5 overflow-hidden">
+            <div className="absolute inset-0 z-0 opacity-40">
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background" />
-                {/* Abstract background blobs if needed, or keeping it clean */}
+                {/* Visual texture/particles could go here */}
             </div>
 
             <div className="container px-4 text-center relative z-10">
-                <motion.span
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="inline-block mb-4 text-primary font-medium tracking-wide uppercase text-sm"
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="flex flex-col items-center gap-6"
                 >
-                    Visual Stories
-                </motion.span>
-                <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 }}
-                    className="text-5xl md:text-7xl font-bold tracking-tight mb-4"
-                >
-                    Media & Moments
-                </motion.h1>
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="text-xl text-muted-foreground max-w-2xl mx-auto"
-                >
-                    Capturing life, love, and the unbreakable bond of the pack.
-                </motion.p>
+                    <div>
+                        <motion.span
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="inline-block mb-3 text-primary font-bold tracking-[0.2em] uppercase text-xs"
+                        >
+                            The Visual Anthology
+                        </motion.span>
+                        <motion.h1
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.1 }}
+                            className="text-6xl md:text-8xl font-black tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/60"
+                        >
+                            Media & Moments
+                        </motion.h1>
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="text-xl text-muted-foreground max-w-2xl mx-auto font-medium"
+                        >
+                            Capturing the soul, the joy, and the unbreakable bond of the pack.
+                        </motion.p>
+                    </div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4 }}
+                        className="mt-8"
+                    >
+                        <button
+                            onClick={() => setIsCinematicOpen(true)}
+                            className="group relative flex items-center justify-center w-24 h-24 md:w-32 md:h-32 rounded-full bg-primary text-white shadow-[0_0_50px_rgba(234,88,12,0.3)] hover:shadow-[0_0_70px_rgba(234,88,12,0.5)] transition-all duration-500 hover:scale-110 active:scale-95"
+                        >
+                            {/* Rotating Ring */}
+                            <div className="absolute inset-0 rounded-full border-2 border-dashed border-white/30 animate-[spin_8s_linear_infinite]" />
+
+                            <div className="relative z-10 flex flex-col items-center gap-1">
+                                <Play className="w-8 h-8 md:w-10 md:h-10 fill-current translate-x-1" />
+                                <span className="text-[10px] font-black uppercase tracking-[0.2em]">Cinematic</span>
+                            </div>
+
+                            {/* Hover Ripple */}
+                            <div className="absolute inset-0 rounded-full bg-white opacity-0 group-hover:animate-ping group-hover:opacity-20 pointer-events-none" />
+                        </button>
+                    </motion.div>
+                </motion.div>
             </div>
+
+            <CinematicPlayer
+                isOpen={isCinematicOpen}
+                onClose={() => setIsCinematicOpen(false)}
+                media={media}
+            />
         </section>
     );
 }
