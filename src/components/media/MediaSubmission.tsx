@@ -24,60 +24,90 @@ export function MediaSubmission() {
     const [isUploading, setIsUploading] = useState(false);
     const [uploadProgress, setUploadProgress] = useState(0);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-    const [selectedFile, setSelectedFile] = useState<File | null>(null);
-    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+    const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+    const [previews, setPreviews] = useState<{ url: string; type: string; name: string }[]>([]);
     const [folderName, setFolderName] = useState("");
 
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            setSelectedFile(file);
-            const url = URL.createObjectURL(file);
-            setPreviewUrl(url);
+        const files = Array.from(e.target.files || []);
+        if (files.length > 0) {
+            setSelectedFiles(prev => [...prev, ...files]);
+            const newPreviews = files.map(file => ({
+                url: URL.createObjectURL(file),
+                type: file.type,
+                name: file.name
+            }));
+            setPreviews(prev => [...prev, ...newPreviews]);
+        }
+    };
+
+    const removeFile = (index: number) => {
+        const newFiles = [...selectedFiles];
+        newFiles.splice(index, 1);
+        setSelectedFiles(newFiles);
+
+        const newPreviews = [...previews];
+        URL.revokeObjectURL(newPreviews[index].url);
+        newPreviews.splice(index, 1);
+        setPreviews(newPreviews);
+
+        if (newFiles.length === 0 && fileInputRef.current) {
+            fileInputRef.current.value = "";
         }
     };
 
     const clearSelection = () => {
-        setSelectedFile(null);
-        setPreviewUrl(null);
+        previews.forEach(p => URL.revokeObjectURL(p.url));
+        setSelectedFiles([]);
+        setPreviews([]);
         if (fileInputRef.current) fileInputRef.current.value = "";
     };
 
     const handleUpload = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!selectedFile) return;
+        if (selectedFiles.length === 0) return;
 
         setIsUploading(true);
-        setUploadProgress(10); // Start progress
+        setUploadProgress(0);
 
         try {
-            const formData = new FormData();
-            formData.append("file", selectedFile);
-
-            // Normalize folder path: ensure it starts with 'mydog/' or keep it root if empty
             const targetFolder = folderName
                 ? `mydog/${folderName.trim().replace(/\s+/g, '_').toLowerCase()}`
                 : "mydog/community_submissions";
 
-            setUploadProgress(30);
+            let successCount = 0;
 
-            const response = await uploadToCloudinary(formData, targetFolder);
+            for (let i = 0; i < selectedFiles.length; i++) {
+                const formData = new FormData();
+                formData.append("file", selectedFiles[i]);
 
-            setUploadProgress(90);
+                const response = await uploadToCloudinary(formData, targetFolder);
 
-            if (response.success) {
+                if (response.success) {
+                    successCount++;
+                }
+                setUploadProgress(((i + 1) / selectedFiles.length) * 100);
+            }
+
+            if (successCount === selectedFiles.length) {
                 toast({
                     title: "Success!",
-                    description: "Your story has been shared with the community.",
+                    description: `All ${successCount} stories have been shared with the community.`,
                     variant: "default",
                 });
                 setIsDialogOpen(false);
                 clearSelection();
                 setFolderName("");
+            } else if (successCount > 0) {
+                toast({
+                    title: "Partial Success",
+                    description: `${successCount} out of ${selectedFiles.length} files were uploaded.`,
+                    variant: "default",
+                });
             } else {
-                throw new Error(typeof response.error === 'string' ? response.error : "Upload failed");
+                throw new Error("All uploads failed");
             }
         } catch (error: any) {
             toast({
@@ -114,7 +144,10 @@ export function MediaSubmission() {
                             We'd love to feature it in our community gallery!
                         </p>
 
-                        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                        <Dialog open={isDialogOpen} onOpenChange={(open) => {
+                            setIsDialogOpen(open);
+                            if (!open) clearSelection();
+                        }}>
                             <DialogTrigger asChild>
                                 <Button size="lg" className="rounded-full px-10 py-7 text-lg gap-3 shadow-xl hover:shadow-primary/20 transition-all active:scale-95">
                                     <Upload className="w-6 h-6" /> Submit Media
@@ -125,51 +158,69 @@ export function MediaSubmission() {
                                     <DialogHeader>
                                         <DialogTitle className="text-2xl">Upload to Community Gallery</DialogTitle>
                                         <DialogDescription>
-                                            Upload an image or video. You can also specify a folder to organize your memories.
+                                            Upload multiple images or videos. You can also specify a folder to organize your memories.
                                         </DialogDescription>
                                     </DialogHeader>
 
                                     <div className="py-6 space-y-6">
-                                        {/* File Input / Dropzone Placeholder */}
-                                        {!previewUrl ? (
-                                            <div
-                                                onClick={() => fileInputRef.current?.click()}
-                                                className="border-2 border-dashed border-muted-foreground/20 rounded-2xl p-10 flex flex-col items-center justify-center gap-4 cursor-pointer hover:bg-primary/5 hover:border-primary/40 transition-all group"
-                                            >
-                                                <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                                    <Upload className="w-6 h-6 text-primary" />
-                                                </div>
-                                                <div className="text-center">
-                                                    <p className="font-semibold">Click to select file</p>
-                                                    <p className="text-sm text-muted-foreground">JPG, PNG, GIF or MP4 (Max 10MB)</p>
-                                                </div>
-                                                <input
-                                                    type="file"
-                                                    ref={fileInputRef}
-                                                    className="hidden"
-                                                    accept="image/*,video/*"
-                                                    onChange={handleFileSelect}
-                                                />
+                                        {/* File Input */}
+                                        <div
+                                            onClick={() => fileInputRef.current?.click()}
+                                            className="border-2 border-dashed border-muted-foreground/20 rounded-2xl p-8 flex flex-col items-center justify-center gap-3 cursor-pointer hover:bg-primary/5 hover:border-primary/40 transition-all group"
+                                        >
+                                            <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                                <Upload className="w-5 h-5 text-primary" />
                                             </div>
-                                        ) : (
-                                            <div className="relative rounded-2xl overflow-hidden aspect-video bg-black/5 flex items-center justify-center border">
-                                                {selectedFile?.type.startsWith('video') ? (
-                                                    <div className="flex flex-col items-center gap-2">
-                                                        <FileVideo className="w-12 h-12 text-primary" />
-                                                        <span className="text-sm font-medium">{selectedFile.name}</span>
-                                                    </div>
-                                                ) : (
-                                                    <img src={previewUrl} alt="Preview" className="w-full h-full object-cover" />
-                                                )}
-                                                <button
-                                                    type="button"
-                                                    onClick={clearSelection}
-                                                    className="absolute top-2 right-2 p-1.5 bg-black/60 text-white rounded-full hover:bg-black/80 transition-colors"
+                                            <div className="text-center">
+                                                <p className="font-semibold text-sm">Click to add files</p>
+                                                <p className="text-xs text-muted-foreground">JPG, PNG, GIF or MP4 (Max 10MB per file)</p>
+                                            </div>
+                                            <input
+                                                type="file"
+                                                ref={fileInputRef}
+                                                className="hidden"
+                                                multiple
+                                                accept="image/*,video/*"
+                                                onChange={handleFileSelect}
+                                            />
+                                        </div>
+
+                                        {/* Previews Grid */}
+                                        <AnimatePresence>
+                                            {previews.length > 0 && (
+                                                <motion.div
+                                                    initial={{ opacity: 0, height: 0 }}
+                                                    animate={{ opacity: 1, height: "auto" }}
+                                                    exit={{ opacity: 0, height: 0 }}
+                                                    className="grid grid-cols-3 gap-3 max-h-[300px] overflow-y-auto p-1"
                                                 >
-                                                    <X className="w-4 h-4" />
-                                                </button>
-                                            </div>
-                                        )}
+                                                    {previews.map((preview, index) => (
+                                                        <motion.div
+                                                            key={preview.url}
+                                                            initial={{ scale: 0.8, opacity: 0 }}
+                                                            animate={{ scale: 1, opacity: 1 }}
+                                                            className="relative aspect-square rounded-xl overflow-hidden border bg-muted group"
+                                                        >
+                                                            {preview.type.startsWith('video') ? (
+                                                                <div className="w-full h-full flex flex-col items-center justify-center gap-1 p-2">
+                                                                    <FileVideo className="w-6 h-6 text-primary" />
+                                                                    <span className="text-[10px] line-clamp-1 break-all text-center">{preview.name}</span>
+                                                                </div>
+                                                            ) : (
+                                                                <img src={preview.url} alt="Preview" className="w-full h-full object-cover" />
+                                                            )}
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => removeFile(index)}
+                                                                className="absolute top-1 right-1 p-1 bg-black/60 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/80"
+                                                            >
+                                                                <X className="w-3 h-3" />
+                                                            </button>
+                                                        </motion.div>
+                                                    ))}
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
 
                                         {/* Folder Configuration */}
                                         <div className="space-y-2">
@@ -193,37 +244,45 @@ export function MediaSubmission() {
                                         </div>
                                     </div>
 
-                                    <DialogFooter className="gap-2 sm:gap-0">
-                                        <Button
-                                            type="button"
-                                            variant="outline"
-                                            onClick={() => setIsDialogOpen(false)}
-                                            disabled={isUploading}
-                                            className="rounded-xl"
-                                        >
-                                            Cancel
-                                        </Button>
-                                        <Button
-                                            type="submit"
-                                            className="rounded-xl px-8 relative overflow-hidden"
-                                            disabled={!selectedFile || isUploading}
-                                        >
-                                            {isUploading ? (
-                                                <>
-                                                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                                                    Uploading...
-                                                </>
-                                            ) : "Post Story"}
-
-                                            {/* Progress Bar Overlay */}
-                                            {isUploading && (
-                                                <motion.div
-                                                    className="absolute bottom-0 left-0 h-1 bg-white/30"
-                                                    initial={{ width: 0 }}
-                                                    animate={{ width: `${uploadProgress}%` }}
-                                                />
+                                    <DialogFooter className="gap-2 sm:gap-0 border-t pt-4">
+                                        <div className="flex-1 flex items-center gap-3">
+                                            {selectedFiles.length > 0 && !isUploading && (
+                                                <span className="text-sm text-muted-foreground font-medium">
+                                                    {selectedFiles.length} files selected
+                                                </span>
                                             )}
-                                        </Button>
+                                        </div>
+                                        <div className="flex gap-2">
+                                            <Button
+                                                type="button"
+                                                variant="outline"
+                                                onClick={() => setIsDialogOpen(false)}
+                                                disabled={isUploading}
+                                                className="rounded-xl"
+                                            >
+                                                Cancel
+                                            </Button>
+                                            <Button
+                                                type="submit"
+                                                className="rounded-xl px-8 relative overflow-hidden"
+                                                disabled={selectedFiles.length === 0 || isUploading}
+                                            >
+                                                {isUploading ? (
+                                                    <>
+                                                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                                        {Math.round(uploadProgress)}%
+                                                    </>
+                                                ) : `Post ${selectedFiles.length > 1 ? `(${selectedFiles.length})` : ""} Stories`}
+
+                                                {isUploading && (
+                                                    <motion.div
+                                                        className="absolute bottom-0 left-0 h-1 bg-white/30"
+                                                        initial={{ width: 0 }}
+                                                        animate={{ width: `${uploadProgress}%` }}
+                                                    />
+                                                )}
+                                            </Button>
+                                        </div>
                                     </DialogFooter>
                                 </form>
                             </DialogContent>

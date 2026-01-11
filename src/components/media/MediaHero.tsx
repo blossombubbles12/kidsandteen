@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Play } from "lucide-react";
+import { Play, Dog } from "lucide-react";
 import { useState } from "react";
 import { MediaAsset } from "./GalleryGrid";
 import { CinematicPlayer } from "./CinematicPlayer";
@@ -57,8 +57,28 @@ export function MediaHero({ media }: MediaHeroProps) {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4 }}
-                        className="mt-8"
+                        className="mt-8 relative"
                     >
+                        {/* Playful Dog Icon */}
+                        <motion.div
+                            animate={{
+                                y: [0, -10, 0],
+                                rotate: [0, -5, 5, 0]
+                            }}
+                            transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                            className="absolute -top-12 -right-12 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-primary z-20 border-2 border-primary/20"
+                        >
+                            <Dog className="w-6 h-6" />
+                            <motion.div
+                                animate={{ scale: [1, 1.2, 1] }}
+                                transition={{ duration: 1, repeat: Infinity }}
+                                className="absolute -top-1 -right-1 w-3 h-3 bg-orange-500 rounded-full border-2 border-white"
+                            />
+                        </motion.div>
                         <button
                             onClick={() => setIsCinematicOpen(true)}
                             className="group relative flex items-center justify-center w-24 h-24 md:w-32 md:h-32 rounded-full bg-primary text-white shadow-[0_0_50px_rgba(234,88,12,0.3)] hover:shadow-[0_0_70px_rgba(234,88,12,0.5)] transition-all duration-500 hover:scale-110 active:scale-95"
