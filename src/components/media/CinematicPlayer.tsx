@@ -17,8 +17,11 @@ export function CinematicPlayer({ isOpen, onClose, media }: CinematicPlayerProps
     const [currentIndex, setCurrentIndex] = useState(0);
     const [shuffledMedia, setShuffledMedia] = useState<MediaAsset[]>([]);
     const [isPaused, setIsPaused] = useState(false);
-    const [isMuted, setIsMuted] = useState(true);
+    const [isMuted, setIsMuted] = useState(false); // Start unmuted since user clicked Play
     const timerRef = useRef<NodeJS.Timeout | null>(null);
+    const audioRef = useRef<HTMLAudioElement | null>(null);
+
+    const BGM_URL = "https://res.cloudinary.com/dtw0ajpwa/video/upload/v1768145404/Djo_iaad1s.mp3";
 
     // Shuffle media on start
     useEffect(() => {
@@ -27,8 +30,26 @@ export function CinematicPlayer({ isOpen, onClose, media }: CinematicPlayerProps
             setShuffledMedia(shuffled);
             setCurrentIndex(0);
             setIsPaused(false);
+            setIsMuted(false);
         }
     }, [isOpen, media]);
+
+    // Handle background music
+    useEffect(() => {
+        if (isOpen && audioRef.current) {
+            if (isPaused) {
+                audioRef.current.pause();
+            } else {
+                audioRef.current.play().catch(err => console.log("Audio play failed:", err));
+            }
+        }
+    }, [isOpen, isPaused]);
+
+    useEffect(() => {
+        if (audioRef.current) {
+            audioRef.current.muted = isMuted;
+        }
+    }, [isMuted]);
 
     const nextMedia = useCallback(() => {
         setCurrentIndex((prev) => (prev + 1) % shuffledMedia.length);
@@ -185,6 +206,13 @@ export function CinematicPlayer({ isOpen, onClose, media }: CinematicPlayerProps
                     <p className="text-xl font-bold font-serif italic tracking-widest">My Dog and I</p>
                 </div>
 
+                <audio
+                    ref={audioRef}
+                    src={BGM_URL}
+                    loop
+                    preload="auto"
+                    className="hidden"
+                />
             </motion.div>
         </AnimatePresence>
     );
