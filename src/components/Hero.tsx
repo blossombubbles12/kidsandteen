@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { CldImage } from "@/components/media/CldImage";
 import { useState, useEffect } from "react";
 import { ArrowRight, ChevronLeft, ChevronRight, Trophy, Star, Heart } from "lucide-react";
 
@@ -13,6 +14,7 @@ const slides = [
         title: "Africa's Largest Pet Gathering",
         description: "Celebrating 10 years of love, advocacy, and Pet-tastic community building across Nigeria.",
         image: "/hero.png",
+        cloudinaryId: "mydog/hero_main", // Placeholder - user can update
         primaryCTA: { text: "Find Events", url: "/events" },
         secondaryCTA: { text: "Join the Pack", url: "/membership" },
         accent: "text-primary-foreground",
@@ -23,6 +25,7 @@ const slides = [
         title: "Breaking History in 2026",
         description: "Be part of our Guinness World Record attempt at Eko Atlantic. October 1st, 2026.",
         image: "/carnival.png",
+        cloudinaryId: "mydog/carnival_gwr", // Placeholder
         primaryCTA: { text: "Explore Carnival", url: "/carnival" },
         secondaryCTA: { text: "Register Now", url: "/carnival/register" },
         accent: "text-yellow-400",
@@ -33,6 +36,7 @@ const slides = [
         title: "The Inner Circle Membership",
         description: "Unlock premium benefits, official ID cards, and VIP access to Africa's largest pet events.",
         image: "/event-preview.png",
+        cloudinaryId: "mydog/membership_preview", // Placeholder
         primaryCTA: { text: "View Plans", url: "/membership" },
         secondaryCTA: { text: "Join Today", url: "/membership" },
         accent: "text-blue-400",
@@ -64,8 +68,9 @@ export function Hero() {
                     transition={{ duration: 1.2 }}
                     className="absolute inset-0 z-0"
                 >
-                    <Image
-                        src={slides[current].image}
+                    <CldImage
+                        src={slides[current].cloudinaryId || slides[current].image}
+                        fallback={slides[current].image}
                         alt={slides[current].title}
                         fill
                         className="object-cover brightness-[0.7]"

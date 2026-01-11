@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { FolderHeart, ArrowRight } from "lucide-react";
-import Image from "next/image";
+import { CldImage } from "@/components/media/CldImage";
 import { Button } from "@/components/ui/button";
 
 const albums = [
@@ -11,18 +11,21 @@ const albums = [
         date: "Jan 12, 2025",
         count: 24,
         cover: "/hero.png",
+        cloudinaryId: "mydog/albums/sunday_walk"
     },
     {
         title: "Puppy Playdate",
         date: "Dec 20, 2024",
         count: 15,
         cover: "/carnival.png",
+        cloudinaryId: "mydog/albums/puppy_playdate"
     },
     {
         title: "Agility Training",
         date: "Nov 15, 2024",
         count: 42,
         cover: "/event-preview.png",
+        cloudinaryId: "mydog/albums/agility"
     },
 ];
 
@@ -43,8 +46,9 @@ export function EventAlbums() {
                             className="group cursor-pointer"
                         >
                             <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-4 shadow-sm group-hover:shadow-md transition-all">
-                                <Image
-                                    src={album.cover}
+                                <CldImage
+                                    src={album.cloudinaryId || album.cover}
+                                    fallback={album.cover}
                                     alt={album.title}
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-110"

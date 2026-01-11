@@ -1,15 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { CldImage } from "@/components/media/CldImage";
 import { Users, MessageCircle, Heart } from "lucide-react";
 
 export function CommunityHero() {
     return (
         <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0 z-0">
-                <Image
-                    src="/hero.png"
+                <CldImage
+                    src="mydog/community_hero"
+                    fallback="/hero.png"
                     alt="Community Gathering"
                     fill
                     className="object-cover brightness-[0.4]"

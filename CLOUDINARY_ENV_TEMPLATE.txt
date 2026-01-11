@@ -1,0 +1,12 @@
+# Cloudinary Configuration
+# Get these values from your Cloudinary dashboard: https://console.cloudinary.com/
+
+# Public values (safe to expose to client)
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=dtw0ajpwa
+NEXT_PUBLIC_CLOUDINARY_API_KEY=393156218616164
+
+# Secret values (server-side only, never expose to client)
+CLOUDINARY_API_SECRET=2KkZKe2ggQJOwEiZ9j_vFP7Fm8M
+
+# Optional: Full Cloudinary URL (alternative to separate values)
+CLOUDINARY_URL=cloudinary://393156218616164:2KkZKe2ggQJOwEiZ9j_vFP7Fm8M@dtw0ajpwa
