@@ -44,7 +44,7 @@ export function EventAlbums() {
                         >
                             <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-4 shadow-sm group-hover:shadow-md transition-all">
                                 <CldImage
-                                    src={album.cloudinaryId || album.cover}
+                                    src={album.cover}
                                     fallback={album.cover}
                                     alt={album.title}
                                     fill
