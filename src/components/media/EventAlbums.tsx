@@ -11,21 +11,18 @@ const albums = [
         date: "Jan 12, 2025",
         count: 24,
         cover: "/hero.png",
-        cloudinaryId: "mydog/albums/sunday_walk"
     },
     {
         title: "Puppy Playdate",
         date: "Dec 20, 2024",
         count: 15,
         cover: "/carnival.png",
-        cloudinaryId: "mydog/albums/puppy_playdate"
     },
     {
         title: "Agility Training",
         date: "Nov 15, 2024",
         count: 42,
         cover: "/event-preview.png",
-        cloudinaryId: "mydog/albums/agility"
     },
 ];
 
