@@ -72,7 +72,7 @@ export function Hero() {
                         priority
                     />
                     <div className="absolute inset-0 bg-black/40" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-black/30" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
                 </motion.div>
             </AnimatePresence>
 
