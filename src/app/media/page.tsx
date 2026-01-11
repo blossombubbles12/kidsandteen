@@ -4,6 +4,8 @@ import { EventAlbums } from "@/components/media/EventAlbums";
 import { MediaSubmission } from "@/components/media/MediaSubmission";
 import { getMediaFromFolder } from "@/app/actions/media";
 
+export const dynamic = 'force-dynamic';
+
 export default async function MediaPage() {
     // Fetch all assets from root since user hasn't created a specific folder yet
     // Increased limit to 100 to cover all ~65 assets mentioned by the user
