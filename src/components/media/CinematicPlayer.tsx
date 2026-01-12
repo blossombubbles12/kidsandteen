@@ -11,17 +11,17 @@ interface CinematicPlayerProps {
     isOpen: boolean;
     onClose: () => void;
     media: MediaAsset[];
+    audioRef?: React.RefObject<HTMLAudioElement | null>;
 }
 
-export function CinematicPlayer({ isOpen, onClose, media }: CinematicPlayerProps) {
+export function CinematicPlayer({ isOpen, onClose, media, audioRef }: CinematicPlayerProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [shuffledMedia, setShuffledMedia] = useState<MediaAsset[]>([]);
     const [isPaused, setIsPaused] = useState(false);
-    const [isMuted, setIsMuted] = useState(false); // Start unmuted since user clicked Play
+    const [isMuted, setIsMuted] = useState(false);
+    const [isUIVisible, setIsUIVisible] = useState(true);
     const timerRef = useRef<NodeJS.Timeout | null>(null);
-    const audioRef = useRef<HTMLAudioElement | null>(null);
-
-    const BGM_URL = "https://res.cloudinary.com/dtw0ajpwa/video/upload/v1768145404/Djo_iaad1s.mp3";
+    const uiTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     // Shuffle media on start
     useEffect(() => {
@@ -31,25 +31,50 @@ export function CinematicPlayer({ isOpen, onClose, media }: CinematicPlayerProps
             setCurrentIndex(0);
             setIsPaused(false);
             setIsMuted(false);
+            showUI();
         }
     }, [isOpen, media]);
 
+    // UI Auto-hide logic
+    const showUI = useCallback(() => {
+        setIsUIVisible(true);
+        if (uiTimeoutRef.current) clearTimeout(uiTimeoutRef.current);
+        uiTimeoutRef.current = setTimeout(() => {
+            if (!isPaused) setIsUIVisible(false);
+        }, 3000);
+    }, [isPaused]);
+
+    useEffect(() => {
+        if (isOpen) {
+            window.addEventListener("mousemove", showUI);
+            window.addEventListener("click", showUI);
+            return () => {
+                window.removeEventListener("mousemove", showUI);
+                window.removeEventListener("click", showUI);
+                if (uiTimeoutRef.current) clearTimeout(uiTimeoutRef.current);
+            };
+        }
+    }, [isOpen, showUI]);
+
     // Handle background music
     useEffect(() => {
-        if (isOpen && audioRef.current) {
+        if (isOpen && audioRef?.current) {
             if (isPaused) {
                 audioRef.current.pause();
             } else {
                 audioRef.current.play().catch(err => console.log("Audio play failed:", err));
             }
+        } else if (!isOpen && audioRef?.current) {
+            audioRef.current.pause();
+            audioRef.current.currentTime = 0;
         }
-    }, [isOpen, isPaused]);
+    }, [isOpen, isPaused, audioRef]);
 
     useEffect(() => {
-        if (audioRef.current) {
+        if (audioRef?.current) {
             audioRef.current.muted = isMuted;
         }
-    }, [isMuted]);
+    }, [isMuted, audioRef]);
 
     const nextMedia = useCallback(() => {
         setCurrentIndex((prev) => (prev + 1) % shuffledMedia.length);
@@ -75,10 +100,11 @@ export function CinematicPlayer({ isOpen, onClose, media }: CinematicPlayerProps
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 z-[100] bg-black text-white flex flex-col items-center justify-center overflow-hidden"
+                className="fixed inset-0 z-[100] bg-black text-white flex flex-col items-center justify-center overflow-hidden cursor-none" // hidden cursor to enhance immersion when UI is gone? maybe just rely on UI element fade
+                style={{ cursor: isUIVisible ? "auto" : "none" }}
             >
                 {/* Background Ken Burns Effect for Images */}
-                <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 z-0 pointer-events-none">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={currentItem.id}
@@ -133,86 +159,85 @@ export function CinematicPlayer({ isOpen, onClose, media }: CinematicPlayerProps
                     </AnimatePresence>
                 </div>
 
-                {/* Overlays */}
-                <div className="absolute top-0 left-0 w-full p-8 md:p-12 flex justify-between items-start z-20">
-                    <div className="max-w-xl">
-                        <motion.div
-                            key={`caption-${currentItem.id}`}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.5, duration: 0.8 }}
-                        >
-                            <span className="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-2 block">
-                                Now Showing
-                            </span>
-                            <h3 className="text-3xl md:text-5xl font-bold tracking-tighter text-white drop-shadow-2xl">
-                                {currentItem.caption || "A Moment with the Pack"}
-                            </h3>
-                            <p className="text-white/40 mt-4 text-sm font-medium tracking-widest uppercase">
-                                {currentIndex + 1} &mdash; {shuffledMedia.length}
-                            </p>
-                        </motion.div>
-                    </div>
-
-                    <div className="flex items-center gap-4">
-                        <button
-                            onClick={() => setIsMuted(!isMuted)}
-                            className="group p-4 bg-white/5 hover:bg-white/10 rounded-full backdrop-blur-2xl transition-all active:scale-90 border border-white/10"
-                        >
-                            {isMuted ? <VolumeX className="w-6 h-6 text-white/60 group-hover:text-white" /> : <Volume2 className="w-6 h-6 text-white/60 group-hover:text-white" />}
-                        </button>
-                        <button
-                            onClick={onClose}
-                            className="group p-4 bg-white/5 hover:bg-white/10 rounded-full backdrop-blur-2xl transition-all active:scale-90 border border-white/10"
-                        >
-                            <X className="w-6 h-6 text-white/60 group-hover:text-white" />
-                        </button>
-                    </div>
-                </div>
-
-                {/* Bottom Center Indicator */}
-                <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6 z-20">
-                    <div className="flex items-center gap-10 px-10 py-5 bg-white/5 backdrop-blur-3xl rounded-full border border-white/10 shadow-2xl">
-                        <button
-                            onClick={() => setIsPaused(!isPaused)}
-                            className="text-white/70 hover:text-primary transition-all active:scale-90"
-                        >
-                            {isPaused ? <Play className="w-10 h-10 fill-current" /> : <Pause className="w-10 h-10 fill-current" />}
-                        </button>
-
-                        <div className="w-40 md:w-64 h-[2px] bg-white/10 rounded-full overflow-hidden">
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={`progress-${currentItem.id}-${isPaused}`}
-                                    initial={{ width: 0 }}
-                                    animate={isPaused || currentItem.type === 'video' ? { width: '0%' } : { width: '100%' }}
-                                    transition={{ duration: 5, ease: "linear" }}
-                                    className="h-full bg-primary shadow-[0_0_15px_rgba(234,88,12,0.8)]"
-                                />
-                            </AnimatePresence>
+                {/* Overlays Wrapper */}
+                <motion.div
+                    animate={{ opacity: isUIVisible ? 1 : 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="absolute inset-0 z-20 flex flex-col justify-between p-8 md:p-12 pointer-events-none"
+                >
+                    {/* Top Section */}
+                    <div className="flex justify-between items-start pointer-events-auto">
+                        <div className="max-w-xl">
+                            <motion.div
+                                key={`info-${currentIndex}`}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="space-y-1"
+                            >
+                                <span className="text-primary font-bold tracking-[0.3em] uppercase text-[10px] block">
+                                    Now Showing
+                                </span>
+                                <p className="text-white/60 text-sm font-medium tracking-widest uppercase">
+                                    {currentIndex + 1} &mdash; {shuffledMedia.length}
+                                </p>
+                            </motion.div>
                         </div>
 
-                        <button
-                            onClick={nextMedia}
-                            className="text-white/70 hover:text-primary transition-all active:scale-90"
-                        >
-                            <SkipForward className="w-10 h-10 fill-current" />
-                        </button>
+                        <div className="flex items-center gap-4">
+                            <button
+                                onClick={() => setIsMuted(!isMuted)}
+                                className="group p-4 bg-white/5 hover:bg-white/10 rounded-full backdrop-blur-2xl transition-all active:scale-90 border border-white/10"
+                            >
+                                {isMuted ? <VolumeX className="w-6 h-6 text-white/60 group-hover:text-white" /> : <Volume2 className="w-6 h-6 text-white/60 group-hover:text-white" />}
+                            </button>
+                            <button
+                                onClick={onClose}
+                                className="group p-4 bg-white/5 hover:bg-white/10 rounded-full backdrop-blur-2xl transition-all active:scale-90 border border-white/10"
+                            >
+                                <X className="w-6 h-6 text-white/60 group-hover:text-white" />
+                            </button>
+                        </div>
                     </div>
-                </div>
 
-                {/* Emotional Branding */}
-                <div className="absolute bottom-6 right-8 opacity-40 pointer-events-none">
-                    <p className="text-xl font-bold font-serif italic tracking-widest">My Dog and I</p>
-                </div>
+                    {/* Bottom Controls */}
+                    <div className="flex justify-center pointer-events-auto">
+                        <div className="flex items-center gap-10 px-10 py-5 bg-white/5 backdrop-blur-3xl rounded-full border border-white/10 shadow-2xl">
+                            <button
+                                onClick={() => setIsPaused(!isPaused)}
+                                className="text-white/70 hover:text-primary transition-all active:scale-90"
+                            >
+                                {isPaused ? <Play className="w-10 h-10 fill-current" /> : <Pause className="w-10 h-10 fill-current" />}
+                            </button>
 
-                <audio
-                    ref={audioRef}
-                    src={BGM_URL}
-                    loop
-                    preload="auto"
-                    className="hidden"
-                />
+                            <div className="w-40 md:w-64 h-[2px] bg-white/10 rounded-full overflow-hidden">
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={`progress-${currentItem.id}-${isPaused}`}
+                                        initial={{ width: 0 }}
+                                        animate={isPaused || currentItem.type === 'video' ? { width: '0%' } : { width: '100%' }}
+                                        transition={{ duration: 5, ease: "linear" }}
+                                        className="h-full bg-primary shadow-[0_0_15px_rgba(234,88,12,0.8)]"
+                                    />
+                                </AnimatePresence>
+                            </div>
+
+                            <button
+                                onClick={nextMedia}
+                                className="text-white/70 hover:text-primary transition-all active:scale-90"
+                            >
+                                <SkipForward className="w-10 h-10 fill-current" />
+                            </button>
+                        </div>
+                    </div>
+                </motion.div>
+
+                {/* Emotional Branding (Always visible or also faded? Let's fade it for total black) */}
+                <motion.div
+                    animate={{ opacity: isUIVisible ? 0.4 : 0 }}
+                    className="absolute bottom-6 right-8 pointer-events-none"
+                >
+                    <p className="text-xl font-bold font-serif italic tracking-widest text-white">My Dog and I</p>
+                </motion.div>
             </motion.div>
         </AnimatePresence>
     );

@@ -2,14 +2,18 @@ import { MediaHero } from "@/components/media/MediaHero";
 import { GalleryGrid, MediaAsset } from "@/components/media/GalleryGrid";
 import { EventAlbums } from "@/components/media/EventAlbums";
 import { MediaSubmission } from "@/components/media/MediaSubmission";
-import { getMediaFromFolder } from "@/app/actions/media";
+import { getMediaFromFolder, getAlbums, AlbumData } from "@/app/actions/media";
 
 export const dynamic = 'force-dynamic';
 
 export default async function MediaPage() {
     // Fetch all assets from root since user hasn't created a specific folder yet
     // Increased limit to 100 to cover all ~65 assets mentioned by the user
-    const cloudinaryAssets = await getMediaFromFolder('', 100);
+    // Fetch folders/albums
+    const [cloudinaryAssets, albums] = await Promise.all([
+        getMediaFromFolder('', 100),
+        getAlbums()
+    ]);
 
     // Map Cloudinary resources to MediaAsset type for our GalleryGrid
     const media: MediaAsset[] = cloudinaryAssets
@@ -35,7 +39,7 @@ export default async function MediaPage() {
         <div className="min-h-screen bg-background text-foreground">
             <MediaHero media={media} />
             <GalleryGrid initialMedia={media} />
-            <EventAlbums />
+            <EventAlbums albums={albums} />
             <MediaSubmission />
         </div>
     );

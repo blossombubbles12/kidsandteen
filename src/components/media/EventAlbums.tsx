@@ -1,32 +1,40 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FolderHeart, ArrowRight } from "lucide-react";
+import { FolderHeart, ArrowRight, FolderPlus } from "lucide-react";
 import { CldImage } from "@/components/media/CldImage";
 import { Button } from "@/components/ui/button";
+import { AlbumData } from "@/app/actions/media";
 
-const albums = [
-    {
-        title: "Sunday Dog Walk",
-        date: "Jan 12, 2025",
-        count: 24,
-        cover: "/hero.png",
-    },
-    {
-        title: "Puppy Playdate",
-        date: "Dec 20, 2024",
-        count: 15,
-        cover: "/carnival.png",
-    },
-    {
-        title: "Agility Training",
-        date: "Nov 15, 2024",
-        count: 42,
-        cover: "/event-preview.png",
-    },
-];
+interface EventAlbumsProps {
+    albums?: AlbumData[];
+}
 
-export function EventAlbums() {
+export function EventAlbums({ albums = [] }: EventAlbumsProps) {
+    if (!albums || albums.length === 0) {
+        return (
+            <section className="py-16 bg-background">
+                <div className="container px-4">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        className="flex flex-col items-center gap-6 py-20 border-2 border-dashed rounded-3xl border-muted/50 bg-secondary/5"
+                    >
+                        <div className="w-20 h-20 bg-secondary/10 rounded-full flex items-center justify-center text-primary mb-2 shadow-sm">
+                            <FolderPlus className="w-10 h-10" />
+                        </div>
+                        <div className="text-center space-y-2 max-w-md">
+                            <h3 className="text-2xl font-bold">No Albums Found</h3>
+                            <p className="text-muted-foreground">
+                                Organize your media into folders in Cloudinary, and they will automatically appear here as collection albums.
+                            </p>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+        );
+    }
+
     return (
         <section className="py-16 bg-background">
             <div className="container px-4">
@@ -38,25 +46,25 @@ export function EventAlbums() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {albums.map((album, index) => (
                         <motion.div
-                            key={index}
+                            key={album.path}
                             whileHover={{ y: -5 }}
                             className="group cursor-pointer"
                         >
                             <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-4 shadow-sm group-hover:shadow-md transition-all">
                                 <CldImage
-                                    src={album.cover}
-                                    fallback={album.cover}
-                                    alt={album.title}
+                                    src={album.coverSrc || "/hero.png"}
+                                    fallback="/hero.png"
+                                    alt={album.name}
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                                 />
                                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
                                 <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
-                                    <FolderHeart className="w-3 h-3 text-primary" /> {album.count} Photos
+                                    <FolderHeart className="w-3 h-3 text-primary" /> {album.count} items
                                 </div>
                             </div>
-                            <h3 className="text-xl font-bold group-hover:text-primary transition-colors">{album.title}</h3>
-                            <p className="text-muted-foreground text-sm">{album.date}</p>
+                            <h3 className="text-xl font-bold group-hover:text-primary transition-colors capitalize">{album.name.replace(/[_-]/g, ' ')}</h3>
+                            <p className="text-muted-foreground text-sm">Collection</p>
                         </motion.div>
                     ))}
                 </div>

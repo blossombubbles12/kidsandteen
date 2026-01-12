@@ -77,3 +77,59 @@ export async function getMediaFromFolder(folder: string = '', limit: number = 10
         return [];
     }
 }
+
+export interface AlbumData {
+    name: string;
+    path: string;
+    coverSrc?: string;
+    count: number;
+}
+
+export async function getAlbums(): Promise<AlbumData[]> {
+    try {
+        let folders: any[] = [];
+        try {
+            // Try 'mydog' subfolders first as that seems to be the app namespace
+            const result = await cloudinary.api.sub_folders('mydog');
+            folders = result.folders;
+        } catch (error) {
+            // If 'mydog' folder doesn't exist or error, try root folders
+            const result = await cloudinary.api.root_folders();
+            folders = result.folders;
+        }
+
+        // Parallel fetch for details
+        const albums = await Promise.all(folders.map(async (folder: any) => {
+            try {
+                // Find a cover image and get total count of images/videos
+                // We assume mixed content, but for cover we prefer image
+                const { resources, total_count } = await cloudinary.search
+                    .expression(`folder:"${folder.path}"`)
+                    .sort_by('created_at', 'desc')
+                    .max_results(1)
+                    .execute();
+
+                const cover = resources[0];
+
+                return {
+                    name: folder.name,
+                    path: folder.path,
+                    coverSrc: cover?.secure_url,
+                    count: total_count || 0
+                };
+            } catch (e) {
+                console.error(`Error details for album ${folder.name}:`, e);
+                return {
+                    name: folder.name,
+                    path: folder.path,
+                    count: 0
+                };
+            }
+        }));
+
+        return albums;
+    } catch (error) {
+        console.error("Error fetching albums:", error);
+        return [];
+    }
+}

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Play, Dog } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { MediaAsset } from "./GalleryGrid";
 import { CinematicPlayer } from "./CinematicPlayer";
 
@@ -10,8 +10,11 @@ interface MediaHeroProps {
     media: MediaAsset[];
 }
 
+const BGM_URL = "https://res.cloudinary.com/dtw0ajpwa/video/upload/v1768145404/Djo_iaad1s.mp3";
+
 export function MediaHero({ media }: MediaHeroProps) {
     const [isCinematicOpen, setIsCinematicOpen] = useState(false);
+    const audioRef = useRef<HTMLAudioElement>(null);
 
     return (
         <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center bg-secondary/5 overflow-hidden">
@@ -59,6 +62,21 @@ export function MediaHero({ media }: MediaHeroProps) {
                         transition={{ delay: 0.4 }}
                         className="mt-8 relative"
                     >
+                        {/* Play Here Hint */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 1, duration: 1 }}
+                            className="absolute -left-24 top-1/2 -translate-y-1/2 hidden md:flex items-center gap-2"
+                        >
+                            <span className="font-handwriting text-primary/80 text-lg -rotate-12 whitespace-nowrap">Play Here</span>
+                            <svg className="w-8 h-8 text-primary/60 -rotate-90" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M10,50 Q50,20 90,50 T10,50" strokeDasharray="5,5" className="opacity-0" /> {/* Hidden guide */}
+                                <path d="M20,50 C40,20 70,80 90,50" strokeLinecap="round" />
+                                <path d="M80,45 L90,50 L82,60" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </motion.div>
+
                         {/* Playful Dog Icon */}
                         <motion.div
                             animate={{
@@ -102,6 +120,15 @@ export function MediaHero({ media }: MediaHeroProps) {
                 isOpen={isCinematicOpen}
                 onClose={() => setIsCinematicOpen(false)}
                 media={media}
+                audioRef={audioRef}
+            />
+
+            <audio
+                ref={audioRef}
+                src={BGM_URL}
+                loop
+                preload="auto"
+                className="hidden"
             />
         </section>
     );

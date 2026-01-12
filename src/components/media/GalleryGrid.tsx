@@ -44,7 +44,7 @@ export function GalleryGrid({ initialMedia }: GalleryGridProps) {
         <section className="py-20 container px-4 mx-auto">
             <h2 className="text-3xl font-bold mb-10 text-center">Featured Shots</h2>
 
-            <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+            <div className="columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-4 space-y-4">
                 {galleryItems.map((img, index) => (
                     <motion.div
                         key={img.id}
