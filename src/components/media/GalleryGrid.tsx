@@ -19,6 +19,7 @@ export interface MediaAsset {
 
 interface GalleryGridProps {
     initialMedia?: MediaAsset[];
+    allowEmpty?: boolean;
 }
 
 // Fallback Data
@@ -31,8 +32,8 @@ const fallbackMedia: MediaAsset[] = [
     { id: "6", src: "/event-preview.png", alt: "Portrait 2", caption: "Elegance" },
 ];
 
-export function GalleryGrid({ initialMedia }: GalleryGridProps) {
-    const galleryItems = initialMedia && initialMedia.length > 0 ? initialMedia : fallbackMedia;
+export function GalleryGrid({ initialMedia, allowEmpty = false }: GalleryGridProps) {
+    const galleryItems = (!allowEmpty && (!initialMedia || initialMedia.length === 0)) ? fallbackMedia : (initialMedia || []);
     const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
     const openLightbox = (index: number) => setSelectedImage(index);

@@ -2,7 +2,8 @@ import { MediaHero } from "@/components/media/MediaHero";
 import { GalleryGrid, MediaAsset } from "@/components/media/GalleryGrid";
 import { getMediaFromFolder } from "@/app/actions/media";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Camera } from "lucide-react";
+import { MediaSubmission } from "@/components/media/MediaSubmission";
 
 export const dynamic = 'force-dynamic';
 
@@ -60,15 +61,23 @@ export default async function AlbumPage({ params }: PageProps) {
                Let's just show the grid. 
             */}
 
-            <div className="pt-8">
-                <GalleryGrid initialMedia={media} />
+            <div className="pt-8 mb-20">
+                <GalleryGrid initialMedia={media} allowEmpty={true} />
             </div>
 
             {media.length === 0 && (
-                <div className="container px-4 py-20 text-center">
-                    <p className="text-muted-foreground text-lg">No media found in this album.</p>
+                <div className="container px-4 text-center mb-12">
+                    <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <Camera className="w-10 h-10 text-primary" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-2">This album is empty</h3>
+                    <p className="text-muted-foreground text-lg max-w-md mx-auto">
+                        Be the first to add some memories to this collection!
+                    </p>
                 </div>
             )}
+
+            <MediaSubmission defaultFolder={folderPath} />
         </div>
     );
 }

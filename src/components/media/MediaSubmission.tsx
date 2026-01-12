@@ -24,9 +24,10 @@ import { AlbumData } from "@/app/actions/media";
 
 interface MediaSubmissionProps {
     albums?: AlbumData[];
+    defaultFolder?: string;
 }
 
-export function MediaSubmission({ albums = [] }: MediaSubmissionProps) {
+export function MediaSubmission({ albums = [], defaultFolder = "" }: MediaSubmissionProps) {
     const router = useRouter();
     const { toast } = useToast();
     const [isUploading, setIsUploading] = useState(false);
@@ -34,7 +35,9 @@ export function MediaSubmission({ albums = [] }: MediaSubmissionProps) {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
     const [previews, setPreviews] = useState<{ url: string; type: string; name: string }[]>([]);
-    const [folderName, setFolderName] = useState("");
+    const [folderName, setFolderName] = useState(() => {
+        return defaultFolder.startsWith("mydog/") ? defaultFolder.replace("mydog/", "") : defaultFolder;
+    });
 
     const fileInputRef = useRef<HTMLInputElement>(null);
 
