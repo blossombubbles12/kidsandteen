@@ -35,9 +35,7 @@ export function MediaSubmission({ albums = [], defaultFolder = "" }: MediaSubmis
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
     const [previews, setPreviews] = useState<{ url: string; type: string; name: string }[]>([]);
-    const [folderName, setFolderName] = useState(() => {
-        return defaultFolder.startsWith("mydog/") ? defaultFolder.replace("mydog/", "") : defaultFolder;
-    });
+    const [folderName, setFolderName] = useState(defaultFolder);
 
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -84,8 +82,8 @@ export function MediaSubmission({ albums = [], defaultFolder = "" }: MediaSubmis
         setUploadProgress(0);
 
         try {
-            const targetFolder = folderName
-                ? `mydog/${folderName.trim().replace(/\s+/g, '_').toLowerCase()}`
+            const targetFolder = folderName.trim()
+                ? folderName.trim().replace(/\s+/g, '_').toLowerCase()
                 : "mydog/community_submissions";
 
             let successCount = 0;
@@ -241,26 +239,23 @@ export function MediaSubmission({ albums = [], defaultFolder = "" }: MediaSubmis
                                                 <FolderPlus className="w-4 h-4" /> Destination Folder (Optional)
                                             </Label>
                                             <div className="relative">
-                                                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-mono">mydog/</span>
                                                 <Input
                                                     id="folder"
-                                                    placeholder="e.g. sunday_walk_2025"
-                                                    className="pl-20 rounded-xl"
+                                                    placeholder="e.g. mydog/sunday_walk or just events"
+                                                    className="rounded-xl"
                                                     value={folderName}
                                                     onChange={(e) => setFolderName(e.target.value)}
                                                     disabled={isUploading}
                                                     list="folders-list"
                                                 />
                                                 <datalist id="folders-list">
-                                                    {albums.map((a) => {
-                                                        const name = a.path.startsWith('mydog/') ? a.path.replace('mydog/', '') : a.path;
-                                                        // Filter out paths that are not direct subfolders if simpler, but name logic is fine
-                                                        return <option key={a.path} value={name} />;
-                                                    })}
+                                                    {albums.map((a) => (
+                                                        <option key={a.path} value={a.path} />
+                                                    ))}
                                                 </datalist>
                                             </div>
                                             <p className="text-[11px] text-muted-foreground ml-1">
-                                                Select existing or type new to create. Leave empty for general view.
+                                                Select existing or type new path (e.g. 'mydog/new_album'). Leave empty for general view.
                                             </p>
                                         </div>
                                     </div>
