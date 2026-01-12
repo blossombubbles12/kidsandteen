@@ -38,9 +38,9 @@ export default async function AlbumPage({ params }: PageProps) {
         }));
 
     return (
-        <div className="min-h-screen bg-background text-foreground">
+        <div className="min-h-screen bg-background text-foreground pt-24 md:pt-14">
             {/* Header / Nav */}
-            <div className="bg-background/80 backdrop-blur-md sticky top-0 z-40 border-b border-border/40">
+            <div className="bg-background/80 border-b border-border/40">
                 <div className="container px-4 h-16 flex items-center gap-4">
                     <Link href="/media" className="p-2 hover:bg-secondary/20 rounded-full transition-colors">
                         <ArrowLeft className="w-6 h-6" />
