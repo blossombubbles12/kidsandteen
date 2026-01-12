@@ -18,8 +18,16 @@ import { Label } from "@/components/ui/label";
 import { uploadToCloudinary } from "@/app/actions/media";
 import { useToast } from "@/hooks/use-toast";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { AlbumData } from "@/app/actions/media";
 
-export function MediaSubmission() {
+
+interface MediaSubmissionProps {
+    albums?: AlbumData[];
+}
+
+export function MediaSubmission({ albums = [] }: MediaSubmissionProps) {
+    const router = useRouter();
     const { toast } = useToast();
     const [isUploading, setIsUploading] = useState(false);
     const [uploadProgress, setUploadProgress] = useState(0);
@@ -100,12 +108,14 @@ export function MediaSubmission() {
                 setIsDialogOpen(false);
                 clearSelection();
                 setFolderName("");
+                router.refresh(); // Refresh data to show new folder/images
             } else if (successCount > 0) {
                 toast({
                     title: "Partial Success",
                     description: `${successCount} out of ${selectedFiles.length} files were uploaded.`,
                     variant: "default",
                 });
+                router.refresh();
             } else {
                 throw new Error("All uploads failed");
             }
@@ -236,10 +246,18 @@ export function MediaSubmission() {
                                                     value={folderName}
                                                     onChange={(e) => setFolderName(e.target.value)}
                                                     disabled={isUploading}
+                                                    list="folders-list"
                                                 />
+                                                <datalist id="folders-list">
+                                                    {albums.map((a) => {
+                                                        const name = a.path.startsWith('mydog/') ? a.path.replace('mydog/', '') : a.path;
+                                                        // Filter out paths that are not direct subfolders if simpler, but name logic is fine
+                                                        return <option key={a.path} value={name} />;
+                                                    })}
+                                                </datalist>
                                             </div>
                                             <p className="text-[11px] text-muted-foreground ml-1">
-                                                Leave empty to upload to community submissions.
+                                                Select existing or type new to create. Leave empty for general view.
                                             </p>
                                         </div>
                                     </div>

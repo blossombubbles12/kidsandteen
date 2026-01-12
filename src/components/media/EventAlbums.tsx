@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { FolderHeart, ArrowRight, FolderPlus } from "lucide-react";
 import { CldImage } from "@/components/media/CldImage";
@@ -44,28 +46,43 @@ export function EventAlbums({ albums = [] }: EventAlbumsProps) {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {albums.map((album, index) => (
-                        <motion.div
+                    {albums.map((album) => (
+                        <Link
                             key={album.path}
-                            whileHover={{ y: -5 }}
-                            className="group cursor-pointer"
+                            href={`/media/album/${album.path}`}
+                            className="block"
                         >
-                            <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-4 shadow-sm group-hover:shadow-md transition-all">
-                                <CldImage
-                                    src={album.coverSrc || "/hero.png"}
-                                    fallback="/hero.png"
-                                    alt={album.name}
-                                    fill
-                                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                />
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-                                <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
-                                    <FolderHeart className="w-3 h-3 text-primary" /> {album.count} items
+                            <motion.div
+                                whileHover={{ y: -5 }}
+                                className="group cursor-pointer"
+                            >
+                                <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-4 shadow-sm group-hover:shadow-md transition-all">
+                                    {album.coverId ? (
+                                        <CldImage
+                                            src={album.coverId}
+                                            alt={album.name}
+                                            fill
+                                            className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                        />
+                                    ) : (
+                                        <div className="w-full h-full bg-secondary/20 flex items-center justify-center relative">
+                                            <Image
+                                                src="/hero.png"
+                                                alt={album.name}
+                                                fill
+                                                className="object-cover transition-transform duration-500 group-hover:scale-110 opacity-60 grayscale group-hover:grayscale-0"
+                                            />
+                                        </div>
+                                    )}
+                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                                    <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                                        <FolderHeart className="w-3 h-3 text-primary" /> {album.count} items
+                                    </div>
                                 </div>
-                            </div>
-                            <h3 className="text-xl font-bold group-hover:text-primary transition-colors capitalize">{album.name.replace(/[_-]/g, ' ')}</h3>
-                            <p className="text-muted-foreground text-sm">Collection</p>
-                        </motion.div>
+                                <h3 className="text-xl font-bold group-hover:text-primary transition-colors capitalize">{album.name.replace(/[_-]/g, ' ')}</h3>
+                                <p className="text-muted-foreground text-sm">Collection</p>
+                            </motion.div>
+                        </Link>
                     ))}
                 </div>
             </div>

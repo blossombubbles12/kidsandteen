@@ -40,7 +40,7 @@ export default async function MediaPage() {
             <MediaHero media={media} />
             <GalleryGrid initialMedia={media} />
             <EventAlbums albums={albums} />
-            <MediaSubmission />
+            <MediaSubmission albums={albums} />
         </div>
     );
 }

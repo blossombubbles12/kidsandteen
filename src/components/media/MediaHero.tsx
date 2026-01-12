@@ -67,10 +67,10 @@ export function MediaHero({ media }: MediaHeroProps) {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 1, duration: 1 }}
-                            className="absolute -left-24 top-1/2 -translate-y-1/2 hidden md:flex items-center gap-2"
+                            className="absolute -left-28 md:-left-32 top-1/2 -translate-y-1/2 flex items-center gap-2 z-20 pointer-events-none"
                         >
-                            <span className="font-handwriting text-primary/80 text-lg -rotate-12 whitespace-nowrap">Play Here</span>
-                            <svg className="w-8 h-8 text-primary/60 -rotate-90" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2">
+                            <span className="font-handwriting text-primary/80 text-sm md:text-lg -rotate-12 whitespace-nowrap">Play Here</span>
+                            <svg className="w-6 h-6 md:w-8 md:h-8 text-primary/60 -rotate-90" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2">
                                 <path d="M10,50 Q50,20 90,50 T10,50" strokeDasharray="5,5" className="opacity-0" /> {/* Hidden guide */}
                                 <path d="M20,50 C40,20 70,80 90,50" strokeLinecap="round" />
                                 <path d="M80,45 L90,50 L82,60" strokeLinecap="round" strokeLinejoin="round" />

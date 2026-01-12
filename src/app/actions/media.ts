@@ -82,27 +82,42 @@ export interface AlbumData {
     name: string;
     path: string;
     coverSrc?: string;
+    coverId?: string;
     count: number;
 }
 
 export async function getAlbums(): Promise<AlbumData[]> {
     try {
-        let folders: any[] = [];
+        const allFolders = new Map<string, any>();
+
+        // Helper to add folders
+        const addFolders = (folders: any[]) => {
+            folders.forEach(f => allFolders.set(f.path, f));
+        };
+
+        // 1. Fetch root folders
         try {
-            // Try 'mydog' subfolders first as that seems to be the app namespace
-            const result = await cloudinary.api.sub_folders('mydog');
-            folders = result.folders;
-        } catch (error) {
-            // If 'mydog' folder doesn't exist or error, try root folders
-            const result = await cloudinary.api.root_folders();
-            folders = result.folders;
+            const root = await cloudinary.api.root_folders();
+            addFolders(root.folders);
+        } catch (e) {
+            console.error("Error fetching root folders:", e);
         }
 
-        // Parallel fetch for details
-        const albums = await Promise.all(folders.map(async (folder: any) => {
+        // 2. Fetch 'mydog' subfolders 
+        try {
+            const mydog = await cloudinary.api.sub_folders('mydog');
+            addFolders(mydog.folders);
+        } catch (e) {
+            // It's okay if mydog doesn't exist
+            console.log("mydog folder not found or empty");
+        }
+
+        // 3. Parallel fetch for details
+        const folderArray = Array.from(allFolders.values());
+
+        const albums = await Promise.all(folderArray.map(async (folder: any) => {
             try {
                 // Find a cover image and get total count of images/videos
-                // We assume mixed content, but for cover we prefer image
                 const { resources, total_count } = await cloudinary.search
                     .expression(`folder:"${folder.path}"`)
                     .sort_by('created_at', 'desc')
@@ -115,6 +130,7 @@ export async function getAlbums(): Promise<AlbumData[]> {
                     name: folder.name,
                     path: folder.path,
                     coverSrc: cover?.secure_url,
+                    coverId: cover?.public_id, // Add this
                     count: total_count || 0
                 };
             } catch (e) {
@@ -127,7 +143,8 @@ export async function getAlbums(): Promise<AlbumData[]> {
             }
         }));
 
-        return albums;
+        // Sort by name
+        return albums.sort((a, b) => a.name.localeCompare(b.name));
     } catch (error) {
         console.error("Error fetching albums:", error);
         return [];
