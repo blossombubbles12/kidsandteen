@@ -7,13 +7,14 @@ import { ArrowLeft } from "lucide-react";
 export const dynamic = 'force-dynamic';
 
 interface PageProps {
-    params: {
+    params: Promise<{
         folder: string[];
-    };
+    }>;
 }
 
 export default async function AlbumPage({ params }: PageProps) {
-    const folderPath = params.folder.map(decodeURIComponent).join('/');
+    const { folder } = await params;
+    const folderPath = folder.map(decodeURIComponent).join('/');
 
     // Fetch assets from the specific folder
     const cloudinaryAssets = await getMediaFromFolder(folderPath, 50);
