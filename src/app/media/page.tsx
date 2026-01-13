@@ -28,6 +28,7 @@ export default async function MediaPage() {
             src: asset.secure_url,
             cloudinaryId: asset.public_id,
             type: asset.resource_type === 'video' ? 'video' : 'image',
+            format: asset.format,
             alt: asset.context?.custom?.alt || "Lagos Dog Carnival / My Dog and I Community Moment",
             // Clean up public_id for caption if no custom caption is set
             caption: asset.context?.custom?.caption ||

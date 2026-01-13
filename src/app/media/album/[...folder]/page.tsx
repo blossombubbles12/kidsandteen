@@ -32,6 +32,7 @@ export default async function AlbumPage({ params }: PageProps) {
             src: asset.secure_url,
             cloudinaryId: asset.public_id,
             type: asset.resource_type === 'video' ? 'video' : 'image',
+            format: asset.format,
             alt: asset.context?.custom?.alt || "Gallery Image",
             caption: asset.context?.custom?.caption ||
                 asset.public_id.split('/').pop()?.replace(/[_-]/g, ' ') ||
