@@ -18,7 +18,7 @@ export default async function AlbumPage({ params }: PageProps) {
     const folderPath = folder.map(decodeURIComponent).join('/');
 
     // Fetch assets from the specific folder
-    const cloudinaryAssets = await getMediaFromFolder(folderPath, 50);
+    const cloudinaryAssets = await getMediaFromFolder(folderPath, 100);
 
     // Map Cloudinary resources to MediaAsset type
     const media: MediaAsset[] = cloudinaryAssets
@@ -55,12 +55,6 @@ export default async function AlbumPage({ params }: PageProps) {
                     </span>
                 </div>
             </div>
-
-            {/* Reuse MediaHero but maybe smaller or same? Let's skip Hero for album view to be more "App-like" gallery focus, or reuse it? 
-               User said "Showcase media in a clean, immersive gallery layout".
-               A hero with the slideshow might be nice, but maybe overkill for every sub-album. 
-               Let's just show the grid. 
-            */}
 
             <div className="pt-8 mb-20">
                 <GalleryGrid initialMedia={media} allowEmpty={true} />
