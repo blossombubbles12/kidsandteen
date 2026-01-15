@@ -216,8 +216,11 @@ export default function Home() {
               </p>
 
               <Link href="https://chat.whatsapp.com/C0I2KfbQrpf4Qw5qc8QEDT" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="w-full sm:w-auto text-lg px-8 py-6 font-bold shadow-xl bg-[#25D366] hover:bg-[#128C7E] text-white border-none rounded-full">
-                  <MessageCircle className="mr-2 h-6 w-6" /> Join WhatsApp Community
+                <Button size="lg" className="h-auto w-full sm:w-auto text-lg px-8 py-4 font-bold shadow-xl bg-[#25D366] hover:bg-[#128C7E] text-white border-none rounded-full">
+                  <div className="flex items-center justify-center gap-2">
+                    <MessageCircle className="h-6 w-6 shrink-0" />
+                    <span className="whitespace-normal">Join WhatsApp Community</span>
+                  </div>
                 </Button>
               </Link>
             </div>
