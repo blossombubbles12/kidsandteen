@@ -47,7 +47,7 @@ export default function CommunityPage() {
                     transition={{ duration: 0.7, delay: 0.2 }}
                     className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-3xl leading-relaxed"
                 >
-                    Join our vibrant WhatsApp community for live training discussions, heartfelt dog stories, and instant event updates.
+                    Join the <span className="text-primary font-bold">Record breaking pet lovers group</span>. A vibrant community dedicated to live training discussions, dog stories, and our official Guinness World Record attempt.
                 </motion.p>
 
                 <motion.div
@@ -241,9 +241,12 @@ export default function CommunityPage() {
                         size="lg"
                         className="h-auto text-lg md:text-xl py-6 px-8 md:px-12 rounded-full shadow-2xl hover:shadow-[#25D366]/50 hover:scale-105 transition-all bg-[#25D366] hover:bg-[#128C7E] border-none text-white w-full md:w-auto"
                     >
-                        <Link href={whatsappLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3">
-                            <MessageCircle className="h-8 w-8 shrink-0" />
-                            <span className="whitespace-normal text-center">Join the WhatsApp Community Now</span>
+                        <Link href={whatsappLink} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center gap-1">
+                            <div className="flex items-center gap-3">
+                                <MessageCircle className="h-8 w-8 shrink-0" />
+                                <span className="whitespace-normal text-center">Join the Record Breaking Pet Lovers Group</span>
+                            </div>
+                            <span className="text-xs opacity-90 font-medium">(Official GWR Community)</span>
                         </Link>
                     </Button>
                 </motion.div>

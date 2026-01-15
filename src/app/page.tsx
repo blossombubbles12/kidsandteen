@@ -209,17 +209,20 @@ export default function Home() {
                 <MessageCircle className="w-4 h-4" /> Official Community Group
               </div>
               <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
-                Join the Conversation on WhatsApp
+                Join the Record Breaking Pet Lovers Group
               </h2>
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                Connect directly with our community of over 50,000 satisfied dog owners. Get real-time updates on events, health tips, and carnival news straight to your phone.
+                Connect directly with our community of over 50,000 satisfied dog owners. This is the official hub for our Guinness World Record attempt! Get real-time updates and training tips straight to your phone.
               </p>
 
               <Link href="https://chat.whatsapp.com/C0I2KfbQrpf4Qw5qc8QEDT" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" className="h-auto w-full sm:w-auto text-lg px-8 py-4 font-bold shadow-xl bg-[#25D366] hover:bg-[#128C7E] text-white border-none rounded-full">
-                  <div className="flex items-center justify-center gap-2">
-                    <MessageCircle className="h-6 w-6 shrink-0" />
-                    <span className="whitespace-normal">Join WhatsApp Community</span>
+                  <div className="flex flex-col items-center justify-center">
+                    <div className="flex items-center gap-2">
+                      <MessageCircle className="h-6 w-6 shrink-0" />
+                      <span className="whitespace-normal">Join the Record Breaking Group</span>
+                    </div>
+                    <span className="text-[10px] opacity-80 mt-1">Official GWR Community</span>
                   </div>
                 </Button>
               </Link>
