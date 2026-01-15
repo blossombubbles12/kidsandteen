@@ -59,11 +59,11 @@ export default function CommunityPage() {
                     <Button
                         asChild
                         size="lg"
-                        className="text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all bg-[#25D366] hover:bg-[#128C7E] border-none text-white"
+                        className="h-auto text-lg py-4 px-6 md:px-8 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all bg-[#25D366] hover:bg-[#128C7E] border-none text-white"
                     >
-                        <Link href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                            <MessageCircle className="mr-2 h-6 w-6" />
-                            Join WhatsApp Community
+                        <Link href={whatsappLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+                            <MessageCircle className="h-6 w-6 shrink-0" />
+                            <span className="whitespace-normal">Join WhatsApp Community</span>
                         </Link>
                     </Button>
                 </motion.div>
@@ -239,11 +239,11 @@ export default function CommunityPage() {
                     <Button
                         asChild
                         size="lg"
-                        className="text-xl px-12 py-8 rounded-full shadow-2xl hover:shadow-[#25D366]/50 hover:scale-105 transition-all bg-[#25D366] hover:bg-[#128C7E] border-none text-white w-full md:w-auto"
+                        className="h-auto text-lg md:text-xl py-6 px-8 md:px-12 rounded-full shadow-2xl hover:shadow-[#25D366]/50 hover:scale-105 transition-all bg-[#25D366] hover:bg-[#128C7E] border-none text-white w-full md:w-auto"
                     >
-                        <Link href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                            <MessageCircle className="mr-3 h-8 w-8" />
-                            Join the WhatsApp Community Now
+                        <Link href={whatsappLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3">
+                            <MessageCircle className="h-8 w-8 shrink-0" />
+                            <span className="whitespace-normal text-center">Join the WhatsApp Community Now</span>
                         </Link>
                     </Button>
                 </motion.div>
