@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageCircle, Mic, TrendingUp, Users, ArrowRight, ShieldCheck, PlayCircle, Smartphone } from "lucide-react";
+import { MessageCircle, Mic, Heart, Users, ArrowRight, ShieldCheck, PlayCircle, Calendar } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -38,7 +38,7 @@ export default function CommunityPage() {
                     transition={{ duration: 0.7, delay: 0.1 }}
                     className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-orange-600 to-amber-600 pb-2"
                 >
-                    Real-Time Market Audio & Analysis
+                    Connect With Dog Lovers
                 </motion.h1>
 
                 <motion.p
@@ -47,7 +47,7 @@ export default function CommunityPage() {
                     transition={{ duration: 0.7, delay: 0.2 }}
                     className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-3xl leading-relaxed"
                 >
-                    Join our exclusive WhatsApp community for live audio sessions, instant market insights, and daily trading conversations.
+                    Join our vibrant WhatsApp community for live training discussions, heartfelt dog stories, and instant event updates.
                 </motion.p>
 
                 <motion.div
@@ -82,23 +82,23 @@ export default function CommunityPage() {
                         <Card className="bg-white/80 backdrop-blur-sm border-none shadow-lg">
                             <CardHeader>
                                 <Mic className="w-10 h-10 text-primary mb-2" />
-                                <CardTitle className="text-2xl">Live Audio Discussions</CardTitle>
+                                <CardTitle className="text-2xl">Live Dog Talk</CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <p className="text-muted-foreground text-lg">
-                                    Participate in voice chats where we dissect market moves as they happen. Listen in or grab the mic significantly faster than typing.
+                                    Participate in voice chats about training tips, behavior quirks, and daily dog life. Share your story or just listen in while walking your pup.
                                 </p>
                             </CardContent>
                         </Card>
 
                         <Card className="bg-white/80 backdrop-blur-sm border-none shadow-lg">
                             <CardHeader>
-                                <TrendingUp className="w-10 h-10 text-primary mb-2" />
-                                <CardTitle className="text-2xl">Market Insights</CardTitle>
+                                <Heart className="w-10 h-10 text-primary mb-2" />
+                                <CardTitle className="text-2xl">Expert Care Tips</CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <p className="text-muted-foreground text-lg">
-                                    Get real-time analysis on Forex, Crypto, and Investment opportunities directly from experienced traders and community veterans.
+                                    Get advice on nutrition, health, and holistic care from experienced owners and community experts.
                                 </p>
                             </CardContent>
                         </Card>
@@ -106,23 +106,23 @@ export default function CommunityPage() {
                         <Card className="bg-white/80 backdrop-blur-sm border-none shadow-lg">
                             <CardHeader>
                                 <Users className="w-10 h-10 text-primary mb-2" />
-                                <CardTitle className="text-2xl">Direct Access</CardTitle>
+                                <CardTitle className="text-2xl">Meet Training Buddies</CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <p className="text-muted-foreground text-lg">
-                                    Connect directly with community members. No algorithms, no filtered feeds—just raw, valuable conversation.
+                                    Connect directly with local dog lovers. Find walking partners, playdate friends, and a support system that gets it.
                                 </p>
                             </CardContent>
                         </Card>
 
                         <Card className="bg-white/80 backdrop-blur-sm border-none shadow-lg">
                             <CardHeader>
-                                <Smartphone className="w-10 h-10 text-primary mb-2" />
-                                <CardTitle className="text-2xl">Real-Time Updates</CardTitle>
+                                <Calendar className="w-10 h-10 text-primary mb-2" />
+                                <CardTitle className="text-2xl">Event Dates</CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <p className="text-muted-foreground text-lg">
-                                    Stay ahead of the curve with instant notifications and announcements delivered straight to your phone.
+                                    Be the first to know about upcoming carnivals, competitions, and community meetups. Never miss a tail-wagging event.
                                 </p>
                             </CardContent>
                         </Card>
@@ -140,23 +140,22 @@ export default function CommunityPage() {
                     className="bg-gradient-to-br from-primary/10 to-orange-100 rounded-3xl p-8 md:p-16 text-center border border-primary/10"
                 >
                     <PlayCircle className="w-16 h-16 text-primary mx-auto mb-6" />
-                    <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">Voice is the Future of Community</h2>
+                    <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">Speak Your Mind (And Bark!)</h2>
                     <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed">
-                        We prioritize audio. It&apos;s faster, more personal, and allows for deeper nuance in complex topics.
-                        Whether you want to lead a discussion or just listen while you work, our voice sessions are the heartbeat of the group.
+                        We prioritize audio because dog ownership is hands-on. Whether you&apos;re at the park or prepping a meal, our voice sessions let you connect without stopping the fun.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
                         <div className="bg-white/60 p-6 rounded-2xl">
-                            <h3 className="font-bold text-lg mb-2 flex items-center"><Mic className="w-5 h-5 mr-2 text-primary" /> Join Discussions</h3>
-                            <p className="text-sm text-muted-foreground">Jump into active voice channels during market hours.</p>
+                            <h3 className="font-bold text-lg mb-2 flex items-center"><Mic className="w-5 h-5 mr-2 text-primary" /> Share Tips</h3>
+                            <p className="text-sm text-muted-foreground">Jump into active discussions about training and care.</p>
                         </div>
                         <div className="bg-white/60 p-6 rounded-2xl">
-                            <h3 className="font-bold text-lg mb-2 flex items-center"><Users className="w-5 h-5 mr-2 text-primary" /> Listen & Learn</h3>
-                            <p className="text-sm text-muted-foreground">Tuning in is enough. Absorb knowledge passively.</p>
+                            <h3 className="font-bold text-lg mb-2 flex items-center"><Users className="w-5 h-5 mr-2 text-primary" /> Listen In</h3>
+                            <p className="text-sm text-muted-foreground">Absorb advice and stories while you&apos;re on the go.</p>
                         </div>
                         <div className="bg-white/60 p-6 rounded-2xl">
-                            <h3 className="font-bold text-lg mb-2 flex items-center"><TrendingUp className="w-5 h-5 mr-2 text-primary" /> Contribute</h3>
-                            <p className="text-sm text-muted-foreground">Share your view when you have the floor.</p>
+                            <h3 className="font-bold text-lg mb-2 flex items-center"><Heart className="w-5 h-5 mr-2 text-primary" /> Support</h3>
+                            <p className="text-sm text-muted-foreground">Give and receive support for the ups and downs of dog life.</p>
                         </div>
                     </div>
                 </motion.div>
@@ -174,8 +173,8 @@ export default function CommunityPage() {
                             {[
                                 { step: 1, title: "Click Invite Link", desc: "Use the button below to open the WhatsApp invite." },
                                 { step: 2, title: "Join Group", desc: "Accept the invitation in your WhatsApp app." },
-                                { step: 3, title: "Introduce Yourself", desc: "Say hello and jump into the current topic." },
-                                { step: 4, title: "Stay Engaged", desc: "Turn on notifications for audio sessions." }
+                                { step: 3, title: "Introduce Your Dog", desc: "Share a photo and say hello to the pack!" },
+                                { step: 4, title: "Stay Active", desc: "Join voice chats and planned meetups." }
                             ].map((item, idx) => (
                                 <motion.div
                                     key={idx}
@@ -207,14 +206,14 @@ export default function CommunityPage() {
                 <div className="max-w-3xl mx-auto bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-border/50">
                     <div className="flex items-center justify-center mb-8">
                         <ShieldCheck className="w-12 h-12 text-primary mr-4" />
-                        <h2 className="text-3xl font-bold">Community Rules</h2>
+                        <h2 className="text-3xl font-bold">Pack Rules</h2>
                     </div>
                     <ul className="space-y-4">
                         {[
-                            "Respectful discussions only. We debate ideas, not people.",
-                            "No unauthorized promotions, spam, or referral links.",
-                            "Keep topics relevant: Crypto, Forex, Investments, Markets.",
-                            "Audio sessions are for constructive dialogue."
+                            "Be kind and respectful to all owners and breeds.",
+                            "No spam or unrelated promotions.",
+                            "Keep topics dog-focused: Training, Health, Events.",
+                            "Voice chats are for constructive and friendly participation."
                         ].map((rule, i) => (
                             <li key={i} className="flex items-start text-lg text-muted-foreground">
                                 <ArrowRight className="w-6 h-6 mr-3 text-primary shrink-0 mt-0.5" />
@@ -233,9 +232,9 @@ export default function CommunityPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h2 className="text-4xl md:text-6xl font-bold mb-8">Ready to Join the Conversation?</h2>
+                    <h2 className="text-4xl md:text-6xl font-bold mb-8">Ready to Join the Pack?</h2>
                     <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-                        Don&apos;t miss out on the next market move. The community is waiting for you.
+                        Your dog&apos;s new best friends are just a click away.
                     </p>
                     <Button
                         asChild
