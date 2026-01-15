@@ -15,7 +15,7 @@ export function Footer() {
                         <p className="text-sm text-muted-foreground leading-relaxed">
                             My Dog and I Group is a non-profit pet service company actively building a pet-loving community
                             in Nigeria through social work, activism, and animal-related events. Starting on Instagram
-                            in 2016, we've grown into Africa's largest gathering of Pets with over 50,000 members.
+                            in 2016, we&apos;ve grown into Africa&apos;s largest gathering of Pets with over 50,000 members.
                             Join us for the Lagos Dog Carnival, community walks, and more!
                         </p>
                         <div className="flex gap-4">
@@ -41,7 +41,7 @@ export function Footer() {
                             <li><Link href="/media" className="hover:text-primary transition-colors">Media</Link></li>
                             <li><Link href="/about" className="hover:text-primary transition-colors">About</Link></li>
                             <li><Link href="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
-                            <li><Link href="/membership" className="hover:text-primary transition-colors">Join the Pack</Link></li>
+                            <li><Link href="https://chat.whatsapp.com/C0I2KfbQrpf4Qw5qc8QEDT" target="_blank" rel="noopener noreferrer" className="hover:text-[#25D366] transition-colors font-bold">Join WhatsApp Community</Link></li>
                         </ul>
                     </div>
 

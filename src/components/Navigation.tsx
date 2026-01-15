@@ -64,18 +64,18 @@ export function Navigation() {
                             )}
                         </Link>
                     ))}
-                    <Link href="/membership">
-                        <Button variant="default" size="sm" className="ml-4">
-                            Join the Pack
+                    <Link href="https://chat.whatsapp.com/C0I2KfbQrpf4Qw5qc8QEDT" target="_blank" rel="noopener noreferrer">
+                        <Button variant="default" size="sm" className="ml-4 bg-[#25D366] hover:bg-[#128C7E] text-white border-none">
+                            Join WhatsApp
                         </Button>
                     </Link>
                 </nav>
 
                 {/* Mobile Controls */}
                 <div className="flex items-center gap-2 md:hidden">
-                    <Link href="/membership">
-                        <Button variant="default" size="sm" className="font-bold">
-                            Join Now
+                    <Link href="https://chat.whatsapp.com/C0I2KfbQrpf4Qw5qc8QEDT" target="_blank" rel="noopener noreferrer">
+                        <Button variant="default" size="sm" className="font-bold bg-[#25D366] hover:bg-[#128C7E] text-white border-none">
+                            Join WhatsApp
                         </Button>
                     </Link>
                     <button
@@ -111,9 +111,9 @@ export function Navigation() {
                                     {item.name}
                                 </Link>
                             ))}
-                            <Link href="/membership" onClick={() => setIsOpen(false)}>
-                                <Button className="w-full mt-4" size="lg">
-                                    Join the Pack
+                            <Link href="https://chat.whatsapp.com/C0I2KfbQrpf4Qw5qc8QEDT" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}>
+                                <Button className="w-full mt-4 bg-[#25D366] hover:bg-[#128C7E] text-white border-none" size="lg">
+                                    Join WhatsApp Community
                                 </Button>
                             </Link>
                         </div>

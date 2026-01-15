@@ -44,7 +44,8 @@ import {
   Calendar,
   MessageCircle,
   Star,
-  HelpCircle
+  HelpCircle,
+  ShieldCheck
 } from "lucide-react";
 
 export default function Home() {
@@ -59,7 +60,7 @@ export default function Home() {
       <section className="py-20 bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30" />
 
-        <div className="container px-4 md:px-6 relative z-10">
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-flex items-center gap-2 bg-yellow-400 text-black px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider mb-6 shadow-lg">
@@ -69,7 +70,7 @@ export default function Home() {
                 Lagos Dog Carnival
               </h2>
               <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
-                Join 5,000+ pet lovers for <strong>Africa's largest gathering of Pets</strong>.
+                Join 5,000+ pet lovers for <strong>Africa&apos;s largest gathering of Pets</strong>.
                 Competitions, prizes, fun, and a chance to make history!
               </p>
 
@@ -121,7 +122,7 @@ export default function Home() {
 
       {/* Media & Gallery Section */}
       <section className="py-20 bg-background">
-        <div className="container px-4 md:px-6">
+        <div className="container mx-auto px-4 md:px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-xl order-2 md:order-1">
               <Image
@@ -176,68 +177,49 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Community Hub Section */}
-      <section className="py-20 bg-secondary/10">
-        <div className="container px-4 md:px-6">
+      {/* Community via WhatsApp Section */}
+      <section className="py-20 bg-green-50/50">
+        <div className="container mx-auto px-4 md:px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-bold mb-6">
-                <MessageCircle className="w-4 h-4" /> The Village Square
-              </div>
-              <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
-                Join 50,000+ Pet Lovers
-              </h2>
-              <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
-                Connect with fellow dog parents, share tips, ask questions, and find your tribe.
-                Our community is here for you 24/7.
-              </p>
-
+            <div className="order-2 md:order-1">
               <div className="grid grid-cols-2 gap-4 mb-8">
-                <div className="bg-white p-4 rounded-xl shadow-sm">
-                  <Users className="w-8 h-8 text-primary mb-2" />
-                  <p className="text-2xl font-bold">50k+</p>
-                  <p className="text-sm text-muted-foreground">Members</p>
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-green-100">
+                  <MessageCircle className="w-10 h-10 text-[#25D366] mb-3" />
+                  <h3 className="font-bold text-lg mb-1">Live Chat</h3>
+                  <p className="text-sm text-muted-foreground">Instant advice from experts</p>
                 </div>
-                <div className="bg-white p-4 rounded-xl shadow-sm">
-                  <MessageCircle className="w-8 h-8 text-primary mb-2" />
-                  <p className="text-2xl font-bold">120+</p>
-                  <p className="text-sm text-muted-foreground">Daily Topics</p>
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-green-100">
+                  <Users className="w-10 h-10 text-[#25D366] mb-3" />
+                  <h3 className="font-bold text-lg mb-1">Community</h3>
+                  <p className="text-sm text-muted-foreground">Connect with local owners</p>
                 </div>
               </div>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/community">
-                  <Button size="lg" className="w-full sm:w-auto text-lg px-8 font-bold">
-                    Explore Community <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
-                <Link href="/membership">
-                  <Button size="lg" variant="secondary" className="w-full sm:w-auto text-lg px-10 font-bold shadow-xl">
-                    Join the Pack Today
-                  </Button>
-                </Link>
+              <div className="bg-[#25D366]/10 p-6 rounded-2xl border border-[#25D366]/20">
+                <h3 className="font-bold text-xl mb-2 flex items-center text-[#128C7E]">
+                  <ShieldCheck className="w-5 h-5 mr-2" /> Safe & Moderated
+                </h3>
+                <p className="text-[#128C7E]">
+                  A respectful space for dog lovers to share, learn, and grow together. Zero spam, 100% dog talk.
+                </p>
               </div>
             </div>
 
-            <div className="relative aspect-square rounded-3xl overflow-hidden shadow-xl bg-gradient-to-br from-blue-100 to-purple-100 p-8">
-              <div className="space-y-4">
-                <div className="bg-white p-4 rounded-xl shadow-sm">
-                  <p className="font-bold mb-1">Health & Nutrition</p>
-                  <p className="text-sm text-muted-foreground">245 discussions</p>
-                </div>
-                <div className="bg-white p-4 rounded-xl shadow-sm">
-                  <p className="font-bold mb-1">Training Tips</p>
-                  <p className="text-sm text-muted-foreground">189 discussions</p>
-                </div>
-                <div className="bg-white p-4 rounded-xl shadow-sm">
-                  <p className="font-bold mb-1">Adoptions</p>
-                  <p className="text-sm text-muted-foreground">67 discussions</p>
-                </div>
-                <div className="bg-white p-4 rounded-xl shadow-sm">
-                  <p className="font-bold mb-1">Lost & Found</p>
-                  <p className="text-sm text-muted-foreground">34 discussions</p>
-                </div>
+            <div className="order-1 md:order-2 text-center md:text-left">
+              <div className="inline-flex items-center gap-2 bg-[#25D366]/10 text-[#128C7E] px-4 py-2 rounded-full text-sm font-bold mb-6">
+                <MessageCircle className="w-4 h-4" /> Official Community Group
               </div>
+              <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
+                Join the Conversation on WhatsApp
+              </h2>
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                Connect directly with our community of over 50,000 satisfied dog owners. Get real-time updates on events, health tips, and carnival news straight to your phone.
+              </p>
+
+              <Link href="https://chat.whatsapp.com/C0I2KfbQrpf4Qw5qc8QEDT" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="w-full sm:w-auto text-lg px-8 py-6 font-bold shadow-xl bg-[#25D366] hover:bg-[#128C7E] text-white border-none rounded-full">
+                  <MessageCircle className="mr-2 h-6 w-6" /> Join WhatsApp Community
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -264,7 +246,7 @@ export default function Home() {
                 From Instagram to Movement
               </h2>
               <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
-                <strong>My Dog and I Group</strong> is a non-profit pet service company that started on Instagram in 2016. Today, it has grown into Africa's largest gathering of Pets, building a vibrant community through social work, activism, and events.
+                <strong>My Dog and I Group</strong> is a non-profit pet service company that started on Instagram in 2016. Today, it has grown into Africa&apos;s largest gathering of Pets, building a vibrant community through social work, activism, and events.
               </p>
 
               <div className="space-y-4 mb-8">
@@ -298,7 +280,7 @@ export default function Home() {
 
       {/* Sponsorships Section */}
       <section className="py-20 bg-gradient-to-br from-purple-50 to-pink-50">
-        <div className="container px-4 md:px-6 text-center">
+        <div className="container mx-auto px-4 md:px-6 text-center">
           <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-bold mb-6">
             <Handshake className="w-4 h-4" /> Partner with Us
           </div>
@@ -342,7 +324,7 @@ export default function Home() {
           </h2>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             From weekly dog walks to training sessions and the annual carnival -
-            there's always something happening in the pack.
+            there&apos;s always something happening in the pack.
           </p>
           <Link href="/community">
             <Button size="lg" variant="outline" className="text-lg px-8 font-bold border-2">
@@ -361,7 +343,7 @@ export default function Home() {
             </div>
             <h2 className="text-3xl md:text-5xl font-black mb-4">Frequently Asked Questions</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              We've gathered the most common questions from our community to help you get started.
+              We&apos;ve gathered the most common questions from our community to help you get started.
             </p>
           </div>
 
@@ -381,7 +363,7 @@ export default function Home() {
 
       {/* Final CTA - Join the Pack */}
       <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
-        <div className="container relative z-10 px-4 md:px-6 text-center">
+        <div className="container mx-auto relative z-10 px-4 md:px-6 text-center">
           <Heart className="w-12 h-12 mx-auto mb-6 text-white/90 animate-pulse" />
           <h2 className="text-3xl font-bold tracking-tight sm:text-5xl mb-6 text-white">
             Ready to Join the Woof Pack?

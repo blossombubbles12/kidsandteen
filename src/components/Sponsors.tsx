@@ -18,7 +18,7 @@ const sponsors = [
 export function Sponsors() {
     return (
         <section className="py-12 bg-background border-y border-border/40 overflow-hidden">
-            <div className="container px-4 md:px-6 mb-8 text-center">
+            <div className="container mx-auto px-4 md:px-6 mb-8 text-center">
                 <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                     Trusted by Top Brands
                 </p>

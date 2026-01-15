@@ -83,7 +83,7 @@ export function Hero() {
 
             {/* Content */}
             <motion.div
-                className="container relative z-10 px-4 md:px-6 flex flex-col items-center text-center pt-32 md:pt-20 cursor-grab active:cursor-grabbing"
+                className="container mx-auto relative z-10 px-4 md:px-6 flex flex-col items-center text-center pt-32 md:pt-20 cursor-grab active:cursor-grabbing"
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
                 onDragEnd={(_, info) => {
