@@ -83,7 +83,7 @@ export function Hero() {
 
             {/* Content */}
             <motion.div
-                className="container mx-auto relative z-10 px-4 md:px-6 flex flex-col items-center text-center pt-24 md:pt-20 cursor-grab active:cursor-grabbing"
+                className="container mx-auto relative z-10 px-4 md:px-6 flex flex-col items-center text-center pt-20 pb-32 md:py-20 cursor-grab active:cursor-grabbing"
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
                 onDragEnd={(_, info) => {
@@ -139,7 +139,7 @@ export function Hero() {
             </motion.div>
 
             {/* Navigation Controls */}
-            <div className="absolute bottom-6 md:bottom-8 left-0 right-0 z-20 flex flex-col items-center gap-6">
+            <div className="absolute bottom-4 md:bottom-8 left-0 right-0 z-20 flex flex-col items-center gap-6">
                 <div className="flex items-center gap-4">
                     {slides.map((_, i) => (
                         <button
