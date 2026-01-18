@@ -6,6 +6,7 @@ import { Heart, Users, Trophy, Target, Eye, Sparkles, Calendar, TrendingUp } fro
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { AnniversaryBanner } from "@/components/AnniversaryBanner";
+import { CldImage } from "@/components/media/CldImage";
 
 const timeline = [
     {
@@ -95,8 +96,8 @@ export default function AboutPage() {
             {/* Hero Section */}
             <section className="relative py-32 overflow-hidden">
                 <div className="absolute inset-0">
-                    <Image
-                        src="/hero.png"
+                    <CldImage
+                        src="homepage7_dl6l1z"
                         alt="Our Community"
                         fill
                         className="object-cover opacity-20"
@@ -231,8 +232,16 @@ export default function AboutPage() {
             </section>
 
             {/* 2026 World Record Section */}
-            <section className="py-20 bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30" />
+            <section className="relative py-20 bg-slate-900 text-white overflow-hidden">
+                <div className="absolute inset-0 z-0">
+                    <CldImage
+                        src="homepage2_gsja4s"
+                        alt="World Record History"
+                        fill
+                        className="object-cover opacity-20"
+                    />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/10 via-orange-500/10 to-red-500/10 opacity-30" />
 
                 <div className="container px-4 relative z-10">
                     <motion.div
@@ -456,8 +465,16 @@ export default function AboutPage() {
             </section>
 
             {/* Join CTA */}
-            <section className="py-20 bg-primary text-white">
-                <div className="container px-4 text-center">
+            <section className="relative py-20 bg-primary text-white overflow-hidden">
+                <div className="absolute inset-0 z-0">
+                    <CldImage
+                        src="homepage9_mhc0oh"
+                        alt="Join the Pack"
+                        fill
+                        className="object-cover opacity-20"
+                    />
+                </div>
+                <div className="container px-4 text-center relative z-10">
                     <h2 className="text-3xl md:text-5xl font-black mb-6">
                         Ready to Be Part of Our Story?
                     </h2>

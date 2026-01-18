@@ -1,38 +1,36 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { MapPin, Calendar, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-// Badge import removed
-// I'll skip Badge import and just use a span with classes.
+import { CldImage } from "@/components/media/CldImage";
 
 const events = [
     {
         id: 1,
-        title: "Puppy Playdate in the Park",
-        date: "Sat, May 15 • 10:00 AM",
-        location: "Central Park, NY",
-        image: "/event-preview.png",
+        title: "Sunday Dog Walk - Lekki",
+        date: "Jan 12 • 7:00 AM",
+        location: "Freedom Park, Lekki",
+        image: "homepage4_sdyykt",
         category: "Social",
     },
     {
         id: 2,
-        title: "Agility Training Workshop",
-        date: "Sun, May 16 • 2:00 PM",
-        location: "K9 Sports Center",
-        image: "/event-preview.png",
+        title: "Puppy Training Workshop",
+        date: "Jan 18 • 10:00 AM",
+        location: "My Dog & I Center",
+        image: "homepage5_eejwzt",
         category: "Training",
     },
     {
         id: 3,
-        title: "Sunset Dog Walk",
-        date: "Wed, May 19 • 6:30 PM",
-        location: "Riverside Trail",
-        image: "/event-preview.png",
-        category: "Fitness",
+        title: "Beach Day Fun",
+        date: "Feb 15 • 8:00 AM",
+        location: "Elegushi Beach",
+        image: "homepage3_fqiznc",
+        category: "Social",
     },
 ];
 
@@ -78,7 +76,7 @@ export function FeaturedEvents() {
                         >
                             <Card className="h-full overflow-hidden border-border/50 bg-card/50 hover:bg-card transition-colors">
                                 <div className="relative h-48 w-full overflow-hidden">
-                                    <Image
+                                    <CldImage
                                         src={event.image}
                                         alt={event.title}
                                         fill

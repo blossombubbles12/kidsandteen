@@ -1,27 +1,27 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { Linkedin, Twitter, Instagram } from "lucide-react";
+import { CldImage } from "@/components/media/CldImage";
 
 const team = [
     {
-        name: "Tobi Adebayo",
-        role: "Founder & Lead Pack Leader",
-        bio: "A lifelong dog lover and certified trainer. Tobi started the community to give his own husky, Zues, some friends.",
-        image: "/event-preview.png",
+        name: "Jacklyn Idimogu",
+        role: "Chief Convener",
+        bio: "The architectural mind behind the Carnival. Jacklyn ensures every detail is perfect for the gold standard of pet events.",
+        image: "homepage4_sdyykt",
     },
     {
-        name: "Chioma Okeke",
-        role: "Head of Events",
-        bio: "The creative brain behind the Carnival. Chioma ensures every event is safe, fun, and memorable.",
-        image: "/hero.png",
+        name: "Gabby Idimogu",
+        role: "Convener",
+        bio: "Our resident 'Animal Whisperer'. Gabby ensures 100% tail-wagging satisfaction for every pet that joins our community.",
+        image: "homepage5_eejwzt",
     },
     {
-        name: "Ahmed Musa",
-        role: "Community Manager",
-        bio: "The voice of the brand. Ahmed manages our 50k+ online community and partnerships.",
-        image: "/carnival.png",
+        name: "Community Support",
+        role: "The Team",
+        bio: "Dedicated individuals working 24/7 to support our community and the 50,000+ members of our movement.",
+        image: "homepage2_gsja4s",
     },
 ];
 
@@ -47,11 +47,11 @@ export function TeamSection() {
                             className="group bg-background rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
                         >
                             <div className="relative aspect-[3/3] overflow-hidden">
-                                <Image
+                                <CldImage
                                     src={member.image}
                                     alt={member.name}
                                     fill
-                                    className="object-cover transition-transform duration-500 group-hover:scale-105 grayscale group-hover:grayscale-0"
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
                             </div>
                             <div className="p-6">

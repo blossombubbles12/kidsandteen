@@ -5,6 +5,7 @@ import { MessageCircle, Mic, Heart, Users, ArrowRight, ShieldCheck, PlayCircle, 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CldImage } from "@/components/media/CldImage";
 
 export default function CommunityPage() {
     const whatsappLink = "https://chat.whatsapp.com/C0I2KfbQrpf4Qw5qc8QEDT";
@@ -22,51 +23,62 @@ export default function CommunityPage() {
     return (
         <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
             {/* Hero Section */}
-            <section className="relative px-6 py-20 md:py-32 lg:px-12 flex flex-col items-center text-center max-w-5xl mx-auto">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="mb-8 p-4 bg-primary/10 rounded-full inline-block"
-                >
-                    <MessageCircle className="w-12 h-12 text-primary" />
-                </motion.div>
-
-                <motion.h1
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.1 }}
-                    className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-orange-600 to-amber-600 pb-2"
-                >
-                    Connect With Dog Lovers
-                </motion.h1>
-
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.2 }}
-                    className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-3xl leading-relaxed"
-                >
-                    Join the <span className="text-primary font-bold">Record breaking pet lovers group</span>. A vibrant community dedicated to live training discussions, dog stories, and our official Guinness World Record attempt.
-                </motion.p>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.3 }}
-                    className="flex flex-col sm:flex-row gap-4 w-full justify-center"
-                >
-                    <Button
-                        asChild
-                        size="lg"
-                        className="h-auto text-lg py-4 px-6 md:px-8 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all bg-[#25D366] hover:bg-[#128C7E] border-none text-white"
+            <section className="relative px-6 py-20 md:py-32 lg:px-12 flex flex-col items-center text-center overflow-hidden">
+                <div className="absolute inset-0 z-0">
+                    <CldImage
+                        src="homepage3_fqiznc"
+                        alt="Community Hero"
+                        fill
+                        className="object-cover opacity-10"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+                </div>
+                <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        className="mb-8 p-4 bg-primary/10 rounded-full inline-block"
                     >
-                        <Link href={whatsappLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
-                            <MessageCircle className="h-6 w-6 shrink-0" />
-                            <span className="whitespace-normal">Join WhatsApp Community</span>
-                        </Link>
-                    </Button>
-                </motion.div>
+                        <MessageCircle className="w-12 h-12 text-primary" />
+                    </motion.div>
+
+                    <motion.h1
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, delay: 0.1 }}
+                        className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-orange-600 to-amber-600 pb-2"
+                    >
+                        Connect With Dog Lovers
+                    </motion.h1>
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, delay: 0.2 }}
+                        className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-3xl leading-relaxed"
+                    >
+                        Join the <span className="text-primary font-bold">Record breaking pet lovers group</span>. A vibrant community dedicated to live training discussions, dog stories, and our official Guinness World Record attempt.
+                    </motion.p>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, delay: 0.3 }}
+                        className="flex flex-col sm:flex-row gap-4 w-full justify-center"
+                    >
+                        <Button
+                            asChild
+                            size="lg"
+                            className="h-auto text-lg py-4 px-6 md:px-8 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all bg-[#25D366] hover:bg-[#128C7E] border-none text-white"
+                        >
+                            <Link href={whatsappLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+                                <MessageCircle className="h-6 w-6 shrink-0" />
+                                <span className="whitespace-normal">Join WhatsApp Community</span>
+                            </Link>
+                        </Button>
+                    </motion.div>
+                </div>
             </section>
 
             {/* Why Join Section */}
@@ -225,8 +237,18 @@ export default function CommunityPage() {
             </section>
 
             {/* Final CTA */}
-            <section className="px-6 py-24 md:py-32 text-center bg-background">
+            <section className="relative px-6 py-24 md:py-32 text-center bg-slate-900 text-white overflow-hidden">
+                <div className="absolute inset-0 z-0">
+                    <CldImage
+                        src="homepage1_lnnftx"
+                        alt="Join the Pack"
+                        fill
+                        className="object-cover opacity-30"
+                    />
+                    <div className="absolute inset-0 bg-black/40" />
+                </div>
                 <motion.div
+                    className="relative z-10"
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}

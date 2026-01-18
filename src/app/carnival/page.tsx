@@ -11,6 +11,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Users, Sparkles } from "lucide-react";
 import { AnniversaryBanner } from "@/components/AnniversaryBanner";
+import { CldImage } from "@/components/media/CldImage";
 
 export default function CarnivalPage() {
     return (
@@ -18,8 +19,8 @@ export default function CarnivalPage() {
             {/* Carnival Hero */}
             <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <Image
-                        src="/carnival.png"
+                    <CldImage
+                        src="lagos_dog_carnival_20242_ekato6"
                         alt="Lagos Dog Carnival Crowd"
                         fill
                         className="object-cover brightness-[0.7]"

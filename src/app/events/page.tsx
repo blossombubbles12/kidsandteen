@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Calendar, MapPin, Users, Clock, Search, Filter, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import Image from "next/image";
+import { CldImage } from "@/components/media/CldImage";
 import Link from "next/link";
 
 // Mock event data
@@ -18,7 +18,7 @@ const events = [
         location: "Eko Atlantic, Lagos",
         category: "carnival",
         attendees: 5000,
-        image: "/carnival.png",
+        image: "lagos_dog_carnival_20242_ekato6",
         featured: true,
         description: "Africa's largest gathering of Pets. Guinness World Record attempt!",
         price: "Free"
@@ -31,7 +31,7 @@ const events = [
         location: "Freedom Park, Lekki Phase 1",
         category: "walk",
         attendees: 45,
-        image: "/hero.png",
+        image: "homepage4_sdyykt",
         description: "Join fellow pet parents for a relaxing morning walk and socialization.",
         price: "Free"
     },
@@ -43,7 +43,7 @@ const events = [
         location: "My Dog & I Training Center",
         category: "training",
         attendees: 20,
-        image: "/event-preview.png",
+        image: "homepage5_eejwzt",
         description: "Learn basic obedience commands and socialization techniques for puppies.",
         price: "₦15,000"
     },
@@ -55,7 +55,7 @@ const events = [
         location: "Victoria Island Dog Park",
         category: "adoption",
         attendees: 100,
-        image: "/hero.png",
+        image: "homepage2_gsja4s",
         description: "Meet adorable rescue dogs looking for their forever homes.",
         price: "Free"
     },
@@ -67,7 +67,7 @@ const events = [
         location: "Ikoyi Sports Ground",
         category: "competition",
         attendees: 80,
-        image: "/carnival.png",
+        image: "homepage1_lnnftx",
         description: "Watch talented dogs navigate obstacle courses. Prizes for top performers!",
         price: "₦5,000"
     },
@@ -79,7 +79,7 @@ const events = [
         location: "Elegushi Beach",
         category: "social",
         attendees: 60,
-        image: "/event-preview.png",
+        image: "homepage3_fqiznc",
         description: "Let your dogs run free on the beach! Swimming, fetch, and fun.",
         price: "₦2,000"
     }
@@ -109,8 +109,16 @@ export default function EventsPage() {
     return (
         <div className="min-h-screen bg-background">
             {/* Hero */}
-            <section className="py-20 bg-gradient-to-br from-primary/10 to-orange-100">
-                <div className="container px-4 text-center">
+            <section className="relative py-20 bg-slate-900 text-white overflow-hidden">
+                <div className="absolute inset-0 z-0">
+                    <CldImage
+                        src="homepage8_zaj3az"
+                        alt="Join the Pack"
+                        fill
+                        className="object-cover opacity-20"
+                    />
+                </div>
+                <div className="container px-4 text-center relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -186,7 +194,7 @@ export default function EventsPage() {
                                     )}
 
                                     <div className="relative aspect-video overflow-hidden">
-                                        <Image
+                                        <CldImage
                                             src={event.image}
                                             alt={event.title}
                                             fill
@@ -235,8 +243,17 @@ export default function EventsPage() {
             </section>
 
             {/* CTA Section */}
-            <section className="py-20 bg-secondary/10">
-                <div className="container px-4 text-center">
+            <section className="relative py-20 bg-slate-900 text-white overflow-hidden">
+                <div className="absolute inset-0 z-0">
+                    <CldImage
+                        src="homepage6_hvgj0p"
+                        alt="Host an Event"
+                        fill
+                        className="object-cover opacity-30"
+                    />
+                    <div className="absolute inset-0 bg-black/40" />
+                </div>
+                <div className="container px-4 text-center relative z-10">
                     <h2 className="text-3xl font-bold mb-4">Want to Host an Event?</h2>
                     <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
                         Have an idea for a pet event? We'd love to help you organize it and connect you with our community.

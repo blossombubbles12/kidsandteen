@@ -3,31 +3,32 @@
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CldImage } from "@/components/media/CldImage";
 
 const videos = [
     {
         id: 1,
-        title: "Puppy Bowl 2025 Highlights",
+        title: "Lagos Dog Carnival Highlights",
         duration: "2:30",
-        thumbnailColor: "bg-orange-100"
+        image: "lagos_dog_carnival_20242_ekato6"
     },
     {
         id: 2,
-        title: "Training Tips: Leash Walking",
+        title: "Our Guinness World Record Play",
         duration: "5:15",
-        thumbnailColor: "bg-blue-100"
+        image: "homepage2_gsja4s"
     },
     {
         id: 3,
-        title: "Best Dog Parks in NYC",
+        title: "Community Growth Stories",
         duration: "3:45",
-        thumbnailColor: "bg-green-100"
+        image: "homepage1_lnnftx"
     },
     {
         id: 4,
-        title: "Dog Chef: Homemade Treats",
+        title: "Training: Basic Socialization",
         duration: "4:00",
-        thumbnailColor: "bg-red-100"
+        image: "homepage5_eejwzt"
     },
 ];
 
@@ -57,10 +58,17 @@ export function Media() {
                             transition={{ delay: index * 0.1 }}
                             className="group cursor-pointer"
                         >
-                            <div className={`relative aspect-video rounded-xl overflow-hidden ${video.thumbnailColor} mb-3 shadow-sm group-hover:shadow-md transition-all`}>
+                            <div className={`relative aspect-video rounded-xl overflow-hidden bg-muted mb-3 shadow-sm group-hover:shadow-md transition-all`}>
+                                <CldImage
+                                    src={video.image}
+                                    alt={video.title}
+                                    fill
+                                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                />
+                                <div className="absolute inset-0 bg-black/20" />
                                 <div className="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
                                     <div className="h-12 w-12 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
-                                        <Play className="h-6 w-6 text-foreground fill-foreground" />
+                                        <Play className="h-6 w-6 text-foreground fill-foreground translate-x-0.5" />
                                     </div>
                                 </div>
                                 <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     siteName: "My Dog and I",
     images: [
       {
-        url: "/carnival.png", // Using an existing relevant image
+        url: "https://res.cloudinary.com/dtw0ajpwa/image/upload/v1768756809/lagos_dog_carnival_20242_ekato6.jpg", // Using newest brand image
         width: 1200,
         height: 630,
         alt: "Lagos Dog Carnival",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "My Dog and I - Africa's Largest Gathering of Pets",
     description: "Join 50,000+ pet lovers for events, the Lagos Dog Carnival, and our Guinness World Record attempt.",
-    images: ["/carnival.png"],
+    images: ["https://res.cloudinary.com/dtw0ajpwa/image/upload/v1768756809/lagos_dog_carnival_20242_ekato6.jpg"],
   },
 };
 
@@ -34,6 +34,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { AnniversaryBanner } from "@/components/AnniversaryBanner";
 import { FAQSection } from "@/components/faq/FAQSection";
+import { CldImage } from "@/components/media/CldImage";
 import {
   ArrowRight,
   Trophy,
@@ -104,8 +105,8 @@ export default function Home() {
             </div>
 
             <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl">
-              <Image
-                src="/carnival.png"
+              <CldImage
+                src="lagos_dog_carnival_20242_ekato6"
                 alt="Lagos Dog Carnival"
                 fill
                 className="object-cover"
@@ -125,8 +126,8 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-xl order-2 md:order-1">
-              <Image
-                src="/hero.png"
+              <CldImage
+                src="homepage4_sdyykt"
                 alt="Community Moments"
                 fill
                 className="object-cover"
@@ -236,8 +237,8 @@ export default function Home() {
         <div className="container px-4 md:px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-xl order-2 md:order-1">
-              <Image
-                src="/event-preview.png"
+              <CldImage
+                src="homepage5_eejwzt"
                 alt="Our Story"
                 fill
                 className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
@@ -367,8 +368,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Final CTA - Join the Pack */}
       <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <CldImage
+            src="homepage8_zaj3az"
+            alt="Join the Pack"
+            fill
+            className="object-cover opacity-30"
+          />
+        </div>
         <div className="container mx-auto relative z-10 px-4 md:px-6 text-center">
           <Heart className="w-12 h-12 mx-auto mb-6 text-white/90 animate-pulse" />
           <h2 className="text-3xl font-bold tracking-tight sm:text-5xl mb-6 text-white">

@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { Heart, Globe, Shield } from "lucide-react";
+import { Heart, Globe } from "lucide-react";
+import { CldImage } from "@/components/media/CldImage";
 
 export function MissionSection() {
     return (
@@ -57,8 +57,8 @@ export function MissionSection() {
                         transition={{ duration: 0.6 }}
                         className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl"
                     >
-                        <Image
-                            src="/carnival.png"
+                        <CldImage
+                            src="homepage1_lnnftx"
                             alt="Connection between dog and human"
                             fill
                             className="object-cover"

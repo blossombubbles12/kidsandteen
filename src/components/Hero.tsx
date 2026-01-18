@@ -14,7 +14,7 @@ const slides = [
         title: "Africa's Largest Pet Gathering",
         description: "Celebrating 10 years of love, advocacy, and Pet-tastic community building across Nigeria.",
         image: "/hero.png",
-        cloudinaryId: "mydog/hero_main", // Placeholder - user can update
+        cloudinaryId: "homepage1_lnnftx",
         primaryCTA: { text: "Find Events", url: "/events" },
         secondaryCTA: { text: "Join the Pack", url: "/membership" },
         accent: "text-primary-foreground",
@@ -25,7 +25,7 @@ const slides = [
         title: "Breaking History in 2026",
         description: "Be part of our Guinness World Record attempt at Eko Atlantic. October 1st, 2026.",
         image: "/carnival.png",
-        cloudinaryId: "mydog/carnival_gwr", // Placeholder
+        cloudinaryId: "homepage2_gsja4s",
         primaryCTA: { text: "Explore Carnival", url: "/carnival" },
         secondaryCTA: { text: "Register Now", url: "/carnival/register" },
         accent: "text-yellow-400",
@@ -36,7 +36,7 @@ const slides = [
         title: "The Inner Circle Membership",
         description: "Unlock premium benefits, official ID cards, and VIP access to Africa's largest pet events.",
         image: "/event-preview.png",
-        cloudinaryId: "mydog/membership_preview", // Placeholder
+        cloudinaryId: "homepage3_fqiznc",
         primaryCTA: { text: "View Plans", url: "/membership" },
         secondaryCTA: { text: "Join Today", url: "/membership" },
         accent: "text-blue-400",
@@ -83,7 +83,7 @@ export function Hero() {
 
             {/* Content */}
             <motion.div
-                className="container mx-auto relative z-10 px-4 md:px-6 flex flex-col items-center text-center pt-32 md:pt-20 cursor-grab active:cursor-grabbing"
+                className="container mx-auto relative z-10 px-4 md:px-6 flex flex-col items-center text-center pt-24 md:pt-20 cursor-grab active:cursor-grabbing"
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
                 onDragEnd={(_, info) => {
@@ -139,7 +139,7 @@ export function Hero() {
             </motion.div>
 
             {/* Navigation Controls */}
-            <div className="absolute bottom-10 left-0 right-0 z-20 flex flex-col items-center gap-6">
+            <div className="absolute bottom-6 md:bottom-8 left-0 right-0 z-20 flex flex-col items-center gap-6">
                 <div className="flex items-center gap-4">
                     {slides.map((_, i) => (
                         <button

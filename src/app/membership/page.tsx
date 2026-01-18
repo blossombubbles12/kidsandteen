@@ -5,6 +5,7 @@ import { Check, Star, Crown, Shield, Zap, Heart, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { CldImage } from "@/components/media/CldImage";
 
 const plans = [
     {
@@ -71,8 +72,8 @@ export default function MembershipPage() {
             {/* Hero Section */}
             <section className="relative py-24 overflow-hidden bg-slate-950 text-white">
                 <div className="absolute inset-0 opacity-20">
-                    <Image
-                        src="/hero.png"
+                    <CldImage
+                        src="homepage9_mhc0oh"
                         alt="Membership"
                         fill
                         className="object-cover"

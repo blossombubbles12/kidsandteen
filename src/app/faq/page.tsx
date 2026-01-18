@@ -5,13 +5,22 @@ import { FAQSection } from "@/components/faq/FAQSection";
 import { HelpCircle, MessageCircle, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { CldImage } from "@/components/media/CldImage";
 
 export default function FAQPage() {
     return (
         <div className="min-h-screen bg-background">
             {/* Hero */}
-            <section className="py-20 bg-gradient-to-br from-primary/10 via-orange-50 to-background border-b">
-                <div className="container px-4 text-center">
+            <section className="relative py-20 bg-slate-900 text-white overflow-hidden">
+                <div className="absolute inset-0 z-0">
+                    <CldImage
+                        src="homepage5_eejwzt"
+                        alt="Support Hero"
+                        fill
+                        className="object-cover opacity-20"
+                    />
+                </div>
+                <div className="container px-4 text-center relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
