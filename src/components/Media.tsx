@@ -28,7 +28,7 @@ const videos = [
         id: 4,
         title: "Training: Basic Socialization",
         duration: "4:00",
-        image: "homepage5_eejwzt"
+        image: "homepage1_lnnftx"
     },
 ];
 

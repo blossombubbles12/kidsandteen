@@ -238,7 +238,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-xl order-2 md:order-1">
               <CldImage
-                src="homepage5_eejwzt"
+                src="homepage9_mhc0oh"
                 alt="Our Story"
                 fill
                 className="object-cover grayscale hover:grayscale-0 transition-all duration-500"

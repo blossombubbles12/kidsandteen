@@ -61,7 +61,7 @@ export default function SponsorshipsPage() {
             <section className="relative py-20 bg-slate-900 text-white overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <CldImage
-                        src="homepage6_hvgj0p"
+                        src="homepage7_dl6l1z"
                         alt="Partner with Us"
                         fill
                         className="object-cover opacity-20"

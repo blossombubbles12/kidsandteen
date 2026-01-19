@@ -14,7 +14,7 @@ export default function FAQPage() {
             <section className="relative py-20 bg-slate-900 text-white overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <CldImage
-                        src="homepage5_eejwzt"
+                        src="homepage1_lnnftx"
                         alt="Support Hero"
                         fill
                         className="object-cover opacity-20"

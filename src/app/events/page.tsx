@@ -43,7 +43,7 @@ const events = [
         location: "My Dog & I Training Center",
         category: "training",
         attendees: 20,
-        image: "homepage5_eejwzt",
+        image: "homepage9_mhc0oh",
         description: "Learn basic obedience commands and socialization techniques for puppies.",
         price: "₦15,000"
     },
@@ -246,7 +246,7 @@ export default function EventsPage() {
             <section className="relative py-20 bg-slate-900 text-white overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <CldImage
-                        src="homepage6_hvgj0p"
+                        src="homepage8_zaj3az"
                         alt="Host an Event"
                         fill
                         className="object-cover opacity-30"

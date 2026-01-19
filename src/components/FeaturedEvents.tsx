@@ -21,7 +21,7 @@ const events = [
         title: "Puppy Training Workshop",
         date: "Jan 18 • 10:00 AM",
         location: "My Dog & I Center",
-        image: "homepage5_eejwzt",
+        image: "homepage1_lnnftx",
         category: "Training",
     },
     {

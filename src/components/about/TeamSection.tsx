@@ -3,19 +3,20 @@
 import { motion } from "framer-motion";
 import { Linkedin, Twitter, Instagram } from "lucide-react";
 import { CldImage } from "@/components/media/CldImage";
+import Image from "next/image";
 
 const team = [
     {
         name: "Jackie Idimogu",
         role: "Chief Convener",
         bio: "The architectural mind behind the Carnival. Jackie ensures every detail is perfect for the gold standard of pet events.",
-        image: "homepage4_sdyykt",
+        image: "/jackie.jpg",
     },
     {
         name: "Gabby Idimogu",
         role: "Convener",
         bio: "Our resident 'Animal Whisperer'. Gabby ensures 100% tail-wagging satisfaction for every pet that joins our community.",
-        image: "homepage5_eejwzt",
+        image: "/gabby.jpg",
     },
     {
         name: "Community Support",
@@ -47,12 +48,21 @@ export function TeamSection() {
                             className="group bg-background rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
                         >
                             <div className="relative aspect-[3/3] overflow-hidden">
-                                <CldImage
-                                    src={member.image}
-                                    alt={member.name}
-                                    fill
-                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                />
+                                {member.image.startsWith('/') ? (
+                                    <Image
+                                        src={member.image}
+                                        alt={member.name}
+                                        fill
+                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    />
+                                ) : (
+                                    <CldImage
+                                        src={member.image}
+                                        alt={member.name}
+                                        fill
+                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    />
+                                )}
                             </div>
                             <div className="p-6">
                                 <h3 className="text-2xl font-bold mb-1">{member.name}</h3>

@@ -20,7 +20,7 @@ export default function CarnivalPage() {
             <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <CldImage
-                        src="homepage6_hvgj0p"
+                        src="lagos_dog_carnival_20242_ekato6"
                         alt="Lagos Dog Carnival Hero"
                         fill
                         className="object-cover brightness-[0.7]"
@@ -141,7 +141,7 @@ export default function CarnivalPage() {
                         </div>
                         <div className="relative rounded-3xl overflow-hidden group">
                             <CldImage
-                                src="homepage5_eejwzt"
+                                src="homepage1_lnnftx"
                                 alt="Carnival Community"
                                 fill
                                 className="object-cover group-hover:scale-110 transition-transform duration-700"
