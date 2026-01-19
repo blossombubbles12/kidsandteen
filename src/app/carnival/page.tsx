@@ -60,14 +60,125 @@ export default function CarnivalPage() {
 
             <AnniversaryBanner />
 
-            {/* World Record Component */}
-            <WorldRecord />
-
             {/* Stats */}
             <CarnivalStats />
 
+            {/* What to Expect Section */}
+            <section className="py-24 bg-white relative overflow-hidden">
+                <div className="container px-4">
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl md:text-5xl font-black mb-4">What to Expect</h2>
+                        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                            Get ready for a day filled with excitement, entertainment, and pure pet joy.
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                        {[
+                            { icon: "🎨", title: "Dog Fashion Show", desc: "Watch the most stylish pets on the runway" },
+                            { icon: "🏎️", title: "Dog Races", desc: "High-speed thrills for our fastest friends" },
+                            { icon: "🍦", title: "Pet Treats", desc: "Gourmet snacks for dogs and humans" },
+                            { icon: "🎁", title: "Goody Bags", desc: "Exclusive gifts for all registered pets" },
+                            { icon: "👨‍⚕️", title: "Vet Checks", desc: "On-site professionals for health tips" },
+                            { icon: "🎶", title: "Live Music", desc: "Great vibes to keep the energy high" },
+                            { icon: "📸", title: "Photo Ops", desc: "Capture memories in our creative booths" },
+                            { icon: "🤝", title: "Networking", desc: "Connect with thousands of pet owners" },
+                        ].map((item, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: i * 0.1 }}
+                                className="bg-slate-50 p-6 rounded-3xl border border-slate-100 hover:shadow-xl transition-all text-center group"
+                            >
+                                <div className="text-4xl mb-4 group-hover:scale-125 transition-transform">{item.icon}</div>
+                                <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+                                <p className="text-sm text-muted-foreground">{item.desc}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    <div className="mt-16 text-center">
+                        <Link href="/carnival/register">
+                            <Button size="lg" className="rounded-full px-12 py-8 text-xl font-bold bg-primary hover:bg-primary/90 shadow-2xl">
+                                Secure Your Ticket Now <ArrowRight className="ml-2 w-6 h-6" />
+                            </Button>
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
+            {/* World Record Component */}
+            <WorldRecord />
+
+            {/* Previous Editions Gallery */}
+            <section className="py-24 bg-slate-900 text-white">
+                <div className="container px-4">
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl md:text-6xl font-black mb-4 italic">THE VIBE</h2>
+                        <p className="text-xl text-white/70 max-w-2xl mx-auto">
+                            Relive the magic of past editions. This is where Africa's pet community comes alive.
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
+                        <div className="md:col-span-2 md:row-span-2 relative rounded-3xl overflow-hidden group">
+                            <CldImage
+                                src="lagos_dog_carnival_20242_ekato6"
+                                alt="Past Carnival Vibe"
+                                fill
+                                className="object-cover group-hover:scale-110 transition-transform duration-700"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
+                        </div>
+                        <div className="relative rounded-3xl overflow-hidden group">
+                            <CldImage
+                                src="homepage4_sdyykt"
+                                alt="Carnival Action"
+                                fill
+                                className="object-cover group-hover:scale-110 transition-transform duration-700"
+                            />
+                        </div>
+                        <div className="relative rounded-3xl overflow-hidden group">
+                            <CldImage
+                                src="homepage5_eejwzt"
+                                alt="Carnival Community"
+                                fill
+                                className="object-cover group-hover:scale-110 transition-transform duration-700"
+                            />
+                        </div>
+                        <div className="md:col-span-3 relative h-[200px] rounded-3xl overflow-hidden group">
+                            <CldImage
+                                src="homepage7_dl6l1z"
+                                alt="Carnival Crowd"
+                                fill
+                                className="object-cover group-hover:scale-110 transition-transform duration-700"
+                            />
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+                                <h3 className="text-3xl md:text-5xl font-black tracking-tighter uppercase">50,000+ Pets & Humans</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Competitions */}
             <Competitions />
+
+            {/* Intermediate Registration CTA */}
+            <section className="py-20 bg-primary text-white text-center">
+                <div className="container px-4">
+                    <h2 className="text-3xl md:text-5xl font-black mb-6">Don't Let Your Dog Miss Out!</h2>
+                    <p className="text-xl mb-10 max-w-2xl mx-auto opacity-90">
+                        Registration is open for all breeds. Be part of the historic Guinness World Record attempt.
+                    </p>
+                    <Link href="/carnival/register">
+                        <Button size="lg" className="bg-white text-primary hover:bg-slate-100 rounded-full px-12 py-8 text-xl font-black shadow-2xl">
+                            Register My Pet
+                        </Button>
+                    </Link>
+                </div>
+            </section>
 
             {/* Timeline Component */}
             <CarnivalTimeline />
@@ -95,8 +206,13 @@ export default function CarnivalPage() {
                         >
                             <div className="relative w-32 h-32 mx-auto mb-6">
                                 <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-all" />
-                                <div className="relative w-full h-full bg-primary text-white rounded-full flex items-center justify-center text-4xl font-black z-10">
-                                    JI
+                                <div className="relative w-full h-full rounded-full overflow-hidden z-10">
+                                    <CldImage
+                                        src="homepage4_sdyykt"
+                                        alt="Jacklyn Idimogu"
+                                        fill
+                                        className="object-cover"
+                                    />
                                 </div>
                                 <div className="absolute -top-2 -right-2 bg-yellow-400 text-black p-2 rounded-full shadow-lg z-20">
                                     <Sparkles className="w-4 h-4" />
@@ -120,8 +236,13 @@ export default function CarnivalPage() {
                         >
                             <div className="relative w-32 h-32 mx-auto mb-6">
                                 <div className="absolute inset-0 bg-orange-200 rounded-full blur-2xl group-hover:bg-orange-300 transition-all" />
-                                <div className="relative w-full h-full bg-orange-500 text-white rounded-full flex items-center justify-center text-4xl font-black z-10">
-                                    GI
+                                <div className="relative w-full h-full rounded-full overflow-hidden z-10">
+                                    <CldImage
+                                        src="homepage5_eejwzt"
+                                        alt="Gabby Idimogu"
+                                        fill
+                                        className="object-cover"
+                                    />
                                 </div>
                                 <div className="absolute -top-2 -right-2 bg-orange-400 text-white p-2 rounded-full shadow-lg z-20">
                                     <Sparkles className="w-4 h-4" />
@@ -142,11 +263,33 @@ export default function CarnivalPage() {
             {/* Safety Info */}
             <SafetyInfo />
 
-            {/* CTA Footer */}
-            <section className="py-20 bg-background text-center">
-                <div className="container px-4">
-                    <h2 className="text-3xl font-bold mb-6">Want to be a Vendor or Sponsor?</h2>
-                    <Button variant="outline" size="lg">Contact Organizers</Button>
+            {/* Final CTA Footer */}
+            <section className="py-24 bg-slate-900 text-white text-center relative overflow-hidden">
+                <div className="absolute inset-0 z-0">
+                    <CldImage
+                        src="homepage2_gsja4s"
+                        alt="Background"
+                        fill
+                        className="object-cover opacity-20"
+                    />
+                </div>
+                <div className="container px-4 relative z-10">
+                    <h2 className="text-4xl md:text-6xl font-black mb-8">Ready for Oct 1st?</h2>
+                    <p className="text-xl md:text-2xl text-white/70 mb-12 max-w-2xl mx-auto">
+                        Join Africa's biggest pet celebration. Registration covers entry for 1 Pet & 1 Human.
+                    </p>
+                    <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+                        <Link href="/carnival/register">
+                            <Button size="lg" className="bg-yellow-500 text-black hover:bg-yellow-400 rounded-full px-12 py-8 text-2xl font-black shadow-2xl w-full md:w-auto">
+                                Register Now
+                            </Button>
+                        </Link>
+                        <Link href="/contact">
+                            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 rounded-full px-12 py-8 text-2xl font-black w-full md:w-auto">
+                                Vendor/Sponsor
+                            </Button>
+                        </Link>
+                    </div>
                 </div>
             </section>
         </div>
