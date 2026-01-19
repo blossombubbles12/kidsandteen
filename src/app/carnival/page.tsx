@@ -9,7 +9,7 @@ import { SafetyInfo } from "@/components/SafetyInfo";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Calendar, MapPin, Users, Sparkles } from "lucide-react";
+import { Calendar, MapPin, Users, Sparkles, ArrowRight } from "lucide-react";
 import { AnniversaryBanner } from "@/components/AnniversaryBanner";
 import { CldImage } from "@/components/media/CldImage";
 
