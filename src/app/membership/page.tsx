@@ -10,7 +10,6 @@ import { CldImage } from "@/components/media/CldImage";
 const plans = [
     {
         name: "Basic Pack",
-        price: "Free",
         description: "Join the movement and stay informed about our events and community walks.",
         icon: Heart,
         color: "bg-blue-500",
@@ -27,8 +26,6 @@ const plans = [
     },
     {
         name: "Pro Parent",
-        price: "₦15,000",
-        period: "/per year",
         description: "The official membership for dedicated pet owners. Get verified and enjoy exclusive perks.",
         icon: Star,
         color: "bg-primary",
@@ -46,8 +43,6 @@ const plans = [
     },
     {
         name: "Elite Pack",
-        price: "₦50,000",
-        period: "/per year",
         description: "The ultimate tier for our most passionate members. VIP access to everything we do.",
         icon: Crown,
         color: "bg-yellow-500",
@@ -93,7 +88,7 @@ export default function MembershipPage() {
                             Elevate Your <span className="text-primary text-glow">Bond</span>
                         </h1>
                         <p className="text-xl text-white/80 max-w-2xl mx-auto mb-10">
-                            Choose a plan that fits your lifestyle. Become a registered member of Africa's largest gathering of Pets and enjoy exclusive benefits.
+                            Explore the exclusive benefits and perks of joining the Woof Pack. Become a registered member of Africa's largest gathering of Pets and enjoy exceptional features.
                         </p>
                     </motion.div>
                 </div>
@@ -123,10 +118,6 @@ export default function MembershipPage() {
                                     <plan.icon className="w-8 h-8" />
                                 </div>
                                 <h3 className="text-2xl font-black mb-2">{plan.name}</h3>
-                                <div className="flex items-baseline gap-1 mb-4">
-                                    <span className="text-4xl font-black">{plan.price}</span>
-                                    {plan.period && <span className="text-muted-foreground font-medium">{plan.period}</span>}
-                                </div>
                                 <p className="text-muted-foreground text-sm leading-relaxed mb-6">
                                     {plan.description}
                                 </p>

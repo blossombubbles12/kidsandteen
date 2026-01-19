@@ -36,6 +36,8 @@ export function MediaSubmission({ albums = [], defaultFolder = "" }: MediaSubmis
     const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
     const [previews, setPreviews] = useState<{ url: string; type: string; name: string }[]>([]);
     const [folderName, setFolderName] = useState(defaultFolder);
+    const [currentFileName, setCurrentFileName] = useState("");
+    const [errors, setErrors] = useState<string[]>([]);
 
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -80,6 +82,7 @@ export function MediaSubmission({ albums = [], defaultFolder = "" }: MediaSubmis
 
         setIsUploading(true);
         setUploadProgress(0);
+        setErrors([]);
 
         try {
             const targetFolder = folderName.trim()
@@ -87,18 +90,44 @@ export function MediaSubmission({ albums = [], defaultFolder = "" }: MediaSubmis
                 : "mydog/community_submissions";
 
             let successCount = 0;
+            const newErrors: string[] = [];
 
-            for (let i = 0; i < selectedFiles.length; i++) {
-                const formData = new FormData();
-                formData.append("file", selectedFiles[i]);
+            // Upload 2 by 2 to balance speed and reliability
+            const batchSize = 2;
+            for (let i = 0; i < selectedFiles.length; i += batchSize) {
+                const batch = selectedFiles.slice(i, i + batchSize);
 
-                const response = await uploadToCloudinary(formData, targetFolder);
+                const batchResults = await Promise.all(batch.map(async (file, batchIdx) => {
+                    const globalIdx = i + batchIdx;
+                    setCurrentFileName(file.name);
 
-                if (response.success) {
-                    successCount++;
-                }
-                setUploadProgress(((i + 1) / selectedFiles.length) * 100);
+                    const formData = new FormData();
+                    formData.append("file", file);
+
+                    try {
+                        const response = await uploadToCloudinary(formData, targetFolder);
+                        if (response.success) {
+                            return { success: true };
+                        } else {
+                            return { success: false, error: typeof response.error === 'string' ? response.error : 'Cloudinary error' };
+                        }
+                    } catch (err: any) {
+                        return { success: false, error: err.message || 'Network or server error' };
+                    }
+                }));
+
+                batchResults.forEach((res, idx) => {
+                    if (res.success) {
+                        successCount++;
+                    } else if (res.error) {
+                        newErrors.push(`${selectedFiles[i + idx].name}: ${res.error}`);
+                    }
+                });
+
+                setUploadProgress(Math.min(((i + batch.length) / selectedFiles.length) * 100, 100));
             }
+
+            setErrors(newErrors);
 
             if (successCount === selectedFiles.length) {
                 toast({
@@ -109,16 +138,16 @@ export function MediaSubmission({ albums = [], defaultFolder = "" }: MediaSubmis
                 setIsDialogOpen(false);
                 clearSelection();
                 setFolderName("");
-                router.refresh(); // Refresh data to show new folder/images
+                router.refresh();
             } else if (successCount > 0) {
                 toast({
                     title: "Partial Success",
-                    description: `${successCount} out of ${selectedFiles.length} files were uploaded.`,
+                    description: `${successCount} uploaded, ${newErrors.length} failed.`,
                     variant: "default",
                 });
                 router.refresh();
             } else {
-                throw new Error("All uploads failed");
+                throw new Error(newErrors.length > 0 ? newErrors[0] : "All uploads failed");
             }
         } catch (error: any) {
             toast({
@@ -129,6 +158,7 @@ export function MediaSubmission({ albums = [], defaultFolder = "" }: MediaSubmis
         } finally {
             setIsUploading(false);
             setUploadProgress(0);
+            setCurrentFileName("");
         }
     };
 
@@ -260,44 +290,68 @@ export function MediaSubmission({ albums = [], defaultFolder = "" }: MediaSubmis
                                         </div>
                                     </div>
 
-                                    <DialogFooter className="gap-2 sm:gap-0 border-t pt-4">
-                                        <div className="flex-1 flex items-center gap-3">
-                                            {selectedFiles.length > 0 && !isUploading && (
-                                                <span className="text-sm text-muted-foreground font-medium">
-                                                    {selectedFiles.length} files selected
-                                                </span>
+                                    <DialogFooter className="flex-col gap-4 sm:gap-0 border-t pt-4">
+                                        {/* Status messages */}
+                                        <div className="w-full space-y-2">
+                                            {isUploading && currentFileName && (
+                                                <div className="flex items-center gap-2 text-xs text-primary animate-pulse">
+                                                    <Loader2 className="w-3 h-3 animate-spin" />
+                                                    Uploading: {currentFileName}
+                                                </div>
+                                            )}
+                                            {errors.length > 0 && (
+                                                <div className="bg-destructive/10 text-destructive text-[10px] p-2 rounded-lg max-h-20 overflow-y-auto">
+                                                    <p className="font-bold flex items-center gap-1 mb-1">
+                                                        <AlertCircle className="w-3 h-3" /> Some files failed:
+                                                    </p>
+                                                    <ul className="list-disc list-inside">
+                                                        {errors.map((err, i) => (
+                                                            <li key={i}>{err}</li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
                                             )}
                                         </div>
-                                        <div className="flex gap-2">
-                                            <Button
-                                                type="button"
-                                                variant="outline"
-                                                onClick={() => setIsDialogOpen(false)}
-                                                disabled={isUploading}
-                                                className="rounded-xl"
-                                            >
-                                                Cancel
-                                            </Button>
-                                            <Button
-                                                type="submit"
-                                                className="rounded-xl px-8 relative overflow-hidden"
-                                                disabled={selectedFiles.length === 0 || isUploading}
-                                            >
-                                                {isUploading ? (
-                                                    <>
-                                                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                                                        {Math.round(uploadProgress)}%
-                                                    </>
-                                                ) : `Post ${selectedFiles.length > 1 ? `(${selectedFiles.length})` : ""} Stories`}
 
-                                                {isUploading && (
-                                                    <motion.div
-                                                        className="absolute bottom-0 left-0 h-1 bg-white/30"
-                                                        initial={{ width: 0 }}
-                                                        animate={{ width: `${uploadProgress}%` }}
-                                                    />
+                                        <div className="flex w-full items-center justify-between">
+                                            <div className="flex-1">
+                                                {selectedFiles.length > 0 && !isUploading && (
+                                                    <span className="text-sm text-muted-foreground font-medium">
+                                                        {selectedFiles.length} {selectedFiles.length === 1 ? 'file' : 'files'} selected
+                                                    </span>
                                                 )}
-                                            </Button>
+                                            </div>
+                                            <div className="flex gap-2">
+                                                <Button
+                                                    type="button"
+                                                    variant="outline"
+                                                    onClick={() => setIsDialogOpen(false)}
+                                                    disabled={isUploading}
+                                                    className="rounded-xl"
+                                                >
+                                                    Cancel
+                                                </Button>
+                                                <Button
+                                                    type="submit"
+                                                    className="rounded-xl px-8 relative overflow-hidden"
+                                                    disabled={selectedFiles.length === 0 || isUploading}
+                                                >
+                                                    {isUploading ? (
+                                                        <>
+                                                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                                            {Math.round(uploadProgress)}%
+                                                        </>
+                                                    ) : `Post ${selectedFiles.length > 1 ? `(${selectedFiles.length})` : ""} Stories`}
+
+                                                    {isUploading && (
+                                                        <motion.div
+                                                            className="absolute bottom-0 left-0 h-1 bg-white/30"
+                                                            initial={{ width: 0 }}
+                                                            animate={{ width: `${uploadProgress}%` }}
+                                                        />
+                                                    )}
+                                                </Button>
+                                            </div>
                                         </div>
                                     </DialogFooter>
                                 </form>
