@@ -207,8 +207,8 @@ export default function CarnivalPage() {
                             <div className="relative w-32 h-32 mx-auto mb-6">
                                 <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-all" />
                                 <div className="relative w-full h-full rounded-full overflow-hidden z-10">
-                                    <CldImage
-                                        src="homepage4_sdyykt"
+                                    <Image
+                                        src="/jackie.jpg"
                                         alt="Jacklyn Idimogu"
                                         fill
                                         className="object-cover"
@@ -237,8 +237,8 @@ export default function CarnivalPage() {
                             <div className="relative w-32 h-32 mx-auto mb-6">
                                 <div className="absolute inset-0 bg-orange-200 rounded-full blur-2xl group-hover:bg-orange-300 transition-all" />
                                 <div className="relative w-full h-full rounded-full overflow-hidden z-10">
-                                    <CldImage
-                                        src="homepage5_eejwzt"
+                                    <Image
+                                        src="/gabby.jpg"
                                         alt="Gabby Idimogu"
                                         fill
                                         className="object-cover"

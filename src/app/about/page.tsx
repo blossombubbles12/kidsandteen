@@ -325,10 +325,15 @@ export default function AboutPage() {
                         >
                             <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border-2 border-transparent hover:border-primary">
                                 <div className="relative aspect-square bg-gradient-to-br from-primary/20 to-orange-100 flex items-center justify-center">
-                                    <div className="w-32 h-32 bg-primary text-white rounded-full flex items-center justify-center text-5xl font-black">
-                                        JI
+                                    <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl z-10">
+                                        <Image
+                                            src="/jackie.jpg"
+                                            alt="Jacklyn Idimogu"
+                                            fill
+                                            className="object-cover"
+                                        />
                                     </div>
-                                    <div className="absolute top-4 right-4 bg-yellow-400 text-black px-3 py-1 rounded-full text-xs font-bold">
+                                    <div className="absolute top-4 right-4 bg-yellow-400 text-black px-3 py-1 rounded-full text-xs font-bold z-20">
                                         👑 PRESIDENT
                                     </div>
                                 </div>
@@ -361,10 +366,15 @@ export default function AboutPage() {
                         >
                             <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border-2 border-transparent hover:border-orange-400">
                                 <div className="relative aspect-square bg-gradient-to-br from-orange-100 to-yellow-100 flex items-center justify-center">
-                                    <div className="w-32 h-32 bg-orange-500 text-white rounded-full flex items-center justify-center text-5xl font-black">
-                                        GI
+                                    <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl z-10">
+                                        <Image
+                                            src="/gabby.jpg"
+                                            alt="Gabby Idimogu"
+                                            fill
+                                            className="object-cover"
+                                        />
                                     </div>
-                                    <div className="absolute top-4 right-4 bg-orange-400 text-white px-3 py-1 rounded-full text-xs font-bold">
+                                    <div className="absolute top-4 right-4 bg-orange-400 text-white px-3 py-1 rounded-full text-xs font-bold z-20">
                                         ⭐ VICE PRESIDENT
                                     </div>
                                 </div>
