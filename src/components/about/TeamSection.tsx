@@ -6,9 +6,9 @@ import { CldImage } from "@/components/media/CldImage";
 
 const team = [
     {
-        name: "Jacklyn Idimogu",
+        name: "Jackie Idimogu",
         role: "Chief Convener",
-        bio: "The architectural mind behind the Carnival. Jacklyn ensures every detail is perfect for the gold standard of pet events.",
+        bio: "The architectural mind behind the Carnival. Jackie ensures every detail is perfect for the gold standard of pet events.",
         image: "homepage4_sdyykt",
     },
     {

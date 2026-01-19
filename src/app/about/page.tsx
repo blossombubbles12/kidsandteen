@@ -315,7 +315,7 @@ export default function AboutPage() {
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                        {/* Jacklyn - CEO/Founder */}
+                        {/* Jackie - CEO/Founder */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -328,7 +328,7 @@ export default function AboutPage() {
                                     <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl z-10">
                                         <Image
                                             src="/jackie.jpg"
-                                            alt="Jacklyn Idimogu"
+                                            alt="Jackie Idimogu"
                                             fill
                                             className="object-cover"
                                         />
@@ -338,7 +338,7 @@ export default function AboutPage() {
                                     </div>
                                 </div>
                                 <div className="p-6">
-                                    <h3 className="text-2xl font-black mb-1">Jacklyn Idimogu</h3>
+                                    <h3 className="text-2xl font-black mb-1">Jackie Idimogu</h3>
                                     <p className="text-primary font-bold mb-4">President, My Dog and I Group</p>
                                     <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                                         The visionary leader who transformed a passion for pets into Nigeria's largest movement. As President, she drives the strategic direction and advocacy efforts of the group.

@@ -197,7 +197,7 @@ export default function CarnivalPage() {
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-                        {/* Jacklyn */}
+                        {/* Jackie */}
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
@@ -209,7 +209,7 @@ export default function CarnivalPage() {
                                 <div className="relative w-full h-full rounded-full overflow-hidden z-10">
                                     <Image
                                         src="/jackie.jpg"
-                                        alt="Jacklyn Idimogu"
+                                        alt="Jackie Idimogu"
                                         fill
                                         className="object-cover"
                                     />
@@ -219,7 +219,7 @@ export default function CarnivalPage() {
                                 </div>
                             </div>
                             <div className="text-center">
-                                <h3 className="text-2xl font-black mb-2">Jacklyn Idimogu</h3>
+                                <h3 className="text-2xl font-black mb-2">Jackie Idimogu</h3>
                                 <p className="text-primary font-bold mb-4 uppercase tracking-wider text-sm">Chief Convener / Creator</p>
                                 <p className="text-muted-foreground leading-relaxed">
                                     The architectural mind behind the Carnival. She breathes life into every detail, from the grand parade to the historical record attempts, ensuring the Lagos Dog Carnival stays the gold standard of pet events in Africa.
