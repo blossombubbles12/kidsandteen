@@ -20,8 +20,8 @@ export default function CarnivalPage() {
             <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <CldImage
-                        src="lagos_dog_carnival_20242_ekato6"
-                        alt="Lagos Dog Carnival Crowd"
+                        src="homepage6_hvgj0p"
+                        alt="Lagos Dog Carnival Hero"
                         fill
                         className="object-cover brightness-[0.7]"
                         priority
