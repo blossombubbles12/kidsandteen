@@ -203,7 +203,7 @@ export function MediaSubmission({ albums = [], defaultFolder = "" }: MediaSubmis
                                         </DialogDescription>
                                     </DialogHeader>
 
-                                    <div className="py-6 space-y-6">
+                                    <div className="py-6 px-1 space-y-6 max-h-[60vh] overflow-y-auto no-scrollbar">
                                         {/* File Input */}
                                         <div
                                             onClick={() => fileInputRef.current?.click()}
@@ -233,7 +233,7 @@ export function MediaSubmission({ albums = [], defaultFolder = "" }: MediaSubmis
                                                     initial={{ opacity: 0, height: 0 }}
                                                     animate={{ opacity: 1, height: "auto" }}
                                                     exit={{ opacity: 0, height: 0 }}
-                                                    className="grid grid-cols-3 gap-3 max-h-[300px] overflow-y-auto p-1"
+                                                    className="grid grid-cols-3 gap-3 p-1"
                                                 >
                                                     {previews.map((preview, index) => (
                                                         <motion.div

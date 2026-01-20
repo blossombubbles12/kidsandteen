@@ -46,7 +46,7 @@ const slides = [
 
 export function Hero() {
     return (
-        <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-slate-900 pt-20 md:pt-24 pb-12">
+        <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-slate-900 pt-16 md:pt-20 pb-12">
             {/* Background Video */}
             <div className="absolute inset-0 z-0">
                 <video
@@ -64,7 +64,7 @@ export function Hero() {
             </div>
 
             {/* Content */}
-            <div className="container mx-auto relative z-10 px-4 md:px-6 flex flex-col items-center text-center pt-24 pb-20 md:pt-32 md:pb-32">
+            <div className="container mx-auto relative z-10 px-4 md:px-6 flex flex-col items-center text-center pt-12 pb-20 md:pt-16 md:pb-32">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
