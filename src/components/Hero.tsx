@@ -46,7 +46,7 @@ const slides = [
 
 export function Hero() {
     return (
-        <section className="relative w-full h-[90vh] md:h-screen flex items-center justify-center overflow-hidden bg-slate-900">
+        <section className="relative w-full h-[90vh] md:h-screen flex items-center justify-center overflow-hidden bg-slate-900 pt-16 md:pt-20">
             {/* Background Video */}
             <div className="absolute inset-0 z-0">
                 <video
@@ -64,15 +64,15 @@ export function Hero() {
             </div>
 
             {/* Content */}
-            <div className="container mx-auto relative z-10 px-4 md:px-6 flex flex-col items-center text-center pt-20 pb-24 md:pb-32">
+            <div className="container mx-auto relative z-10 px-4 md:px-6 flex flex-col items-center text-center pt-8 pb-24 md:pt-12 md:pb-32">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="max-w-5xl space-y-10"
+                    className="max-w-5xl space-y-8 md:space-y-10"
                 >
-                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-6 py-2 rounded-full border border-white/20 text-white text-sm font-bold uppercase tracking-widest mb-4">
-                        <Trophy className="w-5 h-5 text-yellow-400" />
+                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-1.5 md:px-6 md:py-2 rounded-full border border-white/20 text-white text-[10px] md:text-sm font-bold uppercase tracking-widest mb-2 md:mb-4">
+                        <Trophy className="w-3.5 h-3.5 md:w-5 md:h-5 text-yellow-400" />
                         Guinness World Record Attempt 2026
                     </div>
 

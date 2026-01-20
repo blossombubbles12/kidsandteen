@@ -42,7 +42,7 @@ export default function RootLayout({
         )}
       >
         <Navigation />
-        <main className="flex-1 pt-16">
+        <main className="flex-1 pt-20 md:pt-24">
           {children}
         </main>
         <Footer />
