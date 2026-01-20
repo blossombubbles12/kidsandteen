@@ -46,7 +46,7 @@ const slides = [
 
 export function Hero() {
     return (
-        <section className="relative w-full h-[90vh] flex items-center justify-center overflow-hidden bg-slate-900">
+        <section className="relative w-full h-[90vh] md:h-screen flex items-center justify-center overflow-hidden bg-slate-900">
             {/* Background Video */}
             <div className="absolute inset-0 z-0">
                 <video
@@ -54,28 +54,29 @@ export function Hero() {
                     loop
                     muted
                     playsInline
-                    className="w-full h-full object-cover brightness-[0.6]"
+                    poster="https://res.cloudinary.com/dtw0ajpwa/image/upload/v1768756809/lagos_dog_carnival_20242_ekato6.jpg"
+                    className="w-full h-full object-cover brightness-[0.5] scale-105"
                 >
                     <source src="https://res.cloudinary.com/dtw0ajpwa/video/upload/v1768755605/JUSTICE_FOR_ROXIE_-_My_dog_and_i_group_480p_h264_youtube_dz2zue.mp4" type="video/mp4" />
                 </video>
-                <div className="absolute inset-0 bg-black/40" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-black/50" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
             </div>
 
             {/* Content */}
-            <div className="container mx-auto relative z-10 px-4 md:px-6 flex flex-col items-center text-center">
+            <div className="container mx-auto relative z-10 px-4 md:px-6 flex flex-col items-center text-center pt-20 pb-24 md:pb-32">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="max-w-5xl space-y-8"
+                    className="max-w-5xl space-y-10"
                 >
                     <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-6 py-2 rounded-full border border-white/20 text-white text-sm font-bold uppercase tracking-widest mb-4">
-                        <Trophy className="w-4 h-4 text-yellow-400" />
+                        <Trophy className="w-5 h-5 text-yellow-400" />
                         Guinness World Record Attempt 2026
                     </div>
 
-                    <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight text-white drop-shadow-2xl leading-[1.1] uppercase">
+                    <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight text-white drop-shadow-2xl leading-[1.05] uppercase">
                         Lagos Dog <span className="text-yellow-400">Carnival</span>
                     </h1>
 
@@ -83,14 +84,14 @@ export function Hero() {
                         Join Africa&apos;s largest gathering of Pets. Making history on <span className="text-yellow-400 font-bold">Dec 13th, 2026</span> at Tafawa Balewa Square.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-6">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-10">
                         <Link href="/carnival" className="w-full sm:w-auto">
-                            <Button size="lg" className="w-full text-xl px-12 py-8 rounded-2xl shadow-2xl bg-yellow-400 text-black hover:bg-yellow-300 transition-all font-black group">
+                            <Button size="lg" className="w-full text-xl px-12 py-9 rounded-2xl shadow-2xl bg-yellow-400 text-black hover:bg-yellow-300 transition-all font-black group">
                                 Explore Carnival <ArrowRight className="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform" />
                             </Button>
                         </Link>
                         <Link href="/carnival/register" className="w-full sm:w-auto">
-                            <Button size="lg" variant="outline" className="w-full text-xl px-12 py-8 rounded-2xl border-2 border-white text-white hover:bg-white hover:text-black transition-all font-black">
+                            <Button size="lg" variant="outline" className="w-full text-xl px-12 py-9 rounded-2xl border-2 border-white text-white hover:bg-white hover:text-black transition-all font-black">
                                 Register Now
                             </Button>
                         </Link>
@@ -102,7 +103,7 @@ export function Hero() {
             <motion.div
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50"
+                className="absolute bottom-12 left-1/2 -translate-x-1/2 text-white/50 hidden md:block"
             >
                 <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-1">
                     <div className="w-1 h-2 bg-white rounded-full" />

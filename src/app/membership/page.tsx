@@ -58,8 +58,8 @@ export default function MembershipPage() {
                             <p className="text-orange-100 text-lg mb-8 leading-relaxed">
                                 One movement, one membership. Join our verified inner circle of pet lovers and enjoy every exclusive perk we offer.
                             </p>
-                            <Link href="/join">
-                                <Button size="lg" variant="secondary" className="w-full py-7 text-xl font-bold rounded-2xl shadow-xl hover:scale-105 transition-all">
+                            <Link href="/join" className="block w-full">
+                                <Button size="lg" variant="secondary" className="w-full py-8 text-xl font-bold rounded-2xl shadow-xl hover:scale-105 transition-all">
                                     Become a Member
                                 </Button>
                             </Link>

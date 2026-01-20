@@ -90,14 +90,14 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/carnival">
-                  <Button size="lg" className="w-full sm:w-auto text-lg px-8 font-bold shadow-lg">
+              <div className="flex flex-col sm:flex-row gap-6 pt-4">
+                <Link href="/carnival" className="w-full sm:w-auto">
+                  <Button size="lg" className="h-auto py-5 w-full text-lg px-8 font-bold shadow-lg">
                     Explore Carnival <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
-                <Link href="/carnival/register">
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto text-lg px-8 font-bold border-2">
+                <Link href="/carnival/register" className="w-full sm:w-auto">
+                  <Button size="lg" variant="outline" className="h-auto py-5 w-full text-lg px-8 font-bold border-2">
                     Register Now
                   </Button>
                 </Link>
@@ -386,14 +386,14 @@ export default function Home() {
             Be part of Nigeria's most vibrant pet community. Share adventures, make friends,
             and give your pup the social life they deserve.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/membership">
-              <Button size="lg" variant="secondary" className="w-full sm:w-auto text-lg px-10 font-bold shadow-lg hover:shadow-xl transition-all">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center pt-6">
+            <Link href="/membership" className="w-full sm:w-auto">
+              <Button size="lg" variant="secondary" className="h-auto py-5 w-full text-lg px-10 font-bold shadow-lg hover:shadow-xl transition-all">
                 Join the Pack Today
               </Button>
             </Link>
-            <Link href="/contact">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto text-lg px-10 border-current text-white hover:bg-white/10 hover:text-white border-2 font-bold">
+            <Link href="/contact" className="w-full sm:w-auto">
+              <Button size="lg" variant="outline" className="h-auto py-5 w-full border-current text-white hover:bg-white/10 hover:text-white border-2 font-bold">
                 Contact Us <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>

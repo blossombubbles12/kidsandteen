@@ -98,9 +98,9 @@ export default function CarnivalPage() {
                         ))}
                     </div>
 
-                    <div className="mt-16 text-center">
-                        <Link href="/carnival/register">
-                            <Button size="lg" className="rounded-full px-12 py-8 text-xl font-bold bg-primary hover:bg-primary/90 shadow-2xl">
+                    <div className="mt-16 text-center pb-8">
+                        <Link href="/carnival/register" className="inline-block w-full sm:w-auto">
+                            <Button size="lg" className="rounded-full px-12 py-9 text-xl font-bold bg-primary hover:bg-primary/90 shadow-2xl w-full sm:w-auto h-auto">
                                 Secure Your Ticket Now <ArrowRight className="ml-2 w-6 h-6" />
                             </Button>
                         </Link>
@@ -172,8 +172,8 @@ export default function CarnivalPage() {
                     <p className="text-xl mb-10 max-w-2xl mx-auto opacity-90">
                         Registration is open for all breeds. Be part of the historic Guinness World Record attempt.
                     </p>
-                    <Link href="/carnival/register">
-                        <Button size="lg" className="bg-white text-primary hover:bg-slate-100 rounded-full px-12 py-8 text-xl font-black shadow-2xl">
+                    <Link href="/carnival/register" className="inline-block w-full sm:w-auto">
+                        <Button size="lg" className="bg-white text-primary hover:bg-slate-100 rounded-full px-12 py-9 text-xl font-black shadow-2xl w-full sm:w-auto h-auto">
                             Register My Pet
                         </Button>
                     </Link>
@@ -278,14 +278,14 @@ export default function CarnivalPage() {
                     <p className="text-xl md:text-2xl text-white/70 mb-12 max-w-2xl mx-auto">
                         Join Africa's biggest pet celebration at TBS. Registration covers entry for 1 Pet & 1 Human.
                     </p>
-                    <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-                        <Link href="/carnival/register">
-                            <Button size="lg" className="bg-yellow-500 text-black hover:bg-yellow-400 rounded-full px-12 py-8 text-2xl font-black shadow-2xl w-full md:w-auto">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-8 pt-8">
+                        <Link href="/carnival/register" className="w-full sm:w-auto">
+                            <Button size="lg" className="bg-yellow-500 text-black hover:bg-yellow-400 rounded-full px-12 py-10 text-2xl font-black shadow-2xl w-full h-auto">
                                 Register Now
                             </Button>
                         </Link>
-                        <Link href="/contact">
-                            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 rounded-full px-12 py-8 text-2xl font-black w-full md:w-auto">
+                        <Link href="/contact" className="w-full sm:w-auto">
+                            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 rounded-full px-12 py-10 text-2xl font-black w-full h-auto">
                                 Vendor/Sponsor
                             </Button>
                         </Link>

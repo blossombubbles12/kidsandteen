@@ -261,7 +261,7 @@ export default function CommunityPage() {
                     <Button
                         asChild
                         size="lg"
-                        className="h-auto text-lg md:text-xl py-6 px-8 md:px-12 rounded-full shadow-2xl hover:shadow-[#25D366]/50 hover:scale-105 transition-all bg-[#25D366] hover:bg-[#128C7E] border-none text-white w-full md:w-auto"
+                        className="h-auto text-lg md:text-xl py-8 px-8 md:px-12 rounded-full shadow-2xl hover:shadow-[#25D366]/50 hover:scale-105 transition-all bg-[#25D366] hover:bg-[#128C7E] border-none text-white w-full md:w-auto"
                     >
                         <Link href={whatsappLink} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center gap-1">
                             <div className="flex items-center gap-3">
