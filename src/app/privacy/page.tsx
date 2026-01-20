@@ -113,9 +113,8 @@ export default function PrivacyPage() {
                             If you have questions about this Privacy Policy, please contact us at:
                         </p>
                         <div className="bg-secondary/20 p-4 rounded-lg mt-4">
-                            <p className="font-medium">Email: privacy@mydogandi.com.ng</p>
-                            <p className="font-medium">Phone: +234 800 DOG LOVE</p>
-                            <p className="font-medium">Address: Lekki Phase 1, Lagos, Nigeria</p>
+                            <p className="font-medium">Email: mydogandigroup@yahoo.com</p>
+                            <p className="font-medium">Phone: 08168874616</p>
                         </div>
                     </section>
                 </div>

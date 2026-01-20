@@ -411,23 +411,21 @@ export default function AboutPage() {
                                         CC
                                     </div>
                                     <div className="absolute top-4 right-4 bg-blue-400 text-white px-3 py-1 rounded-full text-xs font-bold">
-                                        😎 THE COOL ONE
+                                        🚀 TECH LEAD
                                     </div>
                                 </div>
                                 <div className="p-6">
                                     <h3 className="text-2xl font-black mb-1">Charlie Charlie</h3>
-                                    <p className="text-blue-600 font-bold mb-4">Totally Random Guy & Dog Lover</p>
+                                    <p className="text-blue-600 font-bold mb-4">Head of Technology & Community Ops</p>
                                     <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                                        The Regular guy who built the digital infrastructure behind the movement.
-                                        Doesn't speak "woof" but speaks less fluent igbo language. Loves dogs, builds platforms,
-                                        and makes sure everything runs smoothly behind the scenes.
+                                        The digital architect behind the movement. Charlie designs and manages the infrastructure that connects our 50,000+ members, ensuring our Guinness World Record prep and community platforms run flawlessly behind the scenes.
                                     </p>
                                     <div className="flex flex-wrap gap-2">
                                         <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-medium">
-                                            💻 Tech Expert
+                                            💻 Systems Architect
                                         </span>
                                         <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-medium">
-                                            🐕 Dog Enthusiast
+                                            📊 Community Tech
                                         </span>
                                     </div>
                                 </div>

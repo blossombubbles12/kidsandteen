@@ -151,9 +151,8 @@ export default function TermsPage() {
                             For questions about these Terms, please contact us:
                         </p>
                         <div className="bg-secondary/20 p-4 rounded-lg">
-                            <p className="font-medium">Email: legal@mydogandi.com.ng</p>
-                            <p className="font-medium">Phone: +234 800 DOG LOVE</p>
-                            <p className="font-medium">Address: Lekki Phase 1, Lagos, Nigeria</p>
+                            <p className="font-medium">Email: mydogandigroup@yahoo.com</p>
+                            <p className="font-medium">Phone: 08168874616</p>
                         </div>
                     </section>
                 </div>

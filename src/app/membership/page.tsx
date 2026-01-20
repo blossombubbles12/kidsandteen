@@ -7,59 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { CldImage } from "@/components/media/CldImage";
 
-const plans = [
-    {
-        name: "Basic Pack",
-        description: "Join the movement and stay informed about our events and community walks.",
-        icon: Heart,
-        color: "bg-blue-500",
-        benefits: [
-            "Access to public community walks",
-            "Monthly newsletter access",
-            "Join our public social platforms",
-            "Basic event notifications",
-            "Community forum access"
-        ],
-        cta: "Join Now",
-        link: "/join",
-        popular: false
-    },
-    {
-        name: "Pro Parent",
-        description: "The official membership for dedicated pet owners. Get verified and enjoy exclusive perks.",
-        icon: Star,
-        color: "bg-primary",
-        benefits: [
-            "Official Membership ID Card",
-            "15% Discount on Carnival Tickets",
-            "Priority access to Training Workshops",
-            "Exclusive 'Pro' community badge",
-            "Access to Member-only meetups",
-            "Partner brand discounts"
-        ],
-        cta: "Get Started",
-        link: "/join",
-        popular: true
-    },
-    {
-        name: "Elite Pack",
-        description: "The ultimate tier for our most passionate members. VIP access to everything we do.",
-        icon: Crown,
-        color: "bg-yellow-500",
-        benefits: [
-            "Everything in Pro Parent",
-            "Free Lagos Dog Carnival Ticket",
-            "VIP Lounge access at any event",
-            "Complimentary 10th Anniversary Merch",
-            "Featured Spotlight for your pet",
-            "Voting rights on community initiatives",
-            "Direct line to pet health experts"
-        ],
-        cta: "Go Elite",
-        link: "/join",
-        popular: false
-    }
-];
+
 
 export default function MembershipPage() {
     return (
@@ -94,59 +42,65 @@ export default function MembershipPage() {
                 </div>
             </section>
 
-            {/* Plans Grid */}
+            {/* Unified Membership Section */}
             <section className="py-24 container px-4 -mt-16 relative z-20">
-                <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-                    {plans.map((plan, index) => (
-                        <motion.div
-                            key={plan.name}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            className={`flex flex-col bg-card rounded-3xl overflow-hidden border-2 transition-all duration-300 hover:shadow-2xl ${plan.popular ? "border-primary shadow-xl scale-105" : "border-border/50"
-                                }`}
-                        >
-                            {plan.popular && (
-                                <div className="bg-primary text-white text-center py-2 text-sm font-black uppercase tracking-widest">
-                                    Most Popular Choice
-                                </div>
-                            )}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="max-w-4xl mx-auto bg-card rounded-[3rem] overflow-hidden border-2 border-primary shadow-2xl"
+                >
+                    <div className="grid md:grid-cols-5">
+                        <div className="md:col-span-2 bg-primary p-10 text-white flex flex-col justify-center text-center md:text-left">
+                            <div className="w-20 h-20 rounded-3xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-8 mx-auto md:mx-0 shadow-xl">
+                                <Trophy className="w-10 h-10" />
+                            </div>
+                            <h3 className="text-4xl font-black mb-4">The Official Pack</h3>
+                            <p className="text-orange-100 text-lg mb-8 leading-relaxed">
+                                One movement, one membership. Join our verified inner circle of pet lovers and enjoy every exclusive perk we offer.
+                            </p>
+                            <Link href="/join">
+                                <Button size="lg" variant="secondary" className="w-full py-7 text-xl font-bold rounded-2xl shadow-xl hover:scale-105 transition-all">
+                                    Become a Member
+                                </Button>
+                            </Link>
+                        </div>
 
-                            <div className="p-8 pb-0">
-                                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${plan.color} text-white shadow-lg`}>
-                                    <plan.icon className="w-8 h-8" />
-                                </div>
-                                <h3 className="text-2xl font-black mb-2">{plan.name}</h3>
-                                <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                                    {plan.description}
+                        <div className="md:col-span-3 p-10 bg-white">
+                            <h4 className="text-2xl font-black mb-8 flex items-center gap-2">
+                                <Star className="text-primary w-6 h-6 fill-primary" /> Member Benefits
+                            </h4>
+                            <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
+                                {[
+                                    "Official Membership ID Card",
+                                    "Lagos Dog Carnival Discounts",
+                                    "Priority Event Registration",
+                                    "Member-Only Meetups & Walks",
+                                    "Exclusive 'Pro' Digital Badge",
+                                    "Partner Brand Gift Vouchers",
+                                    "VIP Lounge Access at Events",
+                                    "Direct Pet Health Expert Line",
+                                    "Community Voting Rights",
+                                    "Early Access to Merch Drops",
+                                    "Monthly Insider Newsletter",
+                                    "Verified Community Status"
+                                ].map((benefit) => (
+                                    <div key={benefit} className="flex items-center gap-3">
+                                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center">
+                                            <Check className="w-3.5 h-3.5 text-green-600" />
+                                        </div>
+                                        <span className="text-muted-foreground text-sm font-medium">{benefit}</span>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="mt-12 p-6 bg-secondary/20 rounded-2xl border border-secondary/30">
+                                <p className="text-sm text-secondary-foreground font-medium flex items-center gap-2">
+                                    <Shield className="w-4 h-4" /> Lifetime verification on all My Dog & I platforms.
                                 </p>
                             </div>
-
-                            <div className="p-8 pt-4 flex-grow">
-                                <ul className="space-y-4 mb-10">
-                                    {plan.benefits.map((benefit) => (
-                                        <li key={benefit} className="flex items-start gap-3 text-sm">
-                                            <div className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center">
-                                                <Check className="w-3 h-3 text-green-600" />
-                                            </div>
-                                            <span className="text-muted-foreground">{benefit}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-
-                                <Link href={plan.link} className="mt-auto">
-                                    <Button
-                                        className={`w-full py-6 text-lg font-bold rounded-2xl shadow-lg transition-transform hover:scale-[1.02] ${plan.popular ? "bg-primary hover:bg-orange-600" : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                                            }`}
-                                    >
-                                        {plan.cta}
-                                    </Button>
-                                </Link>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
+                        </div>
+                    </div>
+                </motion.div>
             </section>
 
             {/* Why Join Section */}
