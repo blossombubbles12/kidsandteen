@@ -54,7 +54,7 @@ export function Hero() {
                     loop
                     muted
                     playsInline
-                    poster="https://res.cloudinary.com/dtw0ajpwa/image/upload/v1768756809/lagos_dog_carnival_20242_ekato6.jpg"
+                    poster="https://res.cloudinary.com/dtw0ajpwa/image/upload/v1736611417/homepage8_zaj3az.jpg"
                     className="w-full h-full object-cover brightness-[0.5] scale-105"
                 >
                     <source src="https://res.cloudinary.com/dtw0ajpwa/video/upload/v1768755605/JUSTICE_FOR_ROXIE_-_My_dog_and_i_group_480p_h264_youtube_dz2zue.mp4" type="video/mp4" />
@@ -64,15 +64,15 @@ export function Hero() {
             </div>
 
             {/* Content */}
-            <div className="container mx-auto relative z-10 px-4 md:px-6 flex flex-col items-center text-center pt-8 pb-24 md:pt-12 md:pb-32">
+            <div className="container mx-auto relative z-10 px-4 md:px-6 flex flex-col items-center text-center pt-32 pb-24 md:pt-40 md:pb-32">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="max-w-5xl space-y-8 md:space-y-10"
+                    className="max-w-5xl space-y-8 md:space-y-12"
                 >
-                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-1.5 md:px-6 md:py-2 rounded-full border border-white/20 text-white text-[10px] md:text-sm font-bold uppercase tracking-widest mb-2 md:mb-4">
-                        <Trophy className="w-3.5 h-3.5 md:w-5 md:h-5 text-yellow-400" />
+                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-6 py-2.5 md:px-8 md:py-3 rounded-full border border-white/20 text-white text-[11px] md:text-sm font-bold uppercase tracking-[0.2em] mb-4 md:mb-8 shadow-2xl">
+                        <Trophy className="w-4 h-4 md:w-5 md:h-5 text-yellow-400" />
                         Guinness World Record Attempt 2026
                     </div>
 

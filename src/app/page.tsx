@@ -34,6 +34,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { AnniversaryBanner } from "@/components/AnniversaryBanner";
 import { FAQSection } from "@/components/faq/FAQSection";
+import { InstagramFeed } from "@/components/InstagramFeed";
 import { CldImage } from "@/components/media/CldImage";
 import {
   ArrowRight,
@@ -367,6 +368,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <InstagramFeed />
 
       <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
         <div className="absolute inset-0 z-0">
