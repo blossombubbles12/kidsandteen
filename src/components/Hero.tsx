@@ -45,6 +45,76 @@ const slides = [
 ];
 
 export function Hero() {
+    return (
+        <section className="relative w-full h-[90vh] flex items-center justify-center overflow-hidden bg-slate-900">
+            {/* Background Video */}
+            <div className="absolute inset-0 z-0">
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover brightness-[0.6]"
+                >
+                    <source src="https://res.cloudinary.com/dtw0ajpwa/video/upload/v1768755605/JUSTICE_FOR_ROXIE_-_My_dog_and_i_group_480p_h264_youtube_dz2zue.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-black/40" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+            </div>
+
+            {/* Content */}
+            <div className="container mx-auto relative z-10 px-4 md:px-6 flex flex-col items-center text-center">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="max-w-5xl space-y-8"
+                >
+                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-6 py-2 rounded-full border border-white/20 text-white text-sm font-bold uppercase tracking-widest mb-4">
+                        <Trophy className="w-4 h-4 text-yellow-400" />
+                        Guinness World Record Attempt 2026
+                    </div>
+
+                    <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight text-white drop-shadow-2xl leading-[1.1] uppercase">
+                        Lagos Dog <span className="text-yellow-400">Carnival</span>
+                    </h1>
+
+                    <p className="text-xl md:text-3xl text-white/90 max-w-3xl mx-auto drop-shadow-sm font-medium leading-relaxed">
+                        Join Africa&apos;s largest gathering of Pets. Making history on <span className="text-yellow-400 font-bold">Dec 13th, 2026</span> at Tafawa Balewa Square.
+                    </p>
+
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-6">
+                        <Link href="/carnival" className="w-full sm:w-auto">
+                            <Button size="lg" className="w-full text-xl px-12 py-8 rounded-2xl shadow-2xl bg-yellow-400 text-black hover:bg-yellow-300 transition-all font-black group">
+                                Explore Carnival <ArrowRight className="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                            </Button>
+                        </Link>
+                        <Link href="/carnival/register" className="w-full sm:w-auto">
+                            <Button size="lg" variant="outline" className="w-full text-xl px-12 py-8 rounded-2xl border-2 border-white text-white hover:bg-white hover:text-black transition-all font-black">
+                                Register Now
+                            </Button>
+                        </Link>
+                    </div>
+                </motion.div>
+            </div>
+
+            {/* Scroll Indicator */}
+            <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50"
+            >
+                <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-1">
+                    <div className="w-1 h-2 bg-white rounded-full" />
+                </div>
+            </motion.div>
+        </section>
+    );
+}
+
+/* 
+// Previous Slider implementation commented out temporarily
+export function HeroSlider() {
     const [current, setCurrent] = useState(0);
 
     useEffect(() => {
@@ -81,7 +151,6 @@ export function Hero() {
                 </motion.div>
             </AnimatePresence>
 
-            {/* Content */}
             <motion.div
                 className="container mx-auto relative z-10 px-4 md:px-6 flex flex-col items-center text-center pt-20 pb-32 md:py-20 cursor-grab active:cursor-grabbing"
                 drag="x"
@@ -138,7 +207,6 @@ export function Hero() {
                 </AnimatePresence>
             </motion.div>
 
-            {/* Navigation Controls */}
             <div className="absolute bottom-4 md:bottom-8 left-0 right-0 z-20 flex flex-col items-center gap-6">
                 <div className="flex items-center gap-4">
                     {slides.map((_, i) => (
@@ -152,7 +220,6 @@ export function Hero() {
                 </div>
             </div>
 
-            {/* Arrows */}
             <button
                 onClick={prevSlide}
                 className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-30 p-2 md:p-3 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 transition-all"
@@ -170,3 +237,4 @@ export function Hero() {
         </section>
     );
 }
+*/
