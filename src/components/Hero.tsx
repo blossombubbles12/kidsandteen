@@ -46,7 +46,7 @@ const slides = [
 
 export function Hero() {
     return (
-        <section className="relative w-full h-[90vh] md:h-screen flex items-center justify-center overflow-hidden bg-slate-900 pt-16 md:pt-20">
+        <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-slate-900 pt-20 md:pt-24 pb-12">
             {/* Background Video */}
             <div className="absolute inset-0 z-0">
                 <video
@@ -64,7 +64,7 @@ export function Hero() {
             </div>
 
             {/* Content */}
-            <div className="container mx-auto relative z-10 px-4 md:px-6 flex flex-col items-center text-center pt-32 pb-24 md:pt-40 md:pb-32">
+            <div className="container mx-auto relative z-10 px-4 md:px-6 flex flex-col items-center text-center pt-24 pb-20 md:pt-32 md:pb-32">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -84,7 +84,7 @@ export function Hero() {
                         Join Africa&apos;s largest gathering of Pets. Making history on <span className="text-yellow-400 font-bold">Dec 13th, 2026</span> at Tafawa Balewa Square.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-10">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-10 pb-8">
                         <Link href="/carnival" className="w-full sm:w-auto">
                             <Button size="lg" className="w-full text-xl px-12 py-9 rounded-2xl shadow-2xl bg-yellow-400 text-black hover:bg-yellow-300 transition-all font-black group">
                                 Explore Carnival <ArrowRight className="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform" />
