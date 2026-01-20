@@ -23,7 +23,7 @@ const slides = [
     {
         id: 2,
         title: "Breaking History in 2026",
-        description: "Be part of our Guinness World Record attempt at Eko Atlantic. October 1st, 2026.",
+        description: "Be part of our Guinness World Record attempt at Tafawa Balewa Square. December 13th, 2026.",
         image: "/carnival.png",
         cloudinaryId: "homepage2_gsja4s",
         primaryCTA: { text: "Explore Carnival", url: "/carnival" },

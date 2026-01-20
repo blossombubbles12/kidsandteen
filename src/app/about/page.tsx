@@ -258,14 +258,14 @@ export default function AboutPage() {
                             <span className="text-primary">Guinness World Record</span>
                         </h2>
                         <p className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed">
-                            This isn't just another carnival. On October 1st, 2026, we're attempting to gather
-                            the <strong>Africa's largest gathering of Pets</strong> at Eko Atlantic.
+                            This isn't just another carnival. On December 13th, 2026, we're attempting to gather
+                            the <strong>Africa's largest gathering of Pets</strong> at Tafawa Balewa Square.
                             This is our moment to show the world what African pet lovers can achieve together.
                         </p>
 
                         <div className="grid md:grid-cols-3 gap-6 mb-10">
                             <div className="bg-white p-6 rounded-2xl shadow-lg">
-                                <p className="text-4xl font-black text-primary mb-2">5,000+</p>
+                                <p className="text-4xl font-black text-primary mb-2">2,500+</p>
                                 <p className="text-sm font-medium text-muted-foreground">Target Attendees</p>
                             </div>
                             <div className="bg-white p-6 rounded-2xl shadow-lg">

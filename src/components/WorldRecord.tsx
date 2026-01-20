@@ -5,7 +5,7 @@ import { Timer, Trophy } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export function WorldRecord() {
-    const targetDate = new Date("2026-10-01T09:00:00").getTime();
+    const targetDate = new Date("2026-12-13T09:00:00").getTime();
     const [timeLeft, setTimeLeft] = useState<{ days: number, hours: number, minutes: number, seconds: number }>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
     useEffect(() => {

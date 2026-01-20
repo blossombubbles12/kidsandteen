@@ -71,13 +71,13 @@ export default function Home() {
                 Lagos Dog Carnival
               </h2>
               <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
-                Join 5,000+ pet lovers for <strong>Africa&apos;s largest gathering of Pets</strong>.
+                Join 2,500+ pet lovers for <strong>Africa&apos;s largest gathering of Pets</strong>.
                 Competitions, prizes, fun, and a chance to make history!
               </p>
 
               <div className="grid grid-cols-3 gap-4 mb-8">
                 <div className="text-center p-4 bg-white rounded-xl shadow-sm">
-                  <p className="text-2xl font-bold text-primary">5000+</p>
+                  <p className="text-2xl font-bold text-primary">2500+</p>
                   <p className="text-xs text-muted-foreground">Attendees</p>
                 </div>
                 <div className="text-center p-4 bg-white rounded-xl shadow-sm">
@@ -113,8 +113,8 @@ export default function Home() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
               <div className="absolute bottom-6 left-6 text-white">
-                <p className="text-2xl font-bold">October 1, 2026</p>
-                <p className="text-white/90">Eko Atlantic, Lagos</p>
+                <p className="text-2xl font-bold">December 13, 2026</p>
+                <p className="text-white/90">Tafawa Balewa Square, Lagos</p>
               </div>
             </div>
           </div>

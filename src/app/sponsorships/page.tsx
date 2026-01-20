@@ -80,7 +80,7 @@ export default function SponsorshipsPage() {
                         </p>
                         <div className="flex flex-wrap justify-center gap-8 text-left">
                             <div className="bg-white p-4 rounded-xl shadow-sm">
-                                <p className="text-3xl font-bold text-primary">5,000+</p>
+                                <p className="text-3xl font-bold text-primary">2,500+</p>
                                 <p className="text-sm text-muted-foreground">Event Attendees</p>
                             </div>
                             <div className="bg-white p-4 rounded-xl shadow-sm">

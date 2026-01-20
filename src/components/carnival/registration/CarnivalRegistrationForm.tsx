@@ -272,11 +272,11 @@ export default function CarnivalRegistrationForm() {
                                     <div className="grid grid-cols-2 gap-4">
                                         <div>
                                             <p className="text-xs text-muted-foreground uppercase">Date</p>
-                                            <p className="font-bold">Oct 1, 2026</p>
+                                            <p className="font-bold">Dec 13, 2026</p>
                                         </div>
                                         <div>
                                             <p className="text-xs text-muted-foreground uppercase">Location</p>
-                                            <p className="font-bold">Eko Atlantic</p>
+                                            <p className="font-bold">TBS Lagos</p>
                                         </div>
                                         <div>
                                             <p className="text-xs text-muted-foreground uppercase">Humans</p>

@@ -40,12 +40,12 @@ export default function CarnivalPage() {
                         <div className="flex flex-col md:flex-row items-center justify-center gap-6 text-xl md:text-2xl font-semibold mb-10">
                             <div className="flex items-center gap-2">
                                 <Calendar className="text-yellow-400" />
-                                <span>October 1st, 2026</span>
+                                <span>December 13th, 2026</span>
                             </div>
                             <div className="hidden md:block w-2 h-2 bg-white rounded-full" />
                             <div className="flex items-center gap-2">
                                 <MapPin className="text-yellow-400" />
-                                <span>Eko Atlantic City, Lagos</span>
+                                <span>Tafawa Balewa Square, Lagos</span>
                             </div>
                         </div>
 
@@ -274,9 +274,9 @@ export default function CarnivalPage() {
                     />
                 </div>
                 <div className="container px-4 relative z-10">
-                    <h2 className="text-4xl md:text-6xl font-black mb-8">Ready for Oct 1st?</h2>
+                    <h2 className="text-4xl md:text-6xl font-black mb-8">Ready for Dec 13th?</h2>
                     <p className="text-xl md:text-2xl text-white/70 mb-12 max-w-2xl mx-auto">
-                        Join Africa's biggest pet celebration. Registration covers entry for 1 Pet & 1 Human.
+                        Join Africa's biggest pet celebration at TBS. Registration covers entry for 1 Pet & 1 Human.
                     </p>
                     <div className="flex flex-col md:flex-row items-center justify-center gap-6">
                         <Link href="/carnival/register">
