@@ -96,91 +96,132 @@ export default function SponsorshipsPage() {
                 </div>
             </section>
 
-            {/* Packages */}
-            <section className="py-20 container px-4">
-                <h2 className="text-3xl font-bold text-center mb-12">Sponsorship Packages</h2>
-                <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    {packages.map((pkg, index) => (
-                        <motion.div
-                            key={pkg.name}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                        >
-                            <Card className={`p-8 h-full relative ${pkg.popular ? 'border-primary border-2 shadow-lg' : ''}`}>
-                                {pkg.popular && (
-                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-full text-sm font-bold">
-                                        Most Popular
-                                    </div>
-                                )}
-                                <div className={`w-16 h-16 rounded-full ${pkg.bg} flex items-center justify-center mb-4`}>
-                                    <pkg.icon className={`w-8 h-8 ${pkg.color}`} />
-                                </div>
-                                <h3 className="text-2xl font-bold mb-2">{pkg.name}</h3>
-                                <p className="text-3xl font-black text-primary mb-6">{pkg.price}</p>
-                                <ul className="space-y-3 mb-8">
-                                    {pkg.features.map((feature, i) => (
-                                        <li key={i} className="flex items-start gap-2">
-                                            <Check className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
-                                            <span className="text-sm">{feature}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                                <Link href="/contact">
-                                    <Button className="w-full" variant={pkg.popular ? "default" : "outline"}>
-                                        Get Started
-                                    </Button>
-                                </Link>
-                            </Card>
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
+            {/* Brand Activation Section */}
+            <section className="py-24 container px-4">
+                <div className="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+                    <motion.div
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                    >
+                        <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
+                            Beyond Just a <span className="text-primary">Logo</span>
+                        </h2>
+                        <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                            We don't just put your brand on a banner. We create immersive experiences that allow our community to touch, feel, and fall in love with your brand.
+                        </p>
 
-            {/* Why Sponsor */}
-            <section className="py-20 bg-secondary/10">
-                <div className="container px-4">
-                    <h2 className="text-3xl font-bold text-center mb-12">Why Sponsor My Dog and I?</h2>
-                    <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                        <div className="bg-background p-6 rounded-xl">
-                            <h3 className="text-xl font-bold mb-3">🎯 Targeted Audience</h3>
-                            <p className="text-muted-foreground">
-                                Reach affluent pet owners who spend an average of ₦50,000/month on their beloved pets.
-                            </p>
+                        <div className="space-y-6">
+                            <div className="flex gap-4">
+                                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
+                                    <Star className="text-primary w-6 h-6" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-xl mb-1">Experiential Marketing</h3>
+                                    <p className="text-muted-foreground">Product launches, live demonstrations, and direct consumer engagement during Africa's largest pet gathering.</p>
+                                </div>
+                            </div>
+                            <div className="flex gap-4">
+                                <div className="w-12 h-12 rounded-2xl bg-orange-100 flex items-center justify-center shrink-0">
+                                    <Trophy className="text-orange-600 w-6 h-6" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-xl mb-1">Brand Legacy</h3>
+                                    <p className="text-muted-foreground">Attach your brand to the historic 2026 Guinness World Record attempt. A memory that will last forever in the minds of thousands.</p>
+                                </div>
+                            </div>
+                            <div className="flex gap-4">
+                                <div className="w-12 h-12 rounded-2xl bg-yellow-100 flex items-center justify-center shrink-0">
+                                    <Megaphone className="text-yellow-600 w-6 h-6" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-xl mb-1">Multi-Channel Dominance</h3>
+                                    <p className="text-muted-foreground">Seamless integration across our Instagram, TikTok, WhatsApp, and physical event spaces for 360-degree visibility.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div className="bg-background p-6 rounded-xl">
-                            <h3 className="text-xl font-bold mb-3">📱 Digital Amplification</h3>
-                            <p className="text-muted-foreground">
-                                Your brand featured across our social channels with 100k+ combined followers.
-                            </p>
-                        </div>
-                        <div className="bg-background p-6 rounded-xl">
-                            <h3 className="text-xl font-bold mb-3">🏆 World Record Exposure</h3>
-                            <p className="text-muted-foreground">
-                                Be part of history with the Guinness World Record attempt in 2026.
-                            </p>
-                        </div>
-                        <div className="bg-background p-6 rounded-xl">
-                            <h3 className="text-xl font-bold mb-3">💚 Community Goodwill</h3>
-                            <p className="text-muted-foreground">
-                                Support animal welfare and build positive brand association.
-                            </p>
+                    </motion.div>
+
+                    <div className="relative aspect-square rounded-[2rem] overflow-hidden shadow-2xl">
+                        <CldImage
+                            src="lagos_dog_carnival_20242_ekato6"
+                            alt="Brand Activation"
+                            fill
+                            className="object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                        <div className="absolute bottom-8 left-8 right-8 text-white">
+                            <p className="text-2xl font-black italic">"The most engaged audience we've ever seen in Lagos."</p>
+                            <p className="text-white/80 mt-2">— Past Corporate Partner</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* CTA */}
-            <section className="py-20 text-center">
+            {/* Why Sponsor */}
+            <section className="py-24 bg-slate-50 border-y border-slate-200">
                 <div className="container px-4">
-                    <h2 className="text-3xl font-bold mb-4">Ready to Join the Pack?</h2>
-                    <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                        Let's discuss a custom sponsorship package that aligns with your brand goals.
+                    <div className="text-center max-w-3xl mx-auto mb-16">
+                        <h2 className="text-4xl md:text-5xl font-black mb-6">Why Partner With Us?</h2>
+                        <p className="text-xl text-muted-foreground">
+                            Nigeria's pet industry is booming. My Dog and I Group is the gateway to this highly lucrative and passionate market.
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        <motion.div
+                            whileHover={{ y: -10 }}
+                            className="bg-white p-10 rounded-3xl shadow-sm border border-slate-100 flex flex-col items-center text-center"
+                        >
+                            <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mb-6">
+                                <Check className="w-10 h-10 text-blue-600" />
+                            </div>
+                            <h3 className="text-2xl font-bold mb-4">Targeted Reach</h3>
+                            <p className="text-muted-foreground leading-relaxed">
+                                Directly access over 50,000 verified pet owners. Our audience consists of high-intent consumers in the lifestyle and pet care sectors.
+                            </p>
+                        </motion.div>
+
+                        <motion.div
+                            whileHover={{ y: -10 }}
+                            className="bg-white p-10 rounded-3xl shadow-sm border border-slate-100 flex flex-col items-center text-center"
+                        >
+                            <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-6">
+                                <Check className="w-10 h-10 text-green-600" />
+                            </div>
+                            <h3 className="text-2xl font-bold mb-4">GWR Exposure</h3>
+                            <p className="text-muted-foreground leading-relaxed">
+                                The 2026 Guinness World Record attempt will attract global media coverage. Be a part of Africa's biggest historical pet moment.
+                            </p>
+                        </motion.div>
+
+                        <motion.div
+                            whileHover={{ y: -10 }}
+                            className="bg-white p-10 rounded-3xl shadow-sm border border-slate-100 flex flex-col items-center text-center"
+                        >
+                            <div className="w-20 h-20 bg-purple-50 rounded-full flex items-center justify-center mb-6">
+                                <Check className="w-10 h-10 text-purple-600" />
+                            </div>
+                            <h3 className="text-2xl font-bold mb-4">CSR Impact</h3>
+                            <p className="text-xl font-medium text-purple-900 mb-2">2,000+ Pets Rehomed</p>
+                            <p className="text-muted-foreground leading-relaxed">
+                                Align your brand with our social advocacy and activism efforts that have impacted thousands of lives across the continent.
+                            </p>
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Custom Solutions Section */}
+            <section className="py-24 container px-4">
+                <div className="max-w-4xl mx-auto text-center border-2 border-dashed border-primary/20 rounded-[3rem] p-12 md:p-20 bg-primary/5">
+                    <h2 className="text-4xl md:text-6xl font-black mb-8">Tailored Opportunities</h2>
+                    <p className="text-2xl text-muted-foreground mb-12 leading-relaxed">
+                        We don't believe in one-size-fits-all. Every brand has a unique story, and we're here to help you tell it. Let's create a custom activation plan that meets your exact KPI's.
                     </p>
                     <Link href="/contact">
-                        <Button size="lg" className="px-10">
-                            Contact Our Sponsorship Team
+                        <Button size="lg" className="h-auto py-6 px-12 text-2xl font-black rounded-full shadow-2xl hover:scale-105 transition-all">
+                            Request Partner Deck
                         </Button>
                     </Link>
                 </div>
