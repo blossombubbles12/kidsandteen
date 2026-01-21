@@ -13,24 +13,34 @@ export function ContactForm() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
-        // Simulate submission
-        setTimeout(() => {
-            setIsSubmitting(false);
-            alert("Message sent! We'll bark back soon.");
-        }, 1500);
+
+        const formData = new FormData(e.target as HTMLFormElement);
+        const firstName = formData.get("firstName");
+        const lastName = formData.get("lastName");
+        const email = formData.get("email");
+        const subject = formData.get("subject");
+        const message = formData.get("message");
+
+        const body = `Name: ${firstName} ${lastName}\nEmail: ${email}\n\nMessage:\n${message}`;
+        const mailtoUrl = `mailto:mydogandigroup@yahoo.com?subject=${encodeURIComponent(subject as string)}&body=${encodeURIComponent(body)}`;
+
+        window.location.href = mailtoUrl;
+
+        setIsSubmitting(false);
     };
 
     return (
         <div className="bg-white p-8 rounded-3xl shadow-lg border border-border/50">
             <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
             <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                         <label htmlFor="firstName" className="text-sm font-medium">First Name</label>
                         <input
                             id="firstName"
+                            name="firstName"
                             required
-                            className="w-full px-4 py-3 rounded-xl border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                            className="w-full px-4 py-3 rounded-xl border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-sans"
                             placeholder="John"
                         />
                     </div>
@@ -38,8 +48,9 @@ export function ContactForm() {
                         <label htmlFor="lastName" className="text-sm font-medium">Last Name</label>
                         <input
                             id="lastName"
+                            name="lastName"
                             required
-                            className="w-full px-4 py-3 rounded-xl border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                            className="w-full px-4 py-3 rounded-xl border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-sans"
                             placeholder="Doe"
                         />
                     </div>
@@ -49,9 +60,10 @@ export function ContactForm() {
                     <label htmlFor="email" className="text-sm font-medium">Email</label>
                     <input
                         id="email"
+                        name="email"
                         type="email"
                         required
-                        className="w-full px-4 py-3 rounded-xl border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                        className="w-full px-4 py-3 rounded-xl border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-sans"
                         placeholder="john@example.com"
                     />
                 </div>
@@ -60,7 +72,8 @@ export function ContactForm() {
                     <label htmlFor="subject" className="text-sm font-medium">Subject</label>
                     <select
                         id="subject"
-                        className="w-full px-4 py-3 rounded-xl border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all cursor-pointer"
+                        name="subject"
+                        className="w-full px-4 py-3 rounded-xl border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all cursor-pointer font-sans"
                     >
                         <option>General Inquiry</option>
                         <option>Sponsorship</option>
@@ -73,9 +86,10 @@ export function ContactForm() {
                     <label htmlFor="message" className="text-sm font-medium">Message</label>
                     <textarea
                         id="message"
+                        name="message"
                         required
                         rows={5}
-                        className="w-full px-4 py-3 rounded-xl border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none"
+                        className="w-full px-4 py-3 rounded-xl border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none font-sans"
                         placeholder="How can we help?"
                     />
                 </div>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Dog, Facebook, Instagram, Twitter } from "lucide-react";
+import { Dog, Facebook, Instagram, Twitter, Mail, Phone } from "lucide-react";
 
 export function Footer() {
     return (
@@ -56,6 +56,29 @@ export function Footer() {
                             <li><Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
                             <li><Link href="/terms" className="hover:text-primary transition-colors">Terms of Service</Link></li>
                             <li><Link href="/faq" className="hover:text-primary transition-colors">FAQ</Link></li>
+                        </ul>
+                    </div>
+
+                    {/* Contact - NEW COLUMN */}
+                    <div>
+                        <h4 className="font-semibold mb-4">Contact</h4>
+                        <ul className="space-y-4 text-sm text-muted-foreground">
+                            <li className="flex items-center gap-3 group">
+                                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+                                    <Mail className="w-4 h-4 text-primary" />
+                                </div>
+                                <a href="mailto:mydogandigroup@yahoo.com" className="hover:text-primary transition-colors break-all">
+                                    mydogandigroup@yahoo.com
+                                </a>
+                            </li>
+                            <li className="flex items-center gap-3 group">
+                                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+                                    <Phone className="w-4 h-4 text-primary" />
+                                </div>
+                                <a href="tel:08168874616" className="hover:text-primary transition-colors">
+                                    08168874616
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
