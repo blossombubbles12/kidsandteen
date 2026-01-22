@@ -2,9 +2,11 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { Dog, User, Users, Plus, Trash2, Ticket, CheckCircle2 } from "lucide-react";
+import { Dog, User, Users, Plus, Trash2, Ticket, CheckCircle2, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { registerUser } from "@/app/actions/carnival";
+import { useToast } from "@/hooks/use-toast";
 
 // Types
 type DogDetail = {
@@ -23,7 +25,9 @@ type FormData = {
 };
 
 export default function CarnivalRegistrationForm() {
+    const { toast } = useToast();
     const [step, setStep] = useState(1);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [formData, setFormData] = useState<FormData>({
         name: "",
         email: "",
@@ -56,6 +60,36 @@ export default function CarnivalRegistrationForm() {
 
     const nextStep = () => setStep(step + 1);
     const prevStep = () => setStep(step - 1);
+
+    const handleSubmit = async () => {
+        if (!formData.acceptedTerms) return;
+
+        setIsSubmitting(true);
+        try {
+            const res = await registerUser(formData);
+            if (res.success) {
+                setStep(4);
+                toast({
+                    title: "Registration Successful!",
+                    description: "You have successfully registered for the Lagos Dog Carnival.",
+                });
+            } else {
+                toast({
+                    variant: "destructive",
+                    title: "Registration Failed",
+                    description: res.error || "Something went wrong. Please try again.",
+                });
+            }
+        } catch (error) {
+            toast({
+                variant: "destructive",
+                title: "Error",
+                description: "An unexpected error occurred.",
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-orange-50 py-10 px-4 flex items-center justify-center">
@@ -309,11 +343,15 @@ export default function CarnivalRegistrationForm() {
                         </Button>
                         <Button
                             type="button"
-                            onClick={nextStep}
+                            onClick={step === 3 ? handleSubmit : nextStep}
                             className="px-8 font-bold"
-                            disabled={step === 3 && !formData.acceptedTerms}
+                            disabled={(step === 3 && !formData.acceptedTerms) || isSubmitting}
                         >
-                            {step === 3 ? "Complete Registration" : "Next Step"}
+                            {isSubmitting ? (
+                                <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Registering...</>
+                            ) : (
+                                step === 3 ? "Complete Registration" : "Next Step"
+                            )}
                         </Button>
                     </div>
                 )}
