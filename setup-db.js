@@ -1,5 +1,5 @@
 require('dotenv').config({ path: '.env.local' });
-const { Pool } = require('pg');
+const { Pool } = require('@neondatabase/serverless');
 
 const connectionString = process.env.DATABASE_URL;
 
@@ -10,9 +10,6 @@ if (!connectionString) {
 
 const pool = new Pool({
   connectionString,
-  ssl: {
-    rejectUnauthorized: false
-  },
 });
 
 async function main() {
