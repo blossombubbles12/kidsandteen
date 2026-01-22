@@ -1,17 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Users, Dog, Store, Heart, Sparkles } from "lucide-react";
+import { Users, Dog, Store, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getStats } from "@/app/actions/carnival";
 
 export function CarnivalStats() {
     const [realStats, setRealStats] = useState({ attendees: 0, dogs: 0 });
     const [stats, setStats] = useState([
-        { label: "Attendees", value: "2,500+", icon: Users, color: "text-blue-500" },
-        { label: "Pets Participating", value: "2,500+", icon: Dog, color: "text-orange-500" },
-        { label: "Vendors", value: "80+", icon: Store, color: "text-green-500" },
-        { label: "Pets Rehomed", value: "2,000+", icon: Heart, color: "text-red-500" },
+        { label: "Attendees", value: "100+", icon: Users, color: "text-blue-500" },
+        { label: "Pets Participating", value: "100+", icon: Dog, color: "text-orange-500" },
+        { label: "Vendors", value: "10+", icon: Store, color: "text-green-500" },
     ]);
 
     useEffect(() => {
@@ -21,10 +20,10 @@ export function CarnivalStats() {
                 setRealStats(data);
                 setStats(currentStats => currentStats.map(stat => {
                     if (stat.label === "Attendees") {
-                        return { ...stat, value: (2500 + data.attendees).toLocaleString() + "+" };
+                        return { ...stat, value: (100 + data.attendees).toLocaleString() + "+" };
                     }
                     if (stat.label === "Pets Participating") {
-                        return { ...stat, value: (2500 + data.dogs).toLocaleString() + "+" };
+                        return { ...stat, value: (100 + data.dogs).toLocaleString() + "+" };
                     }
                     return stat;
                 }));
@@ -37,8 +36,8 @@ export function CarnivalStats() {
     }, []);
 
     // Calculate total registrations for the main counter (Attendees + Dogs)
-    // Starting with a base number to make it look active + real registrations
-    const totalCount = 5000 + realStats.attendees + realStats.dogs;
+    // Starting with a base number of 100 as requested
+    const totalCount = 100 + realStats.attendees + realStats.dogs;
 
     return (
         <section className="py-20 bg-gradient-to-b from-white to-slate-50 border-y border-border/40 overflow-hidden relative">
@@ -79,7 +78,7 @@ export function CarnivalStats() {
                 </div>
 
                 {/* Grid Stats */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
                     {stats.map((stat, index) => (
                         <motion.div
                             key={stat.label}
