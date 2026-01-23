@@ -203,6 +203,30 @@ export default function CarnivalRegistrationForm() {
                                 </div>
 
                                 <div>
+                                    <label className="text-sm font-medium mb-2 block">Additional Guests (Humans)</label>
+                                    <div className="flex items-center gap-4">
+                                        <Button
+                                            type="button"
+                                            variant="outline"
+                                            size="icon"
+                                            onClick={() => updateData({ guestCount: Math.max(0, formData.guestCount - 1) })}
+                                        >
+                                            -
+                                        </Button>
+                                        <span className="text-2xl font-bold w-12 text-center">{formData.guestCount}</span>
+                                        <Button
+                                            type="button"
+                                            variant="outline"
+                                            size="icon"
+                                            onClick={() => updateData({ guestCount: formData.guestCount + 1 })}
+                                        >
+                                            +
+                                        </Button>
+                                    </div>
+                                    <p className="text-xs text-muted-foreground mt-2">Excluding yourself. Total Humans: {formData.guestCount + 1}</p>
+                                </div>
+
+                                <div>
                                     <label className="text-sm font-medium mb-1 block">Would you like to donate towards the Record attempt?</label>
                                     <div className="flex gap-4">
                                         {['Yes', 'No', 'Maybe later'].map((opt) => (
