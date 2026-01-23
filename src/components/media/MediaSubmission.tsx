@@ -87,7 +87,7 @@ export function MediaSubmission({ albums = [], defaultFolder = "" }: MediaSubmis
         try {
             const targetFolder = folderName.trim()
                 ? folderName.trim().replace(/\s+/g, '_').toLowerCase()
-                : "mydog/community_submissions";
+                : "mydogandigroup/community_submissions";
 
             let successCount = 0;
             const newErrors: string[] = [];
@@ -271,7 +271,7 @@ export function MediaSubmission({ albums = [], defaultFolder = "" }: MediaSubmis
                                             <div className="relative">
                                                 <Input
                                                     id="folder"
-                                                    placeholder="e.g. mydog/sunday_walk or just events"
+                                                    placeholder="e.g. mydogandigroup/sunday_walk or just events"
                                                     className="rounded-xl"
                                                     value={folderName}
                                                     onChange={(e) => setFolderName(e.target.value)}
@@ -285,7 +285,7 @@ export function MediaSubmission({ albums = [], defaultFolder = "" }: MediaSubmis
                                                 </datalist>
                                             </div>
                                             <p className="text-[11px] text-muted-foreground ml-1">
-                                                Select existing or type new path (e.g. 'mydog/new_album'). Leave empty for general view.
+                                                Select existing or type new path (e.g. 'mydogandigroup/new_album'). Leave empty for general view.
                                             </p>
                                         </div>
                                     </div>

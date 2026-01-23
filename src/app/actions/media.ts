@@ -15,7 +15,7 @@ export type CloudinaryUploadResponse =
  */
 export async function uploadToCloudinary(
     formData: FormData,
-    folder: string = 'mydog/uploads',
+    folder: string = 'mydogandigroup/uploads',
     tags: string[] = []
 ): Promise<CloudinaryUploadResponse> {
     const file = formData.get('file') as File;
@@ -50,7 +50,7 @@ export async function uploadToCloudinary(
     }
 }
 
-export async function getMediaFromFolder(folder: string = '', limit: number = 100) {
+export async function getMediaFromFolder(folder: string = 'mydogandigroup', limit: number = 100) {
     try {
         // Fetch images
         const { resources: images } = await cloudinary.api.resources({
@@ -88,34 +88,20 @@ export interface AlbumData {
 
 export async function getAlbums(): Promise<AlbumData[]> {
     try {
-        const allFolders = new Map<string, any>();
+        const targetRoot = 'mydogandigroup';
+        let foldersToProcess: any[] = [];
 
-        // Helper to add folders
-        const addFolders = (folders: any[]) => {
-            folders.forEach(f => allFolders.set(f.path, f));
-        };
-
-        // 1. Fetch root folders
+        // Fetch subfolders of 'mydogandigroup'
         try {
-            const root = await cloudinary.api.root_folders();
-            addFolders(root.folders);
+            const result = await cloudinary.api.sub_folders(targetRoot);
+            foldersToProcess = result.folders;
         } catch (e) {
-            console.error("Error fetching root folders:", e);
+            console.warn(`Folder '${targetRoot}' not found or empty. Using empty list.`);
+            // If the root folder itself has images but no subfolders, we might want to return just the root?
+            // But usually albums are subfolders. Let's stick to subfolders for "Albums".
         }
 
-        // 2. Fetch 'mydog' subfolders 
-        try {
-            const mydog = await cloudinary.api.sub_folders('mydog');
-            addFolders(mydog.folders);
-        } catch (e) {
-            // It's okay if mydog doesn't exist
-            console.log("mydog folder not found or empty");
-        }
-
-        // 3. Parallel fetch for details
-        const folderArray = Array.from(allFolders.values());
-
-        const albums = await Promise.all(folderArray.map(async (folder: any) => {
+        const albums = await Promise.all(foldersToProcess.map(async (folder: any) => {
             try {
                 // Find a cover image and get total count of images/videos
                 const { resources, total_count } = await cloudinary.search
@@ -130,7 +116,7 @@ export async function getAlbums(): Promise<AlbumData[]> {
                     name: folder.name,
                     path: folder.path,
                     coverSrc: cover?.secure_url,
-                    coverId: cover?.public_id, // Add this
+                    coverId: cover?.public_id,
                     count: total_count || 0
                 };
             } catch (e) {
