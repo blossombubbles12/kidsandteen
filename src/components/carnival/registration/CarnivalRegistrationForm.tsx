@@ -218,6 +218,28 @@ export default function CarnivalRegistrationForm() {
                                         ))}
                                     </div>
                                 </div>
+
+                                {formData.category === 'spectator' && (
+                                    <div className="flex items-start gap-3 p-4 bg-secondary/10 rounded-xl border border-border">
+                                        <input
+                                            type="checkbox"
+                                            id="terms-spectator"
+                                            checked={formData.acceptedTerms}
+                                            onChange={(e) => updateData({ acceptedTerms: e.target.checked })}
+                                            className="mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
+                                        />
+                                        <label htmlFor="terms-spectator" className="text-sm text-muted-foreground">
+                                            I agree to the{" "}
+                                            <a href="/terms" target="_blank" className="text-primary hover:underline font-medium">
+                                                Terms of Service
+                                            </a>{" "}
+                                            and{" "}
+                                            <a href="/privacy" target="_blank" className="text-primary hover:underline font-medium">
+                                                Privacy Policy
+                                            </a>
+                                        </label>
+                                    </div>
+                                )}
                             </div>
                         </motion.div>
                     )}
@@ -433,14 +455,16 @@ export default function CarnivalRegistrationForm() {
                         </Button>
                         <Button
                             type="button"
-                            onClick={step === 3 ? handleSubmit : nextStep}
+                            onClick={(step === 3 || (step === 2 && formData.category === 'spectator')) ? handleSubmit : nextStep}
                             className="px-8 font-bold"
-                            disabled={(step === 3 && !formData.acceptedTerms) || isSubmitting}
+                            disabled={
+                                ((step === 3 || (step === 2 && formData.category === 'spectator')) && !formData.acceptedTerms) || isSubmitting
+                            }
                         >
                             {isSubmitting ? (
                                 <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Registering...</>
                             ) : (
-                                step === 3 ? "Complete Registration" : "Next Step"
+                                (step === 3 || (step === 2 && formData.category === 'spectator')) ? "Complete Registration" : "Next Step"
                             )}
                         </Button>
                     </div>
