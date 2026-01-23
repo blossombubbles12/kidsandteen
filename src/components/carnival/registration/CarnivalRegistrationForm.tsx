@@ -9,18 +9,18 @@ import { registerUser } from "@/app/actions/carnival";
 import { useToast } from "@/hooks/use-toast";
 
 // Types
-type DogDetail = {
-    name: string;
-    breed: string;
-};
-
 type FormData = {
     name: string;
     email: string;
     phone: string;
-    category: "owner" | "spectator" | "vendor" | "media";
+    category: "owner" | "spectator";
+    location: string;
+    donationInterest: string;
+    petType: string;
+    petCount: number;
+    petNames: string;
+    isVaccinated: string;
     guestCount: number;
-    dogs: DogDetail[];
     acceptedTerms: boolean;
 };
 
@@ -33,30 +33,17 @@ export default function CarnivalRegistrationForm() {
         email: "",
         phone: "",
         category: "owner",
+        location: "",
+        donationInterest: "",
+        petType: "Dog",
+        petCount: 1,
+        petNames: "",
+        isVaccinated: "Yes",
         guestCount: 0,
-        dogs: [{ name: "", breed: "" }],
         acceptedTerms: false
     });
 
     const updateData = (updates: Partial<FormData>) => setFormData(prev => ({ ...prev, ...updates }));
-
-    const addDog = () => setFormData(prev => ({ ...prev, dogs: [...prev.dogs, { name: "", breed: "" }] }));
-
-    const removeDog = (index: number) => {
-        setFormData(prev => {
-            const newDogs = [...prev.dogs];
-            newDogs.splice(index, 1);
-            return { ...prev, dogs: newDogs };
-        });
-    };
-
-    const updateDog = (index: number, field: keyof DogDetail, value: string) => {
-        setFormData(prev => {
-            const newDogs = [...prev.dogs];
-            newDogs[index] = { ...newDogs[index], [field]: value };
-            return { ...prev, dogs: newDogs };
-        });
-    };
 
     const nextStep = () => setStep(step + 1);
     const prevStep = () => setStep(step - 1);
@@ -152,15 +139,15 @@ export default function CarnivalRegistrationForm() {
                     {step === 2 && (
                         <motion.div key="step2" initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -20, opacity: 0 }} className="space-y-6">
                             <div className="text-center">
-                                <h2 className="text-2xl font-bold mb-2">Attendance Details</h2>
-                                <p className="text-muted-foreground">Help us count for the Record!</p>
+                                <h2 className="text-2xl font-bold mb-2">Details</h2>
+                                <p className="text-muted-foreground">Help us know you better!</p>
                             </div>
 
                             <div className="space-y-6">
                                 <div>
-                                    <label className="text-sm font-medium mb-2 block">I am attending as a:</label>
+                                    <label className="text-sm font-medium mb-2 block">Attending as:</label>
                                     <div className="grid grid-cols-2 gap-4">
-                                        {(['owner', 'spectator', 'vendor', 'media'] as const).map((cat) => (
+                                        {(['owner', 'spectator'] as const).map((cat) => (
                                             <div
                                                 key={cat}
                                                 className={`cursor-pointer border-2 rounded-xl p-4 text-center capitalize transition-all ${formData.category === cat
@@ -169,34 +156,36 @@ export default function CarnivalRegistrationForm() {
                                                     }`}
                                                 onClick={() => updateData({ category: cat })}
                                             >
-                                                {cat === 'owner' ? 'Dog Owner 🐕' : cat === 'spectator' ? 'Spectator 👀' : cat}
+                                                {cat === 'owner' ? 'Pet Owner 🐕' : 'Spectator 👀'}
                                             </div>
                                         ))}
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label className="text-sm font-medium mb-2 block">Additional Guests (Humans)</label>
-                                    <div className="flex items-center gap-4">
-                                        <Button
-                                            type="button"
-                                            variant="outline"
-                                            size="icon"
-                                            onClick={() => updateData({ guestCount: Math.max(0, formData.guestCount - 1) })}
-                                        >
-                                            -
-                                        </Button>
-                                        <span className="text-2xl font-bold w-12 text-center">{formData.guestCount}</span>
-                                        <Button
-                                            type="button"
-                                            variant="outline"
-                                            size="icon"
-                                            onClick={() => updateData({ guestCount: formData.guestCount + 1 })}
-                                        >
-                                            +
-                                        </Button>
+                                    <label className="text-sm font-medium mb-1 block">Location</label>
+                                    <Input
+                                        value={formData.location}
+                                        onChange={(e) => updateData({ location: e.target.value })}
+                                        placeholder="e.g. Lagos Island, Ikeja..."
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="text-sm font-medium mb-1 block">Would you like to donate towards the Record attempt?</label>
+                                    <div className="flex gap-4">
+                                        {['Yes', 'No', 'Maybe later'].map((opt) => (
+                                            <Button
+                                                key={opt}
+                                                type="button"
+                                                variant={formData.donationInterest === opt ? "default" : "outline"}
+                                                onClick={() => updateData({ donationInterest: opt })}
+                                                className="flex-1"
+                                            >
+                                                {opt}
+                                            </Button>
+                                        ))}
                                     </div>
-                                    <p className="text-xs text-muted-foreground mt-2">Excluding yourself. Total Humans: {formData.guestCount + 1}</p>
                                 </div>
                             </div>
                         </motion.div>
@@ -205,53 +194,56 @@ export default function CarnivalRegistrationForm() {
                     {step === 3 && (
                         <motion.div key="step3" initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -20, opacity: 0 }} className="space-y-6">
                             <div className="text-center">
-                                <h2 className="text-2xl font-bold mb-2">The Stars of the Show 🌟</h2>
-                                <p className="text-muted-foreground">Register each dog for the official count.</p>
+                                <h2 className="text-2xl font-bold mb-2">Pet Details 🐾</h2>
+                                <p className="text-muted-foreground">Tell us about your companions.</p>
                             </div>
 
-                            <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2">
-                                {formData.dogs.map((dog, index) => (
-                                    <div key={index} className="bg-secondary/20 p-4 rounded-xl relative group">
-                                        <div className="absolute top-2 right-2">
-                                            {formData.dogs.length > 1 && (
-                                                <button
-                                                    type="button"
-                                                    onClick={() => removeDog(index)}
-                                                    className="text-red-500 hover:bg-red-100 p-1 rounded-full"
-                                                >
-                                                    <Trash2 className="w-4 h-4" />
-                                                </button>
-                                            )}
-                                        </div>
-                                        <div className="grid grid-cols-2 gap-4">
-                                            <div>
-                                                <label className="text-xs font-medium mb-1 block">Dog's Name</label>
-                                                <Input
-                                                    value={dog.name}
-                                                    onChange={(e) => updateDog(index, 'name', e.target.value)}
-                                                    placeholder="Zues"
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="text-xs font-medium mb-1 block">Breed</label>
-                                                <Input
-                                                    value={dog.breed}
-                                                    onChange={(e) => updateDog(index, 'breed', e.target.value)}
-                                                    placeholder="German Shepherd"
-                                                />
-                                            </div>
-                                        </div>
+                            <div className="space-y-4">
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label className="text-sm font-medium mb-1 block">Type of pet?</label>
+                                        <Input
+                                            value={formData.petType}
+                                            onChange={(e) => updateData({ petType: e.target.value })}
+                                            placeholder="e.g. Dog, Cat"
+                                        />
                                     </div>
-                                ))}
+                                    <div>
+                                        <label className="text-sm font-medium mb-1 block">How many pets?</label>
+                                        <Input
+                                            type="number"
+                                            value={formData.petCount}
+                                            onChange={(e) => updateData({ petCount: parseInt(e.target.value) || 0 })}
+                                            min={0}
+                                        />
+                                    </div>
+                                </div>
 
-                                <Button
-                                    type="button"
-                                    variant="outline"
-                                    className="w-full border-dashed border-2 py-6"
-                                    onClick={addDog}
-                                >
-                                    <Plus className="w-4 h-4 mr-2" /> Add Another Dog
-                                </Button>
+                                <div>
+                                    <label className="text-sm font-medium mb-1 block">Name of pet(s)?</label>
+                                    <Input
+                                        value={formData.petNames}
+                                        onChange={(e) => updateData({ petNames: e.target.value })}
+                                        placeholder="e.g. Zues, Luna"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="text-sm font-medium mb-1 block">State if the pet is duly vaccinated?</label>
+                                    <div className="flex gap-4">
+                                        {['Yes', 'No', 'Partially'].map((opt) => (
+                                            <Button
+                                                key={opt}
+                                                type="button"
+                                                variant={formData.isVaccinated === opt ? "default" : "outline"}
+                                                onClick={() => updateData({ isVaccinated: opt })}
+                                                className="flex-1"
+                                            >
+                                                {opt}
+                                            </Button>
+                                        ))}
+                                    </div>
+                                </div>
 
                                 {/* Terms Acceptance */}
                                 <div className="flex items-start gap-3 p-4 bg-orange-50 rounded-xl border border-orange-200">
@@ -310,16 +302,21 @@ export default function CarnivalRegistrationForm() {
                                         </div>
                                         <div>
                                             <p className="text-xs text-muted-foreground uppercase">Location</p>
-                                            <p className="font-bold">TBS Lagos</p>
+                                            <p className="font-bold">{formData.location || "TBS Lagos"}</p>
                                         </div>
                                         <div>
                                             <p className="text-xs text-muted-foreground uppercase">Humans</p>
-                                            <p className="font-bold">{formData.guestCount + 1}</p>
+                                            <p className="font-bold">1</p>
                                         </div>
                                         <div>
-                                            <p className="text-xs text-muted-foreground uppercase">Dogs</p>
-                                            <p className="font-bold">{formData.dogs.length}</p>
+                                            <p className="text-xs text-muted-foreground uppercase">Pets</p>
+                                            <p className="font-bold">{formData.petCount}</p>
                                         </div>
+                                    </div>
+
+                                    <div className="pt-2">
+                                        <p className="text-xs text-muted-foreground uppercase">Pet Name(s)</p>
+                                        <p className="font-bold truncate">{formData.petNames || "None"}</p>
                                     </div>
 
                                     <div className="pt-4 text-center">

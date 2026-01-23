@@ -101,7 +101,7 @@ export default function CarnivalPage() {
                     <div className="mt-16 text-center pb-8">
                         <Link href="/carnival/register" className="inline-block w-full sm:w-auto">
                             <Button size="lg" className="rounded-full px-12 py-9 text-xl font-bold bg-primary hover:bg-primary/90 shadow-2xl w-full sm:w-auto h-auto">
-                                Secure Your Ticket Now <ArrowRight className="ml-2 w-6 h-6" />
+                                Register here <ArrowRight className="ml-2 w-6 h-6" />
                             </Button>
                         </Link>
                     </div>

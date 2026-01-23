@@ -28,21 +28,31 @@ async function main() {
         phone TEXT NOT NULL,
         category TEXT NOT NULL,
         guest_count INT NOT NULL DEFAULT 0,
+        pet_type TEXT,
+        pet_count INT,
+        pet_names TEXT,
+        is_vaccinated TEXT,
+        location TEXT,
+        donation_interest TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
     `);
-    console.log("registrations table created/verified");
 
-    // Create dogs table
-    await client.query(`
-      CREATE TABLE IF NOT EXISTS dogs (
-        id SERIAL PRIMARY KEY,
-        registration_id INT REFERENCES registrations(id) ON DELETE CASCADE,
-        name TEXT NOT NULL,
-        breed TEXT NOT NULL
-      );
-    `);
-    console.log("dogs table created/verified");
+    // Ensure new columns exist if table was already created
+    const addCols = [
+      "ALTER TABLE registrations ADD COLUMN IF NOT EXISTS pet_type TEXT",
+      "ALTER TABLE registrations ADD COLUMN IF NOT EXISTS pet_count INT",
+      "ALTER TABLE registrations ADD COLUMN IF NOT EXISTS pet_names TEXT",
+      "ALTER TABLE registrations ADD COLUMN IF NOT EXISTS is_vaccinated TEXT",
+      "ALTER TABLE registrations ADD COLUMN IF NOT EXISTS location TEXT",
+      "ALTER TABLE registrations ADD COLUMN IF NOT EXISTS donation_interest TEXT"
+    ];
+
+    for (const sql of addCols) {
+      await client.query(sql);
+    }
+
+    console.log("registrations table updated with new fields");
 
   } catch (err) {
     console.error("Error creating tables:", err);
