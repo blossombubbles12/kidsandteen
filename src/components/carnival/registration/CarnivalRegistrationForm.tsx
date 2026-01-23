@@ -9,6 +9,11 @@ import { registerUser } from "@/app/actions/carnival";
 import { useToast } from "@/hooks/use-toast";
 
 // Types
+type DogDetail = {
+    name: string;
+    breed: string;
+};
+
 type FormData = {
     name: string;
     email: string;
@@ -21,6 +26,7 @@ type FormData = {
     petNames: string;
     isVaccinated: string;
     guestCount: number;
+    dogs: DogDetail[];
     acceptedTerms: boolean;
 };
 
@@ -40,10 +46,35 @@ export default function CarnivalRegistrationForm() {
         petNames: "",
         isVaccinated: "Yes",
         guestCount: 0,
+        dogs: [{ name: "", breed: "" }],
         acceptedTerms: false
     });
 
-    const updateData = (updates: Partial<FormData>) => setFormData(prev => ({ ...prev, ...updates }));
+    const updateData = (updates: Partial<FormData>) => {
+        setFormData(prev => {
+            const newData = { ...prev, ...updates };
+            // Auto-sync petCount if it's a dog owner and dogs are managed dynamically
+            if (updates.dogs) {
+                newData.petCount = updates.dogs.length;
+                newData.petNames = updates.dogs.map(d => d.name).filter(Boolean).join(", ");
+            }
+            return newData;
+        });
+    };
+
+    const addDog = () => updateData({ dogs: [...formData.dogs, { name: "", breed: "" }] });
+
+    const removeDog = (index: number) => {
+        const newDogs = [...formData.dogs];
+        newDogs.splice(index, 1);
+        updateData({ dogs: newDogs });
+    };
+
+    const updateDog = (index: number, field: keyof DogDetail, value: string) => {
+        const newDogs = [...formData.dogs];
+        newDogs[index] = { ...newDogs[index], [field]: value };
+        updateData({ dogs: newDogs });
+    };
 
     const nextStep = () => setStep(step + 1);
     const prevStep = () => setStep(step - 1);
@@ -219,14 +250,66 @@ export default function CarnivalRegistrationForm() {
                                     </div>
                                 </div>
 
-                                <div>
-                                    <label className="text-sm font-medium mb-1 block">Name of pet(s)?</label>
-                                    <Input
-                                        value={formData.petNames}
-                                        onChange={(e) => updateData({ petNames: e.target.value })}
-                                        placeholder="e.g. Zues, Luna"
-                                    />
-                                </div>
+                                {formData.petType.toLowerCase().includes('dog') ? (
+                                    <div className="space-y-4">
+                                        <label className="text-sm font-bold flex items-center gap-2 text-primary">
+                                            <Dog className="w-4 h-4" /> Individual Dog Details
+                                        </label>
+                                        <div className="max-h-[250px] overflow-y-auto pr-2 space-y-3 custom-scrollbar">
+                                            {formData.dogs.map((dog, index) => (
+                                                <div key={index} className="bg-secondary/10 p-3 rounded-xl border border-border relative group">
+                                                    {formData.dogs.length > 1 && (
+                                                        <button
+                                                            type="button"
+                                                            onClick={(e) => { e.stopPropagation(); removeDog(index); }}
+                                                            className="absolute -top-2 -right-2 bg-red-500 text-white p-1 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                                                        >
+                                                            <Trash2 className="w-3 h-3" />
+                                                        </button>
+                                                    )}
+                                                    <div className="grid grid-cols-2 gap-3">
+                                                        <div>
+                                                            <label className="text-[10px] uppercase font-black text-muted-foreground/60 mb-1 block">Name</label>
+                                                            <Input
+                                                                value={dog.name}
+                                                                onChange={(e) => updateDog(index, 'name', e.target.value)}
+                                                                placeholder="e.g. Max"
+                                                                className="h-8 text-xs bg-background/50"
+                                                            />
+                                                        </div>
+                                                        <div>
+                                                            <label className="text-[10px] uppercase font-black text-muted-foreground/60 mb-1 block">Breed</label>
+                                                            <Input
+                                                                value={dog.breed}
+                                                                onChange={(e) => updateDog(index, 'breed', e.target.value)}
+                                                                placeholder="e.g. Boerboel"
+                                                                className="h-8 text-xs bg-background/50"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                            <Button
+                                                type="button"
+                                                variant="outline"
+                                                size="sm"
+                                                className="w-full border-dashed border-2 py-4 bg-primary/5 hover:bg-primary/10 text-primary font-bold"
+                                                onClick={addDog}
+                                            >
+                                                <Plus className="w-3 h-3 mr-2" /> Add Another Dog
+                                            </Button>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <label className="text-sm font-medium mb-1 block">Name of pet(s)?</label>
+                                        <Input
+                                            value={formData.petNames}
+                                            onChange={(e) => updateData({ petNames: e.target.value })}
+                                            placeholder="e.g. Zues, Luna"
+                                        />
+                                    </div>
+                                )}
 
                                 <div>
                                     <label className="text-sm font-medium mb-1 block">State if the pet is duly vaccinated?</label>
@@ -315,8 +398,18 @@ export default function CarnivalRegistrationForm() {
                                     </div>
 
                                     <div className="pt-2">
-                                        <p className="text-xs text-muted-foreground uppercase">Pet Name(s)</p>
-                                        <p className="font-bold truncate">{formData.petNames || "None"}</p>
+                                        <p className="text-xs text-muted-foreground uppercase">{formData.petType.toLowerCase().includes('dog') ? 'Dogs' : 'Pet Name(s)'}</p>
+                                        {formData.petType.toLowerCase().includes('dog') ? (
+                                            <div className="space-y-1">
+                                                {formData.dogs.map((dog, i) => (
+                                                    <p key={i} className="font-bold text-sm">
+                                                        {dog.name || 'Unnamed'} {dog.breed ? `(${dog.breed})` : ''}
+                                                    </p>
+                                                ))}
+                                            </div>
+                                        ) : (
+                                            <p className="font-bold truncate">{formData.petNames || "None"}</p>
+                                        )}
                                     </div>
 
                                     <div className="pt-4 text-center">
