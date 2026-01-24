@@ -38,6 +38,16 @@ async function main() {
       );
     `);
 
+    // Create dogs table
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS dogs (
+        id SERIAL PRIMARY KEY,
+        registration_id INT REFERENCES registrations(id) ON DELETE CASCADE,
+        name TEXT,
+        breed TEXT
+      );
+    `);
+
     // Ensure new columns exist if table was already created
     const addCols = [
       "ALTER TABLE registrations ADD COLUMN IF NOT EXISTS pet_type TEXT",

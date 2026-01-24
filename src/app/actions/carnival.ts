@@ -46,7 +46,7 @@ export async function registerUser(formData: any) {
         await client.query('COMMIT');
 
         revalidatePath('/carnival');
-        return { success: true };
+        return { success: true, registrationId: registrationId };
     } catch (e) {
         await client.query('ROLLBACK');
         console.error('Registration error:', e);

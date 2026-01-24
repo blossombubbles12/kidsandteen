@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { registerUser } from "@/app/actions/carnival";
 import { useToast } from "@/hooks/use-toast";
+import SocialShare from "./SocialShare";
+
 
 // Types
 type DogDetail = {
@@ -87,7 +89,9 @@ export default function CarnivalRegistrationForm() {
         try {
             const res = await registerUser(formData);
             if (res.success) {
-                setEntryId(`LDC-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`);
+                // Use the actual DB ID if available, otherwise fallback (though DB ID should always exist on success)
+                const regId = res.registrationId ? res.registrationId.toString().padStart(4, '0') : Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+                setEntryId(`LDC-${regId}`);
                 setStep(4);
                 toast({
                     title: "Registration Successful!",
@@ -406,43 +410,72 @@ export default function CarnivalRegistrationForm() {
                                 </div>
                             </motion.div>
                         )}
-
                         {step === 4 && (
                             <motion.div key="step4" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="space-y-8 text-center py-10">
-                                <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto animate-pulse">
-                                    <CheckCircle2 className="w-10 h-10" />
-                                </div>
-                                <div>
-                                    <h2 className="text-3xl font-bold text-green-700">Registration Confirmed!</h2>
-                                    <p className="text-muted-foreground">You are officially part of history.</p>
+                                <div className="space-y-4">
+                                    <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto animate-pulse">
+                                        <CheckCircle2 className="w-10 h-10" />
+                                    </div>
+                                    <div>
+                                        <h2 className="text-3xl font-bold text-green-700 font-black tracking-tight">Registration Confirmed!</h2>
+                                        <p className="text-muted-foreground">You are officially part of history.</p>
+                                    </div>
                                 </div>
 
-                                <TicketCard formData={formData} entryId={entryId} />
+                                <div className="space-y-6">
+                                    <TicketCard formData={formData} entryId={entryId} />
 
-                                <Button onClick={() => window.print()} variant="outline">Print Ticket</Button>
+                                    <div className="flex flex-col gap-3">
+                                        <Button onClick={() => window.print()} variant="outline" className="w-full py-6 font-bold border-2 rounded-2xl hover:bg-secondary/5 transition-all">
+                                            Print My Ticket
+                                        </Button>
+
+                                        <div className="border-t border-dashed my-6" />
+
+                                        <SocialShare
+                                            title="I just registered for the Lagos Dog Carnival 2026! 🐾"
+                                            description="I'm officially part of the World Record attempt! Join me and let's make history together."
+                                        />
+                                    </div>
+                                </div>
                             </motion.div>
                         )}
                     </AnimatePresence>
 
                     {step < 4 && (
-                        <div className="flex justify-between mt-10 pt-6 border-t">
-                            <Button type="button" variant="ghost" disabled={step === 1} onClick={prevStep}>
-                                Back
-                            </Button>
-                            <Button
-                                type="button"
-                                onClick={(step === 3 || (step === 2 && formData.category === 'spectator')) ? handleSubmit : nextStep}
-                                className="px-8 font-bold"
-                                disabled={
-                                    ((step === 3 || (step === 2 && formData.category === 'spectator')) && !formData.acceptedTerms) || isSubmitting
-                                }
-                            >
-                                {isSubmitting ? (
-                                    <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Registering...</>
-                                ) : (
-                                    (step === 3 || (step === 2 && formData.category === 'spectator')) ? "Complete Registration" : "Next Step"
-                                )}
-                            </Button>
+                        <div className="mt-10">
+                            <div className="flex justify-between pt-6 border-t mb-8">
+                                <Button type="button" variant="ghost" disabled={step === 1} onClick={prevStep}>
+                                    Back
+                                </Button>
+                                <Button
+                                    type="button"
+                                    onClick={(step === 3 || (step === 2 && formData.category === 'spectator')) ? handleSubmit : nextStep}
+                                    className="px-8 font-bold rounded-xl"
+                                    disabled={
+                                        ((step === 3 || (step === 2 && formData.category === 'spectator')) && !formData.acceptedTerms) || isSubmitting
+                                    }
+                                >
+                                    {isSubmitting ? (
+                                        <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Registering...</>
+                                    ) : (
+                                        (step === 3 || (step === 2 && formData.category === 'spectator')) ? "Complete Registration" : "Next Step"
+                                    )}
+                                </Button>
+                            </div>
+
+                            <div className="flex items-center justify-between p-4 bg-orange-50/50 rounded-2xl border border-orange-100/50 backdrop-blur-sm">
+                                <div className="flex items-center gap-3">
+                                    <div className="p-2 bg-orange-100 rounded-full">
+                                        <Users className="w-4 h-4 text-orange-600" />
+                                    </div>
+                                    <div>
+                                        <p className="text-[11px] font-black uppercase tracking-wider text-orange-900 leading-none mb-0.5">Invite a friend!</p>
+                                        <p className="text-[10px] text-orange-700/70 leading-none">Help us break the record together.</p>
+                                    </div>
+                                </div>
+                                <SocialShare variant="compact" />
+                            </div>
                         </div>
                     )}
                 </div>
@@ -455,6 +488,7 @@ export default function CarnivalRegistrationForm() {
                     </div>
                 </div>
             )}
+
         </>
     );
 }
