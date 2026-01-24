@@ -52,21 +52,26 @@ export async function uploadToCloudinary(
 
 export async function getMediaFromFolder(folder: string = 'mydogandigroup', limit: number = 100) {
     try {
-        // Fetch images
-        const { resources: images } = await cloudinary.api.resources({
-            resource_type: 'image',
-            type: 'upload',
-            prefix: folder,
-            max_results: Math.floor(limit / 2),
-        });
+        // Fetch images using Search API
+        const imagesPromise = cloudinary.search
+            .expression(`resource_type:image AND folder:"${folder}"`)
+            .sort_by('created_at', 'desc')
+            .max_results(Math.floor(limit / 2))
+            .with_field('context')
+            .execute();
 
-        // Fetch videos
-        const { resources: videos } = await cloudinary.api.resources({
-            resource_type: 'video',
-            type: 'upload',
-            prefix: folder,
-            max_results: Math.floor(limit / 2),
-        });
+        // Fetch videos using Search API
+        const videosPromise = cloudinary.search
+            .expression(`resource_type:video AND folder:"${folder}"`)
+            .sort_by('created_at', 'desc')
+            .max_results(Math.floor(limit / 2))
+            .with_field('context')
+            .execute();
+
+        const [imagesResult, videosResult] = await Promise.all([imagesPromise, videosPromise]);
+
+        const images = imagesResult.resources || [];
+        const videos = videosResult.resources || [];
 
         // Combine and sort by creation date (newest first)
         return [...images, ...videos].sort((a, b) =>
