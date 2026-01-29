@@ -7,7 +7,8 @@ import {
     PawPrint,
     Search,
     Trash2,
-    ExternalLink,
+    FileText,
+    TrendingUp,
     Heart,
     UserCircle,
     LogOut,
@@ -16,7 +17,8 @@ import {
     Phone,
     MapPin,
     BadgeCheck,
-    Info
+    Info,
+    Mail
 } from "lucide-react";
 import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
@@ -293,7 +295,7 @@ export default function AdminDashboard({ initialRegistrations, stats, user }: Ad
                                         <div>
                                             <p className="text-[10px] uppercase font-bold text-muted-foreground leading-none mb-1">Vaccinated</p>
                                             <span className={`px-2 py-0.5 rounded-full text-[10px] font-black uppercase ${selectedRegistration?.is_vaccinated === 'Yes' ? 'bg-green-100 text-green-700' :
-                                                    selectedRegistration?.is_vaccinated === 'No' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'
+                                                selectedRegistration?.is_vaccinated === 'No' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'
                                                 }`}>
                                                 {selectedRegistration?.is_vaccinated}
                                             </span>
