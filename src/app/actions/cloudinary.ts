@@ -13,8 +13,6 @@ export async function getAllMedia(maxResults: number = 500) {
                 .max_results(maxResults)
                 .with_field('context')
                 .with_field('tags')
-                .with_field('asset_folder')
-                .with_field('folder')
                 .execute(),
             cloudinary.search
                 .expression(`resource_type:video AND folder:${rootFolder}*`)
@@ -22,8 +20,6 @@ export async function getAllMedia(maxResults: number = 500) {
                 .max_results(maxResults)
                 .with_field('context')
                 .with_field('tags')
-                .with_field('asset_folder')
-                .with_field('folder')
                 .execute()
         ]);
 
