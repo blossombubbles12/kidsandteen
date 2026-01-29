@@ -55,20 +55,27 @@ export async function deleteRegistration(id: number) {
 
 export async function getAdminStats() {
     try {
+        const registrationsRes = await pool.query('SELECT COUNT(*) as total FROM registrations');
         const attendeesRes = await pool.query('SELECT SUM(guest_count + 1) as total FROM registrations');
         const petsRes = await pool.query('SELECT COUNT(*) as total FROM dogs');
-        const dogsRes = await pool.query("SELECT COUNT(*) as total FROM dogs WHERE type = 'Dog'");
         const categoriesRes = await pool.query('SELECT category, COUNT(*) as count FROM registrations GROUP BY category');
+        const inquiriesRes = await pool.query('SELECT COUNT(*) as total FROM contact_submissions');
 
         return {
+            totalRegistrations: parseInt(registrationsRes.rows[0].total || '0'),
             totalHumans: parseInt(attendeesRes.rows[0].total || '0'),
             totalPets: parseInt(petsRes.rows[0].total || '0'),
-            totalDogs: parseInt(dogsRes.rows[0].total || '0'),
-            otherPets: parseInt(petsRes.rows[0].total || '0') - parseInt(dogsRes.rows[0].total || '0'),
+            totalInquiries: parseInt(inquiriesRes.rows[0].total || '0'),
             categories: categoriesRes.rows
         };
     } catch (e) {
         console.error('Stats error:', e);
-        return { totalHumans: 0, totalPets: 0, totalDogs: 0, otherPets: 0, categories: [] };
+        return {
+            totalRegistrations: 0,
+            totalHumans: 0,
+            totalPets: 0,
+            totalInquiries: 0,
+            categories: []
+        };
     }
 }

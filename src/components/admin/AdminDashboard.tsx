@@ -18,7 +18,8 @@ import {
     MapPin,
     BadgeCheck,
     Info,
-    Mail
+    Mail,
+    MessageSquare
 } from "lucide-react";
 import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
@@ -39,10 +40,10 @@ import { ContactInquiries } from "./ContactInquiries";
 type AdminDashboardProps = {
     initialRegistrations: any[];
     stats: {
+        totalRegistrations: number;
         totalHumans: number;
         totalPets: number;
-        totalDogs: number;
-        otherPets: number;
+        totalInquiries: number;
         categories: { category: string; count: string }[];
     };
     user: any;
@@ -108,10 +109,10 @@ export default function AdminDashboard({ initialRegistrations, stats, user }: Ad
                             {/* Stats Grid */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                                 {[
-                                    { label: "Total Humans", value: stats.totalHumans, icon: Users, color: "bg-blue-500" },
+                                    { label: "Registration Entries", value: stats.totalRegistrations, icon: FileText, color: "bg-blue-500" },
+                                    { label: "Total Attendees", value: stats.totalHumans, icon: Users, color: "bg-indigo-500" },
                                     { label: "Total Pets", value: stats.totalPets, icon: PawPrint, color: "bg-orange-500" },
-                                    { label: "Dogs Registered", value: stats.totalDogs, icon: Dog, color: "bg-yellow-500" },
-                                    { label: "Other Pets", value: stats.otherPets, icon: Heart, color: "bg-red-500" },
+                                    { label: "Support Inquiries", value: stats.totalInquiries, icon: MessageSquare, color: "bg-emerald-500" },
                                 ].map((stat, i) => (
                                     <motion.div
                                         key={i}
