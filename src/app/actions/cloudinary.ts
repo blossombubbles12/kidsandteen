@@ -8,18 +8,20 @@ export async function getAllMedia(maxResults: number = 500) {
 
         const [images, videos] = await Promise.all([
             cloudinary.search
-                .expression(`resource_type:image AND folder:${rootFolder}/*`)
+                .expression(`resource_type:image AND asset_folder:${rootFolder}*`)
                 .sort_by('created_at', 'desc')
                 .max_results(maxResults)
                 .with_field('context')
                 .with_field('tags')
+                .with_field('asset_folder')
                 .execute(),
             cloudinary.search
-                .expression(`resource_type:video AND folder:${rootFolder}/*`)
+                .expression(`resource_type:video AND asset_folder:${rootFolder}*`)
                 .sort_by('created_at', 'desc')
                 .max_results(maxResults)
                 .with_field('context')
                 .with_field('tags')
+                .with_field('asset_folder')
                 .execute()
         ]);
 

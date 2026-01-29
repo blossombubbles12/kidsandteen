@@ -158,7 +158,9 @@ export default function MediaManager() {
 
     const filteredMedia = media.filter(asset => {
         const matchesSearch = asset.public_id.toLowerCase().includes(search.toLowerCase())
-        const matchesFolder = !selectedFolder || asset.public_id.startsWith(selectedFolder)
+        // Check both public_id (for backward compatibility) and asset_folder field
+        const assetFolder = (asset as any).asset_folder || asset.public_id.substring(0, asset.public_id.lastIndexOf('/'))
+        const matchesFolder = !selectedFolder || assetFolder === selectedFolder || assetFolder.startsWith(selectedFolder + '/')
         return matchesSearch && matchesFolder
     })
 
