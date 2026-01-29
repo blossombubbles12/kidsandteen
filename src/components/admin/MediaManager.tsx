@@ -18,10 +18,13 @@ import {
     Eye,
     Download,
     Loader2,
-    Music
+    Music,
+    FileAudio,
+    FileVideo
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
     Dialog,
     DialogContent,
@@ -64,6 +67,7 @@ export default function MediaManager() {
     const [selectedFolder, setSelectedFolder] = useState<string | null>(null)
     const [selectedMedia, setSelectedMedia] = useState<MediaAsset | null>(null)
     const [uploading, setUploading] = useState(false)
+    const [uploadProgress, setUploadProgress] = useState(0)
     const [showNewFolder, setShowNewFolder] = useState(false)
     const [newFolderName, setNewFolderName] = useState('')
 
@@ -101,22 +105,55 @@ export default function MediaManager() {
         if (!files || files.length === 0) return
 
         setUploading(true)
+        setUploadProgress(0)
         const targetFolder = selectedFolder || 'mydogandigroup/uploads'
+        const fileList = Array.from(files)
+        const totalFiles = fileList.length
+        let successCount = 0
+        let errors: string[] = []
 
-        for (const file of Array.from(files)) {
-            const formData = new FormData()
-            formData.append('file', file)
+        // Process in batches
+        const batchSize = 2
+        for (let i = 0; i < totalFiles; i += batchSize) {
+            const batch = fileList.slice(i, i + batchSize)
 
-            const result = await uploadToCloudinary(formData, targetFolder)
+            await Promise.all(batch.map(async (file) => {
+                const formData = new FormData()
+                formData.append('file', file)
 
-            if (result.success) {
-                toast({ title: 'Success', description: `${file.name} uploaded successfully` })
-            } else {
-                toast({ variant: 'destructive', title: 'Error', description: `Failed to upload ${file.name}` })
-            }
+                try {
+                    const result = await uploadToCloudinary(formData, targetFolder)
+                    if (result.success) {
+                        successCount++
+                    } else {
+                        errors.push(`Failed to upload ${file.name}`)
+                    }
+                } catch (err) {
+                    errors.push(`Error uploading ${file.name}`)
+                }
+            }))
+
+            // Update progress
+            setUploadProgress(Math.min(((i + batch.length) / totalFiles) * 100, 100))
+        }
+
+        if (successCount > 0) {
+            toast({
+                title: 'Upload Complete',
+                description: `Successfully uploaded ${successCount} of ${totalFiles} files.`
+            })
+        }
+
+        if (errors.length > 0) {
+            toast({
+                variant: 'destructive',
+                title: 'Some uploads failed',
+                description: `Failed to upload ${errors.length} files.`
+            })
         }
 
         setUploading(false)
+        setUploadProgress(0)
         loadData()
         e.target.value = ''
     }
@@ -235,20 +272,27 @@ export default function MediaManager() {
                         <span className="hidden md:inline">New Folder</span>
                     </Button>
 
-                    <label className="cursor-pointer">
-                        <Button className="rounded-xl font-bold shadow-lg" disabled={uploading}>
-                            {uploading ? (
-                                <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Uploading...</>
-                            ) : (
-                                <><Upload className="w-4 h-4 mr-2" /> Upload</>
-                            )}
+                    <label className="cursor-pointer relative group">
+                        <div className="absolute inset-0 bg-primary/20 rounded-xl blur-xl group-hover:bg-primary/30 transition-all opacity-0 group-hover:opacity-100" />
+                        <Button className="rounded-xl font-bold shadow-lg relative overflow-hidden" disabled={uploading} asChild>
+                            <span>
+                                {uploading ? (
+                                    <>
+                                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                        {Math.round(uploadProgress)}%
+                                        <div className="absolute bottom-0 left-0 h-1 bg-white/30 transition-all duration-300" style={{ width: `${uploadProgress}%` }} />
+                                    </>
+                                ) : (
+                                    <><Upload className="w-4 h-4 mr-2" /> Upload Media</>
+                                )}
+                            </span>
                         </Button>
                         <input
                             type="file"
-                            multiple
-                            accept="image/*,video/*"
-                            onChange={handleUpload}
                             className="hidden"
+                            multiple
+                            accept="image/*,video/*,audio/*"
+                            onChange={handleUpload}
                             disabled={uploading}
                         />
                     </label>
