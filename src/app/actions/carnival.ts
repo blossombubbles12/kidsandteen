@@ -9,7 +9,7 @@ export async function registerUser(formData: any) {
         await client.query('BEGIN');
 
         const {
-            name, email, phone, category, guestCount,
+            name, email, phone, sex, category, guestCount,
             petType, petCount, petNames, isVaccinated,
             location, donationInterest, dogs
         } = formData;
@@ -17,13 +17,13 @@ export async function registerUser(formData: any) {
         // Insert registration
         const res = await client.query(
             `INSERT INTO registrations (
-                name, email, phone, category, guest_count, 
+                name, email, phone, sex, category, guest_count, 
                 pet_type, pet_count, pet_names, is_vaccinated, 
                 location, donation_interest
             ) 
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id`,
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING id`,
             [
-                name, email, phone, category, guestCount,
+                name, email, phone, sex || '', category, guestCount,
                 petType, petCount, petNames, isVaccinated,
                 location, donationInterest
             ]
@@ -31,13 +31,13 @@ export async function registerUser(formData: any) {
 
         const registrationId = res.rows[0].id;
 
-        // Insert dogs if provided (optional now)
+        // Insert pets (stored in dogs table for now) if provided
         if (dogs && Array.isArray(dogs)) {
-            for (const dog of dogs) {
-                if (dog.name) {
+            for (const pet of dogs) {
+                if (pet.name) {
                     await client.query(
-                        `INSERT INTO dogs (registration_id, name, breed) VALUES ($1, $2, $3)`,
-                        [registrationId, dog.name, dog.breed || '']
+                        `INSERT INTO dogs (registration_id, name, breed, type) VALUES ($1, $2, $3, $4)`,
+                        [registrationId, pet.name, pet.breed || pet.description || '', pet.type || petType || 'Dog']
                     );
                 }
             }

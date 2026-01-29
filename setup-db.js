@@ -55,14 +55,16 @@ async function main() {
       "ALTER TABLE registrations ADD COLUMN IF NOT EXISTS pet_names TEXT",
       "ALTER TABLE registrations ADD COLUMN IF NOT EXISTS is_vaccinated TEXT",
       "ALTER TABLE registrations ADD COLUMN IF NOT EXISTS location TEXT",
-      "ALTER TABLE registrations ADD COLUMN IF NOT EXISTS donation_interest TEXT"
+      "ALTER TABLE registrations ADD COLUMN IF NOT EXISTS donation_interest TEXT",
+      "ALTER TABLE registrations ADD COLUMN IF NOT EXISTS sex TEXT",
+      "ALTER TABLE dogs ADD COLUMN IF NOT EXISTS type TEXT"
     ];
 
     for (const sql of addCols) {
       await client.query(sql);
     }
 
-    console.log("registrations table updated with new fields");
+    console.log("registrations and dogs tables updated with new fields");
 
   } catch (err) {
     console.error("Error creating tables:", err);

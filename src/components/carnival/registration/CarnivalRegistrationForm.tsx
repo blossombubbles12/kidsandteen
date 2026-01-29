@@ -11,7 +11,8 @@ import SocialShare from "./SocialShare";
 
 
 // Types
-type DogDetail = {
+type PetDetail = {
+    type: string;
     name: string;
     breed: string;
 };
@@ -20,6 +21,7 @@ type FormData = {
     name: string;
     email: string;
     phone: string;
+    sex: string;
     category: "owner" | "spectator";
     location: string;
     donationInterest: string;
@@ -28,7 +30,7 @@ type FormData = {
     petNames: string;
     isVaccinated: string;
     guestCount: number;
-    dogs: DogDetail[];
+    dogs: PetDetail[]; // renamed pets in backend but kept variable name for compatibility or will update
     acceptedTerms: boolean;
 };
 
@@ -41,6 +43,7 @@ export default function CarnivalRegistrationForm() {
         name: "",
         email: "",
         phone: "",
+        sex: "",
         category: "owner",
         location: "",
         donationInterest: "",
@@ -49,7 +52,7 @@ export default function CarnivalRegistrationForm() {
         petNames: "",
         isVaccinated: "Yes",
         guestCount: 0,
-        dogs: [{ name: "", breed: "" }],
+        dogs: [{ type: "Dog", name: "", breed: "" }],
         acceptedTerms: false
     });
 
@@ -65,7 +68,7 @@ export default function CarnivalRegistrationForm() {
         });
     };
 
-    const addDog = () => updateData({ dogs: [...formData.dogs, { name: "", breed: "" }] });
+    const addDog = () => updateData({ dogs: [...formData.dogs, { type: formData.petType || "Dog", name: "", breed: "" }] });
 
     const removeDog = (index: number) => {
         const newDogs = [...formData.dogs];
@@ -73,7 +76,7 @@ export default function CarnivalRegistrationForm() {
         updateData({ dogs: newDogs });
     };
 
-    const updateDog = (index: number, field: keyof DogDetail, value: string) => {
+    const updateDog = (index: number, field: keyof PetDetail, value: string) => {
         const newDogs = [...formData.dogs];
         newDogs[index] = { ...newDogs[index], [field]: value };
         updateData({ dogs: newDogs });
@@ -169,6 +172,19 @@ export default function CarnivalRegistrationForm() {
                                             placeholder="+234..."
                                             type="tel"
                                         />
+                                    </div>
+                                    <div>
+                                        <label className="text-sm font-medium mb-1 block">Sex</label>
+                                        <select
+                                            value={formData.sex}
+                                            onChange={(e) => updateData({ sex: e.target.value })}
+                                            className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        >
+                                            <option value="">Select Sex</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
+                                        </select>
                                     </div>
                                 </div>
                             </motion.div>
@@ -285,90 +301,103 @@ export default function CarnivalRegistrationForm() {
                                 <div className="space-y-4">
                                     <div className="grid grid-cols-2 gap-4">
                                         <div>
-                                            <label className="text-sm font-medium mb-1 block">Type of pet?</label>
+                                            <label className="text-sm font-medium mb-1 block">Default Pet Type</label>
                                             <select
                                                 value={formData.petType}
-                                                onChange={(e) => updateData({ petType: e.target.value })}
+                                                onChange={(e) => {
+                                                    const newType = e.target.value;
+                                                    updateData({ petType: newType });
+                                                }}
                                                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                                             >
-                                                <option value="Dog">Dog</option>
-                                                <option value="Cat">Cat</option>
-                                                <option value="Bird">Bird</option>
-                                                <option value="Rabbit">Rabbit</option>
-                                                <option value="Other">Other</option>
+                                                <option value="Dog">Dog 🐕</option>
+                                                <option value="Cat">Cat 🐱</option>
+                                                <option value="Bird">Bird 🦜</option>
+                                                <option value="Rabbit">Rabbit 🐰</option>
+                                                <option value="Hamster">Hamster 🐹</option>
+                                                <option value="Lizard">Lizard 🦎</option>
+                                                <option value="Turtle">Turtle 🐢</option>
+                                                <option value="Fish">Fish 🐠</option>
+                                                <option value="Snake">Snake 🐍</option>
+                                                <option value="Horse">Horse 🐎</option>
+                                                <option value="Monkey">Monkey 🐒</option>
+                                                <option value="Other">Other ✨</option>
                                             </select>
                                         </div>
                                         <div>
-                                            <label className="text-sm font-medium mb-1 block">How many pets?</label>
-                                            <Input
-                                                type="number"
-                                                value={formData.petCount}
-                                                onChange={(e) => updateData({ petCount: parseInt(e.target.value) || 0 })}
-                                                min={0}
-                                            />
+                                            <label className="text-sm font-medium mb-1 block">Quick Add</label>
+                                            <Button
+                                                type="button"
+                                                variant="outline"
+                                                className="w-full h-10 font-bold border-dashed"
+                                                onClick={addDog}
+                                            >
+                                                <Plus className="w-4 h-4 mr-2" /> Add {formData.petType}
+                                            </Button>
                                         </div>
                                     </div>
 
-                                    {formData.petType.toLowerCase().includes('dog') ? (
-                                        <div className="space-y-4">
-                                            <label className="text-sm font-bold flex items-center gap-2 text-primary">
-                                                <Dog className="w-4 h-4" /> Individual Dog Details
-                                            </label>
-                                            <div className="max-h-[250px] overflow-y-auto pr-2 space-y-3 custom-scrollbar">
-                                                {formData.dogs.map((dog, index) => (
-                                                    <div key={index} className="bg-secondary/10 p-3 rounded-xl border border-border relative group">
-                                                        {formData.dogs.length > 1 && (
-                                                            <button
-                                                                type="button"
-                                                                onClick={(e) => { e.stopPropagation(); removeDog(index); }}
-                                                                className="absolute -top-2 -right-2 bg-red-500 text-white p-1 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                                    <div className="space-y-4">
+                                        <label className="text-sm font-bold flex items-center gap-2 text-primary">
+                                            <Dog className="w-4 h-4" /> Your Registered Pets ({formData.dogs.length})
+                                        </label>
+                                        <div className="max-h-[300px] overflow-y-auto pr-2 space-y-3 custom-scrollbar">
+                                            {formData.dogs.map((pet, index) => (
+                                                <div key={index} className="bg-secondary/10 p-4 rounded-xl border border-border relative group">
+                                                    {formData.dogs.length > 1 && (
+                                                        <button
+                                                            type="button"
+                                                            onClick={(e) => { e.stopPropagation(); removeDog(index); }}
+                                                            className="absolute -top-2 -right-2 bg-red-500 text-white p-1.5 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                                                        >
+                                                            <Trash2 className="w-3 h-3" />
+                                                        </button>
+                                                    )}
+                                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                                        <div>
+                                                            <label className="text-[10px] uppercase font-black text-muted-foreground/60 mb-1 block">Type</label>
+                                                            <select
+                                                                value={pet.type}
+                                                                onChange={(e) => updateDog(index, 'type', e.target.value)}
+                                                                className="flex h-8 w-full rounded-md border border-input bg-background/50 px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-ring"
                                                             >
-                                                                <Trash2 className="w-3 h-3" />
-                                                            </button>
-                                                        )}
-                                                        <div className="grid grid-cols-2 gap-3">
-                                                            <div>
-                                                                <label className="text-[10px] uppercase font-black text-muted-foreground/60 mb-1 block">Name</label>
-                                                                <Input
-                                                                    value={dog.name}
-                                                                    onChange={(e) => updateDog(index, 'name', e.target.value)}
-                                                                    placeholder="e.g. Max"
-                                                                    className="h-8 text-xs bg-background/50"
-                                                                />
-                                                            </div>
-                                                            <div>
-                                                                <label className="text-[10px] uppercase font-black text-muted-foreground/60 mb-1 block">Breed</label>
-                                                                <Input
-                                                                    value={dog.breed}
-                                                                    onChange={(e) => updateDog(index, 'breed', e.target.value)}
-                                                                    placeholder="e.g. Boerboel"
-                                                                    className="h-8 text-xs bg-background/50"
-                                                                />
-                                                            </div>
+                                                                <option value="Dog">Dog</option>
+                                                                <option value="Cat">Cat</option>
+                                                                <option value="Bird">Bird</option>
+                                                                <option value="Rabbit">Rabbit</option>
+                                                                <option value="Hamster">Hamster</option>
+                                                                <option value="Lizard">Lizard</option>
+                                                                <option value="Turtle">Turtle</option>
+                                                                <option value="Fish">Fish</option>
+                                                                <option value="Snake">Snake</option>
+                                                                <option value="Horse">Horse</option>
+                                                                <option value="Monkey">Monkey</option>
+                                                                <option value="Other">Other</option>
+                                                            </select>
+                                                        </div>
+                                                        <div>
+                                                            <label className="text-[10px] uppercase font-black text-muted-foreground/60 mb-1 block">Name</label>
+                                                            <Input
+                                                                value={pet.name}
+                                                                onChange={(e) => updateDog(index, 'name', e.target.value)}
+                                                                placeholder="e.g. Max"
+                                                                className="h-8 text-xs bg-background/50"
+                                                            />
+                                                        </div>
+                                                        <div>
+                                                            <label className="text-[10px] uppercase font-black text-muted-foreground/60 mb-1 block">Breed/Desc</label>
+                                                            <Input
+                                                                value={pet.breed}
+                                                                onChange={(e) => updateDog(index, 'breed', e.target.value)}
+                                                                placeholder="e.g. Golden"
+                                                                className="h-8 text-xs bg-background/50"
+                                                            />
                                                         </div>
                                                     </div>
-                                                ))}
-                                                <Button
-                                                    type="button"
-                                                    variant="outline"
-                                                    size="sm"
-                                                    className="w-full border-dashed border-2 py-4 bg-primary/5 hover:bg-primary/10 text-primary font-bold"
-                                                    onClick={addDog}
-                                                >
-                                                    <Plus className="w-3 h-3 mr-2" /> Add Another Dog
-                                                </Button>
-                                            </div>
+                                                </div>
+                                            ))}
                                         </div>
-                                    ) : (
-                                        <div>
-                                            <label className="text-sm font-medium mb-1 block">Name of pet(s)?</label>
-                                            <Input
-                                                value={formData.petNames}
-                                                onChange={(e) => updateData({ petNames: e.target.value })}
-                                                placeholder="e.g. Zues, Luna"
-                                            />
-                                        </div>
-                                    )}
+                                    </div>
 
                                     <div>
                                         <label className="text-sm font-medium mb-1 block">State if the pet is duly vaccinated?</label>
@@ -409,7 +438,8 @@ export default function CarnivalRegistrationForm() {
                                     </div>
                                 </div>
                             </motion.div>
-                        )}
+                        )
+                        }
                         {step === 4 && (
                             <motion.div key="step4" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="space-y-8 text-center py-10">
                                 <div className="space-y-4">
@@ -535,18 +565,14 @@ function TicketCard({ formData, entryId }: { formData: FormData; entryId: string
                 </div>
 
                 <div className="pt-2">
-                    <p className="text-xs text-muted-foreground uppercase">{formData.petType.toLowerCase().includes('dog') ? 'Dogs' : 'Pet Name(s)'}</p>
-                    {formData.petType.toLowerCase().includes('dog') ? (
-                        <div className="space-y-1">
-                            {formData.dogs.map((dog, i) => (
-                                <p key={i} className="font-bold text-sm">
-                                    {dog.name || 'Unnamed'} {dog.breed ? `(${dog.breed})` : ''}
-                                </p>
-                            ))}
-                        </div>
-                    ) : (
-                        <p className="font-bold truncate">{formData.petNames || "None"}</p>
-                    )}
+                    <p className="text-xs text-muted-foreground uppercase">Registered Pets</p>
+                    <div className="space-y-1">
+                        {formData.dogs.map((pet, i) => (
+                            <p key={i} className="font-bold text-sm">
+                                {pet.name || 'Unnamed'} ({pet.type}{pet.breed ? ` - ${pet.breed}` : ''})
+                            </p>
+                        ))}
+                    </div>
                 </div>
 
                 <div className="pt-4 text-center">
