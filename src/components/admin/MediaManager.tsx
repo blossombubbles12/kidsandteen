@@ -272,22 +272,25 @@ export default function MediaManager() {
                         <span className="hidden md:inline">New Folder</span>
                     </Button>
 
-                    <label className="cursor-pointer relative group">
+                    <div className="relative group">
                         <div className="absolute inset-0 bg-primary/20 rounded-xl blur-xl group-hover:bg-primary/30 transition-all opacity-0 group-hover:opacity-100" />
-                        <Button className="rounded-xl font-bold shadow-lg relative overflow-hidden" disabled={uploading} asChild>
-                            <span>
-                                {uploading ? (
-                                    <>
-                                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                                        {Math.round(uploadProgress)}%
-                                        <div className="absolute bottom-0 left-0 h-1 bg-white/30 transition-all duration-300" style={{ width: `${uploadProgress}%` }} />
-                                    </>
-                                ) : (
-                                    <><Upload className="w-4 h-4 mr-2" /> Upload Media</>
-                                )}
-                            </span>
+                        <Button
+                            className="rounded-xl font-bold shadow-lg relative overflow-hidden"
+                            disabled={uploading}
+                            onClick={() => document.getElementById('media-upload-input')?.click()}
+                        >
+                            {uploading ? (
+                                <>
+                                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                    {Math.round(uploadProgress)}%
+                                    <div className="absolute bottom-0 left-0 h-1 bg-white/30 transition-all duration-300" style={{ width: `${uploadProgress}%` }} />
+                                </>
+                            ) : (
+                                <><Upload className="w-4 h-4 mr-2" /> Upload Media</>
+                            )}
                         </Button>
                         <input
+                            id="media-upload-input"
                             type="file"
                             className="hidden"
                             multiple
@@ -295,7 +298,7 @@ export default function MediaManager() {
                             onChange={handleUpload}
                             disabled={uploading}
                         />
-                    </label>
+                    </div>
                 </div>
             </div>
 
