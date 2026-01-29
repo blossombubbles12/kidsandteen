@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { MainWrapper } from "@/components/MainWrapper";
 import { Toaster } from "@/components/ui/toaster";
 
 const outfit = Outfit({
@@ -42,9 +43,9 @@ export default function RootLayout({
         )}
       >
         <Navigation />
-        <main className="flex-1 pt-20 md:pt-24">
+        <MainWrapper>
           {children}
-        </main>
+        </MainWrapper>
         <Footer />
         <Toaster />
       </body>

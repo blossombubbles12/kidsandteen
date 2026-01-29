@@ -22,6 +22,9 @@ const navItems = [
 export function Navigation() {
     const [isOpen, setIsOpen] = React.useState(false);
     const pathname = usePathname();
+    const isAdminPage = pathname?.startsWith('/admin');
+
+    if (isAdminPage) return null;
 
     const toggleMenu = () => setIsOpen(!isOpen);
 

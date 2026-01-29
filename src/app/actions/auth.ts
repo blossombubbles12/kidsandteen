@@ -92,3 +92,61 @@ export async function getSession() {
         return null;
     }
 }
+
+export async function updateProfile(formData: { name: string; email: string }) {
+    const session = await getSession();
+    if (!session) return { success: false, error: 'Unauthorized' };
+
+    const client = await pool.connect();
+    try {
+        await client.query(
+            'UPDATE users SET name = $1, email = $2 WHERE id = $3',
+            [formData.name, formData.email, session.id]
+        );
+
+        // Update session cookie
+        const newSession = await encrypt({ ...session, name: formData.name, email: formData.email });
+        const cookieStore = await cookies();
+        cookieStore.set('session', newSession, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
+            path: '/',
+            maxAge: 7200
+        });
+
+        revalidatePath('/admin');
+        return { success: true };
+    } catch (e: any) {
+        console.error('Update profile error:', e);
+        if (e.code === '23505') return { success: false, error: 'Email already exists' };
+        return { success: false, error: 'Update failed' };
+    } finally {
+        client.release();
+    }
+}
+
+export async function updatePassword(formData: { currentPassword: string; newPassword: string }) {
+    const session = await getSession();
+    if (!session) return { success: false, error: 'Unauthorized' };
+
+    const client = await pool.connect();
+    try {
+        const res = await client.query('SELECT password FROM users WHERE id = $1', [session.id]);
+        const user = res.rows[0];
+
+        if (!user || !(await bcrypt.compare(formData.currentPassword, user.password))) {
+            return { success: false, error: 'Incorrect current password' };
+        }
+
+        const hashedNewPassword = await bcrypt.hash(formData.newPassword, 10);
+        await client.query('UPDATE users SET password = $1 WHERE id = $2', [hashedNewPassword, session.id]);
+
+        return { success: true };
+    } catch (e) {
+        console.error('Update password error:', e);
+        return { success: false, error: 'Password update failed' };
+    } finally {
+        client.release();
+    }
+}
