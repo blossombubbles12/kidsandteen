@@ -17,7 +17,8 @@ import {
     X,
     Eye,
     Download,
-    Loader2
+    Loader2,
+    Music
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -32,6 +33,8 @@ import { getAllMedia, deleteMedia, createFolder, deleteFolder, getAllFolders } f
 import { uploadToCloudinary } from '@/app/actions/media'
 import { useToast } from '@/hooks/use-toast'
 import { CldImage } from 'next-cloudinary'
+import Image from 'next/image'
+import { useState as useImageState } from 'react'
 
 type MediaAsset = {
     public_id: string
@@ -43,6 +46,7 @@ type MediaAsset = {
     width?: number
     height?: number
     folder?: string
+    asset_folder?: string
 }
 
 type FolderData = {
@@ -75,11 +79,18 @@ export default function MediaManager() {
         ])
 
         if (mediaRes.success) {
+            console.log('Loaded media:', mediaRes.media.length, 'items')
+            console.log('Sample media:', mediaRes.media.slice(0, 3))
             setMedia(mediaRes.media as MediaAsset[])
+        } else {
+            console.error('Failed to load media:', mediaRes.error)
         }
 
         if (foldersRes.success) {
+            console.log('Loaded folders:', foldersRes.folders)
             setFolders(foldersRes.folders)
+        } else {
+            console.error('Failed to load folders:', foldersRes.error)
         }
 
         setLoading(false)
@@ -158,11 +169,31 @@ export default function MediaManager() {
 
     const filteredMedia = media.filter(asset => {
         const matchesSearch = asset.public_id.toLowerCase().includes(search.toLowerCase())
-        // Check both public_id (for backward compatibility) and asset_folder field
-        const assetFolder = (asset as any).asset_folder || asset.public_id.substring(0, asset.public_id.lastIndexOf('/'))
-        const matchesFolder = !selectedFolder || assetFolder === selectedFolder || assetFolder.startsWith(selectedFolder + '/')
+
+        let matchesFolder = !selectedFolder
+        if (selectedFolder) {
+            // Cloudinary can return folder info in 'folder' or 'asset_folder', or we parse public_id
+            const assetFolder = asset.asset_folder || asset.folder || ''
+            // Check if it belongs exactly to the folder or is a subfolder
+            if (assetFolder) {
+                matchesFolder = assetFolder === selectedFolder || assetFolder.startsWith(selectedFolder + '/')
+            } else {
+                // Fallback to public_id parsing
+                matchesFolder = asset.public_id.startsWith(selectedFolder + '/')
+            }
+        }
+
         return matchesSearch && matchesFolder
     })
+
+    // Debug logging
+    if (selectedFolder) {
+        console.log('Selected folder:', selectedFolder)
+        console.log('Filtered media count:', filteredMedia.length)
+        if (filteredMedia.length === 0 && media.length > 0) {
+            console.log('Sample asset for debugging:', media[0])
+        }
+    }
 
     const formatBytes = (bytes: number) => {
         if (bytes === 0) return '0 Bytes'
@@ -305,15 +336,29 @@ export default function MediaManager() {
                         >
                             <div className="aspect-square relative bg-slate-100">
                                 {asset.resource_type === 'image' ? (
-                                    <CldImage
-                                        src={asset.public_id}
-                                        alt={asset.public_id}
-                                        fill
-                                        className="object-cover"
-                                    />
-                                ) : (
+                                    <>
+                                        <Image
+                                            src={asset.secure_url}
+                                            alt={asset.public_id}
+                                            fill
+                                            className="object-cover"
+                                            unoptimized
+                                            onError={(e) => {
+                                                console.error('Failed to load image:', asset.public_id, asset.secure_url);
+                                                (e.target as HTMLImageElement).style.display = 'none';
+                                            }}
+                                        />
+                                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                            <ImageIcon className="w-12 h-12 text-slate-300" />
+                                        </div>
+                                    </>
+                                ) : asset.resource_type === 'video' && !asset.format?.match(/mp3|wav|ogg/) ? (
                                     <div className="absolute inset-0 flex items-center justify-center">
                                         <Video className="w-12 h-12 text-primary" />
+                                    </div>
+                                ) : (
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                        <Music className="w-12 h-12 text-pink-500" />
                                     </div>
                                 )}
                             </div>
@@ -365,14 +410,14 @@ export default function MediaManager() {
                             {filteredMedia.map(asset => (
                                 <tr key={asset.public_id} className="hover:bg-slate-50 transition-colors">
                                     <td className="px-6 py-4">
-                                        <div className="w-12 h-12 rounded-lg overflow-hidden bg-slate-100">
+                                        <div className="w-12 h-12 rounded-lg overflow-hidden bg-slate-100 relative">
                                             {asset.resource_type === 'image' ? (
-                                                <CldImage
-                                                    src={asset.public_id}
+                                                <Image
+                                                    src={asset.secure_url}
                                                     alt={asset.public_id}
-                                                    width={48}
-                                                    height={48}
+                                                    fill
                                                     className="object-cover"
+                                                    unoptimized
                                                 />
                                             ) : (
                                                 <div className="w-full h-full flex items-center justify-center">
@@ -468,15 +513,21 @@ export default function MediaManager() {
                             <div className="p-6 space-y-6">
                                 <div className="bg-slate-100 rounded-2xl overflow-hidden">
                                     {selectedMedia.resource_type === 'image' ? (
-                                        <CldImage
-                                            src={selectedMedia.public_id}
+                                        <Image
+                                            src={selectedMedia.secure_url}
                                             alt={selectedMedia.public_id}
                                             width={selectedMedia.width || 800}
                                             height={selectedMedia.height || 600}
                                             className="w-full h-auto"
+                                            unoptimized
                                         />
-                                    ) : (
+                                    ) : selectedMedia.resource_type === 'video' && !selectedMedia.format?.match(/mp3|wav|ogg/) ? (
                                         <video src={selectedMedia.secure_url} controls className="w-full" />
+                                    ) : (
+                                        <div className="flex flex-col items-center justify-center py-10 bg-slate-50">
+                                            <Music className="w-20 h-20 text-pink-500 mb-4" />
+                                            <audio src={selectedMedia.secure_url} controls className="w-full max-w-md" />
+                                        </div>
                                     )}
                                 </div>
 

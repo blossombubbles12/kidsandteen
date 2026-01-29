@@ -8,28 +8,37 @@ export async function getAllMedia(maxResults: number = 500) {
 
         const [images, videos] = await Promise.all([
             cloudinary.search
-                .expression(`resource_type:image AND asset_folder:${rootFolder}*`)
+                .expression(`resource_type:image AND folder:${rootFolder}*`)
                 .sort_by('created_at', 'desc')
                 .max_results(maxResults)
                 .with_field('context')
                 .with_field('tags')
                 .with_field('asset_folder')
+                .with_field('folder')
                 .execute(),
             cloudinary.search
-                .expression(`resource_type:video AND asset_folder:${rootFolder}*`)
+                .expression(`resource_type:video AND folder:${rootFolder}*`)
                 .sort_by('created_at', 'desc')
                 .max_results(maxResults)
                 .with_field('context')
                 .with_field('tags')
                 .with_field('asset_folder')
+                .with_field('folder')
                 .execute()
         ]);
 
+        const allMedia = [...images.resources, ...videos.resources].sort((a, b) =>
+            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+        );
+
+        // Debug: Log first item to see structure
+        if (allMedia.length > 0) {
+            console.log('Sample media item from Cloudinary:', JSON.stringify(allMedia[0], null, 2));
+        }
+
         return {
             success: true,
-            media: [...images.resources, ...videos.resources].sort((a, b) =>
-                new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-            )
+            media: allMedia
         };
     } catch (error) {
         console.error('Get all media error:', error);
