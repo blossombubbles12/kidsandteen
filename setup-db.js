@@ -38,13 +38,26 @@ async function main() {
       );
     `);
 
+    // Create users table
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS users (
+        id SERIAL PRIMARY KEY,
+        name TEXT NOT NULL,
+        email TEXT UNIQUE NOT NULL,
+        password TEXT NOT NULL,
+        role TEXT NOT NULL DEFAULT 'user',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
     // Create dogs table
     await client.query(`
       CREATE TABLE IF NOT EXISTS dogs (
         id SERIAL PRIMARY KEY,
         registration_id INT REFERENCES registrations(id) ON DELETE CASCADE,
         name TEXT,
-        breed TEXT
+        breed TEXT,
+        type TEXT
       );
     `);
 
