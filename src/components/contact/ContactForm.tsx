@@ -4,30 +4,69 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input"; // Assuming you have an Input component, if not I'll use standard input
 // Standard input fallback if UI component doesn't exist yet, but assuming basic setup.
 // Actually, I'll create a simple clean form here to be safe.
-import { Send } from "lucide-react";
+import { Send, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
+import { submitContactForm } from "@/app/actions/contact";
+import { useToast } from "@/hooks/use-toast";
 
 export function ContactForm() {
+    const { toast } = useToast();
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
 
         const formData = new FormData(e.target as HTMLFormElement);
-        const firstName = formData.get("firstName");
-        const lastName = formData.get("lastName");
-        const email = formData.get("email");
-        const subject = formData.get("subject");
-        const message = formData.get("message");
 
-        const body = `Name: ${firstName} ${lastName}\nEmail: ${email}\n\nMessage:\n${message}`;
-        const mailtoUrl = `mailto:mydogandigroup@yahoo.com?subject=${encodeURIComponent(subject as string)}&body=${encodeURIComponent(body)}`;
-
-        window.location.href = mailtoUrl;
-
-        setIsSubmitting(false);
+        try {
+            const result = await submitContactForm(formData);
+            if (result.success) {
+                setIsSuccess(true);
+                toast({
+                    title: "Message Sent!",
+                    description: "We've received your message and will get back to you soon.",
+                });
+                (e.target as HTMLFormElement).reset();
+            } else {
+                toast({
+                    variant: "destructive",
+                    title: "Error",
+                    description: result.error || "Something went wrong. Please try again.",
+                });
+            }
+        } catch (error) {
+            toast({
+                variant: "destructive",
+                title: "Error",
+                description: "Failed to send message. Please check your connection.",
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
+
+    if (isSuccess) {
+        return (
+            <div className="bg-white p-12 rounded-3xl shadow-lg border border-border/50 text-center space-y-6">
+                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                    <CheckCircle2 className="w-10 h-10 text-green-600" />
+                </div>
+                <div className="space-y-2">
+                    <h3 className="text-2xl font-bold">Thank You!</h3>
+                    <p className="text-muted-foreground">Your message has been successfully sent. Our team will review your inquiry and reach out to you shortly.</p>
+                </div>
+                <Button
+                    variant="outline"
+                    onClick={() => setIsSuccess(false)}
+                    className="rounded-xl"
+                >
+                    Send Another Message
+                </Button>
+            </div>
+        );
+    }
 
     return (
         <div className="bg-white p-8 rounded-3xl shadow-lg border border-border/50">

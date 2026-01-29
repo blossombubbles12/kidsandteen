@@ -61,6 +61,20 @@ async function main() {
       );
     `);
 
+    // Create contact_submissions table
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS contact_submissions (
+        id SERIAL PRIMARY KEY,
+        first_name TEXT NOT NULL,
+        last_name TEXT NOT NULL,
+        email TEXT NOT NULL,
+        subject TEXT NOT NULL,
+        message TEXT NOT NULL,
+        status TEXT DEFAULT 'pending',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
     // Ensure new columns exist if table was already created
     const addCols = [
       "ALTER TABLE registrations ADD COLUMN IF NOT EXISTS pet_type TEXT",

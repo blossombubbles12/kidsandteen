@@ -34,6 +34,7 @@ import { useToast } from "@/hooks/use-toast";
 import MediaManager from "@/components/admin/MediaManager";
 import { AdminSidebar } from "./AdminSidebar";
 import { ProfilePage } from "./ProfilePage";
+import { ContactInquiries } from "./ContactInquiries";
 
 type AdminDashboardProps = {
     initialRegistrations: any[];
@@ -53,7 +54,7 @@ export default function AdminDashboard({ initialRegistrations, stats, user }: Ad
     const [search, setSearch] = useState("");
     const [isDeleting, setIsDeleting] = useState<number | null>(null);
     const [selectedRegistration, setSelectedRegistration] = useState<any>(null);
-    const [activeTab, setActiveTab] = useState<'registrations' | 'media' | 'profile'>('registrations');
+    const [activeTab, setActiveTab] = useState<'registrations' | 'media' | 'profile' | 'inquiries'>('registrations');
 
     const filteredRegistrations = useMemo(() => {
         return registrations.filter(reg =>
@@ -87,7 +88,7 @@ export default function AdminDashboard({ initialRegistrations, stats, user }: Ad
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white p-6 rounded-2xl shadow-sm border border-border">
                         <div>
                             <h1 className="text-2xl md:text-3xl font-black tracking-tight uppercase">
-                                {activeTab === 'registrations' ? 'Registration' : activeTab === 'media' ? 'Media' : 'User'} <span className="text-primary">{activeTab === 'profile' ? 'Profile' : 'Registry'}</span>
+                                {activeTab === 'registrations' ? 'Registration' : activeTab === 'media' ? 'Media' : activeTab === 'inquiries' ? 'Contact' : 'User'} <span className="text-primary">{activeTab === 'profile' ? 'Profile' : activeTab === 'inquiries' ? 'Inquiries' : 'Registry'}</span>
                             </h1>
                             <p className="text-sm text-muted-foreground flex items-center gap-2">
                                 <BadgeCheck className="w-4 h-4 text-green-500" />
@@ -372,6 +373,8 @@ export default function AdminDashboard({ initialRegistrations, stats, user }: Ad
                         <div className="bg-white rounded-3xl border border-border shadow-sm p-4 md:p-6 min-h-[60vh]">
                             <MediaManager />
                         </div>
+                    ) : activeTab === 'inquiries' ? (
+                        <ContactInquiries />
                     ) : (
                         <ProfilePage user={user} />
                     )}

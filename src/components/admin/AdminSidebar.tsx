@@ -10,7 +10,8 @@ import {
     Menu,
     X,
     FolderOpen,
-    User
+    User,
+    MessageSquare
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
@@ -26,6 +27,7 @@ type NavItem = {
 const navItems: NavItem[] = [
     { id: 'registrations', label: 'Registrations', icon: Users },
     { id: 'media', label: 'Media Manager', icon: FolderOpen },
+    { id: 'inquiries', label: 'Contact Inquiries', icon: MessageSquare },
     { id: 'profile', label: 'Profile Settings', icon: User },
 ];
 
