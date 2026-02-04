@@ -54,38 +54,66 @@ export default function SocialShare({
 
     if (variant === "compact") {
         return (
-            <div className="flex items-center gap-1.5 md:gap-2">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <Button
                     variant="outline"
                     size="icon"
-                    className="rounded-full w-8 h-8 hover:bg-green-50 hover:text-green-600 transition-colors"
+                    className="rounded-full w-9 h-9 sm:w-10 sm:h-10 border-2 hover:bg-green-50 hover:text-green-600 hover:border-green-500 transition-all duration-300"
                     onClick={() => window.open(shareLinks.whatsapp, "_blank")}
                     title="Share on WhatsApp"
                 >
-                    <MessageCircle className="w-4 h-4" />
+                    <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Button>
                 <Button
                     variant="outline"
                     size="icon"
-                    className="rounded-full w-8 h-8 hover:bg-sky-50 hover:text-sky-500 transition-colors"
+                    className="rounded-full w-9 h-9 sm:w-10 sm:h-10 border-2 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-300"
+                    onClick={() => window.open(shareLinks.facebook, "_blank")}
+                    title="Share on Facebook"
+                >
+                    <Facebook className="w-4 h-4 sm:w-5 sm:h-5" />
+                </Button>
+                <Button
+                    variant="outline"
+                    size="icon"
+                    className="rounded-full w-9 h-9 sm:w-10 sm:h-10 border-2 hover:bg-sky-50 hover:text-sky-500 hover:border-sky-500 transition-all duration-300"
                     onClick={() => window.open(shareLinks.telegram, "_blank")}
                     title="Share on Telegram"
                 >
-                    <Send className="w-4 h-4" />
+                    <Send className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Button>
                 <Button
                     variant="outline"
                     size="icon"
-                    className="rounded-full w-8 h-8 hover:bg-blue-50 hover:text-blue-400 transition-colors"
+                    className="rounded-full w-9 h-9 sm:w-10 sm:h-10 border-2 hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all duration-300"
                     onClick={() => window.open(shareLinks.twitter, "_blank")}
                     title="Share on X (Twitter)"
                 >
-                    <Twitter className="w-4 h-4" />
+                    <Twitter className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Button>
                 <Button
                     variant="outline"
                     size="icon"
-                    className="rounded-full w-8 h-8 hover:bg-primary/10 hover:text-primary transition-colors"
+                    className="rounded-full w-9 h-9 sm:w-10 sm:h-10 border-2 hover:bg-blue-700 hover:text-white hover:border-blue-700 transition-all duration-300"
+                    onClick={() => window.open(shareLinks.linkedin, "_blank")}
+                    title="Share on LinkedIn"
+                >
+                    <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
+                </Button>
+                <Button
+                    variant="outline"
+                    size="icon"
+                    className="rounded-full w-9 h-9 sm:w-10 sm:h-10 border-2 hover:bg-gray-100 hover:text-gray-900 hover:border-gray-400 transition-all duration-300"
+                    onClick={() => window.open(shareLinks.email, "_blank")}
+                    title="Share via Email"
+                >
+                    <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
+                </Button>
+                <div className="h-6 w-[1px] bg-slate-200 mx-1 hidden sm:block" />
+                <Button
+                    variant="outline"
+                    size="icon"
+                    className="rounded-full w-9 h-9 sm:w-10 sm:h-10 border-2 hover:bg-primary/10 hover:text-primary hover:border-primary transition-all duration-300"
                     onClick={() => {
                         if (navigator.share) {
                             navigator.share(shareData).catch(console.error);
@@ -95,16 +123,16 @@ export default function SocialShare({
                     }}
                     title="More Share Options"
                 >
-                    <Share2 className="w-4 h-4" />
+                    <Share2 className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Button>
                 <Button
                     variant="outline"
                     size="icon"
-                    className="rounded-full w-8 h-8 hover:bg-orange-50 hover:text-orange-600 transition-colors"
+                    className="rounded-full w-9 h-9 sm:w-10 sm:h-10 border-2 hover:bg-orange-50 hover:text-orange-600 hover:border-orange-500 transition-all duration-300"
                     onClick={handleCopyLink}
                     title="Copy Link"
                 >
-                    {copied ? <Check className="w-4 h-4" /> : <LinkIcon className="w-4 h-4" />}
+                    {copied ? <Check className="w-4 h-4 sm:w-5 sm:h-5" /> : <LinkIcon className="w-4 h-4 sm:w-5 sm:h-5" />}
                 </Button>
             </div>
         );
