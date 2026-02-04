@@ -54,7 +54,7 @@ export default function SocialShare({
 
     if (variant === "compact") {
         return (
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 md:gap-2">
                 <Button
                     variant="outline"
                     size="icon"
@@ -67,11 +67,35 @@ export default function SocialShare({
                 <Button
                     variant="outline"
                     size="icon"
+                    className="rounded-full w-8 h-8 hover:bg-sky-50 hover:text-sky-500 transition-colors"
+                    onClick={() => window.open(shareLinks.telegram, "_blank")}
+                    title="Share on Telegram"
+                >
+                    <Send className="w-4 h-4" />
+                </Button>
+                <Button
+                    variant="outline"
+                    size="icon"
                     className="rounded-full w-8 h-8 hover:bg-blue-50 hover:text-blue-400 transition-colors"
                     onClick={() => window.open(shareLinks.twitter, "_blank")}
                     title="Share on X (Twitter)"
                 >
                     <Twitter className="w-4 h-4" />
+                </Button>
+                <Button
+                    variant="outline"
+                    size="icon"
+                    className="rounded-full w-8 h-8 hover:bg-primary/10 hover:text-primary transition-colors"
+                    onClick={() => {
+                        if (navigator.share) {
+                            navigator.share(shareData).catch(console.error);
+                        } else {
+                            handleCopyLink();
+                        }
+                    }}
+                    title="More Share Options"
+                >
+                    <Share2 className="w-4 h-4" />
                 </Button>
                 <Button
                     variant="outline"
