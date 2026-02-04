@@ -343,23 +343,32 @@ export default function CarnivalRegistrationForm() {
                                         </label>
                                         <div className="max-h-[300px] overflow-y-auto pr-2 space-y-3 custom-scrollbar">
                                             {formData.dogs.map((pet, index) => (
-                                                <div key={index} className="bg-secondary/10 p-4 rounded-xl border border-border relative group">
-                                                    {formData.dogs.length > 1 && (
-                                                        <button
-                                                            type="button"
-                                                            onClick={(e) => { e.stopPropagation(); removeDog(index); }}
-                                                            className="absolute -top-2 -right-2 bg-red-500 text-white p-1.5 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-10"
-                                                        >
-                                                            <Trash2 className="w-3 h-3" />
-                                                        </button>
-                                                    )}
-                                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                                                        <div>
-                                                            <label className="text-[10px] uppercase font-black text-muted-foreground/60 mb-1 block">Type</label>
+                                                <div key={index} className="bg-secondary/5 p-4 rounded-2xl border border-border relative group transition-all hover:border-primary/20">
+                                                    <div className="flex items-center justify-between mb-4 pb-2 border-b border-border/50">
+                                                        <div className="flex items-center gap-2">
+                                                            <div className="w-6 h-6 bg-primary text-white text-[10px] font-black rounded-lg flex items-center justify-center">
+                                                                {index + 1}
+                                                            </div>
+                                                            <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Pet Participant</span>
+                                                        </div>
+                                                        {formData.dogs.length > 1 && (
+                                                            <button
+                                                                type="button"
+                                                                onClick={(e) => { e.stopPropagation(); removeDog(index); }}
+                                                                className="flex items-center gap-1.5 px-2 py-1 rounded-lg text-red-500 hover:bg-red-50 transition-colors"
+                                                            >
+                                                                <Trash2 className="w-3 h-3" />
+                                                                <span className="text-[10px] font-bold uppercase">Remove</span>
+                                                            </button>
+                                                        )}
+                                                    </div>
+                                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                                        <div className="space-y-1">
+                                                            <label className="text-[10px] uppercase font-black text-muted-foreground/60 block px-1">Type</label>
                                                             <select
                                                                 value={pet.type}
                                                                 onChange={(e) => updateDog(index, 'type', e.target.value)}
-                                                                className="flex h-8 w-full rounded-md border border-input bg-background/50 px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-ring"
+                                                                className="flex h-10 w-full rounded-xl border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all cursor-pointer"
                                                             >
                                                                 <option value="Dog">Dog</option>
                                                                 <option value="Cat">Cat</option>
@@ -375,22 +384,22 @@ export default function CarnivalRegistrationForm() {
                                                                 <option value="Other">Other</option>
                                                             </select>
                                                         </div>
-                                                        <div>
-                                                            <label className="text-[10px] uppercase font-black text-muted-foreground/60 mb-1 block">Name</label>
+                                                        <div className="space-y-1">
+                                                            <label className="text-[10px] uppercase font-black text-muted-foreground/60 block px-1">Name</label>
                                                             <Input
                                                                 value={pet.name}
                                                                 onChange={(e) => updateDog(index, 'name', e.target.value)}
                                                                 placeholder="e.g. Max"
-                                                                className="h-8 text-xs bg-background/50"
+                                                                className="h-10 rounded-xl bg-background border-input focus:ring-primary/20"
                                                             />
                                                         </div>
-                                                        <div>
-                                                            <label className="text-[10px] uppercase font-black text-muted-foreground/60 mb-1 block">Breed/Desc</label>
+                                                        <div className="space-y-1">
+                                                            <label className="text-[10px] uppercase font-black text-muted-foreground/60 block px-1">Breed/Desc</label>
                                                             <Input
                                                                 value={pet.breed}
                                                                 onChange={(e) => updateDog(index, 'breed', e.target.value)}
                                                                 placeholder="e.g. Golden"
-                                                                className="h-8 text-xs bg-background/50"
+                                                                className="h-10 rounded-xl bg-background border-input focus:ring-primary/20"
                                                             />
                                                         </div>
                                                     </div>
