@@ -24,18 +24,13 @@ import {
 import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-} from "@/components/ui/dialog";
 import { deleteRegistration } from "@/app/actions/admin";
 import { useToast } from "@/hooks/use-toast";
 import MediaManager from "@/components/admin/MediaManager";
 import { AdminSidebar } from "./AdminSidebar";
 import { ProfilePage } from "./ProfilePage";
 import { ContactInquiries } from "./ContactInquiries";
+import { RegistrationDetailsView } from "./RegistrationDetailsView";
 
 type AdminDashboardProps = {
     initialRegistrations: any[];
@@ -81,30 +76,44 @@ export default function AdminDashboard({ initialRegistrations, stats, user }: Ad
 
     return (
         <div className="flex flex-col lg:flex-row min-h-screen bg-slate-50">
-            <AdminSidebar activeTab={activeTab} onTabChange={setActiveTab} user={user} />
+            <AdminSidebar
+                activeTab={activeTab}
+                onTabChange={(tab) => {
+                    setActiveTab(tab);
+                    setSelectedRegistration(null);
+                }}
+                user={user}
+            />
 
             <main className="flex-1 overflow-auto">
                 <div className="p-4 md:p-8 lg:p-10 max-w-7xl mx-auto space-y-8">
-                    {/* Dashboard Header */}
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white p-6 rounded-2xl shadow-sm border border-border">
-                        <div>
-                            <h1 className="text-2xl md:text-3xl font-black tracking-tight uppercase">
-                                {activeTab === 'registrations' ? 'Registration' : activeTab === 'media' ? 'Media' : activeTab === 'inquiries' ? 'Contact' : 'User'} <span className="text-primary">{activeTab === 'profile' ? 'Profile' : activeTab === 'inquiries' ? 'Inquiries' : 'Registry'}</span>
-                            </h1>
-                            <p className="text-sm text-muted-foreground flex items-center gap-2">
-                                <BadgeCheck className="w-4 h-4 text-green-500" />
-                                Admin Session Active • {user?.role}
-                            </p>
+                    {/* Dashboard Header - Hidden when viewing details for app-like focus */}
+                    {!selectedRegistration && (
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white p-6 rounded-2xl shadow-sm border border-border">
+                            <div>
+                                <h1 className="text-2xl md:text-3xl font-black tracking-tight uppercase">
+                                    {activeTab === 'registrations' ? 'Registration' : activeTab === 'media' ? 'Media' : activeTab === 'inquiries' ? 'Contact' : 'User'} <span className="text-primary">{activeTab === 'profile' ? 'Profile' : activeTab === 'inquiries' ? 'Inquiries' : 'Registry'}</span>
+                                </h1>
+                                <p className="text-sm text-muted-foreground flex items-center gap-2">
+                                    <BadgeCheck className="w-4 h-4 text-green-500" />
+                                    Admin Session Active • {user?.role}
+                                </p>
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <Button variant="outline" onClick={() => window.print()} className="rounded-xl font-bold shadow-sm">
+                                    <FileText className="w-4 h-4 mr-2" /> Export View
+                                </Button>
+                            </div>
                         </div>
-                        <div className="flex items-center gap-3">
-                            <Button variant="outline" onClick={() => window.print()} className="rounded-xl font-bold shadow-sm">
-                                <FileText className="w-4 h-4 mr-2" /> Export View
-                            </Button>
-                        </div>
-                    </div>
+                    )}
 
                     {/* Content Section */}
-                    {activeTab === 'registrations' ? (
+                    {selectedRegistration ? (
+                        <RegistrationDetailsView
+                            registration={selectedRegistration}
+                            onBack={() => setSelectedRegistration(null)}
+                        />
+                    ) : activeTab === 'registrations' ? (
                         <>
                             {/* Stats Grid */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -243,132 +252,6 @@ export default function AdminDashboard({ initialRegistrations, stats, user }: Ad
                                     </div>
                                 )}
                             </div>
-
-                            {/* View Details Dialog */}
-                            <Dialog open={!!selectedRegistration} onOpenChange={(open) => !open && setSelectedRegistration(null)}>
-                                <DialogContent className="max-w-2xl w-[95vw] rounded-3xl p-0 overflow-hidden border-none shadow-2xl">
-                                    <div className="bg-primary p-6 md:p-8 text-white">
-                                        <DialogHeader>
-                                            <div className="flex items-center gap-3 mb-2">
-                                                <div className="bg-white/20 p-2 rounded-xl">
-                                                    <UserCircle className="w-6 h-6" />
-                                                </div>
-                                                <span className="text-xs font-black uppercase tracking-widest opacity-80 decoration-white/30 underline underline-offset-4">Registration Details</span>
-                                            </div>
-                                            <DialogTitle className="text-2xl md:text-3xl font-black uppercase leading-tight italic">{selectedRegistration?.name}</DialogTitle>
-                                        </DialogHeader>
-                                    </div>
-
-                                    <div className="p-6 md:p-8 space-y-8 max-h-[70vh] overflow-y-auto custom-scrollbar">
-                                        {/* Core Info */}
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <div className="space-y-4">
-                                                <h4 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground flex items-center gap-2 italic">
-                                                    <Info className="w-3 h-3" /> Contact Information
-                                                </h4>
-                                                <div className="space-y-3">
-                                                    <div className="flex items-center gap-3">
-                                                        <div className="p-2 bg-slate-100 rounded-lg text-slate-500"><Mail className="w-4 h-4" /></div>
-                                                        <div>
-                                                            <p className="text-[10px] uppercase font-bold text-muted-foreground leading-none mb-1">Email</p>
-                                                            <p className="text-sm font-bold">{selectedRegistration?.email}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div className="flex items-center gap-3">
-                                                        <div className="p-2 bg-slate-100 rounded-lg text-slate-500"><Phone className="w-4 h-4" /></div>
-                                                        <div>
-                                                            <p className="text-[10px] uppercase font-bold text-muted-foreground leading-none mb-1">Phone</p>
-                                                            <p className="text-sm font-bold">{selectedRegistration?.phone}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div className="flex items-center gap-3">
-                                                        <div className="p-2 bg-slate-100 rounded-lg text-slate-500"><MapPin className="w-4 h-4" /></div>
-                                                        <div>
-                                                            <p className="text-[10px] uppercase font-bold text-muted-foreground leading-none mb-1">State/Location</p>
-                                                            <p className="text-sm font-bold">{selectedRegistration?.location}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div className="space-y-4">
-                                                <h4 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground flex items-center gap-2 italic">
-                                                    <BadgeCheck className="w-3 h-3" /> Registration Status
-                                                </h4>
-                                                <div className="space-y-3">
-                                                    <div className="flex items-center gap-3">
-                                                        <div className="p-2 bg-slate-100 rounded-lg text-slate-500"><BadgeCheck className="w-4 h-4" /></div>
-                                                        <div>
-                                                            <p className="text-[10px] uppercase font-bold text-muted-foreground leading-none mb-1">Vaccinated</p>
-                                                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-black uppercase ${selectedRegistration?.is_vaccinated === 'Yes' ? 'bg-green-100 text-green-700' :
-                                                                selectedRegistration?.is_vaccinated === 'No' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'
-                                                                }`}>
-                                                                {selectedRegistration?.is_vaccinated}
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div className="flex items-center gap-3">
-                                                        <div className="p-2 bg-slate-100 rounded-lg text-slate-500"><Users className="w-4 h-4" /></div>
-                                                        <div>
-                                                            <p className="text-[10px] uppercase font-bold text-muted-foreground leading-none mb-1">Guests</p>
-                                                            <p className="text-sm font-bold">{selectedRegistration?.guest_count} Persons</p>
-                                                        </div>
-                                                    </div>
-                                                    <div className="flex items-center gap-3">
-                                                        <div className="p-2 bg-slate-100 rounded-lg text-slate-500"><Calendar className="w-4 h-4" /></div>
-                                                        <div>
-                                                            <p className="text-[10px] uppercase font-bold text-muted-foreground leading-none mb-1">Registered On</p>
-                                                            <p className="text-sm font-bold">{selectedRegistration?.created_at ? new Date(selectedRegistration.created_at).toLocaleDateString() : 'N/A'}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Pets Info */}
-                                        <div className="space-y-4">
-                                            <h4 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground flex items-center gap-2 italic">
-                                                <PawPrint className="w-3 h-3" /> Registered Companions ({selectedRegistration?.pets?.length || 0})
-                                            </h4>
-                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                                {selectedRegistration?.pets?.map((pet: any, idx: number) => (
-                                                    <div key={idx} className="bg-slate-50 p-4 rounded-2xl border border-slate-100 flex items-center gap-3 group hover:border-primary/30 transition-colors">
-                                                        <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-lg shadow-sm group-hover:scale-110 transition-transform">
-                                                            {pet.type === 'Dog' ? '🐕' :
-                                                                pet.type === 'Cat' ? '🐱' :
-                                                                    pet.type === 'Bird' ? '🦜' :
-                                                                        pet.type === 'Rabbit' ? '🐰' :
-                                                                            pet.type === 'Horse' ? '🐎' : '🐾'}
-                                                        </div>
-                                                        <div>
-                                                            <p className="text-sm font-black uppercase italic">{pet.name}</p>
-                                                            <p className="text-[9px] font-bold text-muted-foreground uppercase">{pet.type} • {pet.breed || 'Unknown Breed'}</p>
-                                                        </div>
-                                                    </div>
-                                                ))}
-                                                {(!selectedRegistration?.pets || selectedRegistration.pets.length === 0) && (
-                                                    <p className="text-sm text-muted-foreground col-span-2 py-4 text-center italic">No pets registered for this participant.</p>
-                                                )}
-                                            </div>
-                                        </div>
-
-                                        {/* Donation Info */}
-                                        {selectedRegistration?.donation_interest && (
-                                            <div className="bg-orange-50 p-4 rounded-2xl border border-orange-100 flex items-start gap-3">
-                                                <Heart className="w-5 h-5 text-orange-500 mt-1" />
-                                                <div>
-                                                    <p className="text-[10px] uppercase font-bold text-orange-600 leading-none mb-1">Donation Interest</p>
-                                                    <p className="text-sm text-orange-800 font-medium">{selectedRegistration.donation_interest}</p>
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    <div className="p-6 md:p-8 bg-slate-50 flex justify-end">
-                                        <Button className="rounded-xl px-8 font-black uppercase tracking-widest italic shadow-lg" onClick={() => setSelectedRegistration(null)}>Close</Button>
-                                    </div>
-                                </DialogContent>
-                            </Dialog>
                         </>
                     ) : activeTab === 'media' ? (
                         <div className="bg-white rounded-3xl border border-border shadow-sm p-4 md:p-6 min-h-[60vh]">
