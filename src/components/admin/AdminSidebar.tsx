@@ -25,6 +25,7 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
+    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'registrations', label: 'Registrations', icon: Users },
     { id: 'media', label: 'Media Manager', icon: FolderOpen },
     { id: 'inquiries', label: 'Contact Inquiries', icon: MessageSquare },
