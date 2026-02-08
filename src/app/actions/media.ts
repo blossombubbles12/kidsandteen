@@ -2,6 +2,8 @@
 
 import cloudinary from '@/lib/cloudinary';
 import { UploadApiResponse, UploadApiErrorResponse } from 'cloudinary';
+import { cache } from 'react';
+import { unstable_cache } from 'next/cache';
 
 export type CloudinaryUploadResponse =
     | { success: true; result: UploadApiResponse }
@@ -50,38 +52,31 @@ export async function uploadToCloudinary(
     }
 }
 
-export async function getMediaFromFolder(folder: string = 'mydogandigroup', limit: number = 100) {
-    try {
-        // Fetch images using Search API
-        const imagesPromise = cloudinary.search
-            .expression(`resource_type:image AND folder:"${folder}/*"`)
-            .sort_by('created_at', 'desc')
-            .max_results(Math.floor(limit / 2))
-            .with_field('context')
-            .execute();
+/**
+ * Fetches media from a folder with caching.
+ */
+export const getMediaFromFolder = cache(async (folder: string = 'mydogandigroup', limit: number = 100) => {
+    return unstable_cache(
+        async () => {
+            try {
+                // Fetch both images and videos in one call using Search API
+                const result = await cloudinary.search
+                    .expression(`folder:"${folder}/*"`)
+                    .sort_by('created_at', 'desc')
+                    .max_results(limit)
+                    .with_field('context')
+                    .execute();
 
-        // Fetch videos using Search API
-        const videosPromise = cloudinary.search
-            .expression(`resource_type:video AND folder:"${folder}/*"`)
-            .sort_by('created_at', 'desc')
-            .max_results(Math.floor(limit / 2))
-            .with_field('context')
-            .execute();
-
-        const [imagesResult, videosResult] = await Promise.all([imagesPromise, videosPromise]);
-
-        const images = imagesResult.resources || [];
-        const videos = videosResult.resources || [];
-
-        // Combine and sort by creation date (newest first)
-        return [...images, ...videos].sort((a, b) =>
-            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-        );
-    } catch (error) {
-        console.error('Cloudinary fetch error:', error);
-        return [];
-    }
-}
+                return result.resources || [];
+            } catch (error) {
+                console.error('Cloudinary fetch error:', error);
+                return [];
+            }
+        },
+        [`media-${folder}-${limit}`],
+        { revalidate: 3600, tags: ['media'] } // Cache for 1 hour
+    )();
+});
 
 export interface AlbumData {
     name: string;
@@ -91,53 +86,57 @@ export interface AlbumData {
     count: number;
 }
 
-export async function getAlbums(): Promise<AlbumData[]> {
-    try {
-        const targetRoot = 'mydogandigroup';
-        let foldersToProcess: any[] = [];
-
-        // Fetch subfolders of 'mydogandigroup'
-        try {
-            const result = await cloudinary.api.sub_folders(targetRoot);
-            foldersToProcess = result.folders;
-        } catch (e) {
-            console.warn(`Folder '${targetRoot}' not found or empty. Using empty list.`);
-            // If the root folder itself has images but no subfolders, we might want to return just the root?
-            // But usually albums are subfolders. Let's stick to subfolders for "Albums".
-        }
-
-        const albums = await Promise.all(foldersToProcess.map(async (folder: any) => {
+/**
+ * Fetches all albums with caching.
+ */
+export const getAlbums = cache(async (): Promise<AlbumData[]> => {
+    return unstable_cache(
+        async () => {
             try {
-                // Find a cover image and get total count of images/videos
-                const { resources, total_count } = await cloudinary.search
-                    .expression(`folder:"${folder.path}"`)
-                    .sort_by('created_at', 'desc')
-                    .max_results(1)
-                    .execute();
+                const targetRoot = 'mydogandigroup';
+                let foldersToProcess: any[] = [];
 
-                const cover = resources[0];
+                try {
+                    const result = await cloudinary.api.sub_folders(targetRoot);
+                    foldersToProcess = result.folders;
+                } catch (e) {
+                    console.warn(`Folder '${targetRoot}' not found or empty.`);
+                }
 
-                return {
-                    name: folder.name,
-                    path: folder.path,
-                    coverSrc: cover?.secure_url,
-                    coverId: cover?.public_id,
-                    count: total_count || 0
-                };
-            } catch (e) {
-                console.error(`Error details for album ${folder.name}:`, e);
-                return {
-                    name: folder.name,
-                    path: folder.path,
-                    count: 0
-                };
+                const albums = await Promise.all(foldersToProcess.map(async (folder: any) => {
+                    try {
+                        const { resources, total_count } = await cloudinary.search
+                            .expression(`folder:"${folder.path}"`)
+                            .sort_by('created_at', 'desc')
+                            .max_results(1)
+                            .execute();
+
+                        const cover = resources[0];
+
+                        return {
+                            name: folder.name,
+                            path: folder.path,
+                            coverSrc: cover?.secure_url,
+                            coverId: cover?.public_id,
+                            count: total_count || 0
+                        };
+                    } catch (e) {
+                        console.error(`Error fetching cover for album ${folder.name}:`, e);
+                        return {
+                            name: folder.name,
+                            path: folder.path,
+                            count: 0
+                        };
+                    }
+                }));
+
+                return albums.sort((a, b) => a.name.localeCompare(b.name));
+            } catch (error) {
+                console.error("Error fetching albums:", error);
+                return [];
             }
-        }));
-
-        // Sort by name
-        return albums.sort((a, b) => a.name.localeCompare(b.name));
-    } catch (error) {
-        console.error("Error fetching albums:", error);
-        return [];
-    }
-}
+        },
+        ['albums-list'],
+        { revalidate: 3600, tags: ['albums'] } // Cache for 1 hour
+    )();
+});

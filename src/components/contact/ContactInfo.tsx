@@ -1,6 +1,7 @@
 "use client";
 
 import { MapPin, Mail, Phone, Clock } from "lucide-react";
+import { RevealContact } from "../ui/RevealContact";
 
 export function ContactInfo() {
     return (
@@ -20,7 +21,7 @@ export function ContactInfo() {
                     </div>
                     <div>
                         <h3 className="font-bold">Email Us</h3>
-                        <p className="text-muted-foreground">mydogandigroup@yahoo.com</p>
+                        <RevealContact value="mydogandigroup@yahoo.com" type="email" />
                     </div>
                 </div>
 
@@ -30,7 +31,7 @@ export function ContactInfo() {
                     </div>
                     <div>
                         <h3 className="font-bold">Call Us</h3>
-                        <p className="text-muted-foreground">08168874616</p>
+                        <RevealContact value="08168874616" type="phone" />
                     </div>
                 </div>
             </div>

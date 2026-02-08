@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PawPrint, Facebook, Instagram, Twitter, Mail, Phone } from "lucide-react";
+import { RevealContact } from "./ui/RevealContact";
 
 export function Footer() {
     const pathname = usePathname();
@@ -75,24 +76,20 @@ export function Footer() {
                                 <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
                                     <Mail className="w-4 h-4 text-primary" />
                                 </div>
-                                <a href="mailto:mydogandigroup@yahoo.com" className="hover:text-primary transition-colors break-all">
-                                    mydogandigroup@yahoo.com
-                                </a>
+                                <RevealContact value="mydogandigroup@yahoo.com" type="email" />
                             </li>
                             <li className="flex items-center gap-3 group">
                                 <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
                                     <Phone className="w-4 h-4 text-primary" />
                                 </div>
-                                <a href="tel:08168874616" className="hover:text-primary transition-colors">
-                                    08168874616
-                                </a>
+                                <RevealContact value="08168874616" type="phone" />
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 <div className="mt-8 pt-8 border-t border-border/50 text-center text-sm text-muted-foreground">
-                    <p>© {new Date().getFullYear()} My Dog & I. All rights reserved.</p>
+                    <p>© {new Date().getFullYear()} My Dog & I Group. All rights reserved.</p>
                     <p className="mt-2 text-xs font-medium tracking-wide">
                         Made with ❤️ for every pet and the humans who love them.
                         Celebrating 10 years of community impact across Africa 🐾🦁🐱🐕.

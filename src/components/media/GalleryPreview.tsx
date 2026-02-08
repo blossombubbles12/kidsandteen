@@ -119,9 +119,6 @@ export function GalleryPreview({ media }: GalleryPreviewProps) {
                                     />
                                 )}
                             </div>
-                            <p className="text-white mt-12 text-lg font-medium tracking-wide text-center">
-                                {media[selectedImage].caption}
-                            </p>
                         </div>
 
                         <button

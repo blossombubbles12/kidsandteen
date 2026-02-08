@@ -141,7 +141,6 @@ export function GalleryGrid({ initialMedia, allowEmpty = false }: GalleryGridPro
 
                         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                             <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                <p className="text-white font-medium text-lg">{img.caption}</p>
                                 <div className="flex items-center gap-2 text-white/80 text-sm mt-1">
                                     {img.type === 'video' ? (
                                         <><Play className="w-4 h-4" /> Watch Video</>
@@ -218,9 +217,6 @@ export function GalleryGrid({ initialMedia, allowEmpty = false }: GalleryGridPro
                                         />
                                     )}
                                 </div>
-                                <p className="text-white mt-12 text-lg font-medium tracking-wide">
-                                    {visibleItems[selectedImage].caption}
-                                </p>
                             </div>
 
                             <button
