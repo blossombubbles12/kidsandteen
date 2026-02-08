@@ -67,6 +67,11 @@ export function Navigation() {
                             )}
                         </Link>
                     ))}
+                    <Link href="/carnival/register">
+                        <Button variant="default" size="sm" className="ml-2 bg-yellow-500 hover:bg-yellow-600 text-black font-bold border-none">
+                            Register
+                        </Button>
+                    </Link>
                     <Link href="https://chat.whatsapp.com/C0I2KfbQrpf4Qw5qc8QEDT" target="_blank" rel="noopener noreferrer">
                         <Button variant="default" size="sm" className="ml-4 bg-[#25D366] hover:bg-[#128C7E] text-white border-none">
                             Join WhatsApp
@@ -76,6 +81,11 @@ export function Navigation() {
 
                 {/* Mobile Controls */}
                 <div className="flex items-center gap-2 md:hidden">
+                    <Link href="/carnival/register">
+                        <Button variant="default" size="sm" className="font-bold bg-yellow-500 hover:bg-yellow-600 text-black border-none">
+                            Register
+                        </Button>
+                    </Link>
                     <Link href="https://chat.whatsapp.com/C0I2KfbQrpf4Qw5qc8QEDT" target="_blank" rel="noopener noreferrer">
                         <Button variant="default" size="sm" className="font-bold bg-[#25D366] hover:bg-[#128C7E] text-white border-none">
                             Join WhatsApp

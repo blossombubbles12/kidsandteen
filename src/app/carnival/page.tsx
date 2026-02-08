@@ -12,8 +12,26 @@ import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Users, Sparkles, ArrowRight } from "lucide-react";
 import { AnniversaryBanner } from "@/components/AnniversaryBanner";
 import { CldImage } from "@/components/media/CldImage";
+import { getMediaFromFolder } from "@/app/actions/media";
+import { MediaAsset } from "@/components/media/GalleryGrid";
+import { GalleryPreview } from "@/components/media/GalleryPreview";
 
-export default function CarnivalPage() {
+export default async function CarnivalPage() {
+    const cloudinaryAssets = await getMediaFromFolder('mydogandigroup', 50);
+
+    const galleryMedia: MediaAsset[] = cloudinaryAssets
+        .filter((asset: any) => asset.resource_type === 'image')
+        .map((asset: any) => ({
+            id: asset.public_id,
+            src: asset.secure_url,
+            cloudinaryId: asset.public_id,
+            type: 'image' as const,
+            alt: asset.context?.custom?.alt || "Carnival Moment",
+            caption: asset.context?.custom?.caption || "Lagos Dog Carnival"
+        }))
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 7);
+
     return (
         <div className="flex flex-col min-h-screen">
             {/* Carnival Hero */}
@@ -121,43 +139,8 @@ export default function CarnivalPage() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
-                        <div className="md:col-span-2 md:row-span-2 relative rounded-3xl overflow-hidden group">
-                            <CldImage
-                                src="lagos_dog_carnival_20242_ekato6"
-                                alt="Past Carnival Vibe"
-                                fill
-                                className="object-cover group-hover:scale-110 transition-transform duration-700"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
-                        </div>
-                        <div className="relative rounded-3xl overflow-hidden group">
-                            <CldImage
-                                src="homepage4_sdyykt"
-                                alt="Carnival Action"
-                                fill
-                                className="object-cover group-hover:scale-110 transition-transform duration-700"
-                            />
-                        </div>
-                        <div className="relative rounded-3xl overflow-hidden group">
-                            <CldImage
-                                src="homepage1_lnnftx"
-                                alt="Carnival Community"
-                                fill
-                                className="object-cover group-hover:scale-110 transition-transform duration-700"
-                            />
-                        </div>
-                        <div className="md:col-span-3 relative h-[200px] rounded-3xl overflow-hidden group">
-                            <CldImage
-                                src="homepage7_dl6l1z"
-                                alt="Carnival Crowd"
-                                fill
-                                className="object-cover group-hover:scale-110 transition-transform duration-700"
-                            />
-                            <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-                                <h3 className="text-3xl md:text-5xl font-black tracking-tighter uppercase">50,000+ Pets & Humans</h3>
-                            </div>
-                        </div>
+                    <div className="mt-8">
+                        <GalleryPreview media={galleryMedia} />
                     </div>
                 </div>
             </section>
