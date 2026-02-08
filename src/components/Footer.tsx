@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Dog, Facebook, Instagram, Twitter, Mail, Phone } from "lucide-react";
+import { PawPrint, Facebook, Instagram, Twitter, Mail, Phone } from "lucide-react";
 
 export function Footer() {
     const pathname = usePathname();
@@ -17,12 +17,12 @@ export function Footer() {
                     {/* About Section - Expanded */}
                     <div className="space-y-4 md:col-span-2">
                         <Link href="/" className="flex items-center space-x-2">
-                            <Dog className="h-6 w-6 text-primary" />
+                            <PawPrint className="h-6 w-6 text-primary" />
                             <span className="text-lg font-bold">My Dog & I</span>
                         </Link>
                         <p className="text-sm text-muted-foreground leading-relaxed">
-                            My Dog and I Group is a non-profit pet service company actively building a pet-loving community
-                            in Nigeria through social work, activism, and animal-related events. Starting on Instagram
+                            My Dog and I Group is a non-profit pet service company actively building a vibrant,
+                            inclusive community for all pets and their owners in Nigeria. Starting on Instagram
                             in 2016, we&apos;ve grown into Africa&apos;s largest gathering of Pets with over 50,000 members.
                             Join us for the Lagos Dog Carnival, community walks, and more!
                         </p>
@@ -93,8 +93,9 @@ export function Footer() {
 
                 <div className="mt-8 pt-8 border-t border-border/50 text-center text-sm text-muted-foreground">
                     <p>© {new Date().getFullYear()} My Dog & I. All rights reserved.</p>
-                    <p className="mt-2 text-xs opacity-80">
-                        Made with love ❤️ for dogs everywhere 🐾🐕. Celebrating 10 years of community impact.
+                    <p className="mt-2 text-xs font-medium tracking-wide">
+                        Made with ❤️ for every pet and the humans who love them.
+                        Celebrating 10 years of community impact across Africa 🐾🦁🐱🐕.
                     </p>
                 </div>
             </div>
