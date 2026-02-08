@@ -4,10 +4,11 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Dog } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { TopPromotionBanner } from "./TopPromotionBanner";
+import { Logo } from "./Logo";
 
 const navItems = [
     { name: "Home", href: "/" },
@@ -33,16 +34,8 @@ export function Navigation() {
             <TopPromotionBanner />
             <div className="container mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
                 {/* Logo */}
-                <Link href="/" className="flex items-center space-x-2">
-                    <motion.div
-                        whileHover={{ rotate: [0, -10, 10, -10, 0] }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        <Dog className="h-8 w-8 text-primary" />
-                    </motion.div>
-                    <span className="text-xl font-bold font-sans tracking-tight text-foreground">
-                        My Dog & I
-                    </span>
+                <Link href="/" className="flex items-center">
+                    <Logo />
                 </Link>
 
                 {/* Desktop Nav */}
@@ -80,19 +73,9 @@ export function Navigation() {
                 </nav>
 
                 {/* Mobile Controls */}
-                <div className="flex items-center gap-2 md:hidden">
-                    <Link href="/carnival/register">
-                        <Button variant="default" size="sm" className="font-bold bg-yellow-500 hover:bg-yellow-600 text-black border-none">
-                            Register
-                        </Button>
-                    </Link>
-                    <Link href="https://chat.whatsapp.com/C0I2KfbQrpf4Qw5qc8QEDT" target="_blank" rel="noopener noreferrer">
-                        <Button variant="default" size="sm" className="font-bold bg-[#25D366] hover:bg-[#128C7E] text-white border-none">
-                            Join WhatsApp
-                        </Button>
-                    </Link>
+                <div className="flex items-center md:hidden">
                     <button
-                        className="p-2 text-foreground"
+                        className="p-2 text-foreground bg-secondary/20 rounded-full"
                         onClick={toggleMenu}
                         aria-label="Toggle menu"
                     >
@@ -124,11 +107,18 @@ export function Navigation() {
                                     {item.name}
                                 </Link>
                             ))}
-                            <Link href="https://chat.whatsapp.com/C0I2KfbQrpf4Qw5qc8QEDT" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}>
-                                <Button className="w-full mt-4 bg-[#25D366] hover:bg-[#128C7E] text-white border-none" size="lg">
-                                    Join WhatsApp Community
-                                </Button>
-                            </Link>
+                            <div className="flex flex-col gap-3 pt-4">
+                                <Link href="/carnival/register" onClick={() => setIsOpen(false)}>
+                                    <Button className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-black text-lg h-14 rounded-2xl border-none shadow-lg">
+                                        Register for Carnival
+                                    </Button>
+                                </Link>
+                                <Link href="https://chat.whatsapp.com/C0I2KfbQrpf4Qw5qc8QEDT" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}>
+                                    <Button className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-black text-lg h-14 rounded-2xl border-none shadow-lg" size="lg">
+                                        Join WhatsApp Community
+                                    </Button>
+                                </Link>
+                            </div>
                         </div>
                     </motion.div>
                 )}

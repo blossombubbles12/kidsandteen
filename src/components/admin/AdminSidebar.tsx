@@ -6,7 +6,6 @@ import {
     Users,
     Image as ImageIcon,
     LogOut,
-    Dog,
     Menu,
     X,
     FolderOpen,
@@ -17,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { logout } from "@/app/actions/auth";
+import { Logo } from "../Logo";
 
 type NavItem = {
     id: string;
@@ -83,13 +83,8 @@ export function AdminSidebar({
                 isOpen ? "translate-x-0" : "-translate-x-full"
             )}>
                 {/* Logo Section */}
-                <div className="p-6 border-b border-border flex items-center gap-3">
-                    <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
-                        <Dog className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                        <h2 className="font-black uppercase tracking-tighter leading-tight">Admin<span className="text-primary block text-xs">Panel</span></h2>
-                    </div>
+                <div className="p-6 border-b border-border flex items-center justify-between">
+                    <Logo className="scale-90 origin-left" />
                 </div>
 
                 {/* Nav Links */}

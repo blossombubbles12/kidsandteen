@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { PawPrint, Facebook, Instagram, Twitter, Mail, Phone } from "lucide-react";
+import { Facebook, Instagram, Twitter, Mail, Phone } from "lucide-react";
 import { RevealContact } from "./ui/RevealContact";
+import { Logo } from "./Logo";
 
 export function Footer() {
     const pathname = usePathname();
@@ -17,9 +18,8 @@ export function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     {/* About Section - Expanded */}
                     <div className="space-y-4 md:col-span-2">
-                        <Link href="/" className="flex items-center space-x-2">
-                            <PawPrint className="h-6 w-6 text-primary" />
-                            <span className="text-lg font-bold">My Dog & I</span>
+                        <Link href="/">
+                            <Logo />
                         </Link>
                         <p className="text-sm text-muted-foreground leading-relaxed">
                             My Dog and I Group is a non-profit pet service company actively building a vibrant,

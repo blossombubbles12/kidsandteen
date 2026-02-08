@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Play, Dog } from "lucide-react";
+import { Play } from "lucide-react";
 import { useState, useRef } from "react";
 import { MediaAsset } from "./GalleryGrid";
 import { CinematicPlayer } from "./CinematicPlayer";
+import { Logo } from "../Logo";
 
 interface MediaHeroProps {
     media: MediaAsset[];
@@ -88,9 +89,9 @@ export function MediaHero({ media }: MediaHeroProps) {
                                 repeat: Infinity,
                                 ease: "easeInOut"
                             }}
-                            className="absolute -top-12 -right-12 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-primary z-20 border-2 border-primary/20"
+                            className="absolute -top-12 -right-12 w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center z-20 border-2 border-primary/20 overflow-hidden"
                         >
-                            <Dog className="w-6 h-6" />
+                            <Logo showText={false} className="scale-75" />
                             <motion.div
                                 animate={{ scale: [1, 1.2, 1] }}
                                 transition={{ duration: 1, repeat: Infinity }}

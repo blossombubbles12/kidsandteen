@@ -6,9 +6,10 @@ import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardHeader, CardContent, CardTitle, CardDescription, CardFooter } from '@/components/ui/card'
-import { Dog, Loader2, Lock, Mail } from 'lucide-react'
+import { Loader2, Lock, Mail } from 'lucide-react'
 import Link from 'next/link'
 import { useToast } from '@/hooks/use-toast'
+import { Logo } from '@/components/Logo'
 
 export default function LoginPage() {
     const [loading, setLoading] = useState(false)
@@ -42,9 +43,9 @@ export default function LoginPage() {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-yellow-50 to-orange-50 px-4">
             <Card className="w-full max-w-md bg-white/80 backdrop-blur-md shadow-2xl rounded-3xl border-none">
-                <CardHeader className="text-center space-y-1">
-                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 text-primary">
-                        <Dog className="w-8 h-8" />
+                <CardHeader className="text-center space-y-4">
+                    <div className="flex justify-center mb-2">
+                        <Logo />
                     </div>
                     <CardTitle className="text-3xl font-black uppercase tracking-tight">Admin <span className="text-primary">Login</span></CardTitle>
                     <CardDescription>Enter your credentials to manage the carnival.</CardDescription>

@@ -31,6 +31,7 @@ import { AdminSidebar } from "./AdminSidebar";
 import { ProfilePage } from "./ProfilePage";
 import { ContactInquiries } from "./ContactInquiries";
 import { RegistrationDetailsView } from "./RegistrationDetailsView";
+import { Logo } from "../Logo";
 
 type AdminDashboardProps = {
     initialRegistrations: any[];
