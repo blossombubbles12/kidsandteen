@@ -92,7 +92,10 @@ export function Footer() {
                 </div>
 
                 <div className="mt-8 pt-8 border-t border-border/50 text-center text-sm text-muted-foreground">
-                    <p>© {new Date().getFullYear()} My Dog & I. All rights reserved. Celebrating 10 years of impact for pet lovers everywhere.</p>
+                    <p>© {new Date().getFullYear()} My Dog & I. All rights reserved.</p>
+                    <p className="mt-2 text-xs opacity-80">
+                        Made with love ❤️ for dogs everywhere 🐾🐕. Celebrating 10 years of community impact.
+                    </p>
                 </div>
             </div>
         </footer>

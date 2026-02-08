@@ -57,7 +57,7 @@ export function Hero() {
                     poster="https://res.cloudinary.com/dtw0ajpwa/image/upload/v1736611417/homepage8_zaj3az.jpg"
                     className="w-full h-full object-cover brightness-[0.5] scale-105"
                 >
-                    <source src="https://res.cloudinary.com/dtw0ajpwa/video/upload/so_0,du_30,q_auto,f_auto/v1768755605/JUSTICE_FOR_ROXIE_-_My_dog_and_i_group_480p_h264_youtube_dz2zue.mp4" type="video/mp4" />
+                    <source src="https://res.cloudinary.com/dtw0ajpwa/video/upload/so_20,du_30,q_auto,f_auto/v1768755605/JUSTICE_FOR_ROXIE_-_My_dog_and_i_group_480p_h264_youtube_dz2zue.mp4" type="video/mp4" />
                 </video>
                 <div className="absolute inset-0 bg-black/50" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />

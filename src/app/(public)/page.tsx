@@ -36,6 +36,9 @@ import { AnniversaryBanner } from "@/components/AnniversaryBanner";
 import { FAQSection } from "@/components/faq/FAQSection";
 import { InstagramFeed } from "@/components/InstagramFeed";
 import { CldImage } from "@/components/media/CldImage";
+import { GalleryPreview } from "@/components/media/GalleryPreview";
+import { getMediaFromFolder } from "@/app/actions/media";
+import { MediaAsset } from "@/components/media/GalleryGrid";
 import {
   ArrowRight,
   Trophy,
@@ -50,7 +53,23 @@ import {
   ShieldCheck
 } from "lucide-react";
 
-export default function Home() {
+export default async function Home() {
+  const cloudinaryAssets = await getMediaFromFolder('mydogandigroup', 50);
+
+  // Map and shuffle for a random glimpse
+  const galleryMedia: MediaAsset[] = cloudinaryAssets
+    .filter((asset: any) => asset.resource_type === 'image') // Only images for the glimpse looks cleaner
+    .map((asset: any) => ({
+      id: asset.public_id,
+      src: asset.secure_url,
+      cloudinaryId: asset.public_id,
+      type: 'image',
+      alt: asset.context?.custom?.alt || "Gallery Image",
+      caption: asset.context?.custom?.caption || "Moment"
+    }))
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 7); // 7 items fits the grid layout well
+
   return (
     <div className="flex flex-col min-h-screen">
       <Hero />
@@ -126,14 +145,8 @@ export default function Home() {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-xl order-2 md:order-1">
-              <CldImage
-                src="homepage4_sdyykt"
-                alt="Community Moments"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-black/20" />
+            <div className="order-2 md:order-1">
+              <GalleryPreview media={galleryMedia} />
             </div>
 
             <div className="order-1 md:order-2">
