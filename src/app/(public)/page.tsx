@@ -54,21 +54,26 @@ import {
 } from "lucide-react";
 
 export default async function Home() {
-  const cloudinaryAssets = await getMediaFromFolder('mydogandigroup', 50);
+  const cloudinaryAssets = await getMediaFromFolder('mydogandigroup', 100);
 
-  // Map and shuffle for a random glimpse
-  const galleryMedia: MediaAsset[] = cloudinaryAssets
-    .filter((asset: any) => asset.resource_type === 'image') // Only images for the glimpse looks cleaner
+  // Filter for images only
+  const allImages = cloudinaryAssets
+    .filter((asset: any) => asset.resource_type === 'image')
     .map((asset: any) => ({
       id: asset.public_id,
       src: asset.secure_url,
       cloudinaryId: asset.public_id,
       type: 'image' as const,
-      alt: asset.context?.custom?.alt || "Gallery Image",
+      alt: asset.context?.custom?.alt || "Lagos Dog Carnival / My Dog and I Community Moment",
       caption: asset.context?.custom?.caption || "Moment"
     }))
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 7); // 7 items fits the grid layout well
+    .sort(() => Math.random() - 0.5);
+
+  // Pick specific images for different sections
+  const galleryMedia = allImages.slice(0, 7);
+  const carnivalImage = allImages[7] || { cloudinaryId: "lagos_dog_carnival_20242_ekato6", alt: "Lagos Dog Carnival" };
+  const aboutImage = allImages[8] || { cloudinaryId: "homepage9_mhc0oh", alt: "Our Story" };
+  const finalCtaImage = allImages[9] || { cloudinaryId: "homepage8_zaj3az", alt: "Join the Pack" };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -126,8 +131,8 @@ export default async function Home() {
 
             <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl">
               <CldImage
-                src="lagos_dog_carnival_20242_ekato6"
-                alt="Lagos Dog Carnival"
+                src={carnivalImage.cloudinaryId}
+                alt={carnivalImage.alt}
                 fill
                 className="object-cover"
               />
@@ -252,8 +257,8 @@ export default async function Home() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-xl order-2 md:order-1">
               <CldImage
-                src="homepage9_mhc0oh"
-                alt="Our Story"
+                src={aboutImage.cloudinaryId}
+                alt={aboutImage.alt}
                 fill
                 className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
               />
@@ -387,8 +392,8 @@ export default async function Home() {
       <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <CldImage
-            src="homepage8_zaj3az"
-            alt="Join the Pack"
+            src={finalCtaImage.cloudinaryId}
+            alt={finalCtaImage.alt}
             fill
             className="object-cover opacity-30"
           />
