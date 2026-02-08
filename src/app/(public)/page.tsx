@@ -63,7 +63,7 @@ export default async function Home() {
       id: asset.public_id,
       src: asset.secure_url,
       cloudinaryId: asset.public_id,
-      type: 'image',
+      type: 'image' as const,
       alt: asset.context?.custom?.alt || "Gallery Image",
       caption: asset.context?.custom?.caption || "Moment"
     }))
