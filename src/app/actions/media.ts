@@ -5,17 +5,6 @@ import { UploadApiResponse, UploadApiErrorResponse } from 'cloudinary';
 import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
 
-// Trigger build: 2026-02-08 11:37
-const checkCloudinaryConfig = () => {
-    if (!process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_SECRET) {
-        console.error('❌ Cloudinary configuration is missing in the current environment.');
-    } else {
-        console.log('✅ Cloudinary configuration detected.');
-    }
-};
-
-checkCloudinaryConfig();
-
 export type CloudinaryUploadResponse =
     | { success: true; result: UploadApiResponse }
     | { success: false; error: UploadApiErrorResponse | string };
@@ -148,6 +137,6 @@ export const getAlbums = cache(async (): Promise<AlbumData[]> => {
             }
         },
         ['albums-list'],
-        { revalidate: 3600, tags: ['albums'] } // Cache for 1 hour
+        { revalidate: 3600, tags: ['albums'] } // Stable 1-hour cache
     )();
 });
