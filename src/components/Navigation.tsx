@@ -93,7 +93,7 @@ export function Navigation() {
                         exit={{ opacity: 0, height: 0 }}
                         className="md:hidden border-b bg-background overflow-hidden"
                     >
-                        <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                        <div className="container mx-auto px-4 py-4 flex flex-col space-y-4 max-h-[calc(100vh-8rem)] overflow-y-auto">
                             {navItems.map((item) => (
                                 <Link
                                     key={item.name}
@@ -107,7 +107,7 @@ export function Navigation() {
                                     {item.name}
                                 </Link>
                             ))}
-                            <div className="flex flex-col gap-3 pt-4">
+                            <div className="flex flex-col gap-3 pt-4 pb-2">
                                 <Link href="/carnival/register" onClick={() => setIsOpen(false)}>
                                     <Button className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-black text-lg h-14 rounded-2xl border-none shadow-lg">
                                         Register for Carnival
