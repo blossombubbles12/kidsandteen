@@ -5,6 +5,7 @@ import { Instagram, ExternalLink, Heart, MessageCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { CldImage } from "@/components/media/CldImage";
+import { MediaAsset } from "@/components/media/GalleryGrid";
 
 const instagramPosts = [
     {
