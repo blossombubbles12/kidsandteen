@@ -56,8 +56,8 @@ import {
 export default async function Home() {
   const cloudinaryAssets = await getMediaFromFolder('mydogandigroup', 100);
 
-  // Filter for images only
-  const allImages = cloudinaryAssets
+  // Map to media assets
+  const mappedImages = cloudinaryAssets
     .filter((asset: any) => asset.resource_type === 'image')
     .map((asset: any) => ({
       id: asset.public_id,
@@ -66,8 +66,13 @@ export default async function Home() {
       type: 'image' as const,
       alt: asset.context?.custom?.alt || "Lagos Dog Carnival / My Dog and I Community Moment",
       caption: asset.context?.custom?.caption || "Moment"
-    }))
-    .sort(() => Math.random() - 0.5);
+    }));
+
+  // Capture recent images before shuffling
+  const recentImages = mappedImages.slice(0, 10);
+
+  // Shuffle for variety in other sections
+  const allImages = [...mappedImages].sort(() => Math.random() - 0.5);
 
   // Pick specific images for different sections
   const galleryMedia = allImages.slice(0, 7);
@@ -387,7 +392,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <InstagramFeed />
+      <InstagramFeed media={recentImages} />
 
       <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
         <div className="absolute inset-0 z-0">

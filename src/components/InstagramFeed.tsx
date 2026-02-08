@@ -51,7 +51,21 @@ const instagramPosts = [
     }
 ];
 
-export function InstagramFeed() {
+interface InstagramFeedProps {
+    media?: MediaAsset[];
+}
+
+export function InstagramFeed({ media = [] }: InstagramFeedProps) {
+    // If no media is provided, use the fallback posts
+    const posts = media.length > 0
+        ? media.map((m, i) => ({
+            id: m.id,
+            image: m.cloudinaryId || m.src,
+            likes: `${(Math.floor(Math.random() * 50) + 10) / 10}k`, // Mock likes for aesthetic
+            comments: Math.floor(Math.random() * 100) + 20,
+            link: "https://www.instagram.com/mydogandigroup2"
+        }))
+        : instagramPosts;
     return (
         <section className="py-24 bg-white overflow-hidden">
             <div className="container px-4 md:px-6 mb-12 flex flex-col md:flex-row items-end justify-between gap-6">
@@ -78,7 +92,7 @@ export function InstagramFeed() {
 
             <div className="relative">
                 <div className="flex gap-4 px-4 overflow-x-auto no-scrollbar pb-8 snap-x snap-mandatory">
-                    {instagramPosts.map((post, index) => (
+                    {posts.map((post, index) => (
                         <motion.div
                             key={post.id}
                             initial={{ opacity: 0, scale: 0.9 }}
