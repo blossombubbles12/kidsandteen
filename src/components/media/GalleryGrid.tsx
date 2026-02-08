@@ -35,29 +35,48 @@ const fallbackMedia: MediaAsset[] = [
 ];
 
 export function GalleryGrid({ initialMedia, allowEmpty = false }: GalleryGridProps) {
-    const galleryItems = (!allowEmpty && (!initialMedia || initialMedia.length === 0)) ? fallbackMedia : (initialMedia || []);
+    const [items, setItems] = useState<MediaAsset[]>([]);
+    const [visibleCount, setVisibleCount] = useState(20);
     const [selectedImage, setSelectedImage] = useState<number | null>(null);
     const [filter, setFilter] = useState<'all' | 'image' | 'video' | 'gif'>('all');
 
-    const filteredItems = galleryItems.filter(item => {
+    useEffect(() => {
+        let baseItems = (!allowEmpty && (!initialMedia || initialMedia.length === 0)) ? fallbackMedia : (initialMedia || []);
+        // Shuffle items to keep it fresh
+        const shuffled = [...baseItems].sort(() => Math.random() - 0.5);
+        setItems(shuffled);
+    }, [initialMedia, allowEmpty]);
+
+    const filteredItems = items.filter(item => {
         if (filter === 'all') return true;
         if (filter === 'video') return item.type === 'video';
-        const isGif = item.format === 'gif' || item.src.endsWith('.gif');
+        const isGif = item.format === 'gif' || (item.src && item.src.endsWith('.gif'));
         if (filter === 'gif') return isGif;
         if (filter === 'image') return item.type === 'image' && !isGif;
         return true;
     });
+
+    const visibleItems = filteredItems.slice(0, visibleCount);
 
     useEffect(() => {
         setSelectedImage(null);
     }, [filter]);
 
     const openLightbox = (index: number) => setSelectedImage(index);
-    const closeLightbox = () => setSelectedImage(null);
-    const nextImage = () => setSelectedImage((prev) => (prev !== null && prev < filteredItems.length - 1 ? prev + 1 : 0));
-    const prevImage = () => setSelectedImage((prev) => (prev !== null && prev > 0 ? prev - 1 : filteredItems.length - 1));
+    const closeLightbox = (e?: React.MouseEvent) => {
+        if (e) e.stopPropagation();
+        setSelectedImage(null);
+    };
+    const nextImage = (e?: React.MouseEvent) => {
+        if (e) e.stopPropagation();
+        setSelectedImage((prev) => (prev !== null && prev < visibleItems.length - 1 ? prev + 1 : 0));
+    };
+    const prevImage = (e?: React.MouseEvent) => {
+        if (e) e.stopPropagation();
+        setSelectedImage((prev) => (prev !== null && prev > 0 ? prev - 1 : visibleItems.length - 1));
+    };
 
-    const hasGifs = galleryItems.some(i => i.format === 'gif' || i.src.endsWith('.gif'));
+    const hasGifs = items.some(i => i.format === 'gif' || (i.src && i.src.endsWith('.gif')));
     const filters = [
         { id: 'all', label: 'All' },
         { id: 'image', label: 'Images' },
@@ -92,7 +111,7 @@ export function GalleryGrid({ initialMedia, allowEmpty = false }: GalleryGridPro
             </div>
 
             <motion.div layout className="columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-4 space-y-4">
-                {filteredItems.map((img, index) => (
+                {visibleItems.map((img, index) => (
                     <motion.div
                         layout
                         key={img.id}
@@ -136,66 +155,84 @@ export function GalleryGrid({ initialMedia, allowEmpty = false }: GalleryGridPro
                 ))}
             </motion.div>
 
-            {
-                selectedImage !== null && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 backdrop-blur-sm"
-                        onClick={closeLightbox}
+            {/* Load More Button */}
+            {visibleCount < filteredItems.length && (
+                <div className="flex justify-center mt-12">
+                    <button
+                        onClick={() => setVisibleCount(prev => prev + 20)}
+                        className="px-8 py-3 bg-primary text-white font-bold rounded-full shadow-lg shadow-primary/20 hover:scale-105 transition-transform"
                     >
-                        <button className="absolute top-6 right-6 text-white/70 hover:text-white" onClick={closeLightbox}>
-                            <X className="w-8 h-8" />
-                        </button>
+                        Load More Magic
+                    </button>
+                </div>
+            )}
 
-                        <button
-                            className="absolute left-4 md:left-10 text-white/50 hover:text-white transition-colors"
-                            onClick={(e) => { e.stopPropagation(); prevImage(); }}
+            <AnimatePresence>
+                {
+                    selectedImage !== null && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 backdrop-blur-md"
+                            onClick={() => closeLightbox()}
                         >
-                            <ChevronLeft className="w-12 h-12" />
-                        </button>
+                            {/* Improved Close Button */}
+                            <button
+                                className="absolute top-8 right-8 text-white/70 hover:text-white hover:scale-110 transition-all z-[110] bg-white/10 p-2 rounded-full backdrop-blur-md border border-white/20"
+                                onClick={(e) => closeLightbox(e)}
+                            >
+                                <X className="w-8 h-8" />
+                            </button>
 
-                        <div className="relative max-w-5xl max-h-[85vh] w-full h-full flex flex-col items-center justify-center p-4" onClick={(e) => e.stopPropagation()}>
-                            <div className="relative w-full h-full flex items-center justify-center">
-                                {filteredItems[selectedImage].type === 'video' ? (
-                                    <div className="w-full h-full max-h-[70vh] rounded-xl overflow-hidden shadow-2xl">
-                                        <CldVideoPlayer
-                                            width="1920"
-                                            height="1080"
-                                            src={filteredItems[selectedImage].cloudinaryId || ""}
-                                            colors={{
-                                                accent: "#ea580c",
-                                                base: "#000000",
-                                                text: "#ffffff"
-                                            }}
-                                            fontFace="Outfit"
+                            <button
+                                className="absolute left-4 md:left-10 text-white/50 hover:text-white transition-all z-[110]"
+                                onClick={(e) => prevImage(e)}
+                            >
+                                <ChevronLeft className="w-12 h-12" />
+                            </button>
+
+                            <div className="relative max-w-5xl max-h-[85vh] w-full h-full flex flex-col items-center justify-center p-4" onClick={(e) => e.stopPropagation()}>
+                                <div className="relative w-full h-full flex items-center justify-center">
+                                    {visibleItems[selectedImage].type === 'video' ? (
+                                        <div className="w-full h-full max-h-[70vh] rounded-xl overflow-hidden shadow-2xl">
+                                            <CldVideoPlayer
+                                                width="1920"
+                                                height="1080"
+                                                src={visibleItems[selectedImage].cloudinaryId || ""}
+                                                colors={{
+                                                    accent: "#ea580c",
+                                                    base: "#000000",
+                                                    text: "#ffffff"
+                                                }}
+                                                fontFace="Outfit"
+                                            />
+                                        </div>
+                                    ) : (
+                                        <CldImage
+                                            src={visibleItems[selectedImage].cloudinaryId || visibleItems[selectedImage].src}
+                                            fallback={visibleItems[selectedImage].src}
+                                            alt={visibleItems[selectedImage].alt}
+                                            fill
+                                            className="object-contain"
                                         />
-                                    </div>
-                                ) : (
-                                    <CldImage
-                                        src={filteredItems[selectedImage].cloudinaryId || filteredItems[selectedImage].src}
-                                        fallback={filteredItems[selectedImage].src}
-                                        alt={filteredItems[selectedImage].alt}
-                                        fill
-                                        className="object-contain"
-                                    />
-                                )}
+                                    )}
+                                </div>
+                                <p className="text-white mt-12 text-lg font-medium tracking-wide">
+                                    {visibleItems[selectedImage].caption}
+                                </p>
                             </div>
-                            <p className="text-white mt-8 text-lg font-medium tracking-wide">
-                                {filteredItems[selectedImage].caption}
-                            </p>
-                        </div>
 
-                        <button
-                            className="absolute right-4 md:right-10 text-white/50 hover:text-white transition-colors"
-                            onClick={(e) => { e.stopPropagation(); nextImage(); }}
-                        >
-                            <ChevronRight className="w-12 h-12" />
-                        </button>
-                    </motion.div>
-                )
-            }
+                            <button
+                                className="absolute right-4 md:right-10 text-white/50 hover:text-white transition-all z-[110]"
+                                onClick={(e) => nextImage(e)}
+                            >
+                                <ChevronRight className="w-12 h-12" />
+                            </button>
+                        </motion.div>
+                    )
+                }
+            </AnimatePresence>
         </section >
     );
 }

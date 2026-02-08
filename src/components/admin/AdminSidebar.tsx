@@ -53,8 +53,13 @@ export function AdminSidebar({
     return (
         <>
             {/* Mobile Toggle */}
-            <div className="lg:hidden fixed top-4 left-4 z-50">
-                <Button variant="outline" size="icon" onClick={toggleSidebar} className="rounded-full shadow-lg bg-white">
+            <div className="lg:hidden fixed top-6 right-6 z-50">
+                <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={toggleSidebar}
+                    className="rounded-full shadow-2xl bg-white/80 backdrop-blur-md border-border/50 hover:bg-white transition-all scale-110"
+                >
                     {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                 </Button>
             </div>

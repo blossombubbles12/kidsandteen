@@ -35,7 +35,7 @@ export function RegistrationDetailsView({ registration, onBack }: RegistrationDe
             className="space-y-6 pb-20"
         >
             {/* Navigation Header */}
-            <div className="flex items-center gap-4 sticky top-0 bg-slate-50/80 backdrop-blur-md z-10 py-4 mb-2">
+            <div className="flex items-center gap-4 sticky top-0 bg-slate-50/80 backdrop-blur-md z-10 py-4 mb-2 pr-20 lg:pr-4">
                 <Button
                     variant="ghost"
                     size="icon"

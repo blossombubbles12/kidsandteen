@@ -89,7 +89,7 @@ export default function AdminDashboard({ initialRegistrations, stats, user }: Ad
                 <div className="p-4 md:p-8 lg:p-10 max-w-7xl mx-auto space-y-8">
                     {/* Dashboard Header - Hidden when viewing details for app-like focus */}
                     {!selectedRegistration && (
-                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white p-6 rounded-2xl shadow-sm border border-border">
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white p-6 rounded-2xl shadow-sm border border-border pr-16 md:pr-6">
                             <div>
                                 <h1 className="text-2xl md:text-3xl font-black tracking-tight uppercase">
                                     {activeTab === 'dashboard' ? 'Dashboard' : activeTab === 'registrations' ? 'Registration' : activeTab === 'media' ? 'Media' : activeTab === 'inquiries' ? 'Contact' : 'User'} <span className="text-primary">{activeTab === 'dashboard' ? 'Overview' : activeTab === 'profile' ? 'Profile' : activeTab === 'inquiries' ? 'Inquiries' : 'Registry'}</span>

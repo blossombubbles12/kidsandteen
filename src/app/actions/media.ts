@@ -54,7 +54,7 @@ export async function getMediaFromFolder(folder: string = 'mydogandigroup', limi
     try {
         // Fetch images using Search API
         const imagesPromise = cloudinary.search
-            .expression(`resource_type:image AND folder:"${folder}"`)
+            .expression(`resource_type:image AND folder:"${folder}/*"`)
             .sort_by('created_at', 'desc')
             .max_results(Math.floor(limit / 2))
             .with_field('context')
@@ -62,7 +62,7 @@ export async function getMediaFromFolder(folder: string = 'mydogandigroup', limi
 
         // Fetch videos using Search API
         const videosPromise = cloudinary.search
-            .expression(`resource_type:video AND folder:"${folder}"`)
+            .expression(`resource_type:video AND folder:"${folder}/*"`)
             .sort_by('created_at', 'desc')
             .max_results(Math.floor(limit / 2))
             .with_field('context')

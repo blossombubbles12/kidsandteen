@@ -11,7 +11,7 @@ export default async function MediaPage() {
     // Increased limit to 100 to cover all ~65 assets mentioned by the user
     // Fetch folders/albums
     const [cloudinaryAssets, albums] = await Promise.all([
-        getMediaFromFolder('', 100),
+        getMediaFromFolder('mydogandigroup', 500),
         getAlbums()
     ]);
 

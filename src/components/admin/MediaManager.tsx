@@ -243,7 +243,7 @@ export default function MediaManager() {
     return (
         <div className="space-y-6">
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pr-16 md:pr-0">
                 <div>
                     <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight">
                         Media <span className="text-primary">Manager</span>
