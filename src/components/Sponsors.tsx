@@ -11,6 +11,9 @@ const sponsors = [
     { name: "Sponsor 3", image: "/sponsor3.png" },
     { name: "Sponsor 4", image: "/sponsor4.png" },
     { name: "Sponsor 5", image: "/sponsor5.png" },
+    { name: "Sponsor 6", image: "/sponsor6.jpeg" },
+    { name: "Sponsor 7", image: "/sponsor7.png" },
+    { name: "Sponsor 8", image: "/sponsor8.PNG" },
 ];
 
 export function Sponsors() {
@@ -29,7 +32,7 @@ export function Sponsors() {
 
                 {/* Marquee Container */}
                 <motion.div
-                    className="flex gap-12 md:gap-24 min-w-full items-center justify-around whitespace-nowrap"
+                    className="flex gap-4 md:gap-8 min-w-full items-center justify-around whitespace-nowrap"
                     animate={{ x: ["0%", "-50%"] }}
                     transition={{
                         repeat: Infinity,
@@ -39,8 +42,8 @@ export function Sponsors() {
                 >
                     {/* Multiplied list for seamless loop */}
                     {[...sponsors, ...sponsors, ...sponsors, ...sponsors].map((sponsor, index) => (
-                        <div key={`${sponsor.name}-${index}`} className="flex items-center justify-center transition-all cursor-pointer px-6 group">
-                            <div className="relative w-40 h-16 md:w-60 md:h-24 transition-all duration-300 transform group-hover:scale-110">
+                        <div key={`${sponsor.name}-${index}`} className="flex items-center justify-center transition-all cursor-pointer px-2 group">
+                            <div className="relative w-48 h-24 md:w-72 md:h-36 transition-all duration-300 transform group-hover:scale-110">
                                 <Image
                                     src={sponsor.image}
                                     alt={sponsor.name}
