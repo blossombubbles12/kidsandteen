@@ -15,20 +15,20 @@ export function Logo({ className, showText = false }: LogoProps) {
 
     return (
         <div className={cn("flex items-center gap-2", className)}>
-            <div className="relative w-24 h-24 flex items-center justify-center">
+            <div className="relative w-14 h-14 flex items-center justify-center">
                 {!imgError ? (
                     <Image
                         src="/mydoglogo.png"
                         alt="My Dog & I Logo"
-                        width={100}
-                        height={100}
+                        width={60}
+                        height={60}
                         className="object-contain"
                         priority
                         onError={() => setImgError(true)}
                     />
                 ) : (
-                    <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                        <Dog className="w-12 h-12" />
+                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                        <Dog className="w-8 h-8" />
                     </div>
                 )}
             </div>
