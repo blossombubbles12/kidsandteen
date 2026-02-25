@@ -104,7 +104,7 @@ export function Sponsors() {
                                     src={sponsor.image}
                                     alt={sponsor.name}
                                     fill
-                                    className="object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500 scale-90 group-hover:scale-100"
+                                    className="object-contain transition-all duration-500 scale-90 group-hover:scale-100"
                                 />
                             </div>
                         </motion.a>

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Play, Heart, ShieldAlert, Users, Calendar, MapPin } from "lucide-react";
 import { CldVideo } from "@/components/media/CldVideo";
-import { GalleryGrid } from "@/components/media/GalleryGrid";
+import { GalleryGrid, MediaAsset } from "@/components/media/GalleryGrid";
 import { Badge } from "@/components/ui/badge";
 
 interface ACMSPageContentProps {
@@ -12,12 +12,12 @@ interface ACMSPageContentProps {
 
 export function ACMSPageContent({ initialMedia }: ACMSPageContentProps) {
     // Transforming initialMedia to MediaAsset format for GalleryGrid
-    const galleryItems = initialMedia.map((asset: any) => ({
+    const galleryItems: MediaAsset[] = initialMedia.map((asset: any) => ({
         id: asset.public_id,
         src: asset.secure_url,
         cloudinaryId: asset.public_id,
         alt: asset.context?.custom?.alt || "ACMS March Image",
-        type: asset.resource_type === 'video' ? 'video' : 'image',
+        type: (asset.resource_type === 'video' ? 'video' : 'image') as "video" | "image",
         format: asset.format
     }));
 
