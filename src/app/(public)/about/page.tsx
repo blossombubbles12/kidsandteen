@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { AnniversaryBanner } from "@/components/AnniversaryBanner";
 import { CldImage } from "@/components/media/CldImage";
+import { Sponsors } from "@/components/Sponsors";
 
 const timeline = [
     {
@@ -496,6 +497,8 @@ export default function AboutPage() {
                     </Link>
                 </div>
             </section>
+
+            <Sponsors />
         </div>
     );
 }

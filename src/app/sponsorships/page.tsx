@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import { CldImage } from "@/components/media/CldImage";
+import { Sponsors } from "@/components/Sponsors";
 
 const packages = [
     {
@@ -226,6 +227,8 @@ export default function SponsorshipsPage() {
                     </Link>
                 </div>
             </section>
+
+            <Sponsors />
         </div>
     );
 }

@@ -14,6 +14,7 @@ import { AnniversaryBanner } from "@/components/AnniversaryBanner";
 import { CldImage } from "@/components/media/CldImage";
 import { MediaAsset } from "@/components/media/GalleryGrid";
 import { GalleryPreview } from "@/components/media/GalleryPreview";
+import { Sponsors } from "@/components/Sponsors";
 
 interface CarnivalClientProps {
     galleryMedia: MediaAsset[];
@@ -233,6 +234,8 @@ export function CarnivalClient({ galleryMedia }: CarnivalClientProps) {
 
             {/* Safety Info */}
             <SafetyInfo />
+
+            <Sponsors />
 
             {/* Final CTA Footer */}
             <section className="py-24 bg-slate-900 text-white text-center relative overflow-hidden">

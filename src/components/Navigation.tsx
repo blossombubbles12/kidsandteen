@@ -15,6 +15,7 @@ const navItems = [
     { name: "Membership", href: "/membership" },
     { name: "Carnival", href: "/carnival" },
     { name: "Media", href: "/media" },
+    { name: "ACMS March", href: "/acms" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
 ];
