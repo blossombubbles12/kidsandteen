@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 const sponsors = [
     { name: "Sponsor 1", image: "/sponsor1.png" },
@@ -15,7 +15,7 @@ const sponsors = [
     { name: "Sponsor 9", image: "/sponsor9.png" },
 ];
 
-const container = {
+const container: Variants = {
     hidden: { opacity: 0 },
     show: {
         opacity: 1,
@@ -26,7 +26,7 @@ const container = {
     }
 };
 
-const item = {
+const item: Variants = {
     hidden: { opacity: 0, scale: 0.8, y: 20 },
     show: {
         opacity: 1,
