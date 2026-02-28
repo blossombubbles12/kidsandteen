@@ -13,6 +13,7 @@ const sponsors = [
     { name: "Sponsor 7", image: "/sponsor7.png" },
     { name: "Sponsor 8", image: "/sponsor8.PNG" },
     { name: "Sponsor 9", image: "/sponsor9.png" },
+    { name: "Sponsor 10", image: "/sponsor10.jpg" },
 ];
 
 const container: Variants = {
@@ -49,10 +50,14 @@ export function Sponsors() {
             <div className="container mx-auto px-4 md:px-6 mb-16 relative">
                 <div className="max-w-2xl mx-auto text-center">
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
+                        whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
+                        transition={{
+                            type: "spring",
+                            stiffness: 260,
+                            damping: 20
+                        }}
                         className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-primary/10 border border-primary/20"
                     >
                         <span className="text-primary font-bold text-xs uppercase tracking-[0.2em]">Our Partners</span>
@@ -83,28 +88,52 @@ export function Sponsors() {
                     viewport={{ once: true, margin: "-50px" }}
                     className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-8 items-center justify-items-center"
                 >
-                    {sponsors.map((sponsor) => (
+                    {sponsors.map((sponsor, index) => (
                         <motion.a
                             key={sponsor.name}
                             href="#"
                             variants={item}
-                            whileHover={{
-                                scale: 1.05,
-                                y: -5,
-                                transition: { duration: 0.2 }
+                            animate={{
+                                y: [0, -5, 0],
+                                transition: {
+                                    duration: 3 + (index % 3),
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                    delay: index * 0.2
+                                }
                             }}
-                            whileTap={{ scale: 0.95 }}
-                            className="relative group w-full aspect-[16/9] flex items-center justify-center p-6 rounded-2xl bg-secondary/5 hover:bg-secondary/10 transition-all duration-300 border border-border/50 hover:border-primary/30 shadow-sm hover:shadow-xl hover:shadow-primary/5 cursor-pointer overflow-hidden"
+                            whileHover={{
+                                scale: 1.15,
+                                rotate: [0, -2, 2, 0],
+                                y: -10,
+                                zIndex: 10,
+                                transition: {
+                                    duration: 0.3,
+                                    rotate: {
+                                        repeat: Infinity,
+                                        duration: 0.2
+                                    }
+                                }
+                            }}
+                            whileTap={{ scale: 0.9 }}
+                            className="relative group w-full aspect-[16/9] flex items-center justify-center p-6 rounded-2xl bg-secondary/5 hover:bg-white transition-all duration-300 border border-border/50 hover:border-primary/50 shadow-sm hover:shadow-2xl hover:shadow-primary/20 cursor-pointer overflow-hidden"
                         >
-                            {/* Hover accent */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap" />
+                            {/* Animated background accent */}
+                            <motion.div
+                                className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
+                                animate={{
+                                    scale: [1, 1.2, 1],
+                                    rotate: [0, 90, 0],
+                                    transition: { duration: 10, repeat: Infinity }
+                                }}
+                            />
 
                             <div className="relative w-full h-full z-10">
                                 <Image
                                     src={sponsor.image}
                                     alt={sponsor.name}
                                     fill
-                                    className="object-contain transition-all duration-500 scale-90 group-hover:scale-100"
+                                    className="object-contain transition-all duration-500 scale-90 group-hover:scale-110"
                                 />
                             </div>
                         </motion.a>
@@ -112,8 +141,14 @@ export function Sponsors() {
                 </motion.div>
             </div>
 
-            {/* Bottom decorative element */}
-            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none" />
+            {/* Bottom decorative element with subtle movement */}
+            <motion.div
+                className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none"
+                animate={{
+                    opacity: [0.3, 0.6, 0.3],
+                    transition: { duration: 5, repeat: Infinity }
+                }}
+            />
         </section>
     );
 }
