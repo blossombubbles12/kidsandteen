@@ -394,6 +394,52 @@ export default async function Home() {
 
       <InstagramFeed media={recentImages} />
 
+      {/* ── FOODBANK INITIATIVE ─────────────────────────────────── */}
+      <section className="py-20 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-secondary" />
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+              <Image src="/foodbank1.jpeg" alt="Foodbank Initiative" fill className="object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6">
+                <span className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-bold">
+                  <Heart className="w-4 h-4 fill-current" /> Community Aid Initiative
+                </span>
+              </div>
+            </div>
+
+            <div>
+              <div className="inline-flex items-center gap-2 bg-destructive/10 text-destructive px-4 py-2 rounded-full text-sm font-bold mb-6">
+                🚨 Urgent Appeal
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
+                Doglovers Community <span className="text-primary">Foodbank AID</span>
+              </h2>
+              <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
+                Nigeria's economic hardship is hitting our community hard. We're rallying together to provide 
+                <strong> essential food items for 20 dog-loving families</strong> — their dogs included.
+              </p>
+
+              <div className="grid grid-cols-3 gap-4 mb-8">
+                {[["20", "Families"], ["180+", "Food Items"], ["0%", "Admin Fees"]].map(([n, l]) => (
+                  <div key={l} className="text-center p-4 bg-white rounded-2xl shadow-sm border border-orange-100">
+                    <p className="text-2xl font-black text-primary">{n}</p>
+                    <p className="text-xs text-muted-foreground font-medium">{l}</p>
+                  </div>
+                ))}
+              </div>
+
+              <Link href="/foodbank">
+                <Button size="lg" className="text-lg px-8 font-bold bg-primary shadow-lg shadow-primary/30 hover:scale-105 transition-transform">
+                  <Heart className="w-5 h-5 mr-2 fill-current" /> Support the Foodbank <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <CldImage
