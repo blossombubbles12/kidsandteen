@@ -10,15 +10,19 @@ import { cn } from "@/lib/utils";
 import { TopPromotionBanner } from "./TopPromotionBanner";
 import { Logo } from "./Logo";
 
+import { Heart } from "lucide-react";
+
 const navItems = [
     { name: "Home", href: "/" },
     { name: "Membership", href: "/membership" },
     { name: "Carnival", href: "/carnival" },
+    { name: "Foodbank", href: "/foodbank", icon: Heart },
     { name: "Media", href: "/media" },
     { name: "ACMS March", href: "/acms" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
 ];
+
 
 export function Navigation() {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -45,12 +49,13 @@ export function Navigation() {
                             key={item.name}
                             href={item.href}
                             className={cn(
-                                "text-sm font-medium transition-colors hover:text-primary relative group",
+                                "text-sm font-medium transition-colors hover:text-primary relative group flex items-center gap-1.5",
                                 pathname === item.href
                                     ? "text-primary font-semibold"
                                     : "text-muted-foreground"
                             )}
                         >
+                            {item.icon && <item.icon className={cn("w-4 h-4", pathname === item.href ? "text-primary" : "text-muted-foreground group-hover:text-primary")} />}
                             {item.name}
                             {pathname === item.href && (
                                 <motion.div
@@ -60,6 +65,7 @@ export function Navigation() {
                             )}
                         </Link>
                     ))}
+
                     <Link href="/carnival/register">
                         <Button variant="default" size="sm" className="ml-2 bg-yellow-500 hover:bg-yellow-600 text-black font-bold border-none">
                             Register
@@ -99,14 +105,16 @@ export function Navigation() {
                                     key={item.name}
                                     href={item.href}
                                     className={cn(
-                                        "text-lg font-medium py-2 border-b border-border/50 last:border-0",
+                                        "text-lg font-medium py-3 border-b border-border/50 last:border-0 flex items-center gap-3",
                                         pathname === item.href ? "text-primary" : "text-muted-foreground"
                                     )}
                                     onClick={() => setIsOpen(false)}
                                 >
+                                    {item.icon && <item.icon className="w-5 h-5" />}
                                     {item.name}
                                 </Link>
                             ))}
+
                             <div className="flex flex-col gap-3 pt-4 pb-2">
                                 <Link href="/carnival/register" onClick={() => setIsOpen(false)}>
                                     <Button className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-black text-lg h-14 rounded-2xl border-none shadow-lg">
