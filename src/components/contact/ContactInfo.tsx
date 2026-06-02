@@ -9,8 +9,8 @@ export function ContactInfo() {
             <div>
                 <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
                 <p className="text-muted-foreground text-lg">
-                    Have questions about the Carnival? Want to partner with us?
-                    Or just want to say woof? We'd love to hear from you.
+                    Have questions about our programs? Want to partner with us?
+                    We'd love to hear from you.
                 </p>
             </div>
 
@@ -21,7 +21,7 @@ export function ContactInfo() {
                     </div>
                     <div>
                         <h3 className="font-bold">Email Us</h3>
-                        <RevealContact value="mydogandigroup@yahoo.com" type="email" />
+                        <RevealContact value="info@ktuafrica.org" type="email" />
                     </div>
                 </div>
 
@@ -31,7 +31,7 @@ export function ContactInfo() {
                     </div>
                     <div>
                         <h3 className="font-bold">Call Us</h3>
-                        <RevealContact value="08168874616" type="phone" />
+                        <RevealContact value="+234 800 123 4567" type="phone" />
                     </div>
                 </div>
             </div>

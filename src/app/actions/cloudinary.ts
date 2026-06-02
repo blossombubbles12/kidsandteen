@@ -4,18 +4,16 @@ import cloudinary from '@/lib/cloudinary';
 
 export async function getAllMedia(maxResults: number = 500) {
     try {
-        const rootFolder = 'mydogandigroup';
-
         const [images, videos] = await Promise.all([
             cloudinary.search
-                .expression(`resource_type:image AND folder:${rootFolder}*`)
+                .expression(`resource_type:image AND (folder:ktuafrica* OR NOT folder:*)`)
                 .sort_by('created_at', 'desc')
                 .max_results(maxResults)
                 .with_field('context')
                 .with_field('tags')
                 .execute(),
             cloudinary.search
-                .expression(`resource_type:video AND folder:${rootFolder}*`)
+                .expression(`resource_type:video AND (folder:ktuafrica* OR NOT folder:*)`)
                 .sort_by('created_at', 'desc')
                 .max_results(maxResults)
                 .with_field('context')
@@ -26,11 +24,6 @@ export async function getAllMedia(maxResults: number = 500) {
         const allMedia = [...images.resources, ...videos.resources].sort((a, b) =>
             new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
         );
-
-        // Debug: Log first item to see structure
-        if (allMedia.length > 0) {
-            console.log('Sample media item from Cloudinary:', JSON.stringify(allMedia[0], null, 2));
-        }
 
         return {
             success: true,
@@ -74,7 +67,6 @@ export async function deleteFolder(folderPath: string) {
 
 export async function getAllFolders() {
     try {
-        const rootFolder = 'mydogandigroup';
         const allFolders: any[] = [];
 
         async function fetchSubfolders(path: string) {
@@ -89,8 +81,7 @@ export async function getAllFolders() {
             }
         }
 
-        // Start from mydogandigroup root and fetch all subfolders
-        await fetchSubfolders(rootFolder);
+        await fetchSubfolders('ktuafrica');
 
         return { success: true, folders: allFolders };
     } catch (error) {

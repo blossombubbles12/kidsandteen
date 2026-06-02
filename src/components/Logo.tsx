@@ -3,34 +3,39 @@
 import Image from "next/image";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { Dog } from "lucide-react";
+import { GraduationCap } from "lucide-react";
 
 interface LogoProps {
     className?: string;
-    showText?: boolean;
 }
 
-export function Logo({ className, showText = false }: LogoProps) {
+export function Logo({ className }: LogoProps) {
     const [imgError, setImgError] = useState(false);
 
     return (
         <div className={cn("flex items-center gap-2", className)}>
-            <div className="relative w-14 h-14 flex items-center justify-center">
+            <div className="relative flex-shrink-0">
                 {!imgError ? (
                     <Image
-                        src="/mydoglogo.png"
-                        alt="My Dog & I Logo"
-                        width={60}
-                        height={60}
+                        src="/logo.png"
+                        alt="Kids and Teens University Logo"
+                        width={44}
+                        height={44}
                         className="object-contain"
                         priority
                         onError={() => setImgError(true)}
                     />
                 ) : (
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                        <Dog className="w-8 h-8" />
-                    </div>
+                    <GraduationCap className="w-8 h-8 text-[#d9441e]" />
                 )}
+            </div>
+            <div className="flex flex-col leading-none">
+                <span className="font-black tracking-tight text-[#d9441e] text-sm leading-tight">
+                    Kids &amp; Teens
+                </span>
+                <span className="font-black tracking-widest uppercase text-[#2d1a0e]" style={{ fontSize: "0.6rem", letterSpacing: "0.15em", lineHeight: 1.3 }}>
+                    University
+                </span>
             </div>
         </div>
     );

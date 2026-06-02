@@ -236,7 +236,7 @@ export function CinematicPlayer({ isOpen, onClose, media, audioRef }: CinematicP
                     animate={{ opacity: isUIVisible ? 0.4 : 0 }}
                     className="absolute bottom-6 right-8 pointer-events-none"
                 >
-                    <p className="text-xl font-bold font-serif italic tracking-widest text-white">My Dog and I</p>
+                    <p className="text-xl font-bold font-serif italic tracking-widest text-white">KTU Africa</p>
                 </motion.div>
             </motion.div>
         </AnimatePresence>

@@ -22,23 +22,23 @@ export function FeaturedMember() {
                     <div className="flex-1 space-y-6 text-center md:text-left">
                         <div className="flex items-center justify-center md:justify-start gap-2 text-primary font-bold uppercase tracking-wider text-sm">
                             <Quote className="w-4 h-4 fill-primary" />
-                            Bark of the Week
+                            Student Spotlight
                         </div>
 
                         <h2 className="text-3xl md:text-4xl font-bold">
-                            Meet Sarah & "Barnaby"
+                            Meet Chidi — Age 14, Founder
                         </h2>
 
                         <p className="text-lg text-muted-foreground italic">
-                            "I joined My Dog and I looking for walking buddies, but I found a whole family.
-                            The training tips helped Barnaby stop chewing my shoes (finally!), and the
-                            Sunday meetups are the highlight of our week."
+                            "I joined KTU's Startup Incubation program with just an idea for a fashion line.
+                            Now I have 12 employees, I've paid my school fees, and I'm mentoring other
+                            teens. KTU didn't just teach me business — it showed me I could be a CEO."
                         </p>
 
                         <div className="flex items-center justify-center md:justify-start gap-4">
                             <div>
-                                <p className="font-bold text-foreground">Sarah O.</p>
-                                <p className="text-sm text-muted-foreground">Pack Member since 2023</p>
+                                <p className="font-bold text-foreground">Chidi M.</p>
+                                <p className="text-sm text-muted-foreground">KTU Member since 2024</p>
                             </div>
                             <Button variant="outline" size="sm">Read Full Story</Button>
                         </div>

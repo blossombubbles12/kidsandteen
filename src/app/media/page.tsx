@@ -11,7 +11,7 @@ export default async function MediaPage() {
     // Increased limit to 100 to cover all ~65 assets mentioned by the user
     // Fetch folders/albums
     const [cloudinaryAssets, albums] = await Promise.all([
-        getMediaFromFolder('mydogandigroup', 500),
+        getMediaFromFolder('ktuafrica', 500),
         getAlbums()
     ]);
 
@@ -29,7 +29,7 @@ export default async function MediaPage() {
             cloudinaryId: asset.public_id,
             type: asset.resource_type === 'video' ? 'video' : 'image',
             format: asset.format,
-            alt: asset.context?.custom?.alt || "Lagos Dog Carnival / My Dog and I Community Moment",
+            alt: asset.context?.custom?.alt || "KTU Community Moment",
             // Clean up public_id for caption if no custom caption is set
             caption: asset.context?.custom?.caption ||
                 asset.public_id.split('/').pop()?.replace(/[_-]/g, ' ') ||

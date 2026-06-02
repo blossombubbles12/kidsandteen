@@ -3,21 +3,16 @@
 import { motion } from "framer-motion";
 import {
     Users,
-    Dog,
-    PawPrint,
     Search,
     Trash2,
     FileText,
     TrendingUp,
-    Heart,
     UserCircle,
-    LogOut,
     Eye,
     Calendar,
     Phone,
     MapPin,
     BadgeCheck,
-    Info,
     Mail,
     MessageSquare
 } from "lucide-react";
@@ -37,8 +32,6 @@ type AdminDashboardProps = {
     initialRegistrations: any[];
     stats: {
         totalRegistrations: number;
-        totalHumans: number;
-        totalPets: number;
         totalInquiries: number;
         categories: { category: string; count: string }[];
     };
@@ -88,7 +81,7 @@ export default function AdminDashboard({ initialRegistrations, stats, user }: Ad
 
             <main className="flex-1 overflow-auto">
                 <div className="p-4 md:p-8 lg:p-10 max-w-7xl mx-auto space-y-8">
-                    {/* Dashboard Header - Hidden when viewing details for app-like focus */}
+                    {/* Dashboard Header */}
                     {!selectedRegistration && (
                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white p-6 rounded-2xl shadow-sm border border-border pr-16 md:pr-6">
                             <div>
@@ -117,12 +110,11 @@ export default function AdminDashboard({ initialRegistrations, stats, user }: Ad
                     ) : activeTab === 'dashboard' ? (
                         <div className="space-y-8">
                             {/* Stats Grid */}
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {[
                                     { label: "Registration Entries", value: stats.totalRegistrations, icon: FileText, color: "bg-blue-500" },
-                                    { label: "Total Attendees", value: stats.totalHumans, icon: Users, color: "bg-indigo-500" },
-                                    { label: "Total Pets", value: stats.totalPets, icon: PawPrint, color: "bg-orange-500" },
                                     { label: "Support Inquiries", value: stats.totalInquiries, icon: MessageSquare, color: "bg-emerald-500" },
+                                    { label: "Categories", value: stats.categories.length, icon: Users, color: "bg-indigo-500" },
                                 ].map((stat, i) => (
                                     <motion.div
                                         key={i}
@@ -143,7 +135,7 @@ export default function AdminDashboard({ initialRegistrations, stats, user }: Ad
                                 ))}
                             </div>
 
-                            {/* Additional Dashboard Info could go here */}
+                            {/* Additional Dashboard Info */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div className="bg-white p-8 rounded-[2.5rem] border border-border shadow-sm">
                                     <h3 className="text-lg font-black uppercase italic mb-6 flex items-center gap-2">
@@ -162,12 +154,9 @@ export default function AdminDashboard({ initialRegistrations, stats, user }: Ad
                                 </div>
 
                                 <div className="bg-slate-900 p-8 rounded-[2.5rem] text-white shadow-xl relative overflow-hidden group">
-                                    <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform duration-500">
-                                        <Dog className="w-32 h-32" />
-                                    </div>
                                     <div className="relative z-10">
                                         <h3 className="text-lg font-black uppercase italic mb-2">Quick Action</h3>
-                                        <p className="text-sm opacity-70 mb-6 max-w-[200px]">You have {stats.totalInquiries} unread inquiries from potential participants.</p>
+                                        <p className="text-sm opacity-70 mb-6 max-w-[200px]">You have {stats.totalInquiries} unread inquiries.</p>
                                         <Button
                                             onClick={() => setActiveTab('inquiries')}
                                             className="bg-primary hover:bg-primary/90 text-white rounded-xl font-bold uppercase tracking-widest text-[10px]"
@@ -202,8 +191,7 @@ export default function AdminDashboard({ initialRegistrations, stats, user }: Ad
                                         <tr className="bg-slate-50 text-muted-foreground text-[10px] md:text-xs uppercase font-black tracking-widest">
                                             <th className="px-4 md:px-6 py-4">Registrant</th>
                                             <th className="px-4 md:px-6 py-4 hidden sm:table-cell">Details</th>
-                                            <th className="px-4 md:px-6 py-4">Pets</th>
-                                            <th className="px-4 md:px-6 py-4 hidden md:table-cell text-center">Vaccinated</th>
+                                            <th className="px-4 md:px-6 py-4">Category</th>
                                             <th className="px-4 md:px-6 py-4 text-right">Actions</th>
                                         </tr>
                                     </thead>
@@ -218,7 +206,6 @@ export default function AdminDashboard({ initialRegistrations, stats, user }: Ad
                                             >
                                                 <td className="px-4 md:px-6 py-4">
                                                     <div className="font-bold text-slate-900 text-sm md:text-base truncate max-w-[120px] md:max-w-none">{reg.name}</div>
-                                                    <div className="text-[10px] text-muted-foreground uppercase">{reg.sex || 'Not specified'}</div>
                                                     <div className="sm:hidden text-[10px] text-primary font-bold mt-1">{reg.location}</div>
                                                 </td>
                                                 <td className="px-4 md:px-6 py-4 hidden sm:table-cell">
@@ -227,25 +214,8 @@ export default function AdminDashboard({ initialRegistrations, stats, user }: Ad
                                                     <div className="text-[10px] font-bold text-primary mt-1">{reg.location}</div>
                                                 </td>
                                                 <td className="px-4 md:px-6 py-4">
-                                                    <div className="flex flex-wrap gap-1.5 min-w-[80px]">
-                                                        {reg.pets?.length > 0 ? reg.pets.slice(0, 2).map((pet: any, pi: number) => (
-                                                            <span key={pi} className="inline-flex items-center px-2 py-0.5 rounded-full text-[9px] md:text-[10px] font-bold bg-orange-100 text-orange-700 whitespace-nowrap">
-                                                                {pet.name}
-                                                            </span>
-                                                        )) : (
-                                                            <span className="text-[10px] md:text-xs text-muted-foreground">No pets</span>
-                                                        )}
-                                                        {reg.pets?.length > 2 && (
-                                                            <span className="text-[9px] font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded-full">+{reg.pets.length - 2}</span>
-                                                        )}
-                                                    </div>
-                                                    <div className="text-[9px] md:text-[10px] text-muted-foreground mt-1 font-medium">Guests: {reg.guest_count}</div>
-                                                </td>
-                                                <td className="px-4 md:px-6 py-4 hidden md:table-cell text-center">
-                                                    <span className={`px-2 py-1 rounded-lg text-[9px] md:text-[10px] font-black uppercase ${reg.is_vaccinated === 'Yes' ? 'bg-green-100 text-green-700' :
-                                                        reg.is_vaccinated === 'No' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'
-                                                        }`}>
-                                                        {reg.is_vaccinated}
+                                                    <span className="inline-flex px-2 py-1 rounded-lg text-[10px] font-bold bg-slate-100 text-slate-700 uppercase">
+                                                        {reg.category}
                                                     </span>
                                                 </td>
                                                 <td className="px-4 md:px-6 py-4 text-right">

@@ -9,7 +9,7 @@ export default function TermsPage() {
                     <section>
                         <h2 className="text-2xl font-bold mb-4">1. Acceptance of Terms</h2>
                         <p className="text-muted-foreground leading-relaxed">
-                            By accessing or using My Dog and I's website, services, or attending our events, you agree to be
+                            By accessing or using Kids and Teens University (KTU)'s website, services, or attending our events, you agree to be
                             bound by these Terms of Service. If you do not agree to these terms, please do not use our services.
                         </p>
                     </section>
@@ -50,8 +50,8 @@ export default function TermsPage() {
 
                         <h3 className="text-xl font-semibold mb-3 mt-6">3.3 Safety & Liability</h3>
                         <p className="text-muted-foreground leading-relaxed">
-                            You attend events at your own risk. My Dog and I is not liable for any injuries, damages, or losses
-                            incurred during events. You agree to indemnify and hold harmless My Dog and I, its organizers,
+                            You attend events at your own risk. Kids and Teens University (KTU) is not liable for any injuries, damages, or losses
+                            incurred during events. You agree to indemnify and hold harmless Kids and Teens University (KTU), its organizers,
                             sponsors, and partners from any claims arising from your participation.
                         </p>
                     </section>
@@ -72,11 +72,11 @@ export default function TermsPage() {
                         <h2 className="text-2xl font-bold mb-4">5. Intellectual Property</h2>
                         <p className="text-muted-foreground mb-3">
                             All content on our platform, including text, graphics, logos, and images, is the property of
-                            My Dog and I or its licensors and is protected by copyright and trademark laws.
+                            Kids and Teens University (KTU) or its licensors and is protected by copyright and trademark laws.
                         </p>
                         <h3 className="text-xl font-semibold mb-3 mt-6">5.1 User Content</h3>
                         <p className="text-muted-foreground leading-relaxed">
-                            By submitting photos, videos, or other content, you grant My Dog and I a non-exclusive,
+                            By submitting photos, videos, or other content, you grant Kids and Teens University (KTU) a non-exclusive,
                             worldwide, royalty-free license to use, reproduce, and display your content for promotional purposes.
                         </p>
                     </section>
@@ -94,7 +94,7 @@ export default function TermsPage() {
                         <h2 className="text-2xl font-bold mb-4">7. Cancellations & Refunds</h2>
                         <ul className="list-disc pl-6 text-muted-foreground space-y-2">
                             <li>Event cancellations will be communicated via email and social media</li>
-                            <li>Refunds will be issued only if an event is cancelled by My Dog and I</li>
+                            <li>Refunds will be issued only if an event is cancelled by Kids and Teens University (KTU)</li>
                             <li>No refunds for no-shows or voluntary cancellations</li>
                             <li>We reserve the right to modify event details with reasonable notice</li>
                         </ul>
@@ -124,7 +124,7 @@ export default function TermsPage() {
                     <section>
                         <h2 className="text-2xl font-bold mb-4">10. Limitation of Liability</h2>
                         <p className="text-muted-foreground leading-relaxed">
-                            To the maximum extent permitted by law, My Dog and I shall not be liable for any indirect,
+                            To the maximum extent permitted by law, Kids and Teens University (KTU) shall not be liable for any indirect,
                             incidental, special, or consequential damages arising from your use of our services or attendance at events.
                         </p>
                     </section>
@@ -151,8 +151,8 @@ export default function TermsPage() {
                             For questions about these Terms, please contact us:
                         </p>
                         <div className="bg-secondary/20 p-4 rounded-lg">
-                            <p className="font-medium">Email: mydogandigroup@yahoo.com</p>
-                            <p className="font-medium">Phone: 08168874616</p>
+                            <p className="font-medium">Email: info@ktuafrica.org</p>
+                            <p className="font-medium">Phone: +234 800 123 4567</p>
                         </div>
                     </section>
                 </div>

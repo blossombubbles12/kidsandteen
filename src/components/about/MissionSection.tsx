@@ -19,12 +19,12 @@ export function MissionSection() {
                     >
                         <h2 className="text-primary font-bold tracking-wide uppercase mb-2">Our Mission</h2>
                         <h3 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-                            Connecting Paws, <br /> Creating Joy.
+                            Raising Africa's <br /> Next Leaders.
                         </h3>
                         <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                            My Dog and I was born from a simple observation: dog owners in Lagos needed a safe,
-                            fun, and organized way to connect. What started as a small WhatsApp group for
-                            weekend walks has blossomed into a movement.
+                            KTU was born from a powerful belief: every child is a genius with unique gifts.
+                            We unlock that genius by giving young people platforms to run businesses, manage
+                            investments, and lead change — starting as early as age 6.
                         </p>
 
                         <div className="space-y-6">
@@ -33,8 +33,8 @@ export function MissionSection() {
                                     <Heart className="w-6 h-6 text-orange-600" />
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-xl">Love & Care</h4>
-                                    <p className="text-muted-foreground">Promoting responsible ownership and welfare.</p>
+                                    <h4 className="font-bold text-xl">Entrepreneurship</h4>
+                                    <p className="text-muted-foreground">Launching real businesses, not just ideas.</p>
                                 </div>
                             </div>
                             <div className="flex gap-4">
@@ -42,8 +42,8 @@ export function MissionSection() {
                                     <Globe className="w-6 h-6 text-blue-600" />
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-xl">Community First</h4>
-                                    <p className="text-muted-foreground">Building a support system for every dog parent.</p>
+                                    <h4 className="font-bold text-xl">Global Leadership</h4>
+                                    <p className="text-muted-foreground">Building confident, compassionate leaders.</p>
                                 </div>
                             </div>
                         </div>
@@ -59,13 +59,13 @@ export function MissionSection() {
                     >
                         <CldImage
                             src="homepage1_lnnftx"
-                            alt="Connection between dog and human"
+                            alt="Young entrepreneur"
                             fill
                             className="object-cover"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                         <div className="absolute bottom-6 left-6 text-white max-w-xs">
-                            <p className="font-serif italic text-2xl">"Dogs are not our whole life, but they make our lives whole."</p>
+                            <p className="font-serif italic text-2xl">"Every child is a genius. We unlock that genius."</p>
                         </div>
                     </motion.div>
 

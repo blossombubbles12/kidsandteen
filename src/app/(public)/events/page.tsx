@@ -8,91 +8,88 @@ import { Card } from "@/components/ui/card";
 import { CldImage } from "@/components/media/CldImage";
 import Link from "next/link";
 
-// Mock event data
 const events = [
     {
         id: 1,
-        title: "Lagos Dog Carnival 2026",
-        date: "December 13, 2026",
-        time: "9:00 AM - 6:00 PM",
-        location: "Tafawa Balewa Square, Lagos",
-        category: "carnival",
-        attendees: 2500,
-        image: "lagos_dog_carnival_20242_ekato6",
+        title: "KTU Shark Tank 2026",
+        date: "June 15, 2026",
+        time: "10:00 AM - 4:00 PM",
+        location: "Landmark Centre, Lagos",
+        category: "competition",
+        attendees: 300,
+        image: "homepage1_lnnftx",
         featured: true,
-        description: "Africa's largest gathering of Pets. Guinness World Record attempt!",
-        price: "Free"
+        description: "Students pitch their business ideas to real investors for seed funding.",
+        price: "Free for Members"
     },
     {
         id: 2,
-        title: "Sunday Dog Walk - Lekki",
-        date: "January 12, 2026",
-        time: "7:00 AM - 9:00 AM",
-        location: "Freedom Park, Lekki Phase 1",
-        category: "walk",
-        attendees: 45,
-        image: "homepage4_sdyykt",
-        description: "Join fellow pet parents for a relaxing morning walk and socialization.",
+        title: "Investment Simulation Challenge",
+        date: "July 20, 2026",
+        time: "9:00 AM - 3:00 PM",
+        location: "KTU Innovation Hub, Lekki",
+        category: "workshop",
+        attendees: 100,
+        image: "homepage2_gsja4s",
+        description: "Compete in stock market and crypto portfolio management simulations.",
         price: "Free"
     },
     {
         id: 3,
-        title: "Puppy Training Workshop",
-        date: "January 18, 2026",
-        time: "10:00 AM - 2:00 PM",
-        location: "My Dog & I Training Center",
-        category: "training",
-        attendees: 20,
-        image: "homepage9_mhc0oh",
-        description: "Learn basic obedience commands and socialization techniques for puppies.",
-        price: "₦15,000"
-    },
-    {
-        id: 4,
-        title: "Adoption Drive",
-        date: "January 25, 2026",
+        title: "Kidspreneur Fair",
+        date: "August 10, 2026",
         time: "11:00 AM - 5:00 PM",
-        location: "Victoria Island Dog Park",
-        category: "adoption",
-        attendees: 100,
-        image: "homepage2_gsja4s",
-        description: "Meet adorable rescue dogs looking for their forever homes.",
+        location: "Victoria Island Shopping Centre",
+        category: "exhibition",
+        attendees: 200,
+        image: "homepage3_fqiznc",
+        description: "Kids ages 6-12 showcase and sell their mini-business products.",
         price: "Free"
     },
     {
+        id: 4,
+        title: "Global Teens Forum",
+        date: "September 5, 2026",
+        time: "9:00 AM - 6:00 PM",
+        location: "KTU Campus, Lagos",
+        category: "conference",
+        attendees: 150,
+        image: "homepage4_sdyykt",
+        description: "Debate global issues, share ideas, and network with peers across Africa.",
+        price: "₦10,000"
+    },
+    {
         id: 5,
-        title: "Dog Agility Competition",
-        date: "February 8, 2026",
-        time: "9:00 AM - 4:00 PM",
-        location: "Ikoyi Sports Ground",
-        category: "competition",
-        attendees: 80,
-        image: "homepage1_lnnftx",
-        description: "Watch talented dogs navigate obstacle courses. Prizes for top performers!",
-        price: "₦5,000"
+        title: "Innovation Expo & Startup Showcase",
+        date: "October 12, 2026",
+        time: "10:00 AM - 5:00 PM",
+        location: "Tafawa Balewa Square",
+        category: "exhibition",
+        attendees: 500,
+        image: "homepage5_v0on8b",
+        description: "Teens present their startups, inventions, and creative projects to the public.",
+        price: "Free"
     },
     {
         id: 6,
-        title: "Beach Day with Dogs",
-        date: "February 15, 2026",
-        time: "8:00 AM - 12:00 PM",
-        location: "Elegushi Beach",
-        category: "social",
-        attendees: 60,
-        image: "homepage3_fqiznc",
-        description: "Let your dogs run free on the beach! Swimming, fetch, and fun.",
-        price: "₦2,000"
+        title: "STEM Hackathon",
+        date: "November 8, 2026",
+        time: "8:00 AM - 8:00 PM",
+        location: "KTU Innovation Hub",
+        category: "workshop",
+        attendees: 80,
+        image: "homepage6_u4t2e9",
+        description: "24-hour coding and robotics challenge for young innovators.",
+        price: "₦5,000"
     }
 ];
 
 const categories = [
     { value: "all", label: "All Events" },
-    { value: "carnival", label: "Carnival" },
-    { value: "walk", label: "Dog Walks" },
-    { value: "training", label: "Training" },
-    { value: "adoption", label: "Adoptions" },
     { value: "competition", label: "Competitions" },
-    { value: "social", label: "Social" }
+    { value: "workshop", label: "Workshops" },
+    { value: "exhibition", label: "Exhibitions" },
+    { value: "conference", label: "Conferences" }
 ];
 
 export default function EventsPage() {
@@ -113,7 +110,7 @@ export default function EventsPage() {
                 <div className="absolute inset-0 z-0">
                     <CldImage
                         src="homepage8_zaj3az"
-                        alt="Join the Pack"
+                        alt="KTU Events"
                         fill
                         className="object-cover opacity-20"
                     />
@@ -127,7 +124,7 @@ export default function EventsPage() {
                             Upcoming Events
                         </h1>
                         <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-                            From casual walks to major competitions - find the perfect event for you and your pet.
+                            From pitch competitions to hackathons — find the perfect event for your entrepreneurial journey.
                         </p>
                     </motion.div>
                 </div>
@@ -231,7 +228,7 @@ export default function EventsPage() {
                                             </div>
                                         </div>
 
-                                        <Link href={event.id === 1 ? "/carnival/register" : "/membership"}>
+                                        <Link href={event.id === 1 ? "/events/shark-tank" : "/membership"}>
                                             <Button className="w-full">Get Tickets</Button>
                                         </Link>
                                     </div>
@@ -256,7 +253,7 @@ export default function EventsPage() {
                 <div className="container px-4 text-center relative z-10">
                     <h2 className="text-3xl font-bold mb-4">Want to Host an Event?</h2>
                     <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                        Have an idea for a pet event? We'd love to help you organize it and connect you with our community.
+                        Have an idea for a youth entrepreneurship event? We'd love to help you organize it.
                     </p>
                     <Link href="/contact">
                         <Button size="lg" className="px-10">

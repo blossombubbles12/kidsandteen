@@ -8,25 +8,25 @@ import { CldImage } from "@/components/media/CldImage";
 const videos = [
     {
         id: 1,
-        title: "Lagos Dog Carnival Highlights",
+        title: "KTU Shark Tank Highlights",
         duration: "2:30",
-        image: "lagos_dog_carnival_20242_ekato6"
+        image: "shark_tank_highlights_2026"
     },
     {
         id: 2,
-        title: "Our Guinness World Record Play",
+        title: "Kidspreneur Fair 2025",
         duration: "5:15",
         image: "homepage2_gsja4s"
     },
     {
         id: 3,
-        title: "Community Growth Stories",
+        title: "Student Success Stories",
         duration: "3:45",
         image: "homepage1_lnnftx"
     },
     {
         id: 4,
-        title: "Training: Basic Socialization",
+        title: "Investment Workshop",
         duration: "4:00",
         image: "homepage1_lnnftx"
     },
@@ -39,10 +39,10 @@ export function Media() {
                 <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
                     <div className="max-w-2xl">
                         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-foreground">
-                            My Dog & I <span className="text-primary">TV</span>
+                            KTU <span className="text-primary">Media</span>
                         </h2>
                         <p className="mt-4 text-lg text-muted-foreground">
-                            Watch highlights from recent events, training sessions, and community stories.
+                            Watch highlights from Shark Tank, Kidspreneur Fairs, and student success stories.
                         </p>
                     </div>
                     <Button variant="outline">View Channel</Button>

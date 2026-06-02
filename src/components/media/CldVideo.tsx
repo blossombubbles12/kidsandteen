@@ -12,7 +12,7 @@ export function CldVideo(props: CldVideoPlayerProps) {
             <CldVideoPlayer
                 {...props}
                 colors={{
-                    accent: '#ff6b00', // My Dog and I primary color
+                    accent: '#ff6b00', // KTU primary color
                     base: '#000000',
                     text: '#ffffff',
                 }}

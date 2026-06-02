@@ -9,12 +9,7 @@ import {
     User,
     Calendar,
     BadgeCheck,
-    Users,
-    PawPrint,
-    Heart,
     Info,
-    MessageSquare,
-    MessageCircle,
     ExternalLink
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -76,7 +71,7 @@ export function RegistrationDetailsView({ registration, onBack }: RegistrationDe
                                 <Mail className="w-5 h-5" />
                             </div>
                             <div>
-                                <p className="text-[10px] uppercase font-bold text-white/50 leading-none mb-1">Email Registrant</p>
+                                <p className="text-[10px] uppercase font-bold text-white/50 leading-none mb-1">Email</p>
                                 <p className="text-sm font-bold lowercase flex items-center gap-1">
                                     {registration.email} <ExternalLink className="w-3 h-3 opacity-50" />
                                 </p>
@@ -91,7 +86,7 @@ export function RegistrationDetailsView({ registration, onBack }: RegistrationDe
                                 <Phone className="w-5 h-5" />
                             </div>
                             <div>
-                                <p className="text-[10px] uppercase font-bold text-white/50 leading-none mb-1">Call Now</p>
+                                <p className="text-[10px] uppercase font-bold text-white/50 leading-none mb-1">Call</p>
                                 <p className="text-sm font-bold flex items-center gap-1">
                                     {registration.phone} <ExternalLink className="w-3 h-3 opacity-50" />
                                 </p>
@@ -101,140 +96,60 @@ export function RegistrationDetailsView({ registration, onBack }: RegistrationDe
                 </div>
             </div>
 
-            {/* Grid Content */}
+            {/* Content Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-                {/* Detailed Info Cards */}
-                <div className="lg:col-span-2 space-y-6">
-
-                    {/* General Information */}
+                {/* Main Info */}
+                <div className="lg:col-span-2">
                     <div className="bg-white rounded-[2rem] border border-slate-200 shadow-sm overflow-hidden">
                         <div className="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
                             <h3 className="font-black uppercase italic text-sm flex items-center gap-2">
-                                <Info className="w-4 h-4 text-primary" /> General Information
+                                <Info className="w-4 h-4 text-primary" /> Registration Details
                             </h3>
+                            <span className="text-[10px] font-bold text-muted-foreground uppercase bg-slate-100 px-3 py-1 rounded-full">
+                                {registration.category}
+                            </span>
                         </div>
                         <div className="p-6 md:p-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
-                            <InfoItem icon={MapPin} label="Location/State" value={registration.location} />
-                            <InfoItem icon={User} label="Gender" value={registration.sex || "Not specified"} />
+                            <InfoItem icon={MapPin} label="Location" value={registration.location || "Not specified"} />
                             <InfoItem icon={Calendar} label="Date Registered" value={new Date(registration.created_at).toLocaleString()} />
-                            <InfoItem
-                                icon={BadgeCheck}
-                                label="Verification Status"
-                                value={registration.is_vaccinated === 'Yes' ? 'Fully Vaccinated' : 'Not Vaccinated'}
-                                badge={registration.is_vaccinated === 'Yes' ? 'success' : 'warning'}
-                            />
-                        </div>
-                    </div>
-
-                    {/* Pets Section */}
-                    <div className="bg-white rounded-[2rem] border border-slate-200 shadow-sm overflow-hidden">
-                        <div className="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
-                            <h3 className="font-black uppercase italic text-sm flex items-center gap-2">
-                                <PawPrint className="w-4 h-4 text-orange-500" /> Registered Pets ({registration.pets?.length || 0})
-                            </h3>
-                        </div>
-                        <div className="p-6 md:p-8">
-                            {registration.pets && registration.pets.length > 0 ? (
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    {registration.pets.map((pet: any, idx: number) => (
-                                        <div key={idx} className="bg-slate-50 p-5 rounded-[1.5rem] border border-slate-100 flex items-center gap-4 group hover:border-primary/30 transition-all">
-                                            <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-2xl shadow-sm group-hover:scale-110 transition-transform">
-                                                {pet.type === 'Dog' ? '🐕' :
-                                                    pet.type === 'Cat' ? '🐱' :
-                                                        pet.type === 'Bird' ? '🦜' :
-                                                            pet.type === 'Rabbit' ? '🐰' :
-                                                                pet.type === 'Horse' ? '🐎' : '🐾'}
-                                            </div>
-                                            <div>
-                                                <p className="text-lg font-black uppercase italic leading-tight">{pet.name}</p>
-                                                <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider">{pet.type} • {pet.breed || 'Unknown Breed'}</p>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            ) : (
-                                <div className="text-center py-12 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
-                                    <PawPrint className="w-12 h-12 text-slate-200 mx-auto mb-3" />
-                                    <p className="text-slate-400 font-bold italic">No pets registered for this participant</p>
-                                </div>
-                            )}
+                            <InfoItem icon={BadgeCheck} label="Category" value={registration.category} />
+                            <InfoItem icon={User} label="Guests" value={String(registration.guest_count || 0)} />
                         </div>
                     </div>
                 </div>
 
-                {/* Sidebar Stats/Extra Info */}
+                {/* Sidebar */}
                 <div className="space-y-6">
-                    {/* Quick Stats */}
-                    <div className="bg-white rounded-[2rem] border border-slate-200 shadow-sm p-8 space-y-6">
-                        <h3 className="font-black uppercase italic text-sm border-b pb-4">Entry Stats</h3>
-
-                        <div className="space-y-6">
+                    <div className="bg-white rounded-[2rem] border border-slate-200 shadow-sm p-8">
+                        <h3 className="font-black uppercase italic text-sm border-b pb-4 mb-6">Entry Summary</h3>
+                        <div className="space-y-4">
                             <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-500">
-                                        <Users className="w-5 h-5" />
-                                    </div>
-                                    <span className="text-sm font-bold text-slate-600">Total Group</span>
-                                </div>
-                                <span className="text-xl font-black">{1 + (registration.guest_count || 0)} <span className="text-[10px] text-muted-foreground uppercase">Humans</span></span>
+                                <span className="text-sm font-bold text-slate-600">Registrant</span>
+                                <span className="text-sm font-black">{registration.name}</span>
                             </div>
-
                             <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 bg-orange-50 rounded-xl flex items-center justify-center text-orange-500">
-                                        <PawPrint className="w-5 h-5" />
-                                    </div>
-                                    <span className="text-sm font-bold text-slate-600">Total Pets</span>
-                                </div>
-                                <span className="text-xl font-black">{registration.pets?.length || 0}</span>
+                                <span className="text-sm font-bold text-slate-600">Category</span>
+                                <span className="text-sm font-black uppercase">{registration.category}</span>
                             </div>
-
                             <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary">
-                                        <MessageCircle className="w-5 h-5" />
-                                    </div>
-                                    <span className="text-sm font-bold text-slate-600">Guests</span>
-                                </div>
-                                <span className="text-xl font-black">{registration.guest_count || 0}</span>
+                                <span className="text-sm font-bold text-slate-600">Guests</span>
+                                <span className="text-sm font-black">{registration.guest_count || 0}</span>
                             </div>
                         </div>
                     </div>
-
-                    {/* Donation Card */}
-                    {registration.donation_interest && (
-                        <div className="bg-gradient-to-br from-orange-500 to-red-600 rounded-[2rem] p-8 text-white shadow-xl relative overflow-hidden">
-                            <div className="absolute -right-4 -bottom-4 opacity-20 transform rotate-12">
-                                <Heart className="w-32 h-32" />
-                            </div>
-                            <h3 className="text-[10px] font-black uppercase tracking-[0.2em] opacity-80 mb-2">Contribution</h3>
-                            <p className="text-sm font-bold mb-4 opacity-90 leading-relaxed">Wants to donate towards the Record attempt?</p>
-                            <div className="bg-white/20 backdrop-blur-md rounded-2xl p-4 border border-white/20">
-                                <p className="text-xl font-black uppercase italic">{registration.donation_interest}</p>
-                            </div>
-                        </div>
-                    )}
                 </div>
             </div>
         </motion.div>
     );
 }
 
-function InfoItem({ icon: Icon, label, value, badge }: { icon: any, label: string, value: string, badge?: 'success' | 'warning' }) {
+function InfoItem({ icon: Icon, label, value }: { icon: any; label: string; value: string }) {
     return (
         <div className="space-y-2">
             <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400 italic">
                 <Icon className="w-3 h-3" /> {label}
             </div>
-            {badge ? (
-                <span className={`inline-block px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider ${badge === 'success' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'
-                    }`}>
-                    {value}
-                </span>
-            ) : (
-                <p className="text-sm font-black text-slate-800">{value}</p>
-            )}
+            <p className="text-sm font-black text-slate-800">{value}</p>
         </div>
     );
 }

@@ -1,79 +1,59 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calendar, Users, Music, Star } from "lucide-react";
-import Image from "next/image";
+import { Calendar, Users, Star, Lightbulb, Rocket, Award } from "lucide-react";
 
 const history = [
     {
-        year: "2016",
-        title: "Where It All Began",
-        description: "The journey started on Instagram, marking the birth of a movement dedicated to pet owners and lovers across Nigeria.",
+        year: "2024",
+        title: "KTU Founded",
+        description: "Kids and Teens University was founded with a vision to transform how young Africans learn entrepreneurship and leadership.",
         icon: Star,
-    },
-    {
-        year: "2019",
-        title: "Lagos Dog Carnival 2019",
-        description: "The very first Lagos Dog Carnival. 150 dogs and their owners gathered at Freedom Park.",
-        icon: Star,
-    },
-    {
-        year: "2020",
-        title: "Lagos Dog Carnival 2020",
-        description: "Maintained consistency with a unique theme that brought hope and joy during challenging times.",
-        icon: Calendar,
-    },
-    {
-        year: "2021",
-        title: "Carnival & Soiree 2021",
-        description: "Returned with the 'My Dog and I Group Soiree 2021' and the annual carnival.",
-        icon: Users,
-    },
-    {
-        year: "2022",
-        title: "Lagos Dog Carnival 2022",
-        description: "Introduced the famous runway show. Featured on national TV.",
-        icon: Star,
-    },
-    {
-        year: "2023",
-        title: "Carnival 2023 & ACMS",
-        description: "Marched for 'Animal Cruelty Must Stop' (ACMS) awareness along with the carnival.",
-        icon: Music,
     },
     {
         year: "2024",
-        title: "Carnival 2024 & Playground",
-        description: "Launched the 'Doggie Playground' for more interactive fun.",
-        icon: Calendar,
+        title: "First Cohort Launched",
+        description: "50 young entrepreneurs aged 6-18 joined our inaugural programs — startup incubation, investment clubs, and STEM labs.",
+        icon: Rocket,
     },
     {
         year: "2025",
-        title: "Lagos Dog Carnival 2025",
-        description: "Setting the stage for the big record. A massive parade through Victoria Island.",
+        title: "KTU Shark Tank",
+        description: "Our first pitch competition where kids and teens presented real business ideas to investors. Three startups received seed funding.",
+        icon: Lightbulb,
+    },
+    {
+        year: "2025",
+        title: "Investment Simulation Challenge",
+        description: "Launched our stock market and crypto simulation program. Members managed virtual portfolios and learned wealth strategies.",
+        icon: Award,
+    },
+    {
+        year: "2026",
+        title: "Global Expansion",
+        description: "KTU connects with international youth entrepreneurship networks. Exchange programs and global forums launch.",
         icon: Users,
     },
 ];
 
-export function CarnivalTimeline() {
+export function KtuTimeline() {
     return (
         <section className="py-24 bg-secondary/20">
             <div className="container px-4 md:px-6">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Our Journey So Far</h2>
+                    <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Our Journey</h2>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                        From a small gathering of friends to Africa's largest gathering of Pets.
+                        From a bold idea to Africa's leading youth entrepreneurship hub.
                     </p>
                 </div>
 
                 <div className="relative max-w-4xl mx-auto px-4 md:px-0">
-                    {/* Vertical Line - Responsive alignment */}
                     <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary/20 rounded-full" />
 
                     <div className="space-y-12">
                         {history.map((item, index) => (
                             <motion.div
-                                key={item.year}
+                                key={index}
                                 initial={{ opacity: 0, y: 50 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-100px" }}
@@ -81,15 +61,12 @@ export function CarnivalTimeline() {
                                 className={`relative flex items-center justify-between ${index % 2 === 0 ? "md:flex-row-reverse" : "md:flex-row"
                                     } flex-col md:flex-row`}
                             >
-                                {/* Empty side for layout balance on desktop only */}
                                 <div className="hidden md:block w-5/12" />
 
-                                {/* Center Node - Responsive alignment */}
                                 <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-8 h-8 bg-background border-4 border-primary rounded-full z-10 flex items-center justify-center shadow-md">
                                     <item.icon className="w-4 h-4 text-primary" />
                                 </div>
 
-                                {/* Content Card - Adjusted width and spacing for mobile */}
                                 <div className="w-full md:w-5/12 pl-16 md:pl-0">
                                     <div className="p-6 bg-background rounded-2xl shadow-sm border border-border/50 hover:shadow-md transition-all relative overflow-hidden group">
                                         <span className="text-4xl font-bold text-primary/5 absolute top-2 right-2 md:top-4 md:right-4 pointer-events-none group-hover:text-primary/10 transition-colors">

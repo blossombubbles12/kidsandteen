@@ -106,7 +106,7 @@ export default function MediaManager() {
 
         setUploading(true)
         setUploadProgress(0)
-        const targetFolder = selectedFolder || 'mydogandigroup/uploads'
+        const targetFolder = selectedFolder || 'ktuafrica/uploads'
         const fileList = Array.from(files)
         const totalFiles = fileList.length
         let successCount = 0
@@ -177,7 +177,7 @@ export default function MediaManager() {
 
         const folderPath = selectedFolder
             ? `${selectedFolder}/${newFolderName}`
-            : `mydogandigroup/${newFolderName}`
+            : `ktuafrica/${newFolderName}`
 
         const result = await createFolder(folderPath)
 

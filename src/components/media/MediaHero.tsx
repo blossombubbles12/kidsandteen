@@ -91,7 +91,7 @@ export function MediaHero({ media }: MediaHeroProps) {
                             }}
                             className="absolute -top-12 -right-12 w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center z-20 border-2 border-primary/20 overflow-hidden"
                         >
-                            <Logo showText={false} className="scale-75" />
+                            <Logo className="scale-75" />
                             <motion.div
                                 animate={{ scale: [1, 1.2, 1] }}
                                 transition={{ duration: 1, repeat: Infinity }}

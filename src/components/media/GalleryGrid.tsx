@@ -28,9 +28,9 @@ interface GalleryGridProps {
 const fallbackMedia: MediaAsset[] = [
     { id: "1", src: "/event-preview.png", alt: "Studio Portrait", caption: "The Focused Gaze", type: "image", format: "png" },
     { id: "2", src: "/hero.png", alt: "Community Walk", caption: "Sunday Morning at Freedom Park", type: "image", format: "png" },
-    { id: "3", src: "/carnival.png", alt: "Owner & Dog", caption: "Unconditional Love", type: "image", format: "png" },
+    { id: "3", src: "/innovation.png", alt: "Young Innovator", caption: "Presenting at Expo", type: "image", format: "png" },
     { id: "4", src: "/hero.png", alt: "Playful Moments", caption: "Golden Hour Play", type: "image", format: "png" },
-    { id: "5", src: "/carnival.png", alt: "Carnival Vibes", caption: "Lagos Dog Carnival 2025", type: "image", format: "png" },
+    { id: "5", src: "/startup.png", alt: "KTU Startup", caption: "Innovation Showcase", type: "image", format: "png" },
     { id: "6", src: "/event-preview.png", alt: "Portrait 2", caption: "Elegance", type: "image", format: "png" },
 ];
 

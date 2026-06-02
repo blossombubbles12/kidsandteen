@@ -8,18 +8,19 @@ if (!connectionString) {
   process.exit(1);
 }
 
-const pool = new Pool({
-  connectionString,
-});
+const pool = new Pool({ connectionString });
 
 async function main() {
-  console.log("Attempting to connect to database...");
+  console.log("Connecting to database...");
   let client;
   try {
     client = await pool.connect();
-    console.log("Connected to database!");
+    console.log("Connected!");
 
-    // Create registrations table
+    // Drop old dogs table (no longer needed)
+    await client.query(`DROP TABLE IF EXISTS dogs CASCADE`);
+
+    // Recreate registrations table without pet columns
     await client.query(`
       CREATE TABLE IF NOT EXISTS registrations (
         id SERIAL PRIMARY KEY,
@@ -28,15 +29,18 @@ async function main() {
         phone TEXT NOT NULL,
         category TEXT NOT NULL,
         guest_count INT NOT NULL DEFAULT 0,
-        pet_type TEXT,
-        pet_count INT,
-        pet_names TEXT,
-        is_vaccinated TEXT,
         location TEXT,
-        donation_interest TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
     `);
+
+    // Drop pet-related columns if they still exist
+    await client.query(`ALTER TABLE registrations DROP COLUMN IF EXISTS pet_type`);
+    await client.query(`ALTER TABLE registrations DROP COLUMN IF EXISTS pet_count`);
+    await client.query(`ALTER TABLE registrations DROP COLUMN IF EXISTS pet_names`);
+    await client.query(`ALTER TABLE registrations DROP COLUMN IF EXISTS is_vaccinated`);
+    await client.query(`ALTER TABLE registrations DROP COLUMN IF EXISTS donation_interest`);
+    await client.query(`ALTER TABLE registrations DROP COLUMN IF EXISTS sex`);
 
     // Create users table
     await client.query(`
@@ -47,17 +51,6 @@ async function main() {
         password TEXT NOT NULL,
         role TEXT NOT NULL DEFAULT 'user',
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      );
-    `);
-
-    // Create dogs table
-    await client.query(`
-      CREATE TABLE IF NOT EXISTS dogs (
-        id SERIAL PRIMARY KEY,
-        registration_id INT REFERENCES registrations(id) ON DELETE CASCADE,
-        name TEXT,
-        breed TEXT,
-        type TEXT
       );
     `);
 
@@ -75,26 +68,9 @@ async function main() {
       );
     `);
 
-    // Ensure new columns exist if table was already created
-    const addCols = [
-      "ALTER TABLE registrations ADD COLUMN IF NOT EXISTS pet_type TEXT",
-      "ALTER TABLE registrations ADD COLUMN IF NOT EXISTS pet_count INT",
-      "ALTER TABLE registrations ADD COLUMN IF NOT EXISTS pet_names TEXT",
-      "ALTER TABLE registrations ADD COLUMN IF NOT EXISTS is_vaccinated TEXT",
-      "ALTER TABLE registrations ADD COLUMN IF NOT EXISTS location TEXT",
-      "ALTER TABLE registrations ADD COLUMN IF NOT EXISTS donation_interest TEXT",
-      "ALTER TABLE registrations ADD COLUMN IF NOT EXISTS sex TEXT",
-      "ALTER TABLE dogs ADD COLUMN IF NOT EXISTS type TEXT"
-    ];
-
-    for (const sql of addCols) {
-      await client.query(sql);
-    }
-
-    console.log("registrations and dogs tables updated with new fields");
-
+    console.log("Database schema updated successfully.");
   } catch (err) {
-    console.error("Error creating tables:", err);
+    console.error("Error:", err);
   } finally {
     if (client) client.release();
     await pool.end();

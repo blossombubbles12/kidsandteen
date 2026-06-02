@@ -1,9 +1,5 @@
-import CarnivalRegistrationForm from "@/components/carnival/registration/CarnivalRegistrationForm";
+import { redirect } from "next/navigation";
 
 export default function RegisterPage() {
-    return (
-        <>
-            <CarnivalRegistrationForm />
-        </>
-    );
+    redirect("/events");
 }

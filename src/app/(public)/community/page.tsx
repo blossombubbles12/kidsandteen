@@ -133,9 +133,9 @@ export default function CommunityPage() {
                                 <CardTitle className="text-2xl">Event Dates</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-muted-foreground text-lg">
-                                    Be the first to know about upcoming carnivals, competitions, and community meetups. Never miss a tail-wagging event.
-                                </p>
+                                     <p className="text-muted-foreground text-lg">
+                                         Be the first to know about upcoming events, workshops, and community meetups. Never miss a chance to connect and grow.
+                                     </p>
                             </CardContent>
                         </Card>
                     </motion.div>

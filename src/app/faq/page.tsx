@@ -31,9 +31,9 @@ export default function FAQPage() {
                         <h1 className="text-4xl md:text-6xl font-black mb-6">
                             Frequently Asked <span className="text-primary">Questions</span>
                         </h1>
-                        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                            Everything you need to know about the pack, the carnival, and how we care for our furry friends.
-                        </p>
+                         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                             Everything you need to know about our programs, membership, and how to get started with KTU.
+                         </p>
                     </motion.div>
                 </div>
             </section>

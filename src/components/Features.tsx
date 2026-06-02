@@ -1,23 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Users, Calendar, Dog } from "lucide-react";
+import { MapPin, Users, Calendar, GraduationCap } from "lucide-react";
 
 const features = [
     {
         icon: MapPin,
-        title: "Discover Local Events",
-        description: "Find dog-friendly gatherings, festivals, and playdates happening right in your neighborhood.",
+        title: "Discover Programs",
+        description: "Find the perfect entrepreneurship program, workshop, or event for your age group and interests.",
     },
     {
         icon: Users,
-        title: "Connect with Owners",
-        description: "Join a vibrant community of passionate dog lovers. Share tips, stories, and make new best friends.",
+        title: "Connect with Mentors",
+        description: "Join a vibrant community of young entrepreneurs, mentors, and industry leaders across Africa.",
     },
     {
         icon: Calendar,
         title: "Never Miss Out",
-        description: "Stay updated with personalized event recommendations and reminders for your favorite activities.",
+        description: "Stay updated with program schedules, event reminders, and exclusive opportunities.",
     },
 ];
 
@@ -26,7 +26,7 @@ export function Features() {
         <section className="py-24 bg-secondary/30 relative overflow-hidden">
             {/* Decorative background element */}
             <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
-                <Dog className="w-64 h-64 rotate-12" />
+                <GraduationCap className="w-64 h-64 rotate-12" />
             </div>
 
             <div className="container px-4 md:px-6">
@@ -38,7 +38,7 @@ export function Features() {
                         transition={{ duration: 0.5 }}
                         className="text-3xl font-bold tracking-tight sm:text-4xl text-foreground"
                     >
-                        More Than Just a Walk
+                        More Than a School
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -47,7 +47,7 @@ export function Features() {
                         transition={{ duration: 0.5, delay: 0.1 }}
                         className="mt-4 text-lg text-muted-foreground"
                     >
-                        We help you turn every outing into an adventure. Discover why thousands of dog owners use My Dog & I.
+                        We help young minds launch businesses and build futures. Discover why parents and students choose KTU.
                     </motion.p>
                 </div>
 

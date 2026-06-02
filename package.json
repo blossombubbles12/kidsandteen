@@ -1,12 +1,13 @@
 {
-  "name": "mydog",
+  "name": "kidsteenuniversity",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seed": "node seed.js"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.2",

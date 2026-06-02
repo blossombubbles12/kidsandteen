@@ -9,9 +9,9 @@ export default function PrivacyPage() {
                     <section>
                         <h2 className="text-2xl font-bold mb-4">1. Introduction</h2>
                         <p className="text-muted-foreground leading-relaxed">
-                            My Dog and I ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy
+                            Kids and Teens University (KTU) ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy
                             explains how we collect, use, disclose, and safeguard your information when you visit our website
-                            or attend our events, including the Lagos Dog Carnival.
+                            or attend our events and programs.
                         </p>
                     </section>
 
@@ -113,8 +113,8 @@ export default function PrivacyPage() {
                             If you have questions about this Privacy Policy, please contact us at:
                         </p>
                         <div className="bg-secondary/20 p-4 rounded-lg mt-4">
-                            <p className="font-medium">Email: mydogandigroup@yahoo.com</p>
-                            <p className="font-medium">Phone: 08168874616</p>
+                            <p className="font-medium">Email: info@ktuafrica.org</p>
+                            <p className="font-medium">Phone: +234 800 123 4567</p>
                         </div>
                     </section>
                 </div>

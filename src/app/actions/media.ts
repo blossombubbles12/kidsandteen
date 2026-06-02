@@ -17,7 +17,7 @@ export type CloudinaryUploadResponse =
  */
 export async function uploadToCloudinary(
     formData: FormData,
-    folder: string = 'mydogandigroup/uploads',
+    folder: string = 'ktuafrica/uploads',
     tags: string[] = []
 ): Promise<CloudinaryUploadResponse> {
     const file = formData.get('file') as File;
@@ -55,13 +55,15 @@ export async function uploadToCloudinary(
 /**
  * Fetches media from a folder with caching.
  */
-export const getMediaFromFolder = cache(async (folder: string = 'mydogandigroup', limit: number = 100) => {
+export const getMediaFromFolder = cache(async (folder: string = 'ktuafrica', limit: number = 100) => {
     return unstable_cache(
         async () => {
             try {
-                // Fetch both images and videos in one call using Search API
+                const searchFolder = folder === 'ktuafrica'
+                    ? '(folder:ktuafrica* OR NOT folder:*)'
+                    : `folder:"${folder}/*"`;
                 const result = await cloudinary.search
-                    .expression(`folder:"${folder}/*"`)
+                    .expression(searchFolder)
                     .sort_by('created_at', 'desc')
                     .max_results(limit)
                     .with_field('context')
@@ -87,13 +89,31 @@ export interface AlbumData {
 }
 
 /**
+ * Fetches image resources from a specific Cloudinary subfolder.
+ * Only returns images (no videos), sorted newest first.
+ */
+export async function getFolderImages(folderPath: string, limit: number = 10) {
+    try {
+        const result = await cloudinary.search
+            .expression(`folder="${folderPath}" AND resource_type:image`)
+            .sort_by('created_at', 'desc')
+            .max_results(limit)
+            .execute();
+        return result.resources || [];
+    } catch (error) {
+        console.error(`Error fetching images from ${folderPath}:`, error);
+        return [];
+    }
+}
+
+/**
  * Fetches all albums with caching.
  */
 export const getAlbums = cache(async (): Promise<AlbumData[]> => {
     return unstable_cache(
         async () => {
             try {
-                const targetRoot = 'mydogandigroup';
+                const targetRoot = 'ktuafrica';
                 let foldersToProcess: any[] = [];
 
                 try {

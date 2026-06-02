@@ -6,34 +6,34 @@ import { Plus, Minus, HelpCircle } from "lucide-react";
 
 const faqs = [
     {
-        question: "What is My Dog and I?",
-        answer: "My Dog and I is Nigeria's largest community for dog lovers. We organize events, provide resources, and create a space for pet owners to connect, share experiences, and celebrate the bond with their dogs.",
+        question: "What is Kids and Teens University (KTU)?",
+        answer: "KTU is Africa's leading hub for youth entrepreneurship, financial intelligence, and leadership excellence. We empower children and teenagers (ages 6-18) to launch businesses, manage investments, and lead with confidence through hands-on projects, mentorship, and global exposure.",
         category: "general"
     },
     {
-        question: "How can I join the community?",
-        answer: "You can join for free by clicking the 'Join the Pack' button on our website. As a member, you'll get access to our discussion forums, early bird event notifications, and special community discounts.",
+        question: "How can I join KTU?",
+        answer: "You can join by selecting the appropriate membership plan on our Membership page. Kids (ages 6-12) and Teens (ages 13-18) have tailored programs. As a member, you'll gain access to business incubators, investment clubs, mentorship, and exclusive events.",
         category: "general"
     },
     {
-        question: "Is the Lagos Dog Carnival free to attend?",
-        answer: "Admission varies by year, but we always have free entry options for spectators. Dog owners registering for competitions or the World Record attempt may have a small registration fee that goes towards the event's sustainability and charity partners.",
-        category: "carnival"
+        question: "What programs are available for kids (6-12)?",
+        answer: "Kids enjoy Mini-Business Ventures (lemonade stands, crafts, toy businesses), Financial Literacy Games, Leadership & Character building, STEM Explorers (robotics, coding, science fairs), and Creative Expression (arts, drama, music showcases).",
+        category: "programs"
     },
     {
-        question: "What are the requirements for my dog to attend events?",
-        answer: "Safety is our priority. All dogs must have up-to-date vaccinations (Anti-Rabies, DHLPP). Dogs must be on a leash at all times, and aggressive behavior is not permitted. We always have vets on-site for health checks.",
-        category: "safety"
+        question: "What programs are available for teens (13-18)?",
+        answer: "Teens participate in Startup Incubation (fashion lines, apps, online stores), Investment Clubs (stock market, crypto simulations, budgeting), Career Readiness (internships, CV building, global exchange), Innovation Labs (hackathons, prototyping), and Leadership & Global Citizenship.",
+        category: "programs"
     },
     {
-        question: "How do I become a sponsor?",
-        answer: "We love partners! You can view our sponsorship packages on the 'Sponsorships' page or reach out to us through the contact form. We offer various levels of brand visibility and activation zones.",
+        question: "How do I become a sponsor or partner?",
+        answer: "We love partners! You can view our partnership packages on the 'Sponsorships' page or reach out to us through the contact form. We offer various levels of brand visibility and youth program activation zones.",
         category: "business"
     },
     {
-        question: "Can I bring my dog if it's not well-trained?",
-        answer: "We welcome dogs of all training levels, but they must be under your control. We recommend our 'Training Workshop' events if you're looking to improve your dog's social skills before a major carnival.",
-        category: "safety"
+        question: "Does KTU offer scholarships?",
+        answer: "Yes! KTU is committed to making entrepreneurship education accessible. We offer need-based scholarships and merit-based awards. Contact us for more information about our scholarship programs.",
+        category: "general"
     }
 ];
 

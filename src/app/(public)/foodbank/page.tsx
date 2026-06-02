@@ -39,8 +39,8 @@ const steps = [
 ];
 
 const testimonials = [
-  { quote: "The hardship is real. Many of us are struggling to feed our families AND our pets. This initiative means the world.", name: "Lagos Dog Mom", paws: 5 },
-  { quote: "I never imagined a pet community would also care about human welfare. My Dog and I has proven that love has no limits.", name: "Abuja Dog Dad", paws: 5 },
+  { quote: "The hardship is real. Many of us are struggling to feed our families. This initiative means the world.", name: "Lagos Mom", paws: 5 },
+  { quote: "I never imagined a community would also care about human welfare. KTU has proven that love has no limits.", name: "Abuja Dad", paws: 5 },
   { quote: "Pure love. Pure community. This is exactly what Nigeria needs right now — people who show up for each other.", name: "Port Harcourt Member", paws: 5 },
 ];
 
@@ -216,7 +216,7 @@ export default function FoodbankPage() {
               <h2 className="text-4xl md:text-5xl font-black mt-3 mb-6 leading-tight">Why We Started This Initiative</h2>
               <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
                 <p>These past few months have been very tough for us Nigerians. My position in the dog-lovers community opens me up to hearing all of the hardships and the struggles that pet parents are going through.</p>
-                <p>My Dog and I Group is actively trying to put together items that we can share amongst our community members. We try to assist as best we could to ease the sting of the hardships of our people — but we also want to give everyone an opportunity to chime in and help.</p>
+                <p>Kids and Teens University (KTU) is actively trying to put together items that we can share amongst our community members. We try to assist as best we could to ease the sting of the hardships of our people — but we also want to give everyone an opportunity to chime in and help.</p>
                 <p className="text-foreground font-bold text-xl uppercase tracking-tighter">Everyone can partake in the sharing of these items.</p>
               </div>
             </motion.div>
@@ -417,7 +417,7 @@ export default function FoodbankPage() {
                   </div>
                   <div className="bg-secondary/60 px-4 py-3 rounded-xl">
                     <p className="text-xs text-muted-foreground font-semibold uppercase">Account Name</p>
-                    <p className="text-xl font-black">My Dog and I</p>
+                    <p className="text-xl font-black">Kids and Teens University</p>
                   </div>
                 </div>
               </div>

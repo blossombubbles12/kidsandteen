@@ -48,7 +48,7 @@ export default function LoginPage() {
                         <Logo />
                     </div>
                     <CardTitle className="text-3xl font-black uppercase tracking-tight">Admin <span className="text-primary">Login</span></CardTitle>
-                    <CardDescription>Enter your credentials to manage the carnival.</CardDescription>
+                    <CardDescription>Enter your credentials to access the admin panel.</CardDescription>
                 </CardHeader>
                 <form onSubmit={handleSubmit}>
                     <CardContent className="space-y-4">
