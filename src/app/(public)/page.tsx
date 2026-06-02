@@ -63,7 +63,7 @@ function SectionLabel({ emoji, text, color = "bg-[#d9441e]/10 text-[#d9441e]" }:
 
 export default async function Home() {
   const [sliderImages, uploadImages] = await Promise.all([
-    getFolderImages("ktuafrica/sliders", 6),
+    getFolderImages("sliders", 6),
     getFolderImages("ktuafrica/uploads", 8),
   ]);
   const cloudinarySlides = sliderImages.map((r: any) => ({ url: r.secure_url }));
@@ -350,7 +350,11 @@ export default async function Home() {
         </div>
       </section>
 
-      <InstagramFeed />
+      <InstagramFeed media={uploadImages.slice(0, 6).map((img: any) => ({
+        id: img.public_id,
+        src: img.secure_url,
+        cloudinaryId: img.public_id
+      }))} />
 
       {/* ===== UPLOADS GALLERY ===== */}
       {hasUploads && (
