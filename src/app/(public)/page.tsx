@@ -63,8 +63,8 @@ function SectionLabel({ emoji, text, color = "bg-[#d9441e]/10 text-[#d9441e]" }:
 
 export default async function Home() {
   const [sliderImages, uploadImages] = await Promise.all([
-    getFolderImages("sliders", 6),
-    getFolderImages("ktuafrica/uploads", 8),
+    getFolderImages("ktuafrica/sliders", 6),
+    getFolderImages("ktuafrica/*", 8),
   ]);
   const cloudinarySlides = sliderImages.map((r: any) => ({ url: r.secure_url }));
   const hasSlides = sliderImages.length > 0;

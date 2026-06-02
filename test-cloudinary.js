@@ -10,15 +10,15 @@ cloudinary.config({
 
 async function run() {
     try {
-        const result = await cloudinary.search
-            .expression(`folder="sliders" AND resource_type:image`)
+        const res = await cloudinary.search
+            .expression(`resource_type:image`)
+            .sort_by('created_at', 'desc')
+            .max_results(20)
             .execute();
-        console.log("sliders:", result.resources.length);
-        
-        const result2 = await cloudinary.search
-            .expression(`folder="ktuafrica/sliders" AND resource_type:image`)
-            .execute();
-        console.log("ktuafrica/sliders:", result2.resources.length);
+        console.log("Total recent images:", res.resources.length);
+        res.resources.forEach(r => {
+            console.log(`- folder: ${r.folder}, url: ${r.secure_url}`);
+        });
     } catch(e) { console.error(e) }
 }
 run();
