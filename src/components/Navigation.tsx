@@ -45,8 +45,8 @@ export function Navigation() {
                 className={cn(
                     "transition-all duration-300",
                     scrolled
-                        ? "bg-white/98 shadow-[0_2px_20px_rgba(217,68,30,0.12)] border-b border-[#f0dece]"
-                        : "bg-white/90 backdrop-blur-xl border-b border-[#f0dece]/70"
+                        ? "bg-white/98 shadow-[0_2px_20px_rgba(229,10,30,0.08)] border-b border-[#e5e0db]"
+                        : "bg-white/90 backdrop-blur-xl border-b border-[#e5e0db]/70"
                 )}
             >
                 <div className="container mx-auto px-4 md:px-6">
@@ -73,8 +73,8 @@ export function Navigation() {
                                         className={cn(
                                             "relative px-4 py-2 rounded-lg text-[0.82rem] font-extrabold tracking-wide uppercase transition-all duration-200",
                                             isActive
-                                                ? "text-[#d9441e]"
-                                                : "text-[#4a2e1a] hover:text-[#d9441e] hover:bg-[#d9441e]/6"
+                                                ? "text-[#e50a1e]"
+                                                : "text-[#545454] hover:text-[#e50a1e] hover:bg-[#e50a1e]/6"
                                         )}
                                     >
                                         {item.name}
@@ -82,7 +82,7 @@ export function Navigation() {
                                             <motion.div
                                                 layoutId="nav-underline"
                                                 className="absolute bottom-0 left-3 right-3 h-[2.5px] rounded-full"
-                                                style={{ background: "linear-gradient(90deg, #d9441e, #ffb347)" }}
+                                                style={{ background: "linear-gradient(90deg, #e50a1e, #545454)" }}
                                             />
                                         )}
                                     </Link>
@@ -97,9 +97,9 @@ export function Navigation() {
                                     whileHover={{ scale: 1.04, y: -1 }}
                                     whileTap={{ scale: 0.97 }}
                                     transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                                    className="flex items-center gap-1.5 px-5 py-2 rounded-xl font-black text-[0.8rem] tracking-wide uppercase text-white shadow-md shadow-[#d9441e]/30 transition-all"
+                                    className="flex items-center gap-1.5 px-5 py-2 rounded-xl font-black text-[0.8rem] tracking-wide uppercase text-white shadow-md shadow-[#e50a1e]/25 transition-all"
                                     style={{
-                                        background: "linear-gradient(135deg, #d9441e 0%, #e85d2e 100%)",
+                                        background: "linear-gradient(135deg, #e50a1e 0%, #cc0000 100%)",
                                     }}
                                 >
                                     <Sparkles className="w-3.5 h-3.5" />
@@ -111,7 +111,7 @@ export function Navigation() {
                         {/* Mobile toggle */}
                         <motion.button
                             whileTap={{ scale: 0.88 }}
-                            className="flex md:hidden w-9 h-9 items-center justify-center rounded-xl bg-[#d9441e]/10 text-[#d9441e]"
+                            className="flex md:hidden w-9 h-9 items-center justify-center rounded-xl bg-[#e50a1e]/10 text-[#e50a1e]"
                             onClick={() => setIsOpen(!isOpen)}
                             aria-label="Toggle menu"
                         >
@@ -129,7 +129,7 @@ export function Navigation() {
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.25, ease: "easeOut" }}
-                        className="md:hidden overflow-hidden bg-white border-b-2 border-[#f0dece] shadow-lg shadow-[#d9441e]/10"
+                        className="md:hidden overflow-hidden bg-white border-b-2 border-[#e5e0db] shadow-lg shadow-[#e50a1e]/8"
                     >
                         <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
                             {navItems.map((item, i) => {
@@ -147,8 +147,8 @@ export function Navigation() {
                                             className={cn(
                                                 "flex items-center justify-between px-4 py-3 rounded-xl font-extrabold text-sm tracking-wide uppercase transition-all",
                                                 isActive
-                                                    ? "bg-[#d9441e]/10 text-[#d9441e]"
-                                                    : "text-[#4a2e1a] hover:bg-[#d9441e]/6 hover:text-[#d9441e]"
+                                                    ? "bg-[#e50a1e]/10 text-[#e50a1e]"
+                                                    : "text-[#545454] hover:bg-[#e50a1e]/6 hover:text-[#e50a1e]"
                                             )}
                                         >
                                             {item.name}
@@ -162,11 +162,11 @@ export function Navigation() {
                             })}
 
                             {/* Mobile CTA */}
-                            <div className="pt-3 border-t border-[#f0dece] mt-1">
+                            <div className="pt-3 border-t border-[#e5e0db] mt-1">
                                 <Link href="/membership" onClick={() => setIsOpen(false)}>
                                     <Button
                                         className="w-full font-black text-base h-12 rounded-xl text-white shadow-md uppercase tracking-wide"
-                                        style={{ background: "linear-gradient(135deg, #d9441e, #e85d2e)" }}
+                                        style={{ background: "linear-gradient(135deg, #e50a1e, #cc0000)" }}
                                     >
                                         <Sparkles className="w-4 h-4 mr-2" />
                                         Join KTU Today

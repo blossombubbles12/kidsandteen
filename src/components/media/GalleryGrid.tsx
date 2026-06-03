@@ -26,12 +26,8 @@ interface GalleryGridProps {
 
 // Fallback Data
 const fallbackMedia: MediaAsset[] = [
-    { id: "1", src: "/event-preview.png", alt: "Studio Portrait", caption: "The Focused Gaze", type: "image", format: "png" },
-    { id: "2", src: "/hero.png", alt: "Community Walk", caption: "Sunday Morning at Freedom Park", type: "image", format: "png" },
-    { id: "3", src: "/innovation.png", alt: "Young Innovator", caption: "Presenting at Expo", type: "image", format: "png" },
-    { id: "4", src: "/hero.png", alt: "Playful Moments", caption: "Golden Hour Play", type: "image", format: "png" },
-    { id: "5", src: "/startup.png", alt: "KTU Startup", caption: "Innovation Showcase", type: "image", format: "png" },
-    { id: "6", src: "/event-preview.png", alt: "Portrait 2", caption: "Elegance", type: "image", format: "png" },
+    { id: "1", src: "/hero.png", alt: "KTU Hero", caption: "Kids and Teens University", type: "image", format: "png" },
+    { id: "2", src: "/hero.png", alt: "KTU Community", caption: "Building Future CEOs", type: "image", format: "png" },
 ];
 
 export function GalleryGrid({ initialMedia, allowEmpty = false }: GalleryGridProps) {

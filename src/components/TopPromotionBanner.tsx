@@ -24,7 +24,7 @@ export function TopPromotionBanner() {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.4 }}
             className="relative overflow-hidden"
-            style={{ background: "linear-gradient(90deg, #d9441e, #ff6b35, #ffb347, #d9441e)", backgroundSize: "300% 100%" }}
+            style={{ background: "linear-gradient(90deg, #e50a1e, #cc0000, #990000, #e50a1e)", backgroundSize: "300% 100%" }}
         >
             <div className="animate-shimmer absolute inset-0 pointer-events-none"
                 style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)", backgroundSize: "200% 100%" }} />

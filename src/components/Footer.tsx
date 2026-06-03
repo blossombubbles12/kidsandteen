@@ -14,17 +14,17 @@ export function Footer() {
     if (isAdminPage) return null;
 
     return (
-        <footer className="relative overflow-hidden bg-[#2d1a0e] text-white">
+        <footer className="relative overflow-hidden bg-black text-white">
             {/* Top wave */}
             <div className="wave-top">
                 <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ height: 60, width: "100%" }}>
-                    <path d="M0,30 C360,60 1080,0 1440,30 L1440,0 L0,0 Z" fill="#fdf8f3" />
+                    <path d="M0,30 C360,60 1080,0 1440,30 L1440,0 L0,0 Z" fill="#000000" />
                 </svg>
             </div>
 
             {/* Blob decoration */}
-            <div className="blob-bg w-80 h-80 bg-[#d9441e]/15 -top-20 -right-20 absolute pointer-events-none" />
-            <div className="blob-bg w-64 h-64 bg-[#ffd93d]/10 bottom-10 left-10 absolute pointer-events-none" style={{ animationDelay: "3s" }} />
+            <div className="blob-bg w-80 h-80 bg-[#e50a1e]/12 -top-20 -right-20 absolute pointer-events-none" />
+            <div className="blob-bg w-64 h-64 bg-[#545454]/10 bottom-10 left-10 absolute pointer-events-none" style={{ animationDelay: "3s" }} />
 
             <div className="container mx-auto px-4 md:px-6 pt-20 pb-10 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
@@ -75,7 +75,7 @@ export function Footer() {
 
                     {/* Quick Links */}
                     <div>
-                        <h4 className="font-black text-[#ffd93d] mb-5 uppercase tracking-wide text-lg flex items-center gap-2">
+                        <h4 className="font-black text-[#e50a1e] mb-5 uppercase tracking-wide text-lg flex items-center gap-2">
                             🔗 Quick Links
                         </h4>
                         <ul className="space-y-2.5">
@@ -89,9 +89,9 @@ export function Footer() {
                                 <li key={i}>
                                     <Link
                                         href={link.href}
-                                        className="text-lg font-semibold text-white/65 hover:text-[#ffd93d] transition-colors duration-200 flex items-center gap-2 group"
+                                        className="text-lg font-semibold text-white/65 hover:text-[#e50a1e] transition-colors duration-200 flex items-center gap-2 group"
                                     >
-                                        <span className="w-1.5 h-1.5 rounded-full bg-white/25 group-hover:bg-[#ffd93d] transition-colors" />
+                                        <span className="w-1.5 h-1.5 rounded-full bg-white/25 group-hover:bg-[#e50a1e] transition-colors" />
                                         {link.label}
                                     </Link>
                                 </li>
@@ -101,13 +101,13 @@ export function Footer() {
 
                     {/* Contact */}
                     <div>
-                        <h4 className="font-black text-[#ffd93d] mb-5 uppercase tracking-wide text-lg flex items-center gap-2">
+                        <h4 className="font-black text-[#e50a1e] mb-5 uppercase tracking-wide text-lg flex items-center gap-2">
                             📬 Contact Us
                         </h4>
                         <ul className="space-y-4">
                             <li className="flex items-start gap-3 group">
-                                <div className="w-9 h-9 rounded-2xl bg-[#d9441e]/30 flex items-center justify-center shrink-0 group-hover:bg-[#d9441e]/50 transition-colors mt-0.5">
-                                    <Mail className="w-4 h-4 text-[#ffd93d]" />
+                                <div className="w-9 h-9 rounded-2xl bg-[#e50a1e]/30 flex items-center justify-center shrink-0 group-hover:bg-[#e50a1e]/50 transition-colors mt-0.5">
+                                    <Mail className="w-4 h-4 text-white" />
                                 </div>
                                 <div>
                                     <p className="text-sm text-white/40 font-bold uppercase tracking-wide mb-0.5">Email</p>
@@ -117,8 +117,8 @@ export function Footer() {
                                 </div>
                             </li>
                             <li className="flex items-start gap-3 group">
-                                <div className="w-9 h-9 rounded-2xl bg-[#d9441e]/30 flex items-center justify-center shrink-0 group-hover:bg-[#d9441e]/50 transition-colors mt-0.5">
-                                    <Phone className="w-4 h-4 text-[#ffd93d]" />
+                                <div className="w-9 h-9 rounded-2xl bg-[#e50a1e]/30 flex items-center justify-center shrink-0 group-hover:bg-[#e50a1e]/50 transition-colors mt-0.5">
+                                    <Phone className="w-4 h-4 text-white" />
                                 </div>
                                 <div>
                                     <p className="text-sm text-white/40 font-bold uppercase tracking-wide mb-0.5">Phone</p>

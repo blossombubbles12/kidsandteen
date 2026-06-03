@@ -26,14 +26,14 @@ export function Logo({ className }: LogoProps) {
                         onError={() => setImgError(true)}
                     />
                 ) : (
-                    <GraduationCap className="w-8 h-8 text-[#d9441e]" />
+                    <GraduationCap className="w-8 h-8 text-[#e50a1e]" />
                 )}
             </div>
             <div className="flex flex-col leading-none">
-                <span className="font-black tracking-tight text-[#d9441e] text-sm leading-tight">
+                <span className="font-black tracking-tight text-[#e50a1e] text-sm leading-tight">
                     Kids &amp; Teens
                 </span>
-                <span className="font-black tracking-widest uppercase text-[#2d1a0e]" style={{ fontSize: "0.6rem", letterSpacing: "0.15em", lineHeight: 1.3 }}>
+                <span className="font-black tracking-widest uppercase text-[#545454]" style={{ fontSize: "0.6rem", letterSpacing: "0.15em", lineHeight: 1.3 }}>
                     University
                 </span>
             </div>

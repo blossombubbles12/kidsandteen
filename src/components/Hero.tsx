@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, GraduationCap } from "lucide-react";
 
-// Floating doodle elements
 const doodles = [
     { emoji: "🚀", size: "text-4xl", pos: "top-[18%] left-[8%]", delay: 0 },
     { emoji: "⭐", size: "text-3xl", pos: "top-[12%] right-[12%]", delay: 0.5 },
@@ -21,16 +20,16 @@ const doodles = [
 export function Hero() {
     return (
         <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-20">
-            {/* Warm gradient background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#fff8f0] via-[#fdf2e6] to-[#fce8d5]" />
+            {/* Warm light gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#faf8f5] via-[#f5f0eb] to-[#efe8e0]" />
 
             {/* Blob shapes */}
-            <div className="blob-bg w-[600px] h-[600px] bg-[#d9441e]/8 -top-40 -left-40 absolute" />
-            <div className="blob-bg w-[500px] h-[500px] bg-[#ffd93d]/15 -bottom-32 -right-32 absolute delay-300" style={{ animationDelay: "3s" }} />
-            <div className="blob-bg w-[350px] h-[350px] bg-[#a855f7]/8 top-1/3 right-1/4 absolute" style={{ animationDelay: "1.5s" }} />
+            <div className="blob-bg w-[600px] h-[600px] bg-[#e50a1e]/6 -top-40 -left-40 absolute" />
+            <div className="blob-bg w-[500px] h-[500px] bg-[#545454]/8 -bottom-32 -right-32 absolute delay-300" style={{ animationDelay: "3s" }} />
+            <div className="blob-bg w-[350px] h-[350px] bg-[#e50a1e]/5 top-1/3 right-1/4 absolute" style={{ animationDelay: "1.5s" }} />
 
             {/* Confetti dots */}
-            <div className="absolute inset-0 confetti-bg opacity-40" />
+            <div className="absolute inset-0 confetti-bg opacity-30" />
 
             {/* Floating doodles */}
             {doodles.map((d, i) => (
@@ -51,7 +50,7 @@ export function Hero() {
                     initial={{ opacity: 0, y: -20, scale: 0.8 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ duration: 0.6, type: "spring" }}
-                    className="badge-fun bg-[#d9441e]/12 text-[#d9441e] mb-8 border border-[#d9441e]/25 shadow-sm"
+                    className="badge-fun bg-[#e50a1e]/10 text-[#e50a1e] mb-8 border border-[#e50a1e]/20 shadow-sm"
                 >
                     <GraduationCap className="w-4 h-4" />
                     Africa's #1 Youth Entrepreneurship Platform
@@ -65,10 +64,10 @@ export function Hero() {
                     transition={{ duration: 0.7, delay: 0.1 }}
                     className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.05] tracking-tight mb-6 max-w-5xl"
                 >
-                    <span className="text-[#2d1a0e]">Kids &amp; Teens</span>{" "}
+                    <span className="text-[#1a1a1a]">Kids &amp; Teens</span>{" "}
                     <br className="hidden sm:block" />
                     <span className="squiggle gradient-text">University</span>
-                    <span className="text-[#ffd93d] ml-2">✨</span>
+                    <span className="text-[#e50a1e] ml-2">✨</span>
                 </motion.h1>
 
                 {/* Subheadline */}
@@ -76,10 +75,10 @@ export function Hero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: 0.25 }}
-                    className="text-xl md:text-2xl text-[#7c3a10] max-w-2xl mx-auto mb-4 font-semibold leading-relaxed"
+                    className="text-xl md:text-2xl text-[#545454] max-w-2xl mx-auto mb-4 font-semibold leading-relaxed"
                 >
                     Where kids and teens learn to run businesses, master investments, and shape the future.{" "}
-                    <span className="text-[#d9441e] font-black">Ages 6–18.</span>
+                    <span className="text-[#e50a1e] font-black">Ages 6–18.</span>
                 </motion.p>
 
                 {/* Fun pill tags */}
@@ -95,7 +94,7 @@ export function Hero() {
                             initial={{ opacity: 0, scale: 0.7 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.45 + i * 0.06, type: "spring" }}
-                            className="px-4 py-1.5 bg-white rounded-full text-sm font-bold text-[#7c3a10] border-2 border-[#f0dece] shadow-sm hover:border-[#d9441e] hover:text-[#d9441e] transition-colors cursor-default"
+                            className="px-4 py-1.5 bg-white rounded-full text-sm font-bold text-[#545454] border-2 border-[#e5e0db] shadow-sm hover:border-[#e50a1e] hover:text-[#e50a1e] transition-colors cursor-default"
                         >
                             {tag}
                         </motion.span>
@@ -112,8 +111,8 @@ export function Hero() {
                     <Link href="/membership" className="w-full sm:w-auto">
                         <Button
                             size="lg"
-                            className="btn-bounce w-full text-xl px-10 py-7 rounded-2xl font-black shadow-lg shadow-[#d9441e]/30 border-2 border-[#b83518]"
-                            style={{ background: "linear-gradient(135deg, #d9441e, #ff6b35)" }}
+                            className="btn-bounce w-full text-xl px-10 py-7 rounded-2xl font-black shadow-lg shadow-[#e50a1e]/25 border-2 border-[#cc0000]"
+                            style={{ background: "linear-gradient(135deg, #e50a1e, #cc0000)" }}
                         >
                             🚀 Join KTU Today <ArrowRight className="ml-2 w-5 h-5" />
                         </Button>
@@ -122,7 +121,7 @@ export function Hero() {
                         <Button
                             size="lg"
                             variant="outline"
-                            className="btn-bounce w-full text-xl px-10 py-7 rounded-2xl font-black border-2 border-[#d9441e]/40 text-[#d9441e] hover:bg-[#d9441e]/8 bg-white/80"
+                            className="btn-bounce w-full text-xl px-10 py-7 rounded-2xl font-black border-2 border-[#e50a1e]/30 text-[#e50a1e] hover:bg-[#e50a1e]/8 bg-white/80"
                         >
                             Learn More 🌟
                         </Button>
@@ -144,11 +143,11 @@ export function Hero() {
                         <motion.div
                             key={i}
                             whileHover={{ scale: 1.08, rotate: 1 }}
-                            className="bg-white rounded-2xl px-6 py-4 shadow-md border-2 border-[#f0dece] text-center hover:border-[#d9441e]/30 transition-all"
+                            className="bg-white rounded-2xl px-6 py-4 shadow-md border-2 border-[#e5e0db] text-center hover:border-[#e50a1e]/25 transition-all"
                         >
                             <div className="text-2xl mb-1">{stat.emoji}</div>
-                            <div className="text-2xl font-black text-[#d9441e]">{stat.num}</div>
-                            <div className="text-xs font-bold text-[#9a6a4a] uppercase tracking-wide">{stat.label}</div>
+                            <div className="text-2xl font-black text-[#e50a1e]">{stat.num}</div>
+                            <div className="text-xs font-bold text-[#545454] uppercase tracking-wide">{stat.label}</div>
                         </motion.div>
                     ))}
                 </motion.div>
@@ -160,9 +159,9 @@ export function Hero() {
                 transition={{ duration: 2, repeat: Infinity }}
                 className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-1"
             >
-                <span className="text-xs font-bold text-[#9a6a4a] uppercase tracking-widest">Scroll</span>
-                <div className="w-6 h-10 border-2 border-[#d9441e]/40 rounded-full flex justify-center p-1">
-                    <div className="w-1.5 h-2.5 bg-[#d9441e] rounded-full" />
+                <span className="text-xs font-bold text-[#545454] uppercase tracking-widest">Scroll</span>
+                <div className="w-6 h-10 border-2 border-[#e50a1e]/30 rounded-full flex justify-center p-1">
+                    <div className="w-1.5 h-2.5 bg-[#e50a1e] rounded-full" />
                 </div>
             </motion.div>
         </section>

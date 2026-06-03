@@ -35,7 +35,7 @@ export function AboutGallerySlider({ images }: AboutGallerySliderProps) {
                         📸 KTU IN ACTION
                     </span>
                     <h2 className="text-3xl md:text-5xl font-black text-white">
-                        Moments That <span className="text-[#ffd93d]">Matter</span> ✨
+                        Moments That <span className="text-[#e50a1e]">Matter</span> ✨
                     </h2>
                     <p className="text-base text-white/60 font-semibold mt-4 max-w-xl mx-auto">
                         A glimpse into the energy, creativity, and community that makes KTU special.
@@ -96,7 +96,7 @@ export function AboutGallerySlider({ images }: AboutGallerySliderProps) {
                                 key={i}
                                 onClick={() => setCurrent(i)}
                                 className={`h-2 rounded-full transition-all duration-300 ${
-                                    i === current ? "w-8 bg-[#ffd93d]" : "w-2 bg-white/25 hover:bg-white/40"
+                                    i === current ? "w-8 bg-[#e50a1e]" : "w-2 bg-white/25 hover:bg-white/40"
                                 }`}
                             />
                         ))}

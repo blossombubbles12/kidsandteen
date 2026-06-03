@@ -5,68 +5,22 @@ import { Instagram, ExternalLink, Heart, MessageCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { CldImage } from "@/components/media/CldImage";
-import { MediaAsset } from "@/components/media/GalleryGrid";
-
-const instagramPosts = [
-    {
-        id: 1,
-        image: "homepage1_lnnftx",
-        likes: "1.2k",
-        comments: "84",
-        link: "https://www.instagram.com/ktuafrica"
-    },
-    {
-        id: 2,
-        image: "homepage2_gsja4s",
-        likes: "2.5k",
-        comments: "156",
-        link: "https://www.instagram.com/ktuafrica"
-    },
-    {
-        id: 3,
-        image: "homepage3_fqiznc",
-        likes: "1.8k",
-        comments: "92",
-        link: "https://www.instagram.com/ktuafrica"
-    },
-    {
-        id: 4,
-        image: "homepage4_sdyykt",
-        likes: "3.1k",
-        comments: "210",
-        link: "https://www.instagram.com/ktuafrica"
-    },
-    {
-        id: 5,
-        image: "homepage5_v0on8b",
-        likes: "1.5k",
-        comments: "65",
-        link: "https://www.instagram.com/ktuafrica"
-    },
-    {
-        id: 6,
-        image: "homepage6_u4t2e9",
-        likes: "2.2k",
-        comments: "112",
-        link: "https://www.instagram.com/ktuafrica"
-    }
-];
 
 interface InstagramFeedProps {
-    media?: MediaAsset[];
+    images?: { url: string; publicId?: string }[];
 }
 
-export function InstagramFeed({ media = [] }: InstagramFeedProps) {
-    // If no media is provided, use the fallback posts
-    const posts = media.length > 0
-        ? media.map((m, i) => ({
-            id: m.id,
-            image: m.cloudinaryId || m.src,
-            likes: `${(Math.floor(Math.random() * 50) + 10) / 10}k`, // Mock likes for aesthetic
-            comments: Math.floor(Math.random() * 100) + 20,
-            link: "https://www.instagram.com/ktuafrica"
-        }))
-        : instagramPosts;
+export function InstagramFeed({ images = [] }: InstagramFeedProps) {
+    if (images.length === 0) return null;
+
+    const posts = images.map((img, i) => ({
+        id: i,
+        image: img.publicId || img.url,
+        likes: `${(Math.floor(Math.random() * 50) + 10) / 10}k`,
+        comments: Math.floor(Math.random() * 100) + 20,
+        link: "https://www.instagram.com/ktuafrica"
+    }));
+
     return (
         <section className="py-24 bg-white overflow-hidden">
             <div className="container px-4 md:px-6 mb-12 flex flex-col md:flex-row items-end justify-between gap-6">
@@ -102,12 +56,21 @@ export function InstagramFeed({ media = [] }: InstagramFeedProps) {
                             transition={{ delay: index * 0.1 }}
                             className="relative min-w-[280px] md:min-w-[350px] aspect-square rounded-3xl overflow-hidden group snap-center"
                         >
-                            <CldImage
-                                src={post.image}
-                                alt="Instagram post"
-                                fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
+                            {post.image.includes("res.cloudinary.com") ? (
+                                <Image
+                                    src={post.image}
+                                    alt="Instagram post"
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                />
+                            ) : (
+                                <CldImage
+                                    src={post.image}
+                                    alt="Instagram post"
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                />
+                            )}
 
                             {/* Overlay */}
                             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-8 text-white">
