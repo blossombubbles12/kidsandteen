@@ -39,6 +39,15 @@ const programs = [
         color: "#545454",
         tag: "Leadership"
     },
+    {
+        title: "Kids + AI",
+        href: "/programs/artificial-intelligence",
+        tagline: "Learning and growing with technology.",
+        description: "Teaching kids how AI works and how to use it creatively, responsibly, and safely for the future.",
+        image: "/kidsartificialintelligence.jpeg",
+        color: "#e50a1e",
+        tag: "Technology"
+    },
 ];
 
 export default async function ProgramsPage() {
@@ -188,7 +197,7 @@ export default async function ProgramsPage() {
                 <div className="container px-4 md:px-6">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
                         {[
-                            { num: "4", label: "Specialized Programs" },
+                            { num: "5", label: "Specialized Programs" },
                             { num: "2", label: "Age Tracks" },
                             { num: "100%", label: "Practical Learning" },
                             { num: "1", label: "Big Mission" },

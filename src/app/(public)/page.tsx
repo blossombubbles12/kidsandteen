@@ -137,7 +137,7 @@ export default async function Home() {
               Explore Our <span className="text-[#e50a1e]">Programs</span> 🚀
             </h2>
             <p className="text-lg text-[#545454] font-semibold leading-relaxed">
-              Four specialized tracks designed to build confidence, skills, and real-world experience.
+              Five specialized tracks designed to build confidence, skills, and real-world experience.
             </p>
           </div>
 
@@ -147,6 +147,7 @@ export default async function Home() {
               { title: "Financial Literacy", href: "/programs/financial-literacy", tagline: "Money skills & smart habits", image: "/kidsfinancialliteracy.jpeg", desc: "Teaching how money works — earning, saving, budgeting, and investing.", tag: "Money Skills" },
               { title: "Boardroom Leadership", href: "/programs/boardroom-leadership", tagline: "Professional mindset & collaboration", image: "/kidsboardroomleadership.jpeg", desc: "Grooming young minds to think, speak, and lead in professional settings.", tag: "Professional" },
               { title: "Youth Leadership", href: "/programs/leadership", tagline: "Confidence, decisions & teamwork", image: "/kidsteenleadership.jpeg", desc: "Building courage to express ideas, make decisions, and lead with purpose.", tag: "Leadership" },
+              { title: "Kids + AI", href: "/programs/artificial-intelligence", tagline: "Learning and growing with technology", image: "/kidsartificialintelligence.jpeg", desc: "Teaching kids how AI works and how to use it creatively, responsibly, and safely.", tag: "Technology" },
             ].map((p) => (
               <Link key={p.href} href={p.href} className="group block">
                 <div className="relative rounded-[2.5rem] overflow-hidden border-2 border-[#e5e0db] bg-white shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">

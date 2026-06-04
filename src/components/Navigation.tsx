@@ -27,6 +27,7 @@ const navItems: NavItem[] = [
             { name: "Financial Literacy", href: "/programs/financial-literacy", description: "Money skills & smart habits" },
             { name: "Boardroom Leadership", href: "/programs/boardroom-leadership", description: "Professional mindset & collaboration" },
             { name: "Youth Leadership", href: "/programs/leadership", description: "Confidence, decisions & teamwork" },
+            { name: "Kids + AI", href: "/programs/artificial-intelligence", description: "Learning and growing with technology" },
         ]
     },
     { name: "Media", href: "/media" },
@@ -95,25 +96,37 @@ export function Navigation() {
                                             onMouseEnter={() => setOpenDropdown(item.name)}
                                             onMouseLeave={() => setOpenDropdown(null)}
                                         >
-                                            <button
-                                                onClick={() => setOpenDropdown(dropdownOpen ? null : item.name)}
-                                                className={cn(
-                                                    "relative flex items-center gap-1 px-4 py-2 rounded-lg text-[0.82rem] font-extrabold tracking-wide uppercase transition-all duration-200",
-                                                    childActive || isActive(item.href)
-                                                        ? "text-[#e50a1e]"
-                                                        : "text-[#545454] hover:text-[#e50a1e] hover:bg-[#e50a1e]/6"
-                                                )}
-                                            >
-                                                {item.name}
-                                                <ChevronDown className={cn("w-3.5 h-3.5 transition-transform duration-200", dropdownOpen && "rotate-180")} />
-                                                {(childActive || isActive(item.href)) && (
-                                                    <motion.div
-                                                        layoutId="nav-underline"
-                                                        className="absolute bottom-0 left-3 right-3 h-[2.5px] rounded-full"
-                                                        style={{ background: "linear-gradient(90deg, #e50a1e, #545454)" }}
-                                                    />
-                                                )}
-                                            </button>
+                                            <div className="flex items-center">
+                                                <Link
+                                                    href={item.href}
+                                                    className={cn(
+                                                        "relative flex items-center gap-1 px-4 py-2 rounded-lg text-[0.82rem] font-extrabold tracking-wide uppercase transition-all duration-200",
+                                                        childActive || isActive(item.href)
+                                                            ? "text-[#e50a1e]"
+                                                            : "text-[#545454] hover:text-[#e50a1e] hover:bg-[#e50a1e]/6"
+                                                    )}
+                                                >
+                                                    {item.name}
+                                                    {(childActive || isActive(item.href)) && (
+                                                        <motion.div
+                                                            layoutId="nav-underline"
+                                                            className="absolute bottom-0 left-3 right-3 h-[2.5px] rounded-full"
+                                                            style={{ background: "linear-gradient(90deg, #e50a1e, #545454)" }}
+                                                        />
+                                                    )}
+                                                </Link>
+                                                <button
+                                                    onClick={(e) => { e.stopPropagation(); setOpenDropdown(dropdownOpen ? null : item.name); }}
+                                                    className={cn(
+                                                        "flex items-center justify-center w-6 h-6 rounded-lg text-[0.82rem] font-extrabold tracking-wide uppercase transition-all duration-200 -ml-1",
+                                                        childActive || isActive(item.href)
+                                                            ? "text-[#e50a1e]"
+                                                            : "text-[#545454] hover:text-[#e50a1e] hover:bg-[#e50a1e]/6"
+                                                    )}
+                                                >
+                                                    <ChevronDown className={cn("w-3.5 h-3.5 transition-transform duration-200", dropdownOpen && "rotate-180")} />
+                                                </button>
+                                            </div>
 
                                             <AnimatePresence>
                                                 {dropdownOpen && (
