@@ -95,7 +95,7 @@ export interface AlbumData {
 export async function getFolderImages(folderPath: string, limit: number = 10) {
     try {
         const result = await cloudinary.search
-            .expression(`folder="${folderPath}" AND resource_type:image`)
+            .expression(`folder:"${folderPath}/*" AND resource_type:image`)
             .sort_by('created_at', 'desc')
             .max_results(limit)
             .execute();

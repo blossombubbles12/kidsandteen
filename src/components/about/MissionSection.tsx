@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Heart, Globe } from "lucide-react";
-import { CldImage } from "@/components/media/CldImage";
+import Image from "next/image";
 
 export function MissionSection() {
     return (
@@ -57,11 +57,12 @@ export function MissionSection() {
                         transition={{ duration: 0.6 }}
                         className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl"
                     >
-                        <CldImage
-                            src="homepage1_lnnftx"
+                        <Image
+                            src="/kidspublicspeaking.jpeg"
                             alt="Young entrepreneur"
                             fill
                             className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 50vw"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                         <div className="absolute bottom-6 left-6 text-white max-w-xs">

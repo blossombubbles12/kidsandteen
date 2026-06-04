@@ -5,7 +5,7 @@ import { MessageCircle, Mic, Heart, Users, ArrowRight, ShieldCheck, PlayCircle, 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CldImage } from "@/components/media/CldImage";
+import Image from "next/image";
 
 export default function CommunityPage() {
     const whatsappLink = "https://chat.whatsapp.com/C0I2KfbQrpf4Qw5qc8QEDT";
@@ -25,11 +25,12 @@ export default function CommunityPage() {
             {/* Hero Section */}
             <section className="relative px-6 py-20 md:py-32 lg:px-12 flex flex-col items-center text-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <CldImage
-                        src="homepage3_fqiznc"
+                    <Image
+                        src="/kidsteenleadership.jpeg"
                         alt="Community Hero"
                         fill
                         className="object-cover opacity-10"
+                        sizes="100vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
                 </div>
@@ -239,11 +240,12 @@ export default function CommunityPage() {
             {/* Final CTA */}
             <section className="relative px-6 py-24 md:py-32 text-center bg-slate-900 text-white overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <CldImage
-                        src="homepage1_lnnftx"
-                        alt="Join the Pack"
+                    <Image
+                        src="/kidspublicspeaking.jpeg"
+                        alt="Join Our Community"
                         fill
                         className="object-cover opacity-30"
+                        sizes="100vw"
                     />
                     <div className="absolute inset-0 bg-black/40" />
                 </div>
@@ -254,9 +256,9 @@ export default function CommunityPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h2 className="text-4xl md:text-6xl font-bold mb-8">Ready to Join the Pack?</h2>
+                    <h2 className="text-4xl md:text-6xl font-bold mb-8">Ready to Join Our Community?</h2>
                     <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-                        Your dog&apos;s new best friends are just a click away.
+                        Connect with thousands of young entrepreneurs just like you.
                     </p>
                     <Button
                         asChild

@@ -5,7 +5,7 @@ import { Check, Star, Trophy, Megaphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
-import { CldImage } from "@/components/media/CldImage";
+import Image from "next/image";
 import { Sponsors } from "@/components/Sponsors";
 
 const packages = [
@@ -61,11 +61,12 @@ export default function SponsorshipsPage() {
             {/* Hero */}
             <section className="relative py-20 bg-slate-900 text-white overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <CldImage
-                        src="homepage7_dl6l1z"
+                    <Image
+                        src="/kidsboardroomleadership.jpeg"
                         alt="Partner with Us"
                         fill
                         className="object-cover opacity-20"
+                        sizes="100vw"
                     />
                 </div>
                 <div className="container px-4 text-center relative z-10">
@@ -144,12 +145,13 @@ export default function SponsorshipsPage() {
                     </motion.div>
 
                     <div className="relative aspect-square rounded-[2rem] overflow-hidden shadow-2xl">
-                         <CldImage
-                             src="sponsorship_hero_2026"
-                             alt="Brand Activation"
-                             fill
-                             className="object-cover"
-                         />
+                     <Image
+                         src="/kidsteenleadership.jpeg"
+                         alt="Brand Activation"
+                         fill
+                         className="object-cover"
+                         sizes="(max-width: 768px) 100vw, 50vw"
+                     />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                         <div className="absolute bottom-8 left-8 right-8 text-white">
                             <p className="text-2xl font-black italic">"The most engaged young audience we've ever partnered with."</p>

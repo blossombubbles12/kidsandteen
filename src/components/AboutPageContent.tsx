@@ -5,6 +5,7 @@ import { Rocket, Lightbulb } from "lucide-react";
 import Link from "next/link";
 import { Sponsors } from "@/components/Sponsors";
 import { AboutGallerySlider } from "@/components/AboutGallerySlider";
+import { useEffect, useState } from "react";
 
 const values = [
     {
@@ -50,33 +51,37 @@ const stats = [
 
 interface AboutPageContentProps {
     uploadImages: any[];
+    sliderImages: any[];
 }
 
-export default function AboutPageContent({ uploadImages }: AboutPageContentProps) {
+export default function AboutPageContent({ uploadImages, sliderImages }: AboutPageContentProps) {
     const hasUploads = uploadImages.length > 0;
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        if (sliderImages.length < 2) return;
+        const interval = setInterval(() => {
+            setCurrentIndex((prev) => (prev + 1) % sliderImages.length);
+        }, 5000);
+        return () => clearInterval(interval);
+    }, [sliderImages.length]);
 
     return (
-        <div className="min-h-screen bg-[#faf8f5] overflow-x-hidden pt-12">
+        <div className="min-h-screen bg-[#faf8f5] overflow-x-hidden">
 
             {/* Hero */}
-            <section className="relative py-24 md:py-32 overflow-hidden flex items-center justify-center">
-                {["🚀", "💡", "🎨", "🌟", "🔥", "🎓"].map((emoji, index) => (
-                    <motion.div
-                        key={index}
-                        animate={{ y: [0, -15, 0], rotate: [0, 8, -8, 0] }}
-                        transition={{ duration: 4 + index, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute text-4xl pointer-events-none select-none opacity-20 hidden md:block"
+            <section className="relative py-16 md:py-24 overflow-hidden text-white">
+                {sliderImages.length > 0 && sliderImages.map((img: any, i: number) => (
+                    <div
+                        key={img.public_id || i}
+                        className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
                         style={{
-                            top: `${15 + (index * 14)}%`,
-                            left: index % 2 === 0 ? `${8 + (index * 4)}%` : undefined,
-                            right: index % 2 !== 0 ? `${8 + (index * 4)}%` : undefined,
+                            backgroundImage: `url('${img.secure_url}')`,
+                            opacity: i === currentIndex ? 1 : 0,
                         }}
-                    >
-                        {emoji}
-                    </motion.div>
+                    />
                 ))}
-
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-[#e50a1e]/8 to-[#545454]/6 rounded-full blur-3xl pointer-events-none z-0" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#e50a1e]/20 via-[#1a1a1a]/90 to-[#1a1a1a] z-10" />
 
                 <div className="container mx-auto px-5 relative z-10 text-center max-w-4xl">
                     <motion.div
@@ -84,16 +89,16 @@ export default function AboutPageContent({ uploadImages }: AboutPageContentProps
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5 }}
                     >
-                        <span className="badge-fun bg-[#e50a1e]/10 text-[#e50a1e] border border-[#e50a1e]/20 mb-6">
+                        <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white/15 border border-white/25 text-sm font-semibold mb-4 text-white">
                             ⚡ OUR STORY
                         </span>
 
-                        <h1 className="text-4xl sm:text-6xl md:text-7xl font-black mb-6 text-[#1a1a1a] leading-[1.1] tracking-tight">
+                        <h1 className="text-3xl sm:text-5xl md:text-6xl font-black mb-4 text-white leading-[1.1] tracking-tight">
                             Building Africa's<br />
-                            <span className="squiggle gradient-text">Next Gen of CEOs</span>
+                            <span className="text-[#e50a1e]">Next Gen of CEOs</span>
                         </h1>
 
-                        <p className="text-base sm:text-lg md:text-xl text-[#545454] font-semibold max-w-2xl mx-auto leading-relaxed mb-8">
+                        <p className="text-sm sm:text-base md:text-lg text-white/80 font-semibold max-w-2xl mx-auto leading-relaxed mb-6">
                             Kids and Teens University (KTU) isn't a conventional school. It's an imaginative, high-energy sandbox where kids (6–12) and teens (13–18) build active startups, simulate investment portfolios, and learn to change the world with kindness.
                         </p>
 
@@ -135,7 +140,7 @@ export default function AboutPageContent({ uploadImages }: AboutPageContentProps
                                 <div className="w-14 h-14 bg-gradient-to-br from-[#e50a1e] to-[#cc0000] text-white rounded-2xl flex items-center justify-center mb-6 shadow">
                                     <Rocket className="w-7 h-7" />
                                 </div>
-                                <h3 className="text-2xl font-black mb-4 text-[#1a1a1a]">Our Big Mission</h3>
+                                <h3 className={`text-2xl font-black mb-4 ${hasUploads ? 'text-white' : 'text-[#1a1a1a]'}`}>Our Big Mission</h3>
                                 <p className={`text-sm md:text-base font-semibold leading-relaxed ${hasUploads ? 'text-white/90' : 'text-[#1a1a1a]'}`}>
                                     To spark a generation of bold, financially smart, and creative innovators who don't wait until they grow up to launch ideas, manage investments, and drive meaningful local value.
                                 </p>
@@ -160,7 +165,7 @@ export default function AboutPageContent({ uploadImages }: AboutPageContentProps
                                 <div className="w-14 h-14 bg-gradient-to-br from-[#545454] to-[#888888] text-white rounded-2xl flex items-center justify-center mb-6 shadow">
                                     <Lightbulb className="w-7 h-7" />
                                 </div>
-                                <h3 className="text-2xl font-black mb-4 text-[#1a1a1a]">Our Big Dream</h3>
+                                <h3 className={`text-2xl font-black mb-4 ${hasUploads ? 'text-white' : 'text-[#1a1a1a]'}`}>Our Big Dream</h3>
                                 <p className={`text-sm md:text-base font-semibold leading-relaxed ${hasUploads ? 'text-white/90' : 'text-[#1a1a1a]'}`}>
                                     To establish Africa's premier modern educational sandbox, raising thousands of confident children and teens who are certified and ready to disrupt global markets.
                                 </p>

@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import { Calendar, MapPin, Users, Clock, Search, Filter, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { CldImage } from "@/components/media/CldImage";
 import Link from "next/link";
+import Image from "next/image";
 
 const events = [
     {
@@ -108,11 +108,12 @@ export default function EventsPage() {
             {/* Hero */}
             <section className="relative py-20 bg-slate-900 text-white overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <CldImage
-                        src="homepage8_zaj3az"
+                    <Image
+                        src="/kidsboardroomleadership.jpeg"
                         alt="KTU Events"
                         fill
                         className="object-cover opacity-20"
+                        sizes="100vw"
                     />
                 </div>
                 <div className="container px-4 text-center relative z-10">
@@ -191,11 +192,12 @@ export default function EventsPage() {
                                     )}
 
                                     <div className="relative aspect-video overflow-hidden">
-                                        <CldImage
-                                            src={event.image}
+                                        <Image
+                                            src={event.featured ? "/kidspublicspeaking.jpeg" : `/kidsboardroomleadership.jpeg`}
                                             alt={event.title}
                                             fill
                                             className="object-cover transition-transform duration-500 hover:scale-110"
+                                            sizes="(max-width: 768px) 100vw, 50vw"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                                         <div className="absolute bottom-4 left-4 text-white">
@@ -242,11 +244,12 @@ export default function EventsPage() {
             {/* CTA Section */}
             <section className="relative py-20 bg-slate-900 text-white overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <CldImage
-                        src="homepage8_zaj3az"
+                    <Image
+                        src="/kidsfinancialliteracy.jpeg"
                         alt="Host an Event"
                         fill
                         className="object-cover opacity-30"
+                        sizes="100vw"
                     />
                     <div className="absolute inset-0 bg-black/40" />
                 </div>

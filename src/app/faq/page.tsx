@@ -5,7 +5,7 @@ import { FAQSection } from "@/components/faq/FAQSection";
 import { HelpCircle, MessageCircle, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { CldImage } from "@/components/media/CldImage";
+import Image from "next/image";
 
 export default function FAQPage() {
     return (
@@ -13,11 +13,12 @@ export default function FAQPage() {
             {/* Hero */}
             <section className="relative py-20 bg-slate-900 text-white overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <CldImage
-                        src="homepage1_lnnftx"
+                    <Image
+                        src="/kidsteenleadership.jpeg"
                         alt="Support Hero"
                         fill
                         className="object-cover opacity-20"
+                        sizes="100vw"
                     />
                 </div>
                 <div className="container px-4 text-center relative z-10">

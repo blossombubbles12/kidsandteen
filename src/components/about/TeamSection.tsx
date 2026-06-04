@@ -2,27 +2,26 @@
 
 import { motion } from "framer-motion";
 import { Linkedin, Twitter, Instagram } from "lucide-react";
-import { CldImage } from "@/components/media/CldImage";
 import Image from "next/image";
 
 const team = [
     {
         name: "Jackie Idimogu",
         role: "Chief Convener",
-        bio: "The architectural mind behind the Carnival. Jackie ensures every detail is perfect for the gold standard of pet events.",
-        image: "/jackie.jpg",
+        bio: "The architectural mind behind KTU. Jackie ensures every program delivers the highest standard of youth entrepreneurship education.",
+        image: "/kidspublicspeaking.jpeg",
     },
     {
         name: "Gabby Idimogu",
         role: "Convener",
-        bio: "Our resident 'Animal Whisperer'. Gabby ensures 100% tail-wagging satisfaction for every pet that joins our community.",
-        image: "/gabby.jpg",
+        bio: "Our resident youth development expert. Gabby ensures 100% satisfaction for every student and family in our community.",
+        image: "/kidsboardroomleadership.jpeg",
     },
     {
-        name: "Community Support",
-        role: "The Team",
-        bio: "Dedicated individuals working 24/7 to support our community and the 50,000+ members of our movement.",
-        image: "homepage2_gsja4s",
+        name: "The KTU Team",
+        role: "Community Support",
+        bio: "Dedicated individuals working 24/7 to support our community and the thousands of young entrepreneurs in our movement.",
+        image: "/kidsteenleadership.jpeg",
     },
 ];
 
@@ -31,9 +30,9 @@ export function TeamSection() {
         <section className="py-24 bg-secondary/10">
             <div className="container px-4 md:px-6">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4">Meet the Pack Leaders</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4">Meet Our Team</h2>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                        The passionate humans working behind the scenes to make every bark count.
+                        The passionate team working behind the scenes to shape Africa&apos;s next generation of leaders.
                     </p>
                 </div>
 
@@ -48,21 +47,13 @@ export function TeamSection() {
                             className="group bg-background rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
                         >
                             <div className="relative aspect-[3/3] overflow-hidden">
-                                {member.image.startsWith('/') ? (
-                                    <Image
-                                        src={member.image}
-                                        alt={member.name}
-                                        fill
-                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                    />
-                                ) : (
-                                    <CldImage
-                                        src={member.image}
-                                        alt={member.name}
-                                        fill
-                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                    />
-                                )}
+                                <Image
+                                    src={member.image}
+                                    alt={member.name}
+                                    fill
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    sizes="(max-width: 768px) 100vw, 33vw"
+                                />
                             </div>
                             <div className="p-6">
                                 <h3 className="text-2xl font-bold mb-1">{member.name}</h3>

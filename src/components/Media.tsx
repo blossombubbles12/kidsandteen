@@ -3,32 +3,32 @@
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CldImage } from "@/components/media/CldImage";
+import Image from "next/image";
 
 const videos = [
     {
         id: 1,
         title: "KTU Shark Tank Highlights",
         duration: "2:30",
-        image: "shark_tank_highlights_2026"
+        image: "/kidspublicspeaking.jpeg"
     },
     {
         id: 2,
         title: "Kidspreneur Fair 2025",
         duration: "5:15",
-        image: "homepage2_gsja4s"
+        image: "/kidsboardroomleadership.jpeg"
     },
     {
         id: 3,
         title: "Student Success Stories",
         duration: "3:45",
-        image: "homepage1_lnnftx"
+        image: "/kidsteenleadership.jpeg"
     },
     {
         id: 4,
         title: "Investment Workshop",
         duration: "4:00",
-        image: "homepage1_lnnftx"
+        image: "/kidsfinancialliteracy.jpeg"
     },
 ];
 
@@ -59,11 +59,12 @@ export function Media() {
                             className="group cursor-pointer"
                         >
                             <div className={`relative aspect-video rounded-xl overflow-hidden bg-muted mb-3 shadow-sm group-hover:shadow-md transition-all`}>
-                                <CldImage
+                                <Image
                                     src={video.image}
                                     alt={video.title}
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                    sizes="(max-width: 768px) 100vw, 25vw"
                                 />
                                 <div className="absolute inset-0 bg-black/20" />
                                 <div className="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">

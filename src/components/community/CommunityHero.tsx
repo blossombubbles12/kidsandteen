@@ -1,16 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CldImage } from "@/components/media/CldImage";
+import Image from "next/image";
 import { Users, GraduationCap, Briefcase } from "lucide-react";
 
 export function CommunityHero() {
     return (
         <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0 z-0">
-                <CldImage
-                    src="homepage1_lnnftx"
-                    fallback="/hero.png"
+                <Image
+                    src="/kidsteenleadership.jpeg"
                     alt="KTU Community"
                     fill
                     className="object-cover brightness-[0.4]"

@@ -106,7 +106,7 @@ export function GalleryGrid({ initialMedia, allowEmpty = false }: GalleryGridPro
                 ))}
             </div>
 
-            <motion.div layout className="columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-4 space-y-4">
+            <motion.div layout className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-w-7xl mx-auto">
                 {visibleItems.map((img, index) => (
                     <motion.div
                         layout
@@ -115,19 +115,26 @@ export function GalleryGrid({ initialMedia, allowEmpty = false }: GalleryGridPro
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.9 }}
                         transition={{ duration: 0.3 }}
-                        className="relative group break-inside-avoid overflow-hidden rounded-2xl cursor-pointer"
+                        className="relative group aspect-square overflow-hidden rounded-2xl cursor-pointer"
                         onClick={() => openLightbox(index)}
                     >
-                        <CldImage
-                            src={img.cloudinaryId || img.src}
-                            fallback={img.src}
-                            alt={img.alt}
-                            width={600}
-                            height={800}
-                            className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
-                            crop="fill"
-                            {...(img.type === 'video' ? { assetType: 'video' } : {})}
-                        />
+                        {img.cloudinaryId ? (
+                            <CldImage
+                                src={img.cloudinaryId}
+                                alt={img.alt}
+                                fill
+                                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                crop="fill"
+                                {...(img.type === 'video' ? { assetType: 'video' } : {})}
+                            />
+                        ) : (
+                            <Image
+                                src={img.src}
+                                alt={img.alt}
+                                fill
+                                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
+                        )}
 
                         {img.type === 'video' && (
                             <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md p-2 rounded-full text-white z-10">

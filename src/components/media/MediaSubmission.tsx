@@ -179,10 +179,9 @@ export function MediaSubmission({ albums = [], defaultFolder = "" }: MediaSubmis
                         <div className="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
                             <Camera className="w-8 h-8" />
                         </div>
-                        <h2 className="text-3xl md:text-4xl font-bold mb-4">Share Your Dog's Story</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold mb-4">Share Your KTU Moment</h2>
                         <p className="text-lg text-muted-foreground mb-10">
-                            Did you capture a special moment at our last event? Or just a cute photo of your pup?
-                            We'd love to feature it in our community gallery!
+                            Captured a special moment at one of our programs? We'd love to feature it in our community gallery!
                         </p>
 
                         <Dialog open={isDialogOpen} onOpenChange={(open) => {

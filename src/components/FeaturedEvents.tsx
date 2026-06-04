@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { MapPin, Calendar, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { CldImage } from "@/components/media/CldImage";
+import Image from "next/image";
 
 const events = [
     {
@@ -13,7 +13,7 @@ const events = [
         title: "KTU Shark Tank",
         date: "Jun 15 • 10:00 AM",
         location: "Landmark Centre, Lagos",
-        image: "homepage4_sdyykt",
+        image: "/kidspublicspeaking.jpeg",
         category: "Competition",
     },
     {
@@ -21,7 +21,7 @@ const events = [
         title: "Kidspreneur Fair",
         date: "Aug 10 • 11:00 AM",
         location: "VI Shopping Centre",
-        image: "homepage1_lnnftx",
+        image: "/kidsfinancialliteracy.jpeg",
         category: "Exhibition",
     },
     {
@@ -29,7 +29,7 @@ const events = [
         title: "Innovation Expo",
         date: "Oct 12 • 10:00 AM",
         location: "Tafawa Balewa Square",
-        image: "homepage3_fqiznc",
+        image: "/kidsboardroomleadership.jpeg",
         category: "Showcase",
     },
 ];
@@ -76,11 +76,12 @@ export function FeaturedEvents() {
                         >
                             <Card className="h-full overflow-hidden border-border/50 bg-card/50 hover:bg-card transition-colors">
                                 <div className="relative h-48 w-full overflow-hidden">
-                                    <CldImage
+                                    <Image
                                         src={event.image}
                                         alt={event.title}
                                         fill
                                         className="object-cover transition-transform duration-500 hover:scale-105"
+                                        sizes="(max-width: 768px) 100vw, 33vw"
                                     />
                                     <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-semibold uppercase tracking-wider text-foreground">
                                         {event.category}

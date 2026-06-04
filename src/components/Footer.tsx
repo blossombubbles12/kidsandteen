@@ -82,6 +82,7 @@ export function Footer() {
                             {[
                                 { href: "/", label: "Home" },
                                 { href: "/membership", label: "Membership" },
+                                { href: "/programs", label: "Programs" },
                                 { href: "/media", label: "Media" },
                                 { href: "/about", label: "About Us" },
                                 { href: "/contact", label: "Contact" },

@@ -1,18 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CldImage } from "@/components/media/CldImage";
+import Image from "next/image";
 
 export function AboutHero() {
     return (
         <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0 z-0">
-                <CldImage
-                    src="homepage7_dl6l1z"
-                    alt="Community and dogs"
+                <Image
+                    src="/kidsteenleadership.jpeg"
+                    alt="KTU Students"
                     fill
                     className="object-cover brightness-50"
                     priority
+                    sizes="100vw"
                 />
             </div>
 
@@ -26,8 +27,8 @@ export function AboutHero() {
                         Our Story
                     </h1>
                     <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto font-light leading-relaxed">
-                        Founded on the belief that life is better with a dog by your side.
-                        We are building the largest community of dog lovers in West Africa.
+                        Founded on the belief that the next generation of African leaders need practical skills, not just theory.
+                        We are building the largest youth entrepreneurship community in West Africa.
                     </p>
                 </motion.div>
             </div>
