@@ -38,7 +38,7 @@ export function Footer() {
                         <p className="text-white/70 leading-relaxed font-semibold text-lg">
                             Kids and Teens University (KTU) is Africa's leading hub for youth entrepreneurship,
                             financial intelligence, and leadership excellence. Empowering children and teenagers
-                            (ages 6–18) to launch businesses, manage investments, and lead with confidence. 🚀
+                            (ages 6–18) to launch businesses, manage investments, and lead with confidence. 
                         </p>
 
                         {/* Social */}
@@ -65,7 +65,7 @@ export function Footer() {
 
                         {/* Fun sticker badges */}
                         <div className="flex flex-wrap gap-2">
-                            {["🌍 Africa-wide", "🏆 10 Years", "💡 50k+ Members"].map((badge, i) => (
+                            {[" Africa-wide", " 10 Years", " 50k+ Members"].map((badge, i) => (
                                 <span key={i} className="px-3 py-1 bg-white/10 rounded-full text-xs font-bold text-white/80 border border-white/15">
                                     {badge}
                                 </span>
@@ -76,7 +76,7 @@ export function Footer() {
                     {/* Quick Links */}
                     <div>
                         <h4 className="font-black text-[#e50a1e] mb-5 uppercase tracking-wide text-lg flex items-center gap-2">
-                            🔗 Quick Links
+                             Quick Links
                         </h4>
                         <ul className="space-y-2.5">
                             {[
@@ -103,7 +103,7 @@ export function Footer() {
                     {/* Contact */}
                     <div>
                         <h4 className="font-black text-[#e50a1e] mb-5 uppercase tracking-wide text-lg flex items-center gap-2">
-                            📬 Contact Us
+                             Contact Us
                         </h4>
                         <ul className="space-y-4">
                             <li className="flex items-start gap-3 group">
@@ -137,7 +137,7 @@ export function Footer() {
                             rel="noopener noreferrer"
                             className="mt-6 inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-black px-5 py-3 rounded-2xl transition-all duration-200 text-sm btn-bounce"
                         >
-                            💬 Join WhatsApp Community
+                             Join WhatsApp Community
                         </Link>
                     </div>
                 </div>
@@ -145,7 +145,7 @@ export function Footer() {
                 {/* Bottom bar */}
                 <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-lg">
                     <p className="text-white/50 font-semibold">
-                        © {new Date().getFullYear()} Kids and Teens University (KTU). All rights reserved.
+                         {new Date().getFullYear()} Kids and Teens University (KTU). All rights reserved.
                     </p>
                     <div className="flex items-center gap-4">
                         <Link href="/privacy" className="text-white/40 hover:text-white/80 transition-colors font-semibold text-base">Privacy Policy</Link>
@@ -153,7 +153,7 @@ export function Footer() {
                         <Link href="/terms" className="text-white/40 hover:text-white/80 transition-colors font-semibold text-base">Terms of Service</Link>
                     </div>
                     <p className="text-white/30 text-base font-bold tracking-wide">
-                        Made with ❤️ for Africa's future leaders
+                        Made with  for Africa's future leaders
                     </p>
                 </div>
             </div>

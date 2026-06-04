@@ -59,9 +59,9 @@ export default async function LeadershipPage() {
                     {/* Feature Cards */}
                     <div className="grid md:grid-cols-3 gap-6 mb-12">
                         {[
-                            { emoji: "💪", title: "Confidence", desc: "Develop self-awareness and the courage to stand firm in what they believe." },
-                            { emoji: "🎯", title: "Decision-Making", desc: "Learn to make thoughtful choices and take positive initiative." },
-                            { emoji: "🤝", title: "Teamwork", desc: "Build skills to lead themselves and others with responsibility and purpose." },
+                            { emoji: "", title: "Confidence", desc: "Develop self-awareness and the courage to stand firm in what they believe." },
+                            { emoji: "", title: "Decision-Making", desc: "Learn to make thoughtful choices and take positive initiative." },
+                            { emoji: "", title: "Teamwork", desc: "Build skills to lead themselves and others with responsibility and purpose." },
                         ].map((item) => (
                             <div key={item.title} className="bg-white p-6 rounded-2xl border-2 border-[#e5e0db] hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
                                 <div className="w-12 h-12 rounded-xl bg-[#545454]/10 flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">
@@ -96,7 +96,7 @@ export default async function LeadershipPage() {
                 <section className="py-20 bg-white">
                     <div className="container px-4 md:px-6">
                         <div className="text-center mb-12">
-                            <span className="badge-fun bg-[#545454]/10 text-[#545454] border border-[#545454]/20 mb-4">📸 IN ACTION</span>
+                            <span className="badge-fun bg-[#545454]/10 text-[#545454] border border-[#545454]/20 mb-4"> IN ACTION</span>
                             <h2 className="text-3xl md:text-4xl font-black text-[#1a1a1a]">Young Leaders in Action</h2>
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-5xl mx-auto">

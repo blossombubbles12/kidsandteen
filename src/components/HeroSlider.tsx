@@ -23,7 +23,7 @@ interface SlideData {
 const defaultSlides: SlideData[] = [
     {
         id: 1,
-        badge: "🎓 Africa's #1 Youth Program",
+        badge: " Africa's #1 Youth Program",
         heading: "Raising Africa's Next",
         highlight: "Generation of CEOs",
         sub: "Empowering kids & teens ages 6–18 with entrepreneurship, financial literacy, and leadership.",
@@ -32,11 +32,11 @@ const defaultSlides: SlideData[] = [
         accent: "#e50a1e",
         accentLight: "#ff4d4d",
         img: "/hero.png",
-        tag: "🚀 500+ Active Members",
+        tag: " 500+ Active Members",
     },
     {
         id: 2,
-        badge: "💡 Signature Events",
+        badge: " Signature Events",
         heading: "Pitch, Compete &",
         highlight: "Lead on Real Stages",
         sub: "From KTU Shark Tank to the Global Teens Forum — real-world experience that top schools can't teach.",
@@ -45,11 +45,11 @@ const defaultSlides: SlideData[] = [
         accent: "#545454",
         accentLight: "#888888",
         img: "/hero.png",
-        tag: "🏆 12+ Clubs & Societies",
+        tag: " 12+ Clubs & Societies",
     },
     {
         id: 3,
-        badge: "🌍 Community & Impact",
+        badge: " Community & Impact",
         heading: "Building Futures,",
         highlight: "One Child at a Time",
         sub: "Through food banks, community drives, and mentorship — KTU students learn to give back as they grow.",
@@ -58,7 +58,7 @@ const defaultSlides: SlideData[] = [
         accent: "#e50a1e",
         accentLight: "#545454",
         img: "/foodbank-banner.png",
-        tag: "❤️ 50+ Startups Launched",
+        tag: " 50+ Startups Launched",
     },
 ];
 

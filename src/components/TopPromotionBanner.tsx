@@ -5,10 +5,10 @@ import { Sparkles, X } from "lucide-react";
 import { useState } from "react";
 
 const messages = [
-    "🎉 JOIN KTU — Africa's #1 Youth Entrepreneur Hub!",
-    "🚀 Launch your startup BEFORE you turn 18!",
-    "💡 Financial freedom starts NOW — ages 6 to 18!",
-    "🌍 Building Africa's next generation of CEOs!",
+    " JOIN KTU — Africa's #1 Youth Entrepreneur Hub!",
+    " Launch your startup BEFORE you turn 18!",
+    " Financial freedom starts NOW — ages 6 to 18!",
+    " Building Africa's next generation of CEOs!",
 ];
 
 export function TopPromotionBanner() {

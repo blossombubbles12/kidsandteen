@@ -59,10 +59,10 @@ export default async function FinancialLiteracyPage() {
                     {/* Feature Cards */}
                     <div className="grid md:grid-cols-2 gap-6 mb-12">
                         {[
-                            { emoji: "🎯", title: "Budgeting Basics", desc: "Track allowances, set savings goals, and plan spending wisely." },
-                            { emoji: "🧠", title: "Needs vs Wants", desc: "Learn to distinguish essential expenses from discretionary spending." },
-                            { emoji: "💰", title: "Savings Habits", desc: "Build the discipline of saving early for long-term financial health." },
-                            { emoji: "📊", title: "Smart Decisions", desc: "Develop thoughtful money choices instead of impulsive spending." },
+                            { emoji: "", title: "Budgeting Basics", desc: "Track allowances, set savings goals, and plan spending wisely." },
+                            { emoji: "", title: "Needs vs Wants", desc: "Learn to distinguish essential expenses from discretionary spending." },
+                            { emoji: "", title: "Savings Habits", desc: "Build the discipline of saving early for long-term financial health." },
+                            { emoji: "", title: "Smart Decisions", desc: "Develop thoughtful money choices instead of impulsive spending." },
                         ].map((item) => (
                             <div key={item.title} className="bg-white p-6 rounded-2xl border-2 border-[#e5e0db] hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
                                 <div className="w-12 h-12 rounded-xl bg-[#545454]/10 flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">
@@ -97,7 +97,7 @@ export default async function FinancialLiteracyPage() {
                 <section className="py-20 bg-white">
                     <div className="container px-4 md:px-6">
                         <div className="text-center mb-12">
-                            <span className="badge-fun bg-[#545454]/10 text-[#545454] border border-[#545454]/20 mb-4">📸 IN ACTION</span>
+                            <span className="badge-fun bg-[#545454]/10 text-[#545454] border border-[#545454]/20 mb-4"> IN ACTION</span>
                             <h2 className="text-3xl md:text-4xl font-black text-[#1a1a1a]">Financial Literacy in Action</h2>
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-5xl mx-auto">

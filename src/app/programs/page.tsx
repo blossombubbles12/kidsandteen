@@ -96,7 +96,7 @@ export default async function ProgramsPage() {
             <section className="py-24 md:py-32 container px-4 md:px-6 max-w-5xl mx-auto">
                 <div className="text-center max-w-3xl mx-auto mb-16">
                     <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#e50a1e]/10 text-[#e50a1e] border border-[#e50a1e]/20 text-sm font-black mb-4">
-                        🎯 DESIGNED FOR IMPACT
+                         DESIGNED FOR IMPACT
                     </span>
                     <h2 className="text-4xl md:text-5xl font-black text-[#1a1a1a] mb-6 leading-tight">
                         Real Skills. Real Confidence.<br />Real <span className="text-[#e50a1e]">Results</span>.
@@ -111,9 +111,9 @@ export default async function ProgramsPage() {
 
                 <div className="grid md:grid-cols-3 gap-6 text-center">
                     {[
-                        { icon: "🧠", title: "Age-Smart Design", desc: "Every program is tailored for two tracks — Kids (6–12) and Teens (13–18) — so content always fits." },
-                        { icon: "🤝", title: "Mentor-Led", desc: "Real entrepreneurs, speakers, and leaders guide every session. No theory without practice." },
-                        { icon: "🎤", title: "Stage-Ready", desc: "From day one, children are preparing for real audiences, real pitches, and real impact." },
+                        { icon: "", title: "Age-Smart Design", desc: "Every program is tailored for two tracks — Kids (6–12) and Teens (13–18) — so content always fits." },
+                        { icon: "", title: "Mentor-Led", desc: "Real entrepreneurs, speakers, and leaders guide every session. No theory without practice." },
+                        { icon: "", title: "Stage-Ready", desc: "From day one, children are preparing for real audiences, real pitches, and real impact." },
                     ].map((item) => (
                         <div key={item.title} className="bg-white p-6 rounded-2xl border-2 border-[#e5e0db] hover:shadow-lg transition-all">
                             <div className="text-3xl mb-3">{item.icon}</div>
@@ -165,7 +165,7 @@ export default async function ProgramsPage() {
                 <div className="container px-4 md:px-6 max-w-5xl mx-auto">
                     <div className="text-center mb-16">
                         <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1a1a1a]/10 text-[#1a1a1a] border border-[#1a1a1a]/20 text-sm font-black mb-4">
-                            🚀 THE KTU METHOD
+                             THE KTU METHOD
                         </span>
                         <h2 className="text-4xl md:text-5xl font-black text-[#1a1a1a] mb-4">How We Build Young Leaders</h2>
                         <p className="text-lg text-[#545454] font-semibold max-w-2xl mx-auto">

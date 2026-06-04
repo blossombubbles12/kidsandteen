@@ -10,9 +10,9 @@ export function NewsletterSignup() {
                 <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
                     <Mail className="w-8 h-8 text-primary" />
                 </div>
-                <h2 className="text-3xl font-bold mb-4">The Weekly Woof 📰</h2>
+                <h2 className="text-3xl font-bold mb-4">The Weekly KTU Digest</h2>
                 <p className="text-lg text-muted-foreground mb-8">
-                    Get the latest community stories, vet tips, and event updates delivered straight to your inbox every Friday.
+                    Get the latest community stories, tips, and event updates delivered straight to your inbox every Friday.
                 </p>
 
                 <form className="flex flex-col sm:flex-row gap-3">
@@ -24,7 +24,7 @@ export function NewsletterSignup() {
                     <Button size="lg" className="rounded-lg">Subscribe</Button>
                 </form>
                 <p className="text-xs text-muted-foreground mt-4">
-                    No spam, just wagging tails. Unsubscribe anytime.
+                    No spam, just value. Unsubscribe anytime.
                 </p>
             </div>
         </section>

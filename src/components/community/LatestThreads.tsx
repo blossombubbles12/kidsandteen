@@ -5,17 +5,17 @@ import { Button } from "@/components/ui/button";
 
 const threads = [
     {
-        title: "Best vet clinics in Ikeja axis? Urgent!",
-        author: "DavidoDogFather",
+        title: "Best study tips for the KTU leadership exam?",
+        author: "AspiringLeader",
         replies: 24,
         likes: 15,
         time: "2h ago",
-        tag: "Health",
+        tag: "Study",
         color: "bg-red-100 text-red-700"
     },
     {
-        title: "Review: The new dog park at Victoria Island is amazing",
-        author: "LagosPupMom",
+        title: "Review: The KTU pitch competition was amazing!",
+        author: "YoungCEO",
         replies: 56,
         likes: 189,
         time: "5h ago",
@@ -23,17 +23,17 @@ const threads = [
         color: "bg-green-100 text-green-700"
     },
     {
-        title: "My husky refuses to eat dry food. Tips?",
-        author: "SnowWolf",
+        title: "How do I start my first business? Need tips!",
+        author: "FutureFounder",
         replies: 12,
         likes: 8,
         time: "1d ago",
-        tag: "Nutrition",
+        tag: "Business",
         color: "bg-orange-100 text-orange-700"
     },
     {
-        title: "Anyone engaging in the World Record attempt? Let's coordinate!",
-        author: "RecordBreaker26",
+        title: "Anyone preparing for the KTU Shark Tank? Let's practice!",
+        author: "PitchMaster",
         replies: 145,
         likes: 342,
         time: "1d ago",
@@ -48,7 +48,7 @@ export function LatestThreads() {
             <div className="flex flex-col md:flex-row justify-between items-end mb-8 gap-4">
                 <div>
                     <h2 className="text-2xl font-bold">Trending Discussions</h2>
-                    <p className="text-muted-foreground">See what the pack is barking about today.</p>
+                    <p className="text-muted-foreground">See what the community is talking about today.</p>
                 </div>
                 <Button>Start a New Discussion</Button>
             </div>

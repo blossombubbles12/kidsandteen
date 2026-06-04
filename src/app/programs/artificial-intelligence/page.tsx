@@ -59,9 +59,9 @@ export default async function ArtificialIntelligencePage() {
                     {/* Feature Cards */}
                     <div className="grid md:grid-cols-3 gap-6 mb-12">
                         {[
-                            { emoji: "🧠", title: "Understand AI", desc: "Kids learn what AI is, how it thinks, and where it shows up in their daily lives." },
-                            { emoji: "🎨", title: "Creative with AI", desc: "Use AI tools for art, music, storytelling, and bringing big ideas to life." },
-                            { emoji: "🛡️", title: "Responsible Use", desc: "Learn the ethics of AI — privacy, bias, and how to use technology wisely." },
+                            { emoji: "", title: "Understand AI", desc: "Kids learn what AI is, how it thinks, and where it shows up in their daily lives." },
+                            { emoji: "", title: "Creative with AI", desc: "Use AI tools for art, music, storytelling, and bringing big ideas to life." },
+                            { emoji: "", title: "Responsible Use", desc: "Learn the ethics of AI — privacy, bias, and how to use technology wisely." },
                         ].map((item) => (
                             <div key={item.title} className="bg-white p-6 rounded-2xl border-2 border-[#e5e0db] hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
                                 <div className="w-12 h-12 rounded-xl bg-[#e50a1e]/10 flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">
@@ -94,7 +94,7 @@ export default async function ArtificialIntelligencePage() {
                 <section className="py-20 bg-white">
                     <div className="container px-4 md:px-6">
                         <div className="text-center mb-12">
-                            <span className="badge-fun bg-[#e50a1e]/10 text-[#e50a1e] border border-[#e50a1e]/20 mb-4">📸 IN ACTION</span>
+                            <span className="badge-fun bg-[#e50a1e]/10 text-[#e50a1e] border border-[#e50a1e]/20 mb-4"> IN ACTION</span>
                             <h2 className="text-3xl md:text-4xl font-black text-[#1a1a1a]">Our Innovators in Action</h2>
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-5xl mx-auto">

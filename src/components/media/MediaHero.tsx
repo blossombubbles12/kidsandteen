@@ -53,7 +53,7 @@ export function MediaHero({ media }: MediaHeroProps) {
                             transition={{ delay: 0.2 }}
                             className="text-xl text-muted-foreground max-w-2xl mx-auto font-medium"
                         >
-                            Capturing the soul, the joy, and the unbreakable bond of the pack.
+                            Capturing the moments, the energy, and the spirit of our community.
                         </motion.p>
                     </div>
 
@@ -78,7 +78,7 @@ export function MediaHero({ media }: MediaHeroProps) {
                             </svg>
                         </motion.div>
 
-                        {/* Playful Dog Icon */}
+                        {/* Play Button */}
                         <motion.div
                             animate={{
                                 y: [0, -10, 0],

@@ -7,14 +7,14 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, GraduationCap } from "lucide-react";
 
 const doodles = [
-    { emoji: "🚀", size: "text-4xl", pos: "top-[18%] left-[8%]", delay: 0 },
-    { emoji: "⭐", size: "text-3xl", pos: "top-[12%] right-[12%]", delay: 0.5 },
-    { emoji: "💡", size: "text-3xl", pos: "bottom-[28%] left-[6%]", delay: 1 },
-    { emoji: "🌍", size: "text-4xl", pos: "bottom-[20%] right-[8%]", delay: 1.5 },
-    { emoji: "🎓", size: "text-2xl", pos: "top-[40%] right-[4%]", delay: 0.8 },
-    { emoji: "💰", size: "text-2xl", pos: "top-[55%] left-[4%]", delay: 1.2 },
-    { emoji: "🏆", size: "text-3xl", pos: "top-[25%] left-[18%]", delay: 0.3 },
-    { emoji: "❤️", size: "text-2xl", pos: "bottom-[38%] right-[16%]", delay: 0.9 },
+    { emoji: "", size: "text-4xl", pos: "top-[18%] left-[8%]", delay: 0 },
+    { emoji: "", size: "text-3xl", pos: "top-[12%] right-[12%]", delay: 0.5 },
+    { emoji: "", size: "text-3xl", pos: "bottom-[28%] left-[6%]", delay: 1 },
+    { emoji: "", size: "text-4xl", pos: "bottom-[20%] right-[8%]", delay: 1.5 },
+    { emoji: "", size: "text-2xl", pos: "top-[40%] right-[4%]", delay: 0.8 },
+    { emoji: "", size: "text-2xl", pos: "top-[55%] left-[4%]", delay: 1.2 },
+    { emoji: "", size: "text-3xl", pos: "top-[25%] left-[18%]", delay: 0.3 },
+    { emoji: "", size: "text-2xl", pos: "bottom-[38%] right-[16%]", delay: 0.9 },
 ];
 
 export function Hero() {
@@ -54,7 +54,7 @@ export function Hero() {
                 >
                     <GraduationCap className="w-4 h-4" />
                     Africa's #1 Youth Entrepreneurship Platform
-                    <span className="ml-1">🌍</span>
+                    <span className="ml-1"></span>
                 </motion.div>
 
                 {/* Headline */}
@@ -67,7 +67,7 @@ export function Hero() {
                     <span className="text-[#1a1a1a]">Kids &amp; Teens</span>{" "}
                     <br className="hidden sm:block" />
                     <span className="squiggle gradient-text">University</span>
-                    <span className="text-[#e50a1e] ml-2">✨</span>
+                    <span className="text-[#e50a1e] ml-2"></span>
                 </motion.h1>
 
                 {/* Subheadline */}
@@ -88,7 +88,7 @@ export function Hero() {
                     transition={{ delay: 0.4 }}
                     className="flex flex-wrap justify-center gap-2 mb-10"
                 >
-                    {["🏪 Mini-Businesses", "📈 Investment Clubs", "🤝 Leadership", "💻 STEM Labs", "🎤 Pitch Competitions"].map((tag, i) => (
+                    {[" Mini-Businesses", " Investment Clubs", " Leadership", " STEM Labs", " Pitch Competitions"].map((tag, i) => (
                         <motion.span
                             key={i}
                             initial={{ opacity: 0, scale: 0.7 }}
@@ -114,7 +114,7 @@ export function Hero() {
                             className="btn-bounce w-full text-xl px-10 py-7 rounded-2xl font-black shadow-lg shadow-[#e50a1e]/25 border-2 border-[#cc0000]"
                             style={{ background: "linear-gradient(135deg, #e50a1e, #cc0000)" }}
                         >
-                            🚀 Join KTU Today <ArrowRight className="ml-2 w-5 h-5" />
+                             Join KTU Today <ArrowRight className="ml-2 w-5 h-5" />
                         </Button>
                     </Link>
                     <Link href="/about" className="w-full sm:w-auto">
@@ -123,7 +123,7 @@ export function Hero() {
                             variant="outline"
                             className="btn-bounce w-full text-xl px-10 py-7 rounded-2xl font-black border-2 border-[#e50a1e]/30 text-[#e50a1e] hover:bg-[#e50a1e]/8 bg-white/80"
                         >
-                            Learn More 🌟
+                            Learn More 
                         </Button>
                     </Link>
                 </motion.div>
@@ -136,9 +136,9 @@ export function Hero() {
                     className="flex flex-wrap items-center justify-center gap-6 mt-12"
                 >
                     {[
-                        { num: "50k+", label: "Young Dreamers", emoji: "👦🏽" },
-                        { num: "10", label: "Years Strong", emoji: "🏆" },
-                        { num: "500+", label: "Startups Born", emoji: "🚀" },
+                        { num: "50k+", label: "Young Dreamers", emoji: "🏽" },
+                        { num: "10", label: "Years Strong", emoji: "" },
+                        { num: "500+", label: "Startups Born", emoji: "" },
                     ].map((stat, i) => (
                         <motion.div
                             key={i}

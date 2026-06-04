@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Timer, Trophy } from "lucide-react";
+import { Trophy } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export function WorldRecord() {
@@ -37,7 +37,7 @@ export function WorldRecord() {
                     transition={{ type: "spring", bounce: 0.5 }}
                     className="inline-flex items-center gap-2 bg-yellow-400 text-black px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider mb-8 shadow-lg"
                 >
-                    <Trophy className="w-4 h-4" /> Guinness World Record Attempt
+                    <Trophy className="w-4 h-4" /> KTU Annual Summit 2026
                 </motion.div>
 
                 <motion.h2
@@ -46,11 +46,11 @@ export function WorldRecord() {
                     viewport={{ once: true }}
                     className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 drop-shadow-md"
                 >
-                    Making History in <span className="text-yellow-300">2026</span>
+                    Africa's Largest <span className="text-yellow-300">Youth Leadership</span> Summit
                 </motion.h2>
 
                 <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto">
-                    Join us as we attempt the record for the <strong className="text-white border-b-2 border-yellow-400">Africa's Largest Gathering of Pets</strong> in Lagos, Nigeria.
+                    Join thousands of young leaders from across Africa for the <strong className="text-white border-b-2 border-yellow-400">biggest youth entrepreneurship gathering</strong> in Lagos, Nigeria.
                 </p>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">

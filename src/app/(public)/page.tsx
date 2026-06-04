@@ -77,9 +77,9 @@ export default async function Home() {
 
           <div className="container mx-auto px-4 md:px-6 relative z-20">
             <div className="text-center mb-14">
-              <SectionLabel emoji="📸" text="Real Moments" color="bg-white/10 text-white border-white/20" />
+              <SectionLabel emoji="" text="Real Moments" color="bg-white/10 text-white border-white/20" />
               <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-                Life at <span className="text-[#e50a1e]">KTU</span> ✨
+                Life at <span className="text-[#e50a1e]">KTU</span> 
               </h2>
               <p className="text-lg text-white/70 font-semibold max-w-xl mx-auto">
                 Real moments from our programs, events, and community — straight from the KTU family.
@@ -132,9 +132,9 @@ export default async function Home() {
 
         <div className="container px-4 md:px-6 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-            <SectionLabel emoji="🎓" text="Our Programs" color="bg-[#e50a1e]/10 text-[#e50a1e]" />
+            <SectionLabel emoji="" text="Our Programs" color="bg-[#e50a1e]/10 text-[#e50a1e]" />
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-[#1a1a1a] leading-tight">
-              Explore Our <span className="text-[#e50a1e]">Programs</span> 🚀
+              Explore Our <span className="text-[#e50a1e]">Programs</span> 
             </h2>
             <p className="text-lg text-[#545454] font-semibold leading-relaxed">
               Five specialized tracks designed to build confidence, skills, and real-world experience.
@@ -195,14 +195,14 @@ export default async function Home() {
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <SectionLabel emoji="🎓" text="Our Programs" />
+            <SectionLabel emoji="" text="Our Programs" />
             <h2 className="text-4xl md:text-5xl font-black mb-5 text-[#1a1a1a] leading-tight">
               Two Tracks,{" "}
               <span className="squiggle gradient-text">One Mission</span>
             </h2>
             <p className="text-lg text-[#545454] font-semibold leading-relaxed">
               At KTU, education goes beyond classrooms. We empower children (6–12) and teens (13–18)
-              to launch businesses, manage investments, and lead with confidence. 💪
+              to launch businesses, manage investments, and lead with confidence. 
             </p>
           </div>
 
@@ -214,19 +214,19 @@ export default async function Home() {
 
               <div className="relative">
                 <div className="w-[72px] h-[72px] bg-gradient-to-br from-[#e50a1e]/15 to-[#cc0000]/15 rounded-[1.2rem] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 text-4xl">
-                  ⭐
+                  
                 </div>
                 <h3 className="text-2xl font-black mb-1 text-[#1a1a1a]">
-                  For Kids <span className="text-[#e50a1e]">(6–12)</span> 👦🏽
+                  For Kids <span className="text-[#e50a1e]">(6–12)</span> 🏽
                 </h3>
                 <p className="text-[#888888] text-sm mb-6 font-semibold">The Little Boss Track</p>
 
                 <ul className="space-y-3 mb-8">
                   {[
-                    ["🍋", "Mini-Business Ventures", "lemonade stands, crafts, toy businesses"],
-                    ["🎮", "Financial Literacy Games", "play-money tokens, saving, investing basics"],
-                    ["🤝", "Leadership & Character", "confidence, teamwork, etiquette"],
-                    ["🔬", "STEM Explorers", "robotics, coding, science fairs"],
+                    ["", "Mini-Business Ventures", "lemonade stands, crafts, toy businesses"],
+                    ["", "Financial Literacy Games", "play-money tokens, saving, investing basics"],
+                    ["", "Leadership & Character", "confidence, teamwork, etiquette"],
+                    ["", "STEM Explorers", "robotics, coding, science fairs"],
                   ].map(([emoji, title, desc], i) => (
                     <li key={i} className="flex items-start gap-3 group/item">
                       <span className="text-xl mt-0.5 group-hover/item:animate-wiggle">{emoji}</span>
@@ -252,19 +252,19 @@ export default async function Home() {
 
               <div className="relative">
                 <div className="w-[72px] h-[72px] bg-gradient-to-br from-[#545454]/20 to-[#888888]/15 rounded-[1.2rem] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300 text-4xl">
-                  🚀
+                  
                 </div>
                 <h3 className="text-2xl font-black mb-1 text-[#1a1a1a]">
-                  For Teens <span className="text-[#545454]">(13–18)</span> 🧑🏽
+                  For Teens <span className="text-[#545454]">(13–18)</span> 🏽
                 </h3>
                 <p className="text-[#888888] text-sm mb-6 font-semibold">The Young CEO Track</p>
 
                 <ul className="space-y-3 mb-8">
                   {[
-                    ["💼", "Startup Incubation", "fashion lines, apps, online stores"],
-                    ["📈", "Investment Clubs", "stock market, crypto simulations, budgeting"],
-                    ["🌍", "Career Readiness", "internships, CV building, global exchange"],
-                    ["⚡", "Innovation Labs", "hackathons, prototyping, invention fairs"],
+                    ["", "Startup Incubation", "fashion lines, apps, online stores"],
+                    ["", "Investment Clubs", "stock market, crypto simulations, budgeting"],
+                    ["", "Career Readiness", "internships, CV building, global exchange"],
+                    ["", "Innovation Labs", "hackathons, prototyping, invention fairs"],
                   ].map(([emoji, title, desc], i) => (
                     <li key={i} className="flex items-start gap-3 group/item">
                       <span className="text-xl mt-0.5 group-hover/item:animate-wiggle">{emoji}</span>
@@ -292,9 +292,9 @@ export default async function Home() {
 
         <div className="container px-4 md:px-6 relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <SectionLabel emoji="💡" text="Signature Activities" color="bg-[#545454]/10 text-[#545454]" />
+            <SectionLabel emoji="" text="Signature Activities" color="bg-[#545454]/10 text-[#545454]" />
             <h2 className="text-4xl md:text-5xl font-black mb-4 text-[#1a1a1a]">
-              Flagship Events 🎪
+              Flagship Events 
             </h2>
             <p className="text-lg text-[#545454] font-semibold">
               Where theory meets practice. Our students compete, pitch, and lead on real stages!
@@ -303,10 +303,10 @@ export default async function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {[
-              { emoji: "🦈", title: "KTU Shark Tank", desc: "Pitch businesses to real investors and win funding.", bg: "from-[#e50a1e]/10 to-[#cc0000]/10", border: "border-[#e50a1e]/25", hover: "hover:shadow-[#e50a1e]/10" },
-              { emoji: "📈", title: "Investment Challenge", desc: "Manage portfolios and master wealth-building strategies.", bg: "from-[#545454]/15 to-[#888888]/10", border: "border-[#545454]/25", hover: "hover:shadow-[#545454]/10" },
-              { emoji: "🌍", title: "Global Teens Forum", desc: "Debate world issues with peers from across the continent.", bg: "from-[#545454]/10 to-[#e5e0db]/20", border: "border-[#545454]/25", hover: "hover:shadow-[#545454]/10" },
-              { emoji: "🏪", title: "Kidspreneur Fair", desc: "Kids showcase and sell their mini-business products.", bg: "from-[#e50a1e]/8 to-[#545454]/10", border: "border-[#e50a1e]/25", hover: "hover:shadow-[#e50a1e]/10" },
+              { emoji: "", title: "KTU Shark Tank", desc: "Pitch businesses to real investors and win funding.", bg: "from-[#e50a1e]/10 to-[#cc0000]/10", border: "border-[#e50a1e]/25", hover: "hover:shadow-[#e50a1e]/10" },
+              { emoji: "", title: "Investment Challenge", desc: "Manage portfolios and master wealth-building strategies.", bg: "from-[#545454]/15 to-[#888888]/10", border: "border-[#545454]/25", hover: "hover:shadow-[#545454]/10" },
+              { emoji: "", title: "Global Teens Forum", desc: "Debate world issues with peers from across the continent.", bg: "from-[#545454]/10 to-[#e5e0db]/20", border: "border-[#545454]/25", hover: "hover:shadow-[#545454]/10" },
+              { emoji: "", title: "Kidspreneur Fair", desc: "Kids showcase and sell their mini-business products.", bg: "from-[#e50a1e]/8 to-[#545454]/10", border: "border-[#e50a1e]/25", hover: "hover:shadow-[#e50a1e]/10" },
             ].map((item, i) => (
               <div
                 key={i}
@@ -331,7 +331,7 @@ export default async function Home() {
         <div className="container px-4 md:px-6 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
             <div>
-              <SectionLabel emoji="👥" text="Clubs & Societies" color="bg-[#545454]/10 text-[#545454]" />
+              <SectionLabel emoji="" text="Clubs & Societies" color="bg-[#545454]/10 text-[#545454]" />
               <h2 className="text-4xl md:text-5xl font-black mb-6 text-[#1a1a1a] leading-tight">
                 Find Your{" "}
                 <RotatingWord />
@@ -344,14 +344,14 @@ export default async function Home() {
               <div className="space-y-4">
                 {[
                   {
-                    emoji: "⚡",
+                    emoji: "",
                     bg: "bg-gradient-to-br from-[#e50a1e]/10 to-[#cc0000]/10",
                     border: "border-[#e50a1e]/20",
                     title: "Kidpreneur Clubs (Ages 6–12)",
                     desc: "Mini-business ventures, language clubs, STEM clubs",
                   },
                   {
-                    emoji: "💼",
+                    emoji: "",
                     bg: "bg-gradient-to-br from-[#545454]/10 to-[#888888]/10",
                     border: "border-[#545454]/20",
                     title: "Entrepreneurship Societies (Ages 13–18)",
@@ -388,10 +388,10 @@ export default async function Home() {
         <div className="container px-4 md:px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
             {[
-              { num: "500+", label: "Active Members", emoji: "👦🏽", color: "#e50a1e" },
-              { num: "12+", label: "Clubs & Societies", emoji: "🏛️", color: "#545454" },
-              { num: "50+", label: "Startups Launched", emoji: "🚀", color: "#888888" },
-              { num: "∞", label: "Opportunities", emoji: "✨", color: "#e50a1e" },
+              { num: "500+", label: "Active Members", emoji: "🏽", color: "#e50a1e" },
+              { num: "12+", label: "Clubs & Societies", emoji: "", color: "#545454" },
+              { num: "50+", label: "Startups Launched", emoji: "", color: "#888888" },
+              { num: "∞", label: "Opportunities", emoji: "", color: "#e50a1e" },
             ].map((stat, i) => (
               <div
                 key={i}
@@ -414,9 +414,9 @@ export default async function Home() {
 
         <div className="container px-4 md:px-6 relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <SectionLabel emoji="🌍" text="Real-World Integration" color="bg-[#545454]/10 text-[#545454]" />
+            <SectionLabel emoji="" text="Real-World Integration" color="bg-[#545454]/10 text-[#545454]" />
             <h2 className="text-4xl md:text-5xl font-black mb-4 text-[#1a1a1a]">
-              Beyond the Classroom 🏫
+              Beyond the Classroom 
             </h2>
             <p className="text-lg text-[#545454] font-semibold">
               Every student graduates with proof of ventures, investments, and leadership experience!
@@ -425,12 +425,12 @@ export default async function Home() {
 
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
-              { emoji: "🏪", title: "Running Businesses", desc: "Kids run simple ventures; teens launch startups with real products and revenue.", color: "border-[#e50a1e]/25 hover:shadow-[#e50a1e]/10" },
-              { emoji: "📈", title: "Investment Mastery", desc: "Stock market simulations, crypto basics, savings clubs, and wealth-building strategies.", color: "border-[#545454]/25 hover:shadow-[#545454]/10" },
-              { emoji: "💰", title: "Financial Intelligence", desc: "Budgeting, entrepreneurial finance, and smart money habits for life.", color: "border-[#e50a1e]/25 hover:shadow-[#e50a1e]/10" },
-              { emoji: "🤝", title: "Industry Partnerships", desc: "Internships with banks, tech hubs, and NGOs for real-world exposure.", color: "border-[#545454]/25 hover:shadow-[#545454]/10" },
-              { emoji: "🗂️", title: "Digital Portfolios", desc: "Every student graduates with proof of ventures, investments, and leadership.", color: "border-[#888888]/25 hover:shadow-[#545454]/10" },
-              { emoji: "🎉", title: "Annual Events", desc: "Innovation Expo, Global Teens Forum, Kidspreneur Fair — our calendar is packed!", color: "border-[#e50a1e]/25 hover:shadow-[#e50a1e]/10" },
+              { emoji: "", title: "Running Businesses", desc: "Kids run simple ventures; teens launch startups with real products and revenue.", color: "border-[#e50a1e]/25 hover:shadow-[#e50a1e]/10" },
+              { emoji: "", title: "Investment Mastery", desc: "Stock market simulations, crypto basics, savings clubs, and wealth-building strategies.", color: "border-[#545454]/25 hover:shadow-[#545454]/10" },
+              { emoji: "", title: "Financial Intelligence", desc: "Budgeting, entrepreneurial finance, and smart money habits for life.", color: "border-[#e50a1e]/25 hover:shadow-[#e50a1e]/10" },
+              { emoji: "", title: "Industry Partnerships", desc: "Internships with banks, tech hubs, and NGOs for real-world exposure.", color: "border-[#545454]/25 hover:shadow-[#545454]/10" },
+              { emoji: "", title: "Digital Portfolios", desc: "Every student graduates with proof of ventures, investments, and leadership.", color: "border-[#888888]/25 hover:shadow-[#545454]/10" },
+              { emoji: "", title: "Annual Events", desc: "Innovation Expo, Global Teens Forum, Kidspreneur Fair — our calendar is packed!", color: "border-[#e50a1e]/25 hover:shadow-[#e50a1e]/10" },
             ].map((item, i) => (
               <div
                 key={i}
@@ -453,9 +453,9 @@ export default async function Home() {
 
         <div className="container px-4 md:px-6 relative z-10">
           <div className="text-center mb-14">
-            <SectionLabel emoji="🙋" text="Got Questions?" />
+            <SectionLabel emoji="" text="Got Questions?" />
             <h2 className="text-3xl md:text-5xl font-black mb-4 text-[#1a1a1a]">
-              Frequently Asked Questions 💬
+              Frequently Asked Questions 
             </h2>
             <p className="text-lg text-[#545454] font-semibold max-w-2xl mx-auto">
               Everything you need to know about KTU programs, membership, and how to get started!
@@ -488,7 +488,7 @@ export default async function Home() {
 
         <div className="absolute inset-0 confetti-bg opacity-20 pointer-events-none" />
 
-        {["🚀", "⭐", "💡", "🏆", "❤️", "✨"].map((e, i) => (
+        {["", "", "", "", "", ""].map((e, i) => (
           <div
             key={i}
             className={`absolute text-3xl select-none pointer-events-none hidden lg:block animate-float`}
@@ -504,18 +504,18 @@ export default async function Home() {
         ))}
 
         <div className="container mx-auto relative z-10 px-4 md:px-6 text-center">
-          <div className="text-5xl mb-6 animate-bounce-gentle">🎓</div>
+          <div className="text-5xl mb-6 animate-bounce-gentle"></div>
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight mb-6 text-white leading-tight">
             Ready to Build the{" "}
-            <span className="text-[#e50a1e]">Future?</span> 🌟
+            <span className="text-[#e50a1e]">Future?</span> 
           </h2>
           <p className="text-xl text-white/85 max-w-2xl mx-auto mb-12 font-semibold leading-relaxed">
             Join Africa's leading youth entrepreneurship program. Whether you're 6 or 18,
-            KTU has a path for you to launch your future today! 🚀
+            KTU has a path for you to launch your future today! 
           </p>
 
           <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {["✅ Free first session", "🌍 Africa-wide community", "🏆 Real certifications", "💻 Learn online or in person"].map((t, i) => (
+            {[" Free first session", " Africa-wide community", " Real certifications", " Learn online or in person"].map((t, i) => (
               <span key={i} className="px-4 py-2 bg-white/10 backdrop-blur border border-white/20 rounded-full text-white/90 text-sm font-bold">
                 {t}
               </span>
@@ -529,7 +529,7 @@ export default async function Home() {
                 className="btn-bounce h-auto py-5 w-full text-xl px-12 font-black rounded-2xl shadow-2xl border-2 border-[#e50a1e]/40"
                 style={{ background: "linear-gradient(135deg, #e50a1e, #cc0000)" }}
               >
-                <span className="text-white">🚀 Join KTU Today</span>
+                <span className="text-white"> Join KTU Today</span>
               </Button>
             </Link>
             <Link href="/contact" className="w-full sm:w-auto">

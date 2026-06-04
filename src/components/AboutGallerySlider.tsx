@@ -32,10 +32,10 @@ export function AboutGallerySlider({ images }: AboutGallerySliderProps) {
             <div className="container mx-auto px-5">
                 <div className="text-center mb-12">
                     <span className="badge-fun bg-white/10 text-white border border-white/20 mb-5">
-                        📸 KTU IN ACTION
+                         KTU IN ACTION
                     </span>
                     <h2 className="text-3xl md:text-5xl font-black text-white">
-                        Moments That <span className="text-[#e50a1e]">Matter</span> ✨
+                        Moments That <span className="text-[#e50a1e]">Matter</span> 
                     </h2>
                     <p className="text-base text-white/60 font-semibold mt-4 max-w-xl mx-auto">
                         A glimpse into the energy, creativity, and community that makes KTU special.

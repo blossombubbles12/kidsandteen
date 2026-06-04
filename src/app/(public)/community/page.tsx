@@ -50,7 +50,7 @@ export default function CommunityPage() {
                         transition={{ duration: 0.7, delay: 0.1 }}
                         className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-orange-600 to-amber-600 pb-2"
                     >
-                        Connect With Dog Lovers
+                        Connect With Young Leaders
                     </motion.h1>
 
                     <motion.p
@@ -59,7 +59,7 @@ export default function CommunityPage() {
                         transition={{ duration: 0.7, delay: 0.2 }}
                         className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-3xl leading-relaxed"
                     >
-                        Join the <span className="text-primary font-bold">Record breaking pet lovers group</span>. A vibrant community dedicated to live training discussions, dog stories, and our official Guinness World Record attempt.
+                        Join the <span className="text-primary font-bold">KTU community</span>. A vibrant group of young leaders dedicated to learning, growth, and building the future together.
                     </motion.p>
 
                     <motion.div
@@ -95,11 +95,11 @@ export default function CommunityPage() {
                         <Card className="bg-white/80 backdrop-blur-sm border-none shadow-lg">
                             <CardHeader>
                                 <Mic className="w-10 h-10 text-primary mb-2" />
-                                <CardTitle className="text-2xl">Live Dog Talk</CardTitle>
+                                <CardTitle className="text-2xl">Live Discussions</CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <p className="text-muted-foreground text-lg">
-                                    Participate in voice chats about training tips, behavior quirks, and daily dog life. Share your story or just listen in while walking your pup.
+                                    Participate in voice chats and text discussions about leadership, entrepreneurship, and personal development.
                                 </p>
                             </CardContent>
                         </Card>
@@ -107,11 +107,11 @@ export default function CommunityPage() {
                         <Card className="bg-white/80 backdrop-blur-sm border-none shadow-lg">
                             <CardHeader>
                                 <Heart className="w-10 h-10 text-primary mb-2" />
-                                <CardTitle className="text-2xl">Expert Care Tips</CardTitle>
+                                <CardTitle className="text-2xl">Mentorship & Guidance</CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <p className="text-muted-foreground text-lg">
-                                    Get advice on nutrition, health, and holistic care from experienced owners and community experts.
+                                    Get advice from experienced mentors, industry professionals, and fellow young entrepreneurs.
                                 </p>
                             </CardContent>
                         </Card>
@@ -119,11 +119,11 @@ export default function CommunityPage() {
                         <Card className="bg-white/80 backdrop-blur-sm border-none shadow-lg">
                             <CardHeader>
                                 <Users className="w-10 h-10 text-primary mb-2" />
-                                <CardTitle className="text-2xl">Meet Training Buddies</CardTitle>
+                                <CardTitle className="text-2xl">Connect & Collaborate</CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <p className="text-muted-foreground text-lg">
-                                    Connect directly with local dog lovers. Find walking partners, playdate friends, and a support system that gets it.
+                                    Connect directly with fellow young leaders. Find study partners, project collaborators, and a support system that understands.
                                 </p>
                             </CardContent>
                         </Card>
@@ -131,7 +131,7 @@ export default function CommunityPage() {
                         <Card className="bg-white/80 backdrop-blur-sm border-none shadow-lg">
                             <CardHeader>
                                 <Calendar className="w-10 h-10 text-primary mb-2" />
-                                <CardTitle className="text-2xl">Event Dates</CardTitle>
+                                <CardTitle className="text-2xl">Event Updates</CardTitle>
                             </CardHeader>
                             <CardContent>
                                      <p className="text-muted-foreground text-lg">
@@ -153,22 +153,22 @@ export default function CommunityPage() {
                     className="bg-gradient-to-br from-primary/10 to-orange-100 rounded-3xl p-8 md:p-16 text-center border border-primary/10"
                 >
                     <PlayCircle className="w-16 h-16 text-primary mx-auto mb-6" />
-                    <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">Speak Your Mind (And Bark!)</h2>
+                    <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">Speak Your Mind</h2>
                     <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed">
-                        We prioritize audio because dog ownership is hands-on. Whether you&apos;re at the park or prepping a meal, our voice sessions let you connect without stopping the fun.
+                        We believe every young leader has a voice. Whether you are at home or on the go, our community lets you connect, learn, and grow together.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
                         <div className="bg-white/60 p-6 rounded-2xl">
-                            <h3 className="font-bold text-lg mb-2 flex items-center"><Mic className="w-5 h-5 mr-2 text-primary" /> Share Tips</h3>
-                            <p className="text-sm text-muted-foreground">Jump into active discussions about training and care.</p>
+                            <h3 className="font-bold text-lg mb-2 flex items-center"><Mic className="w-5 h-5 mr-2 text-primary" /> Share Ideas</h3>
+                            <p className="text-sm text-muted-foreground">Jump into active discussions about leadership and entrepreneurship.</p>
                         </div>
                         <div className="bg-white/60 p-6 rounded-2xl">
-                            <h3 className="font-bold text-lg mb-2 flex items-center"><Users className="w-5 h-5 mr-2 text-primary" /> Listen In</h3>
-                            <p className="text-sm text-muted-foreground">Absorb advice and stories while you&apos;re on the go.</p>
+                            <h3 className="font-bold text-lg mb-2 flex items-center"><Users className="w-5 h-5 mr-2 text-primary" /> Learn Together</h3>
+                            <p className="text-sm text-muted-foreground">Absorb advice and stories from fellow young leaders on the go.</p>
                         </div>
                         <div className="bg-white/60 p-6 rounded-2xl">
                             <h3 className="font-bold text-lg mb-2 flex items-center"><Heart className="w-5 h-5 mr-2 text-primary" /> Support</h3>
-                            <p className="text-sm text-muted-foreground">Give and receive support for the ups and downs of dog life.</p>
+                            <p className="text-sm text-muted-foreground">Give and receive encouragement through every step of your journey.</p>
                         </div>
                     </div>
                 </motion.div>
@@ -186,7 +186,7 @@ export default function CommunityPage() {
                             {[
                                 { step: 1, title: "Click Invite Link", desc: "Use the button below to open the WhatsApp invite." },
                                 { step: 2, title: "Join Group", desc: "Accept the invitation in your WhatsApp app." },
-                                { step: 3, title: "Introduce Your Dog", desc: "Share a photo and say hello to the pack!" },
+                                { step: 3, title: "Introduce Yourself", desc: "Share a bit about yourself and your goals!" },
                                 { step: 4, title: "Stay Active", desc: "Join voice chats and planned meetups." }
                             ].map((item, idx) => (
                                 <motion.div
@@ -219,14 +219,14 @@ export default function CommunityPage() {
                 <div className="max-w-3xl mx-auto bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-border/50">
                     <div className="flex items-center justify-center mb-8">
                         <ShieldCheck className="w-12 h-12 text-primary mr-4" />
-                        <h2 className="text-3xl font-bold">Pack Rules</h2>
+                        <h2 className="text-3xl font-bold">Community Guidelines</h2>
                     </div>
                     <ul className="space-y-4">
                         {[
-                            "Be kind and respectful to all owners and breeds.",
+                            "Be kind and respectful to all members.",
                             "No spam or unrelated promotions.",
-                            "Keep topics dog-focused: Training, Health, Events.",
-                            "Voice chats are for constructive and friendly participation."
+                            "Keep discussions constructive and on-topic.",
+                            "Voice chats are for positive and friendly participation."
                         ].map((rule, i) => (
                             <li key={i} className="flex items-start text-lg text-muted-foreground">
                                 <ArrowRight className="w-6 h-6 mr-3 text-primary shrink-0 mt-0.5" />
@@ -268,9 +268,9 @@ export default function CommunityPage() {
                         <Link href={whatsappLink} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center gap-1">
                             <div className="flex items-center gap-3">
                                 <MessageCircle className="h-8 w-8 shrink-0" />
-                                <span className="whitespace-normal text-center">Join the Record Breaking Pet Lovers Group</span>
+                                <span className="whitespace-normal text-center">Join the KTU Community</span>
                             </div>
-                            <span className="text-xs opacity-90 font-medium">(Official GWR Community)</span>
+                            <span className="text-xs opacity-90 font-medium">(WhatsApp Group)</span>
                         </Link>
                     </Button>
                 </motion.div>

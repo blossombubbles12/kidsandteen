@@ -36,7 +36,7 @@ export default async function MediaPage() {
                 <div className="absolute inset-0 bg-gradient-to-br from-[#e50a1e]/20 via-[#1a1a1a]/90 to-[#1a1a1a]" />
                 <div className="container px-4 md:px-6 relative z-10 text-center">
                     <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white/15 border border-white/25 text-sm font-semibold mb-4 text-white">
-                        📸 GALLERY
+                         GALLERY
                     </span>
                     <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight leading-tight">
                         Media & <span className="text-[#e50a1e]">Moments</span>

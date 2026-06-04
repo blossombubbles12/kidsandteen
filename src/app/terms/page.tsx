@@ -40,12 +40,12 @@ export default function TermsPage() {
                             <li>Registration fees are non-refundable unless the event is cancelled</li>
                         </ul>
 
-                        <h3 className="text-xl font-semibold mb-3 mt-6">3.2 Dog Requirements</h3>
+                        <h3 className="text-xl font-semibold mb-3 mt-6">3.2 Participant Requirements</h3>
                         <ul className="list-disc pl-6 text-muted-foreground space-y-2">
-                            <li>All dogs must have up-to-date vaccinations (Anti-Rabies, DHLPP)</li>
-                            <li>Dogs must be leashed at all times unless in designated off-leash areas</li>
-                            <li>Aggressive dogs will be asked to leave immediately</li>
-                            <li>Owners are responsible for cleaning up after their dogs</li>
+                            <li>Participants under 18 must be accompanied by a guardian</li>
+                            <li>All participants must adhere to the event code of conduct</li>
+                            <li>Parents or guardians are responsible for their children at all times</li>
+                            <li>Special needs or accommodations should be communicated in advance</li>
                         </ul>
 
                         <h3 className="text-xl font-semibold mb-3 mt-6">3.3 Safety & Liability</h3>
@@ -109,7 +109,7 @@ export default function TermsPage() {
                             <li>Distribute viruses or malicious code</li>
                             <li>Impersonate another person or entity</li>
                             <li>Scrape or harvest data from our platform</li>
-                            <li>Bring unvaccinated or aggressive dogs to events</li>
+                            <li>Bring weapons or dangerous items to events</li>
                         </ul>
                     </section>
 

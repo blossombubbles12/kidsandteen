@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 const values = [
     {
-        emoji: "🚀",
+        emoji: "",
         title: "Kidpreneurship First",
         description: "We don't do boring business plans. Students design, build, and pitch real products on actual marketplaces!",
         color: "from-[#e50a1e]/10 to-[#cc0000]/10",
@@ -17,7 +17,7 @@ const values = [
         textColor: "text-[#e50a1e]"
     },
     {
-        emoji: "🧠",
+        emoji: "",
         title: "Future-Proof Skills",
         description: "Master financial IQ, stock simulations, creative coding, and design thinking—the superpowers standard schools miss.",
         color: "from-[#545454]/12 to-[#888888]/10",
@@ -25,7 +25,7 @@ const values = [
         textColor: "text-[#545454]"
     },
     {
-        emoji: "🤝",
+        emoji: "",
         title: "Compassionate Leadership",
         description: "We raise leaders who build community. KTU students practice active philanthropy through food banks & clean energy projects.",
         color: "from-[#e50a1e]/8 to-[#545454]/10",
@@ -33,7 +33,7 @@ const values = [
         textColor: "text-[#e50a1e]"
     },
     {
-        emoji: "✨",
+        emoji: "",
         title: "Limitless Curiosity",
         description: "We run on trial, error, and imagination. KTU is a judgment-free lab where failure is just a level-up in progress.",
         color: "from-[#545454]/10 to-[#e5e0db]/20",
@@ -90,7 +90,7 @@ export default function AboutPageContent({ uploadImages, sliderImages }: AboutPa
                         transition={{ duration: 0.5 }}
                     >
                         <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white/15 border border-white/25 text-sm font-semibold mb-4 text-white">
-                            ⚡ OUR STORY
+                             OUR STORY
                         </span>
 
                         <h1 className="text-3xl sm:text-5xl md:text-6xl font-black mb-4 text-white leading-[1.1] tracking-tight">
@@ -109,7 +109,7 @@ export default function AboutPageContent({ uploadImages, sliderImages }: AboutPa
                                     whileTap={{ scale: 0.97 }}
                                     className="px-8 py-3 rounded-2xl bg-gradient-to-r from-[#e50a1e] to-[#cc0000] font-black text-sm uppercase tracking-wide text-white shadow-lg shadow-[#e50a1e]/25"
                                 >
-                                    Join the Playground 🌟
+                                    Join the Playground 
                                 </motion.button>
                             </Link>
                         </div>
@@ -135,7 +135,7 @@ export default function AboutPageContent({ uploadImages, sliderImages }: AboutPa
                                     <div className="absolute inset-0 bg-gradient-to-br from-[#e50a1e]/85 to-[#cc0000]/80" />
                                 </div>
                             )}
-                            <div className={`absolute top-4 right-4 text-5xl opacity-10 select-none ${!hasUploads ? '' : 'text-white/20'}`}>🎯</div>
+                            <div className={`absolute top-4 right-4 text-5xl opacity-10 select-none ${!hasUploads ? '' : 'text-white/20'}`}></div>
                             <div className={`relative z-10 ${hasUploads ? 'text-white' : ''}`}>
                                 <div className="w-14 h-14 bg-gradient-to-br from-[#e50a1e] to-[#cc0000] text-white rounded-2xl flex items-center justify-center mb-6 shadow">
                                     <Rocket className="w-7 h-7" />
@@ -160,7 +160,7 @@ export default function AboutPageContent({ uploadImages, sliderImages }: AboutPa
                                     <div className="absolute inset-0 bg-gradient-to-br from-[#545454]/85 to-[#888888]/80" />
                                 </div>
                             )}
-                            <div className={`absolute top-4 right-4 text-5xl opacity-10 select-none ${!hasUploads ? '' : 'text-white/20'}`}>🔮</div>
+                            <div className={`absolute top-4 right-4 text-5xl opacity-10 select-none ${!hasUploads ? '' : 'text-white/20'}`}></div>
                             <div className={`relative z-10 ${hasUploads ? 'text-white' : ''}`}>
                                 <div className="w-14 h-14 bg-gradient-to-br from-[#545454] to-[#888888] text-white rounded-2xl flex items-center justify-center mb-6 shadow">
                                     <Lightbulb className="w-7 h-7" />
@@ -179,10 +179,10 @@ export default function AboutPageContent({ uploadImages, sliderImages }: AboutPa
             <section className="py-20 bg-[#faf8f5]">
                 <div className="container mx-auto px-5 text-center max-w-4xl">
                     <span className="badge-fun bg-[#e50a1e]/10 text-[#e50a1e] border border-[#e50a1e]/20 mb-6">
-                        🎈 KTU IMPACT
+                         KTU IMPACT
                     </span>
                     <h2 className="text-3xl md:text-5xl font-black text-[#1a1a1a] mb-12">
-                        Playground Highlights 🏆
+                        Playground Highlights 
                     </h2>
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
@@ -215,10 +215,10 @@ export default function AboutPageContent({ uploadImages, sliderImages }: AboutPa
                 <div className="container mx-auto px-5 relative z-10">
                     <div className="text-center max-w-2xl mx-auto mb-16">
                         <span className="badge-fun bg-[#545454]/10 text-[#545454] border border-[#545454]/20 mb-5">
-                            ✊ VALUES
+                             VALUES
                         </span>
                         <h2 className="text-3xl md:text-5xl font-black text-[#1a1a1a]">
-                            The KTU Code of Awesome ⚡
+                            The KTU Code of Awesome 
                         </h2>
                         <p className="text-base text-[#545454] font-semibold mt-4">
                             These core parameters define every session, game, pitch, and young leader we nurture!
@@ -259,11 +259,11 @@ export default function AboutPageContent({ uploadImages, sliderImages }: AboutPa
 
                         <div className="flex flex-col md:flex-row gap-8 items-center relative z-10">
                             <div className="w-24 h-24 sm:w-28 sm:h-28 bg-[#e50a1e]/15 border-2 border-[#e50a1e] text-4xl sm:text-5xl flex items-center justify-center rounded-full shadow-inner animate-float shrink-0">
-                                👑
+                                
                             </div>
                             <div>
                                 <span className="badge-fun bg-[#e50a1e]/10 text-[#e50a1e] text-[10px] tracking-widest mb-3">
-                                    💡 STUDENT SUCCESS HIGHLIGHT
+                                     STUDENT SUCCESS HIGHLIGHT
                                 </span>
                                 <h3 className="text-2xl sm:text-3xl font-black text-[#1a1a1a] mb-4">
                                     From Lemonade to Real Trade!
@@ -294,7 +294,7 @@ export default function AboutPageContent({ uploadImages, sliderImages }: AboutPa
                         <div className="absolute inset-0 confetti-bg opacity-15 pointer-events-none z-0" />
 
                         <div className="relative z-10">
-                            <div className="text-5xl mb-6">🚀</div>
+                            <div className="text-5xl mb-6"></div>
                             <h2 className="text-3xl sm:text-5xl font-black mb-6 leading-tight">
                                 Ready to Unleash Your<br />
                                 <span className="text-[#e50a1e]">Creative Genius?</span>

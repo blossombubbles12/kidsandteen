@@ -131,8 +131,8 @@ export default function RegistrationWizard({ plan }: RegistrationWizardProps) {
                                             value={data.category}
                                             onChange={(e) => updateData({ category: e.target.value })}
                                         >
-                                            <option value="Kids (6-12)">Kids Program (6-12) ⭐</option>
-                                            <option value="Teens (13-18)">Teens Program (13-18) 🚀</option>
+                                            <option value="Kids (6-12)">Kids Program (6-12) </option>
+                                            <option value="Teens (13-18)">Teens Program (13-18) </option>
                                         </select>
                                     </div>
 
@@ -257,7 +257,7 @@ export default function RegistrationWizard({ plan }: RegistrationWizardProps) {
                                 <div>
                                     <h2 className="text-3xl font-bold mb-2">Welcome to KTU, {data.name.split(' ')[0]}!</h2>
                                     <p className="text-xl text-muted-foreground">
-                                        Your journey to becoming a future CEO starts now! 🚀
+                                        Your journey to becoming a future CEO starts now! 
                                     </p>
                                 </div>
                                 <div className="bg-secondary/20 p-6 rounded-xl max-w-md mx-auto">

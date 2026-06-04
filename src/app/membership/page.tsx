@@ -62,7 +62,7 @@ export default function MembershipPage() {
             <section className="py-24 md:py-32 container px-4 max-w-5xl mx-auto">
                 <div className="text-center max-w-3xl mx-auto mb-16">
                     <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#e50a1e]/10 text-[#e50a1e] border border-[#e50a1e]/20 text-sm font-black mb-4">
-                        🌱 TWO PATHS, ONE MISSION
+                         TWO PATHS, ONE MISSION
                     </span>
                     <h2 className="text-4xl md:text-5xl font-black text-[#1a1a1a] mb-6 leading-tight">
                         Every Age Has Its<br /><span className="text-[#e50a1e]">Own Adventure</span>
@@ -77,9 +77,9 @@ export default function MembershipPage() {
 
                 <div className="grid md:grid-cols-3 gap-6 text-center mb-6">
                     {[
-                        { icon: "🎮", title: "Learning Through Play", desc: "Games, challenges, and hands-on projects that feel like fun but build real skills." },
-                        { icon: "👩‍🏫", title: "1-on-1 Mentorship", desc: "Every child gets a dedicated mentor who guides their journey and celebrates their wins." },
-                        { icon: "🏆", title: "Real-World Showcases", desc: "From Kidspreneur Fairs to Shark Tanks — every track ends with a real audience." },
+                        { icon: "", title: "Learning Through Play", desc: "Games, challenges, and hands-on projects that feel like fun but build real skills." },
+                        { icon: "", title: "1-on-1 Mentorship", desc: "Every child gets a dedicated mentor who guides their journey and celebrates their wins." },
+                        { icon: "", title: "Real-World Showcases", desc: "From Kidspreneur Fairs to Shark Tanks — every track ends with a real audience." },
                     ].map((item) => (
                         <div key={item.title} className="bg-white p-6 rounded-2xl border-2 border-[#e5e0db] hover:shadow-lg transition-all">
                             <div className="text-3xl mb-3">{item.icon}</div>
@@ -180,7 +180,7 @@ export default function MembershipPage() {
                 <div className="container px-4">
                     <div className="text-center mb-16">
                         <span className="badge-fun bg-[#e50a1e]/10 text-[#e50a1e] border border-[#e50a1e]/20 mb-6">
-                            ✨ WHY KTU
+                             WHY KTU
                         </span>
                         <h2 className="text-4xl md:text-5xl font-black text-[#1a1a1a] mb-4">More Than a Classroom</h2>
                         <p className="text-lg text-[#545454] max-w-2xl mx-auto">
@@ -219,7 +219,7 @@ export default function MembershipPage() {
                 <div className="container px-4 max-w-4xl mx-auto">
                     <div className="text-center mb-16">
                         <span className="badge-fun bg-[#1a1a1a]/10 text-[#1a1a1a] border border-[#1a1a1a]/20 mb-6">
-                            🔍 SIDE BY SIDE
+                             SIDE BY SIDE
                         </span>
                         <h2 className="text-4xl md:text-5xl font-black text-[#1a1a1a] mb-4">Which Track Fits Best?</h2>
                         <p className="text-lg text-[#545454] max-w-2xl mx-auto">

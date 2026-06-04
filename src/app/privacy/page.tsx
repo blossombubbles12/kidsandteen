@@ -21,7 +21,6 @@ export default function PrivacyPage() {
                         <p className="text-muted-foreground mb-3">We may collect the following personal information:</p>
                         <ul className="list-disc pl-6 text-muted-foreground space-y-2">
                             <li>Name, email address, and phone number</li>
-                            <li>Dog's name, breed, and other pet-related information</li>
                             <li>Event registration details</li>
                             <li>Payment information (processed securely through third-party providers)</li>
                             <li>Communication preferences</li>
@@ -58,7 +57,7 @@ export default function PrivacyPage() {
                             <li><strong>Event Partners:</strong> Sponsors and vendors at our events (with your consent)</li>
                             <li><strong>Service Providers:</strong> Third-party companies that help us operate our platform</li>
                             <li><strong>Legal Requirements:</strong> When required by law or to protect our rights</li>
-                            <li><strong>Guinness World Records:</strong> For verification of the world record attempt</li>
+
                         </ul>
                     </section>
 

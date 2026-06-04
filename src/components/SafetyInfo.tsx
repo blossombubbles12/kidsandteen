@@ -1,6 +1,6 @@
 "use client";
 
-import { ShieldCheck, Stethoscope, AlertTriangle } from "lucide-react";
+import { ShieldCheck, Users, AlertTriangle } from "lucide-react";
 
 export function SafetyInfo() {
     return (
@@ -13,7 +13,7 @@ export function SafetyInfo() {
                             Safety First
                         </h2>
                         <p className="text-lg opacity-90">
-                            To ensure a successful Guinness World Record attempt and a fun day for everyone, we enforce strict safety protocols.
+                            Your safety is our top priority. We enforce strict protocols at all KTU events to ensure a secure and enjoyable experience for everyone.
                         </p>
                     </div>
 
@@ -21,13 +21,13 @@ export function SafetyInfo() {
                         <div className="flex gap-4">
                             <div className="flex-shrink-0">
                                 <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center">
-                                    <Stethoscope className="w-5 h-5 text-orange-600" />
+                                    <Users className="w-5 h-5 text-orange-600" />
                                 </div>
                             </div>
                             <div>
-                                <h3 className="text-xl font-bold mb-2">Vet Checks Mandatory</h3>
+                                <h3 className="text-xl font-bold mb-2">Supervised Events</h3>
                                 <p className="text-muted-foreground">
-                                    All dogs must have an up-to-date vaccination card (Anti-Rabies / DHLPP). On-site vets will inspect every dog at entry.
+                                    All KTU events are staffed with trained supervisors and first-aid responders to ensure a safe environment for every participant.
                                 </p>
                             </div>
                         </div>
@@ -39,9 +39,9 @@ export function SafetyInfo() {
                                 </div>
                             </div>
                             <div>
-                                <h3 className="text-xl font-bold mb-2">Leash Rules</h3>
+                                <h3 className="text-xl font-bold mb-2">Code of Conduct</h3>
                                 <p className="text-muted-foreground">
-                                    No retractable leashes allowed. All dogs must be on a fixed leash (max 6ft) at all times unless in designated off-leash zones.
+                                    All participants and guardians must follow our code of conduct. Respectful behavior is expected at all KTU programs and events.
                                 </p>
                             </div>
                         </div>

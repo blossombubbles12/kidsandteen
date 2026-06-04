@@ -6,28 +6,28 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 const competitions = [
     {
-        title: "Agility Masters",
-        description: "An obstacle course race testing speed, obedience, and focus.",
-        icon: Activity,
-        prize: "₦250,000 Prize Pool",
+        title: "Pitch Competition",
+        description: "Young entrepreneurs pitch their business ideas to a panel of judges.",
+        icon: Trophy,
+        prize: "₦500,000 Seed Funding",
     },
     {
         title: "Fashion Parade",
-        description: "The famous 'Glamour Paws' runway. Best creative outfit wins.",
+        description: "Showcase your creative style on the runway. Best outfit wins.",
         icon: Camera,
         prize: "Modeling Contract",
     },
     {
-        title: "Grooming Contest",
-        description: " showcasing the best cuts, creative styling and fur art.",
-        icon: Scissors,
-        prize: "Pro Equipment Kit",
+        title: "Innovation Challenge",
+        description: "Solve real-world problems with creative thinking and teamwork.",
+        icon: Activity,
+        prize: "Tech Scholarship",
     },
     {
-        title: "Happiest Dog",
-        description: "A crowd-voting contest for the dog with the best smile and vibes.",
-        icon: Trophy,
-        prize: "Year's Supply of Treats",
+        title: "Creative Arts",
+        description: "Show off your talent in music, art, drama, or public speaking.",
+        icon: Scissors,
+        prize: "Creative Award Package",
     },
 ];
 
@@ -38,7 +38,7 @@ export function Competitions() {
                 <div className="text-center mb-16">
                     <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Competitions & Activities</h2>
                     <p className="mt-4 text-lg text-muted-foreground">
-                        Show off your dog's talent and win big!
+                        Show off your talent and win big!
                     </p>
                 </div>
 
@@ -61,7 +61,7 @@ export function Competitions() {
                                 <CardContent>
                                     <p className="text-muted-foreground mb-4">{comp.description}</p>
                                     <div className="text-sm font-semibold text-primary bg-primary/5 py-1 px-3 rounded-full w-fit">
-                                        🏆 {comp.prize}
+                                         {comp.prize}
                                     </div>
                                 </CardContent>
                             </Card>
