@@ -91,20 +91,28 @@ export interface AlbumData {
 /**
  * Fetches image resources from a specific Cloudinary subfolder.
  * Only returns images (no videos), sorted newest first.
+ * Wrapped with React cache() + unstable_cache to deduplicate calls
+ * and cache across requests, reducing Cloudinary token usage.
  */
-export async function getFolderImages(folderPath: string, limit: number = 10) {
-    try {
-        const result = await cloudinary.search
-            .expression(`folder:"${folderPath}/*" AND resource_type:image`)
-            .sort_by('created_at', 'desc')
-            .max_results(limit)
-            .execute();
-        return result.resources || [];
-    } catch (error) {
-        console.error(`Error fetching images from ${folderPath}:`, error);
-        return [];
-    }
-}
+export const getFolderImages = cache(async (folderPath: string, limit: number = 10) => {
+    return unstable_cache(
+        async () => {
+            try {
+                const result = await cloudinary.search
+                    .expression(`folder:"${folderPath}/*" AND resource_type:image`)
+                    .sort_by('created_at', 'desc')
+                    .max_results(limit)
+                    .execute();
+                return result.resources || [];
+            } catch (error) {
+                console.error(`Error fetching images from ${folderPath}:`, error);
+                return [];
+            }
+        },
+        [`folder-${folderPath}-${limit}`],
+        { revalidate: 3600, tags: ['media'] }
+    )();
+});
 
 /**
  * Fetches all albums with caching.

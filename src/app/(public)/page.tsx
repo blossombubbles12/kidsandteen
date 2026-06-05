@@ -77,7 +77,7 @@ export default async function Home() {
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
   <HeroSlider cloudinarySlides={hasSlides ? cloudinarySlides : undefined} />
-  <Hero />
+  <Hero uploadImages={uploadImages} />
 
   {/* ===== UPLOADS GALLERY ===== */}
       {hasUploads && (
