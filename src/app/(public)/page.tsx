@@ -13,6 +13,16 @@ import { getFolderImages } from "@/app/actions/media";
 import {
   ArrowRight,
   ArrowUpRight,
+  Sparkles,
+  Target,
+  Store,
+  Coins,
+  Crown,
+  Microscope,
+  Rocket,
+  TrendingUp,
+  Briefcase,
+  FlaskConical,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -141,7 +151,7 @@ export default async function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-5 md:gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 max-w-6xl mx-auto">
             {[
               { title: "Public Speaking", href: "/programs/public-speaking", tagline: "Voice, confidence & stage exposure", image: "/kidspublicspeaking.jpeg", desc: "We raise confident voices, bold thinkers, and inspiring speakers.", tag: "Communication" },
               { title: "Financial Literacy", href: "/programs/financial-literacy", tagline: "Money skills & smart habits", image: "/kidsfinancialliteracy.jpeg", desc: "Teaching how money works — earning, saving, budgeting, and investing.", tag: "Money Skills" },
@@ -213,26 +223,26 @@ export default async function Home() {
               <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-[#545454]/10 rounded-full" />
 
               <div className="relative">
-                <div className="w-[72px] h-[72px] bg-gradient-to-br from-[#e50a1e]/15 to-[#cc0000]/15 rounded-[1.2rem] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 text-4xl">
-                  
+                <div className="w-[72px] h-[72px] bg-gradient-to-br from-[#e50a1e]/15 to-[#cc0000]/15 rounded-[1.2rem] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                  <Sparkles className="w-8 h-8 text-[#e50a1e]" />
                 </div>
                 <h3 className="text-2xl font-black mb-1 text-[#1a1a1a]">
-                  For Kids <span className="text-[#e50a1e]">(6–12)</span> 🏽
+                  For Kids <span className="text-[#e50a1e]">(6–12)</span>
                 </h3>
                 <p className="text-[#888888] text-sm mb-6 font-semibold">The Little Boss Track</p>
 
                 <ul className="space-y-3 mb-8">
                   {[
-                    ["", "Mini-Business Ventures", "lemonade stands, crafts, toy businesses"],
-                    ["", "Financial Literacy Games", "play-money tokens, saving, investing basics"],
-                    ["", "Leadership & Character", "confidence, teamwork, etiquette"],
-                    ["", "STEM Explorers", "robotics, coding, science fairs"],
-                  ].map(([emoji, title, desc], i) => (
+                    { icon: Store, title: "Mini-Business Ventures", desc: "lemonade stands, crafts, toy businesses" },
+                    { icon: Coins, title: "Financial Literacy Games", desc: "play-money tokens, saving, investing basics" },
+                    { icon: Crown, title: "Leadership & Character", desc: "confidence, teamwork, etiquette" },
+                    { icon: Microscope, title: "STEM Explorers", desc: "robotics, coding, science fairs" },
+                  ].map((item, i) => (
                     <li key={i} className="flex items-start gap-3 group/item">
-                      <span className="text-xl mt-0.5 group-hover/item:animate-wiggle">{emoji}</span>
+                      <item.icon className="w-5 h-5 mt-0.5 text-[#e50a1e] shrink-0" />
                       <div>
-                        <span className="font-bold text-[#1a1a1a] text-sm">{title}</span>
-                        <span className="text-[#888888] text-sm"> — {desc}</span>
+                        <span className="font-bold text-[#1a1a1a] text-sm">{item.title}</span>
+                        <span className="text-[#888888] text-sm"> — {item.desc}</span>
                       </div>
                     </li>
                   ))}
@@ -251,26 +261,26 @@ export default async function Home() {
               <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-[#e50a1e]/8 rounded-full" />
 
               <div className="relative">
-                <div className="w-[72px] h-[72px] bg-gradient-to-br from-[#545454]/20 to-[#888888]/15 rounded-[1.2rem] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300 text-4xl">
-                  
+                <div className="w-[72px] h-[72px] bg-gradient-to-br from-[#545454]/20 to-[#888888]/15 rounded-[1.2rem] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300">
+                  <Target className="w-8 h-8 text-[#545454]" />
                 </div>
                 <h3 className="text-2xl font-black mb-1 text-[#1a1a1a]">
-                  For Teens <span className="text-[#545454]">(13–18)</span> 🏽
+                  For Teens <span className="text-[#545454]">(13–18)</span>
                 </h3>
                 <p className="text-[#888888] text-sm mb-6 font-semibold">The Young CEO Track</p>
 
                 <ul className="space-y-3 mb-8">
                   {[
-                    ["", "Startup Incubation", "fashion lines, apps, online stores"],
-                    ["", "Investment Clubs", "stock market, crypto simulations, budgeting"],
-                    ["", "Career Readiness", "internships, CV building, global exchange"],
-                    ["", "Innovation Labs", "hackathons, prototyping, invention fairs"],
-                  ].map(([emoji, title, desc], i) => (
+                    { icon: Rocket, title: "Startup Incubation", desc: "fashion lines, apps, online stores" },
+                    { icon: TrendingUp, title: "Investment Clubs", desc: "stock market, crypto simulations, budgeting" },
+                    { icon: Briefcase, title: "Career Readiness", desc: "internships, CV building, global exchange" },
+                    { icon: FlaskConical, title: "Innovation Labs", desc: "hackathons, prototyping, invention fairs" },
+                  ].map((item, i) => (
                     <li key={i} className="flex items-start gap-3 group/item">
-                      <span className="text-xl mt-0.5 group-hover/item:animate-wiggle">{emoji}</span>
+                      <item.icon className="w-5 h-5 mt-0.5 text-[#545454] shrink-0" />
                       <div>
-                        <span className="font-bold text-[#1a1a1a] text-sm">{title}</span>
-                        <span className="text-[#888888] text-sm"> — {desc}</span>
+                        <span className="font-bold text-[#1a1a1a] text-sm">{item.title}</span>
+                        <span className="text-[#888888] text-sm"> — {item.desc}</span>
                       </div>
                     </li>
                   ))}
@@ -303,23 +313,34 @@ export default async function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {[
-              { emoji: "", title: "KTU Shark Tank", desc: "Pitch businesses to real investors and win funding.", bg: "from-[#e50a1e]/10 to-[#cc0000]/10", border: "border-[#e50a1e]/25", hover: "hover:shadow-[#e50a1e]/10" },
-              { emoji: "", title: "Investment Challenge", desc: "Manage portfolios and master wealth-building strategies.", bg: "from-[#545454]/15 to-[#888888]/10", border: "border-[#545454]/25", hover: "hover:shadow-[#545454]/10" },
-              { emoji: "", title: "Global Teens Forum", desc: "Debate world issues with peers from across the continent.", bg: "from-[#545454]/10 to-[#e5e0db]/20", border: "border-[#545454]/25", hover: "hover:shadow-[#545454]/10" },
-              { emoji: "", title: "Kidspreneur Fair", desc: "Kids showcase and sell their mini-business products.", bg: "from-[#e50a1e]/8 to-[#545454]/10", border: "border-[#e50a1e]/25", hover: "hover:shadow-[#e50a1e]/10" },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className={`group bg-white p-8 rounded-[2rem] border-2 ${item.border} ${item.hover} hover:shadow-xl hover:-translate-y-3 hover:rotate-1 transition-all duration-300 text-center cursor-pointer relative overflow-hidden`}
-              >
-                <div className={`absolute inset-0 bg-gradient-to-br ${item.bg} opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[2rem]`} />
-                <div className="relative">
-                  <div className="text-5xl mb-5 group-hover:animate-bounce-gentle inline-block">{item.emoji}</div>
-                  <h3 className="text-lg font-black mb-3 text-[#1a1a1a]">{item.title}</h3>
-                  <p className="text-[#888888] text-sm font-semibold leading-relaxed">{item.desc}</p>
+              { title: "KTU Shark Tank", desc: "Pitch businesses to real investors and win funding." },
+              { title: "Investment Challenge", desc: "Manage portfolios and master wealth-building strategies." },
+              { title: "Global Teens Forum", desc: "Debate world issues with peers from across the continent." },
+              { title: "Kidspreneur Fair", desc: "Kids showcase and sell their mini-business products." },
+            ].map((item, i) => {
+              const img = uploadImages?.[i % uploadImages.length];
+              return (
+                <div
+                  key={i}
+                  className="group relative bg-white rounded-[2rem] border-2 border-[#e5e0db] hover:shadow-xl hover:-translate-y-3 hover:rotate-1 transition-all duration-300 text-center cursor-pointer overflow-hidden"
+                >
+                  {img && (
+                    <Image
+                      src={img.secure_url}
+                      alt={item.title}
+                      fill
+                      className="object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-500"
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/90 via-[#1a1a1a]/60 to-[#1a1a1a]/40" />
+                  <div className="relative z-10 p-8 flex flex-col items-center justify-center min-h-[200px]">
+                    <h3 className="text-lg font-black mb-3 text-white">{item.title}</h3>
+                    <p className="text-white/70 text-sm font-semibold leading-relaxed">{item.desc}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

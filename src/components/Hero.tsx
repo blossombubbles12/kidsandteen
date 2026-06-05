@@ -136,16 +136,15 @@ export function Hero() {
                     className="flex flex-wrap items-center justify-center gap-6 mt-12"
                 >
                     {[
-                        { num: "50k+", label: "Young Dreamers", emoji: "🏽" },
-                        { num: "10", label: "Years Strong", emoji: "" },
-                        { num: "500+", label: "Startups Born", emoji: "" },
+                        { num: "50k+", label: "Young Dreamers" },
+                        { num: "10", label: "Years Strong" },
+                        { num: "500+", label: "Startups Born" },
                     ].map((stat, i) => (
                         <motion.div
                             key={i}
                             whileHover={{ scale: 1.08, rotate: 1 }}
                             className="bg-white rounded-2xl px-6 py-4 shadow-md border-2 border-[#e5e0db] text-center hover:border-[#e50a1e]/25 transition-all"
                         >
-                            <div className="text-2xl mb-1">{stat.emoji}</div>
                             <div className="text-2xl font-black text-[#e50a1e]">{stat.num}</div>
                             <div className="text-xs font-bold text-[#545454] uppercase tracking-wide">{stat.label}</div>
                         </motion.div>
