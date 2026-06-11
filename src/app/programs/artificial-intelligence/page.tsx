@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { Cpu, ArrowRight, Sparkles, Quote } from "lucide-react";
+import { Cpu, ArrowRight, Sparkles, Quote, Palette, ShieldCheck } from "lucide-react";
 import { getFolderImages } from "@/app/actions/media";
 import Image from "next/image";
 
@@ -59,13 +59,13 @@ export default async function ArtificialIntelligencePage() {
                     {/* Feature Cards */}
                     <div className="grid md:grid-cols-3 gap-6 mb-12">
                         {[
-                            { emoji: "", title: "Understand AI", desc: "Kids learn what AI is, how it thinks, and where it shows up in their daily lives." },
-                            { emoji: "", title: "Creative with AI", desc: "Use AI tools for art, music, storytelling, and bringing big ideas to life." },
-                            { emoji: "", title: "Responsible Use", desc: "Learn the ethics of AI — privacy, bias, and how to use technology wisely." },
+                            { icon: Cpu, title: "Understand AI", desc: "Kids learn what AI is, how it thinks, and where it shows up in their daily lives." },
+                            { icon: Palette, title: "Creative with AI", desc: "Use AI tools for art, music, storytelling, and bringing big ideas to life." },
+                            { icon: ShieldCheck, title: "Responsible Use", desc: "Learn the ethics of AI — privacy, bias, and how to use technology wisely." },
                         ].map((item) => (
                             <div key={item.title} className="bg-white p-6 rounded-2xl border-2 border-[#e5e0db] hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
-                                <div className="w-12 h-12 rounded-xl bg-[#e50a1e]/10 flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">
-                                    {item.emoji}
+                                <div className="w-12 h-12 rounded-xl bg-[#e50a1e]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                    <item.icon className="w-6 h-6 text-[#e50a1e]" />
                                 </div>
                                 <h3 className="font-black text-[#1a1a1a] mb-2">{item.title}</h3>
                                 <p className="text-sm text-[#545454] font-semibold">{item.desc}</p>

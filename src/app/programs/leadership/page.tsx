@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { Users, ArrowRight, Sparkles, Quote } from "lucide-react";
+import { Users, ArrowRight, Sparkles, Quote, Star, GitBranch } from "lucide-react";
 import { getFolderImages } from "@/app/actions/media";
 import Image from "next/image";
 
@@ -59,13 +59,13 @@ export default async function LeadershipPage() {
                     {/* Feature Cards */}
                     <div className="grid md:grid-cols-3 gap-6 mb-12">
                         {[
-                            { emoji: "", title: "Confidence", desc: "Develop self-awareness and the courage to stand firm in what they believe." },
-                            { emoji: "", title: "Decision-Making", desc: "Learn to make thoughtful choices and take positive initiative." },
-                            { emoji: "", title: "Teamwork", desc: "Build skills to lead themselves and others with responsibility and purpose." },
+                            { icon: Star, title: "Confidence", desc: "Develop self-awareness and the courage to stand firm in what they believe." },
+                            { icon: GitBranch, title: "Decision-Making", desc: "Learn to make thoughtful choices and take positive initiative." },
+                            { icon: Users, title: "Teamwork", desc: "Build skills to lead themselves and others with responsibility and purpose." },
                         ].map((item) => (
                             <div key={item.title} className="bg-white p-6 rounded-2xl border-2 border-[#e5e0db] hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
-                                <div className="w-12 h-12 rounded-xl bg-[#545454]/10 flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">
-                                    {item.emoji}
+                                <div className="w-12 h-12 rounded-xl bg-[#545454]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                    <item.icon className="w-6 h-6 text-[#545454]" />
                                 </div>
                                 <h3 className="font-black text-[#1a1a1a] mb-2">{item.title}</h3>
                                 <p className="text-sm text-[#545454] font-semibold">{item.desc}</p>

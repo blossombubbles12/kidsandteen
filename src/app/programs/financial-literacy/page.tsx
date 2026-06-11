@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { DollarSign, ArrowRight, Sparkles, Quote } from "lucide-react";
+import { DollarSign, ArrowRight, Sparkles, Quote, Wallet, ArrowLeftRight, Coins, Lightbulb } from "lucide-react";
 import { getFolderImages } from "@/app/actions/media";
 import Image from "next/image";
 
@@ -59,14 +59,14 @@ export default async function FinancialLiteracyPage() {
                     {/* Feature Cards */}
                     <div className="grid md:grid-cols-2 gap-6 mb-12">
                         {[
-                            { emoji: "", title: "Budgeting Basics", desc: "Track allowances, set savings goals, and plan spending wisely." },
-                            { emoji: "", title: "Needs vs Wants", desc: "Learn to distinguish essential expenses from discretionary spending." },
-                            { emoji: "", title: "Savings Habits", desc: "Build the discipline of saving early for long-term financial health." },
-                            { emoji: "", title: "Smart Decisions", desc: "Develop thoughtful money choices instead of impulsive spending." },
+                            { icon: Wallet, title: "Budgeting Basics", desc: "Track allowances, set savings goals, and plan spending wisely." },
+                            { icon: ArrowLeftRight, title: "Needs vs Wants", desc: "Learn to distinguish essential expenses from discretionary spending." },
+                            { icon: Coins, title: "Savings Habits", desc: "Build the discipline of saving early for long-term financial health." },
+                            { icon: Lightbulb, title: "Smart Decisions", desc: "Develop thoughtful money choices instead of impulsive spending." },
                         ].map((item) => (
                             <div key={item.title} className="bg-white p-6 rounded-2xl border-2 border-[#e5e0db] hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
-                                <div className="w-12 h-12 rounded-xl bg-[#545454]/10 flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">
-                                    {item.emoji}
+                                <div className="w-12 h-12 rounded-xl bg-[#545454]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                    <item.icon className="w-6 h-6 text-[#545454]" />
                                 </div>
                                 <h3 className="font-black text-[#1a1a1a] mb-2">{item.title}</h3>
                                 <p className="text-sm text-[#545454] font-semibold">{item.desc}</p>
